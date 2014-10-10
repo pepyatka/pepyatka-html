@@ -1,0 +1,22 @@
+{
+  "author": "epicmonkey <mail@epicmonkey.org>",
+  "name": "pepyatka-client-html",
+  "description": "Pepyatka is an open source FriendFeed clone. Basically, this is a social real-time feed aggregator that allows you to share cute kittens, coordinate upcoming events, discuss any other cool stuff on the Internet or setup a private Pepyatka instance in your company.",
+  "homepage": "http://pepyatka.com",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/epicmonkey/pepyatka-html.git"
+  },
+  "scripts": {
+    "test": "jake test"
+  },
+  "dependencies": {
+    "express": "4.9.5",
+    "ejs": "0.8.3"
+  }
+}
