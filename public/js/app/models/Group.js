@@ -102,6 +102,7 @@ define(["config",
         url: this.resourceUrl + '/' + username + this.suffix,
         context: this,
         type: 'get',
+        dataType: 'jsonp',
         success: success,
         error: App.helpers.handleAjaxError
       })
@@ -133,6 +134,7 @@ define(["config",
         url: this.resourceUrl + '/' + App.properties.get('username') + this.suffix,
         context: this,
         type: 'get',
+        dataType: 'jsonp',
         success: success,
         error: App.helpers.handleAjaxError
       })

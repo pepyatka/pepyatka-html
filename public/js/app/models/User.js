@@ -58,6 +58,7 @@ define(["config",
       $.ajax({
         url: this.resourceUrl,
         type: 'post',
+        dataType: 'jsonp',
         data: { params: params, '_method': 'patch', '_csrf': csrf_token },
         context: this,
         success: function(response) {

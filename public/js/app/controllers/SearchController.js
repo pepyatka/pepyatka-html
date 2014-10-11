@@ -25,6 +25,7 @@ define(["config",
           // TODO: temporary hardcode resource url into query
           url: config.host + '/v1/search' + '/' + encodeURIComponent(query),
           type: 'get',
+          dataType: 'jsonp',
           data: { offset: pageStart, limit: pageSize },
           context: this,
         }).then(function(response) {

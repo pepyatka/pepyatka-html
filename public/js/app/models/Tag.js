@@ -11,6 +11,7 @@ define(["config",
 
       $.ajax({
         url: this.resourceUrl,
+        dataType: 'jsonp',
         context: this,
         type: 'get',
         success: function(response) {

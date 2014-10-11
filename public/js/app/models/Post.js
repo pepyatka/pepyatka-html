@@ -107,6 +107,7 @@ define(["config",
     update: function(postId, attrs) {
       $.ajax({
         url: this.resourceUrl + '/' + postId,
+        dataType: 'jsonp',
         type: 'post',
         data: { body: attrs.body, '_method': 'patch', '_csrf': csrf_token },
         success: function(response) {
@@ -118,6 +119,7 @@ define(["config",
     like: function(postId) {
       $.ajax({
         url: this.resourceUrl + '/' + postId + '/like',
+        dataType: 'jsonp',
         type: 'post',
         data: { '_csrf': csrf_token },
         success: function(response) {
@@ -129,6 +131,7 @@ define(["config",
     unlike: function(postId) {
       $.ajax({
         url: this.resourceUrl + '/' + postId + '/unlike',
+        dataType: 'jsonp',
         type: 'post',
         data: { '_csrf': csrf_token },
         success: function(response) {
@@ -184,6 +187,7 @@ define(["config",
     kill: function(postId) {
       $.ajax({
         url: this.resourceUrl + '/' + postId,
+        dataType: 'jsonp',
         type: 'post',
         data: { '_method': 'delete', '_csrf': csrf_token },
         success: function(response) {
