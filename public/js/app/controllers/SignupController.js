@@ -12,7 +12,6 @@ define(["config",
           data: { username: this.get('username'),
                   password: this.get('password'),
                   '_csrf': csrf_token },
-          dataType: 'jsonp',
           type: 'post',
           context: this,
           success: function(response) {

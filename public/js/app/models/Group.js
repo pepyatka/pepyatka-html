@@ -15,7 +15,6 @@ define(["config",
           + options.username
           + '/subscribers/'
           + options.id,
-        dataType: 'jsonp',
         type: 'post',
         data: { '_method': 'delete', '_csrf': csrf_token },
         success: options.success ? options.success : null
@@ -31,7 +30,6 @@ define(["config",
           + '/subscribers/'
           + options.id
           + "/admin",
-        dataType: 'jsonp',
         type: 'post',
         data: { '_csrf': csrf_token },
         success: options.success ? options.success : null
@@ -47,7 +45,6 @@ define(["config",
           + '/subscribers/'
           + options.id
           + "/unadmin",
-        dataType: 'jsonp',
         type: 'post',
         data: { '_csrf': csrf_token },
         success: options.success ? options.success : null
@@ -80,7 +77,6 @@ define(["config",
       });
       return subscribers;
     },
-
 
     // TODO: Move to appropriate place
     findAllWithUsers: function(username) {
@@ -148,7 +144,6 @@ define(["config",
         url: this.resourceUrl,
         type: 'post',
         data: attrs,
-        dataType: 'jsonp',
         success: options && options.success ? options.success : null,
         error: options && options.error ? options.error : null
       });

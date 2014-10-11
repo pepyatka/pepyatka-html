@@ -9,7 +9,6 @@ define(["config",
       $.ajax({
         url: this.resourceUrl,
         type: 'post',
-        dataType: 'jsonp',
         data: { body: attrs.body, postId: attrs.postId, '_csrf': csrf_token },
         success: function(response) {
           console.log(response)
@@ -21,7 +20,6 @@ define(["config",
       $.ajax({
         url: this.resourceUrl + '/' + commentId,
         type: 'post',
-        dataType: 'jsonp',
         data: { body: attrs.body, '_method': 'patch', '_csrf': csrf_token },
         success: function(response) {
           console.log(response)
@@ -33,7 +31,6 @@ define(["config",
       $.ajax({
         url: this.resourceUrl + '/' + commentId,
         type: 'post',
-        dataType: 'jsonp',
         data: { '_method': 'delete', '_csrf': csrf_token },
         success: function(response) {
           console.log(response)
