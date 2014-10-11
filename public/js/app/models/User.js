@@ -1,4 +1,5 @@
-define(["app/app"], function(App) {
+define(["config",
+        "app/app"], function(config, App) {
   App.User = Ember.Object.extend({
     id: null,
     username: null,
@@ -37,7 +38,7 @@ define(["app/app"], function(App) {
   })
 
   App.User.reopenClass({
-    resourceUrl: '/v1/users',
+    resourceUrl: config.host + '/v1/users',
 
     find: function(userId) {
       var user = App.User.create()

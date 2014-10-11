@@ -1,9 +1,10 @@
-define(["app/app"], function(App) {
+define(["config",
+        "app/app"], function(config, App) {
   App.Tag = Ember.Object.extend({
     content: {}
   })
   App.Tag.reopenClass({
-    resourceUrl: '/v1/tags',
+    resourceUrl: config.host + '/v1/tags',
 
     findAll: function() {
       var tags = Ember.ArrayProxy.create({content: []});

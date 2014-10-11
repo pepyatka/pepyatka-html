@@ -1,5 +1,5 @@
-define(["app/app"], function(App) {
-
+define(["config",
+        "app/app"], function(config, App) {
   App.Post = Ember.Object.extend({
     showAllComments: false,
 
@@ -69,8 +69,8 @@ define(["app/app"], function(App) {
   });
 
   App.Post.reopenClass({
-    resourceUrl: '/v1/posts',
-    
+    resourceUrl: config.host + '/v1/posts',
+
     createFromProto: function(attrs) {
       var comments = attrs.comments
       delete attrs.comments
@@ -82,17 +82,17 @@ define(["app/app"], function(App) {
       post.comments = Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
         // TODO: figure out why we have to add itemController="comment"
         // option to each iterator in the view
-        itemController: 'comment',      
+        itemController: 'comment',
         content: []
       })
-      
+
       if (comments) {
         comments.forEach(function(attrs) {
           var comment = App.Comment.create(attrs)
           post.comments.addObject(comment)
         })
       }
-      
+
       post.attachments = Ember.ArrayProxy.create({content: []});
       if (attachments) {
         attachments.forEach(function(attrs) {
@@ -100,7 +100,7 @@ define(["app/app"], function(App) {
           post.attachments.addObject(attachment)
         })
       }
-      
+
       return post
     },
 

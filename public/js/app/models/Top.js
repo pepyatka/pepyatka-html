@@ -1,8 +1,9 @@
-define(["app/app"], function(App) {
+define(["config",
+        "app/app"], function(config, App) {
   App.Top = Ember.Object.extend({});
 
   App.Top.reopenClass({
-    resourceUrl: '/v1/top',
+    resourceUrl: config.host + '/v1/top',
 
     findAll: function(category) {
       var users = Ember.ArrayProxy.create({content: [], isLoaded: false});

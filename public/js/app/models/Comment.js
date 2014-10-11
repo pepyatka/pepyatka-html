@@ -1,8 +1,9 @@
-define(["app/app"], function(App) {
+define(["config",
+        "app/app"], function(config, App) {
   App.Comment = Ember.Object.extend({})
 
   App.Comment.reopenClass({
-    resourceUrl: '/v1/comments',
+    resourceUrl: config.host + '/v1/comments',
 
     submit: function(attrs) {
       $.ajax({

@@ -1,8 +1,9 @@
-define(["app/app",
+define(["config",
+        "app/app",
         "ember",
-        "app/helpers/Components"], function(App, Ember) {
+        "app/helpers/Components"], function(config, App, Ember) {
   App.SearchController = Ember.ObjectController.extend(App.PaginationHelper, {
-    resourceUrl: '/v1/search',
+    resourceUrl: config.host + '/v1/search',
 
     actions: {
       search: function(query, options) {
@@ -22,7 +23,7 @@ define(["app/app",
 
         $.ajax({
           // TODO: temporary hardcode resource url into query
-          url: '/v1/search' + '/' + encodeURIComponent(query),
+          url: config.host + '/v1/search' + '/' + encodeURIComponent(query),
           type: 'get',
           data: { offset: pageStart, limit: pageSize },
           context: this,

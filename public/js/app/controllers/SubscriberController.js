@@ -1,6 +1,7 @@
-define(["app/app"], function(App) {
+define(["config",
+        "app/app"], function(config, App) {
   App.SubscriberController = Ember.ObjectController.extend({
-    resourceUrl: '/v1/users',
+    resourceUrl: config.host + '/v1/users',
     needs: ["subscribers"],
 
     actions: {

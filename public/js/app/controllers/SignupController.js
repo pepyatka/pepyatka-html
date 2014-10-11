@@ -1,6 +1,7 @@
-define(["app/app"], function(App) {
+define(["config",
+        "app/app"], function(config, App) {
   App.SignupController = Ember.ObjectController.extend({
-    resourceUrl: '/v1/signup',
+    resourceUrl: config.host + '/v1/signup',
     username: '',
     password: '',
 

@@ -1,4 +1,5 @@
-define(["app/app"], function(App) {
+define(["config",
+        "app/app"], function(config, App) {
   App.Timeline = Ember.Object.extend({
     posts: Ember.ArrayProxy.extend(Ember.SortableMixin, {
       // TODO: figure out why we have to add itemController="post"
@@ -13,7 +14,7 @@ define(["app/app"], function(App) {
   })
 
   App.Timeline.reopenClass({
-    resourceUrl: '/v1/timeline',
+    resourceUrl: config.host + '/v1/timeline',
 
     find: function(timelineId, options) {
       if (timelineId === undefined) timelineId = ''

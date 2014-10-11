@@ -1,9 +1,10 @@
-define(["app/app"], function(App) {
+define(["config",
+        "app/app"], function(config, App) {
   App.Group = Ember.Object.extend({
     content: {}
   })
   App.Group.reopenClass({
-    resourceUrl: '/v1/users',
+    resourceUrl: config.host + '/v1/users',
     suffix: '/subscriptions',
 
     // TODO: Move to appropriate place

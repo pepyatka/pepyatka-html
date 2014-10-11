@@ -1,6 +1,7 @@
-define(["app/app"], function(App) {
+define(["config",
+        "app/app"], function(config, App) {
   App.TimelineController = Ember.ObjectController.extend(App.PaginationHelper, {
-    resourceUrl: '/v1/posts',
+    resourceUrl: config.host + '/v1/posts',
 
     isProgressBarHidden: 'hidden',
 
