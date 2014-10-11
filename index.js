@@ -4,12 +4,13 @@ var express = require('express')
   , path = require('path')
 
 app.set('port', 3333)
+app.set('views', path.normalize(__dirname + '/public'));
 app.set('view engine', 'ejs')
 app.engine('html', require('ejs').renderFile);
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', function (req, res) {
-  res.render('index')
+app.all('/*', function (req, res) {
+  res.render('index.html')
 })
 
 var server = http.createServer(app)
