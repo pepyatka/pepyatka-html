@@ -1,4 +1,6 @@
-define(["app/app", "socket.io"], function(App) {
+define(["config",
+        "app/app",
+        "socket.io"], function(config, App) {
   App.CometController = Ember.Controller.extend({
     needs: ['timeline', 'search', 'post'],
 
@@ -134,7 +136,7 @@ define(["app/app", "socket.io"], function(App) {
     init: function() {
       this._super();
 
-      this.set('socket', io.connect('/'));
+      this.set('socket', io.connect(config.host + '/'));
 
       this.get('socket').on('newPost', this.newPost.bind(this));
       this.get('socket').on('updatePost', this.updatePost.bind(this));
