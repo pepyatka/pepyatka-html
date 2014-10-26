@@ -1,5 +1,5 @@
 define(["app/app",
-	"ember"], function(App, Ember) {
+        "ember"], function(App, Ember) {
   App.YoutubeHelper = {
     extractId: function(text) {
       var regex = /(youtube\.com\/watch\?v=|\&v=|\/\d\/|\/embed\/|\/v\/|\.be\/)([a-zA-Z0-9\-\_]+)/;
