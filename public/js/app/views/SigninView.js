@@ -25,7 +25,7 @@ define(["app/app",
 
       if (this.$()) {
         this.set('username.value', this.$('#username').val())
-        this.set('password.value', this.$('#username').val())
+        this.set('password.value', this.$('#password').val())
       }
       setTimeout(function() { self.tick(); }, interval)
     }
