@@ -322,6 +322,7 @@ define(["app/app",
 
     this.resource('signup', { path: "/signup" })
     this.resource('signin', { path: "/signin" })
+    this.resource('logout', { path: "/logout" })
 
     this.resource('stats', { path: "/top/:category" })
     this.resource('leaderboard', { path: "/leaderboard" })

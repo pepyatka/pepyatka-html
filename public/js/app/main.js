@@ -51,6 +51,7 @@ define([
   "controllers/CommentController",
   "controllers/ErrorController",
   "controllers/GroupsController",
+  "controllers/LogoutController",
   "controllers/PostController",
   "controllers/SearchController",
   "controllers/SettingsController",
