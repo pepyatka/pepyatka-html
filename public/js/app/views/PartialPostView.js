@@ -56,7 +56,7 @@ define(["app/app",
     colonOrBlank: function() {
       return this.get("controller.content.groups").length > 1;
     }.property("controller.content.groups"),
-    
+
     didInsertElement: function() {
       this.$().hide().slideDown('slow');
     },

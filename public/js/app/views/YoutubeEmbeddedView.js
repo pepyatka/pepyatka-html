@@ -16,7 +16,7 @@ define(["app/app",
       return this.get('isPlayerFrameVisible') === true;
     }.property('isPlayerFrameVisible'),
 
-    getYoutubeLink: function() {      
+    getYoutubeLink: function() {
       var text = this.get("text")
       return App.YoutubeHelper.getVideoUrl(text)
     }.property("text"),
@@ -33,4 +33,4 @@ define(["app/app",
 });
 
 
-      
+

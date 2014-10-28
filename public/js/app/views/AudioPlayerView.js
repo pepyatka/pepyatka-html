@@ -6,7 +6,7 @@ define(["app/app", "jquery", "mediaelement"], function(App, $) {
         enablePluginDebug: false,
         plugins: ['flash'],
         audioWidth: 112,
-        type: '',        
+        type: '',
         pluginPath: '/assets/',
         flashName: 'flashmediaelement.swf',
         success: function (mediaElement, domObject) {
@@ -26,7 +26,7 @@ define(["app/app", "jquery", "mediaelement"], function(App, $) {
           mediaElement.addEventListener('pause', function(e) {
             container.removeClass("full-player")
             el.find(".mejs-time, .mejs-time-rail").hide()
-          }, false);          
+          }, false);
         },
       })
     }
