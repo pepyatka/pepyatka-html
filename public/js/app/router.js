@@ -302,6 +302,12 @@ define(["app/app",
     },
   })
 
+  App.LogoutRoute = Ember.Route.extend({
+    setupController: function(controller, model) {
+      controller.send('logout')
+    }
+  })
+
   App.Router.map(function() {
     this.resource('search', { path: "/search/:query" })
 

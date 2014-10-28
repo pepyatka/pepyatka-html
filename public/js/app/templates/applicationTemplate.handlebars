@@ -48,7 +48,7 @@
               {{#unless view.isAnonymous}}
                 {{#link-to 'settings' App.properties.userId}}{{t label.settings}}{{/link-to}} -
               {{/unless}}
-                <a href="/logout">{{t label.signout}}</a>
+                {{#link-to 'logout'}}{{t label.signout}}{{/link-to}}</a>
             </div>
           </div>
         </div>
