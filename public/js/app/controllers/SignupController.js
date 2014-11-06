@@ -1,7 +1,7 @@
 define(["config",
         "app/app"], function(config, App) {
   App.SignupController = Ember.ObjectController.extend({
-    resourceUrl: config.host + '/v1/signup',
+    resourceUrl: config.host + '/v2/signup',
     username: '',
     password: '',
 
@@ -10,13 +10,14 @@ define(["config",
         $.ajax({
           url: this.resourceUrl,
           data: { username: this.get('username'),
-                  password: this.get('password'),
-                  '_csrf': csrf_token },
+                  password: this.get('password')
+                },
           type: 'post',
           context: this,
           success: function(response) {
             switch (response.status) {
             case 'success':
+              App.properties.set('authToken', response.token)
               App.properties.set('isAuthorized', true)
               App.properties.set('username', response.user.username)
               App.properties.set('userId', response.user.id)

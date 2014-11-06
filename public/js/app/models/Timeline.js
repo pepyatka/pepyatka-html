@@ -69,7 +69,6 @@ define(["config",
         url: this.resourceUrl + '/' + timelineId + '/subscribe',
         context: this,
         type: 'post',
-        data: { '_csrf': csrf_token },
         success: options && options.success ? options.success : null
       });
     },
@@ -79,7 +78,6 @@ define(["config",
         url: this.resourceUrl + '/' + timelineId + '/unsubscribe',
         context: this,
         type: 'post',
-        data: { '_csrf': csrf_token },
         success: options && options.success ? options.success : null
       });
     }

@@ -16,7 +16,7 @@ define(["config",
           + '/subscribers/'
           + options.id,
         type: 'post',
-        data: { '_method': 'delete', '_csrf': csrf_token },
+        data: { '_method': 'delete' },
         success: options.success ? options.success : null
       });
     },
@@ -31,7 +31,6 @@ define(["config",
           + options.id
           + "/admin",
         type: 'post',
-        data: { '_csrf': csrf_token },
         success: options.success ? options.success : null
       });
     },
@@ -46,7 +45,6 @@ define(["config",
           + options.id
           + "/unadmin",
         type: 'post',
-        data: { '_csrf': csrf_token },
         success: options.success ? options.success : null
       });
     },
@@ -139,7 +137,6 @@ define(["config",
     },
 
     submit: function(attrs, options) {
-      attrs._csrf = csrf_token
       $.ajax({
         url: this.resourceUrl,
         type: 'post',

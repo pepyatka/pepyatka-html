@@ -9,7 +9,7 @@ define(["config",
       $.ajax({
         url: this.resourceUrl,
         type: 'post',
-        data: { body: attrs.body, postId: attrs.postId, '_csrf': csrf_token },
+        data: { body: attrs.body, postId: attrs.postId },
         success: function(response) {
           console.log(response)
         }
@@ -20,7 +20,7 @@ define(["config",
       $.ajax({
         url: this.resourceUrl + '/' + commentId,
         type: 'post',
-        data: { body: attrs.body, '_method': 'patch', '_csrf': csrf_token },
+        data: { body: attrs.body, '_method': 'patch' },
         success: function(response) {
           console.log(response)
         }
@@ -31,7 +31,7 @@ define(["config",
       $.ajax({
         url: this.resourceUrl + '/' + commentId,
         type: 'post',
-        data: { '_method': 'delete', '_csrf': csrf_token },
+        data: { '_method': 'delete' },
         success: function(response) {
           console.log(response)
         }

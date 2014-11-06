@@ -108,7 +108,7 @@ define(["config",
       $.ajax({
         url: this.resourceUrl + '/' + postId,
         type: 'post',
-        data: { body: attrs.body, '_method': 'patch', '_csrf': csrf_token },
+        data: { body: attrs.body, '_method': 'patch' },
         success: function(response) {
           console.log(response)
         }
@@ -119,7 +119,6 @@ define(["config",
       $.ajax({
         url: this.resourceUrl + '/' + postId + '/like',
         type: 'post',
-        data: { '_csrf': csrf_token },
         success: function(response) {
           console.log(response)
         }
@@ -130,7 +129,6 @@ define(["config",
       $.ajax({
         url: this.resourceUrl + '/' + postId + '/unlike',
         type: 'post',
-        data: { '_csrf': csrf_token },
         success: function(response) {
           console.log(response)
         }
@@ -185,7 +183,7 @@ define(["config",
       $.ajax({
         url: this.resourceUrl + '/' + postId,
         type: 'post',
-        data: { '_method': 'delete', '_csrf': csrf_token },
+        data: { '_method': 'delete' },
         success: function(response) {
           console.log(response)
         }

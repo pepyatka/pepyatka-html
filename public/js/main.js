@@ -7,17 +7,24 @@
         var app_name = config.app_name;
         root[app_name] = App
 
+        var token = window.localStorage.getItem('token');
+        if (token)
+          App.properties.set('authToken', token)
+
         $.ajax({
-          url: config.host + "/v1/whoami",
-          dataType: 'jsonp',
+          url: config.host + "/v2/whoami",
           context: this,
           success: function(data) {
-            App.properties.userId = data.id
-            App.properties.username = data.username
-            App.properties.screenName = data.info ? data.info.screenName : data.username;
+            var user = data.user
+            App.properties.userId = user.id
+            App.properties.username = user.username
+            App.properties.screenName = user.info ? user.info.screenName : user.username;
 
             // Now we are good to initialize Ember application
             App.advanceReadiness()
+
+            if (data.token)
+              App.properties.set('authToken', data.token)
           }
         })
       });

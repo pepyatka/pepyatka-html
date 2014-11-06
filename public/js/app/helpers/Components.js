@@ -1,5 +1,6 @@
-define(["app/app",
-        "ember"], function(App, Ember) {
+define(["config",
+        "app/app",
+        "ember"], function(config, App, Ember) {
   App.SearchField = Ember.TextField.extend(Ember.TargetActionSupport, {
     valueBinding: 'view.body',
 
@@ -30,7 +31,22 @@ define(["app/app",
     userId: null,
     screenName: null,
 
-    currentPath: null
+    currentPath: null,
+
+    setAuthToken: function() {
+      var token = this.authToken
+      if (token) {
+        window.localStorage.setItem('token', token);
+
+        $.ajaxSetup({
+          url: config.host
+        })
+
+        $.ajaxPrefilter(function(options, originalOptions, jqXHR) {
+          options.data = $.param($.extend(originalOptions.data, { token: token }))
+        });
+      }
+    }.observes('authToken')
   })
   App.properties = App.Properties.create()
 
