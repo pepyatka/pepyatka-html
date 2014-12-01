@@ -41,6 +41,9 @@ define(["config",
           data.append('file-'+i, file);
         });
 
+        if (!attrs)
+          return
+
         var view = attrs.get('_parentView._childViews').find(function(e) {
           if (e.viewName === 'sendTo')
             return e
@@ -83,7 +86,8 @@ define(["config",
           }
         }
 
-        App.Post.submit(data, callbacks)
+        //App.Post.submit(data, callbacks)
+        App.Post.submit({ body: attrs.value }, callbacks)
       }
     },
 

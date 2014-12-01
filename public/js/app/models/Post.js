@@ -191,36 +191,49 @@ define(["config",
     },
 
     submit: function(attrs, options) {
-      var that = this
-
-      var xhr = new XMLHttpRequest();
-
-      // Progress listerner.
-      xhr.upload.addEventListener("progress", function (evt) {
-        if (evt.lengthComputable) {
-          options && options.progress && options.progress()
-        } else {
-          // unable to compute
+      $.ajax({
+        url: this.resourceUrl,
+        type: 'post',
+        data: { body: attrs.body },
+        success: function(response) {
+          console.log(response)
         }
-      }, false);
+      })
 
-      // On finished.
-      xhr.addEventListener("load", function (evt) {
-        options && options.load && options.load()
-      }, false);
+      // NOTE: for the time being commented out XHR not to break too
+      // much features while backend/frontend separation is in
+      // progress
 
-      // On failed.
-      xhr.addEventListener("error", function (evt) {
-        options && options.error && options.error()
-      }, false);
+      // var that = this
 
-      // On cancel.
-      xhr.addEventListener("abort", function (evt) {
-        options && options.cancel && options.cancel()
-      }, false);
+      // var xhr = new XMLHttpRequest();
 
-      xhr.open("post", this.resourceUrl);
-      xhr.send(attrs);
+      // // Progress listerner.
+      // xhr.upload.addEventListener("progress", function (evt) {
+      //   if (evt.lengthComputable) {
+      //     options && options.progress && options.progress()
+      //   } else {
+      //     // unable to compute
+      //   }
+      // }, false);
+
+      // // On finished.
+      // xhr.addEventListener("load", function (evt) {
+      //   options && options.load && options.load()
+      // }, false);
+
+      // // On failed.
+      // xhr.addEventListener("error", function (evt) {
+      //   options && options.error && options.error()
+      // }, false);
+
+      // // On cancel.
+      // xhr.addEventListener("abort", function (evt) {
+      //   options && options.cancel && options.cancel()
+      // }, false);
+
+      // xhr.open("post", this.resourceUrl);
+      // xhr.send(attrs);
     }
   })
 });
