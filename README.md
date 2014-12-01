@@ -9,7 +9,8 @@ Install nodejs
 Running the application
 -----------------------
 
-```node index.js```
+1. ```node index.js```
+1. Open [http://localhost:3333/](http://localhost:3333/)
 
 
 Copyright and license
