@@ -8,8 +8,13 @@
         root[app_name] = App
 
         var token = window.localStorage.getItem('token');
-        if (token)
+        if (token) {
           App.properties.set('authToken', token)
+
+          $.ajaxPrefilter(function(options, originalOptions, jqXHR) {
+            options.data = $.param($.extend(originalOptions.data, { token: token }))
+          });
+        }
 
         $.ajax({
           url: config.host + "/v2/whoami",

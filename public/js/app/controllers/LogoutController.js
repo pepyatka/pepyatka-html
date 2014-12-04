@@ -3,14 +3,9 @@ define(["config",
   App.LogoutController = Ember.ObjectController.extend({
     actions: {
       logout: function() {
-        var controller = this
+        window.localStorage.setItem('token', '');
 
-        $.ajax({
-          url: config.host + "/logout",
-          success: function() {
-            controller.transitionToRoute('home')
-          }
-        })
+        window.location = "/"
       }
     }
   })
