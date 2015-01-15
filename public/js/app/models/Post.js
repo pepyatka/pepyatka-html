@@ -69,7 +69,7 @@ define(["config",
   });
 
   App.Post.reopenClass({
-    resourceUrl: config.host + '/v1/posts',
+    resourceUrl: config.host + '/v2/posts',
 
     createFromProto: function(attrs) {
       var comments = attrs.comments
@@ -194,7 +194,7 @@ define(["config",
       $.ajax({
         url: this.resourceUrl,
         type: 'post',
-        data: { body: attrs.body },
+        data: { body: attrs.body, timelinesIds: attrs.timelinesIds },
         success: function(response) {
           console.log(response)
         }

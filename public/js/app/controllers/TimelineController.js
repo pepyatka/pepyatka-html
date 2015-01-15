@@ -33,7 +33,8 @@ define(["config",
       submitPost: function(attrs) {
         var that = this
 
-        var data = new FormData();
+        var data = new FormData()
+          timelineIds = []
 
         $.each($('input[type="file"]')[0].files, function(i, file) {
           // TODO: can do this just once outside of the loop
@@ -51,10 +52,12 @@ define(["config",
         if (view) {
           var timelinesIds = view.$("#sendToSelect").select2("val")
           for(var i = 0; i < timelinesIds.length; i++) {
-            data.append('timelinesIds', timelinesIds[i])
+            //data.append('timelinesIds', timelinesIds[i])
+            timelineIds.push(timelinesIds[i])
           }
         } else if (this.get('content.name') !== 'River of news') {
-          data.append('timelinesIds', this.get('content.id'))
+          //data.append('timelinesIds', this.get('content.id'))
+          timelineIds.push(this.get('content.id'))
         }
 
         data.append('body', attrs.value)
@@ -87,7 +90,8 @@ define(["config",
         }
 
         //App.Post.submit(data, callbacks)
-        App.Post.submit({ body: attrs.value }, callbacks)
+        attributes = { body: attrs.value, timelinesIds: timelineIds }
+        App.Post.submit(attributes, callbacks)
       }
     },
 
