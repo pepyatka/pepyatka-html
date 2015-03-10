@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pepyatka</title>
+  <link href="/css/libs/bootstrap/3.3.2/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+  <script src="/js/libs/requirejs/2.1.15/require.min.js"></script>
+
+  <script type="text/javascript">
+    "use strict";
+
+    require.config({
+      baseUrl: "/js",
+      urlArgs: "v=v1"
+    });
+
+    require(['main']);
+  </script>
+</body>
+</html>

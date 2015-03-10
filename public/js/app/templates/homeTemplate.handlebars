@@ -1,0 +1,7 @@
+{{#each post in model.posts}}
+  {{post.body}}<br/>
+
+  {{#each comment in post.comments}}
+    - {{comment.body}}
+  {{/each}}
+{{/each}}
