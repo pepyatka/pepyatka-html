@@ -1,6 +1,6 @@
 <li class="media">
   <div class="pull-left">
-    <i class="icon-comment-alt media-object"></i>
+    <i class="icon-comment-alt media-object" {{bind-attr title="createdAgo"}}></i>
   </div>
 
   {{#unless view.isEditFormVisible}}
