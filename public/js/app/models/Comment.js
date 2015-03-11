@@ -1,6 +1,14 @@
 define(["config",
         "app/app"], function(config, App) {
-  App.Comment = Ember.Object.extend({})
+  App.Comment = Ember.Object.extend({
+    // TODO: this is a bound helper
+    // TODO: DRY w/Post
+    createdAgo: function() {
+      if (this.get('createdAt')) {
+        return moment(this.get('createdAt')).fromNow();
+      }
+    }.property('createdAt')
+  });
 
   App.Comment.reopenClass({
     resourceUrl: config.host + '/v1/comments',
