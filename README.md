@@ -4,8 +4,8 @@ HTML client for Pepyatka
 Setting up your environment
 ---------------------------
 
-Install nodejs
-Run ```npm install```
+1. Install nodejs
+1. Run ```npm install```
 
 Running the application
 -----------------------
