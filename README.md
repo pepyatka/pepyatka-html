@@ -5,6 +5,7 @@ Setting up your environment
 ---------------------------
 
 Install nodejs
+Run ```npm install```
 
 Running the application
 -----------------------
