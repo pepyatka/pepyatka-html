@@ -1,5 +1,6 @@
 define(["app/app",
-        "text!templates/applicationTemplate.handlebars"], function(App, tpl) {
+        "text!templates/applicationTemplate.handlebars",
+        "app/helpers/components"], function(App, tpl) {
   App.ApplicationView = Ember.View.extend(App.ShowSpinnerWhileRendering, {
     templateName: 'application',
     template: Ember.Handlebars.compile(tpl),
