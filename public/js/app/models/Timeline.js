@@ -1,16 +1,18 @@
 define(["config",
         "app/app"], function(config, App) {
   App.Timeline = Ember.Object.extend({
-    posts: Ember.ArrayProxy.extend(Ember.SortableMixin, {
-      // TODO: figure out why we have to add itemController="post"
-      // option to each iterator in the view
-      itemController: 'post',
+    init: function() {
+      this.set('posts', Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
+        // TODO: figure out why we have to add itemController="post"
+        // option to each iterator in the view
+        itemController: 'post',
 
-      content: [],
+        content: [],
 
-      sortProperties: ['updatedAt'],
-      sortAscending: false
-    })
+        sortProperties: ['updatedAt'],
+        sortAscending: false
+      }))
+    }
   })
 
   App.Timeline.reopenClass({
@@ -30,19 +32,6 @@ define(["config",
         context: this
       }).then(function(response) {
         if (response.posts) {
-          // TODO: why we have to define this here even we have defined
-          // posts property in Timeline object?
-          timeline.set('posts', Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
-            // TODO: figure out why we have to add itemController="post"
-            // option to each iterator in the view
-            itemController: 'post',
-
-            content: [],
-
-            sortProperties: ['updatedAt'],
-            sortAscending: false
-          }))
-
           var _posts = []
 
           response.posts.forEach(function(attrs) {
@@ -50,7 +39,7 @@ define(["config",
             _posts.push(post)
           })
 
-          timeline.posts.addObjects(_posts)
+          timeline.get('posts').addObjects(_posts)
           delete response.posts
         }
 
