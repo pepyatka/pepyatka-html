@@ -3,5 +3,5 @@ define(["app/app"], function(App) {
 
   App.Subscriber = DS.Model.extend({
     identifier: DS.attr('string'),
-  });
+  })
 })

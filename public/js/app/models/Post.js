@@ -14,5 +14,5 @@ define(["app/app"], function(App) {
     groups: DS.hasMany('group'),
 
     timeline: DS.belongsTo('timeline')
-  });
+  })
 })

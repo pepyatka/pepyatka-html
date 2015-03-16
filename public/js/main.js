@@ -2,10 +2,10 @@
   "use strict";
 
   require(["config"], function(config) {
-    requirejs.config(config);
+    requirejs.config(config)
 
     require(["App"], function(App){
-      App.advanceReadiness();
+      App.advanceReadiness()
     })
   })
-})(this);
+})(this)

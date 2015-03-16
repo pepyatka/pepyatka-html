@@ -45,4 +45,4 @@ define({
     'hbs': 'libs/requirejs-plugins/hbs',
     'text': 'libs/requirejs-plugins/text'
   }
-});
+})

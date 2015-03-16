@@ -5,15 +5,15 @@ define(["ember"
        ], function(Ember) {
   "use strict";
 
-  var options = {};
-  var App;
+  var options = {}
+  var App
 
-  App = Ember.Application.create(options);
-  App.deferReadiness();
+  App = Ember.Application.create(options)
+  App.deferReadiness()
   App.ApplicationAdapter = DS.RESTAdapter.extend({
     host: 'http://localhost:3000',
-    namespace: 'v2'
+    namespace: 'v1'
   });
 
-  return App;
-});
+  return App
+})

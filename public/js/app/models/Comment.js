@@ -9,5 +9,5 @@ define(["app/app"], function(App) {
     createdBy: DS.attr('string'),
 
     post: DS.belongsTo('post')
-  });
+  })
 })

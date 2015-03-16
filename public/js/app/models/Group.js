@@ -7,5 +7,5 @@ define(["app/app"], function(App) {
     type: DS.attr('string'),
     info: DS.attr('string'),
     rss: DS.attr('string')
-  });
+  })
 })

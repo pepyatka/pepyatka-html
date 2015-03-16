@@ -8,5 +8,5 @@ define(["app/app"], function(App) {
 
     posts: DS.hasMany('post'),
     user: DS.belongsTo('user')
-  });
+  })
 })

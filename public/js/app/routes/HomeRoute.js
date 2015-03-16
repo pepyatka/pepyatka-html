@@ -3,7 +3,7 @@ define(["app/app"], function(App) {
 
   App.HomeRoute = Ember.Route.extend({
     model: function() {
-      return this.store.find('timeline', 'home');
+      return this.store.find('timeline', 'home')
     }
-  });
+  })
 })

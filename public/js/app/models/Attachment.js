@@ -5,5 +5,5 @@ define(["app/app"], function(App) {
     identifier: DS.attr('string'),
 
     post: DS.belongsTo('post')
-  });
+  })
 })

@@ -7,5 +7,5 @@ define(["app/app"], function(App) {
     admins: DS.attr('string'),
 
 //    user: DS.belongsTo('user')
-  });
+  })
 })

@@ -5,5 +5,5 @@ define(["app/app",
   App.ApplicationView = Ember.View.extend({
     templateName: 'application',
     template: Ember.Handlebars.compile(tpl)
-  });
-});
+  })
+})

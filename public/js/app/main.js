@@ -15,5 +15,5 @@ define([
 ], function(App) {
   "use strict";
 
-  return App;
-});
+  return App
+})
