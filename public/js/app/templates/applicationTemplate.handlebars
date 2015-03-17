@@ -1,3 +1,64 @@
 <div class="container">
-  {{outlet}}
+  <div class="row">
+    <div class="span5">
+      <h1 class="title">
+       {{#link-to 'home'}}Pepyatka{{/link-to}} <small class="mutted">0.1.0</small>
+      </h1>
+    </div>
+
+    <div class="span4 searchFieldView clearfix">
+      <div>
+      </div>
+    </div>
+
+    <div class="span3 signin-toolbar">
+      {{#link-to 'session.new'}}Sign In{{/link-to}}
+      or
+      {{#link-to 'users.new'}}Sign Up{{/link-to}}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="span9">
+      {{outlet}}
+    </div>
+
+    <div class="span3">
+      {{#if App.properties.userId}}
+        <div class="media profile">
+          <div class="pull-left">
+            <img class="media-object" src="/img/48x48.png">
+          </div>
+
+          <div class="media-body">
+            <div class="author">
+              {{#link-to 'user' App.properties.username}}{{App.properties.screenName}}{{/link-to}}
+            </div>
+            <div>
+              {{#link-to 'settings' App.properties.userId}}Settings{{/link-to}} - {{#link-to 'logout'}}Sign Out{{/link-to}}
+            </div>
+          </div>
+        </div>
+      {{/if}}
+    </div>
+
+    <div class="span3">
+      <div>
+        <h5>Groups</h5>
+
+        <p><small>{{#link-to 'groups'}}Create Group{{/link-to}}</small></p>
+      </div>
+
+      <div>
+        <h5>Tags</h5>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="span9">
+      <hr/>
+      <footer>Footer</footer>
+    </div>
+  </div>
 </div>

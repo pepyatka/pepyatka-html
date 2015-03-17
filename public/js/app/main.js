@@ -1,17 +1,30 @@
 define([
   "app/app",
   "app/router",
-  "models/Timeline",
-  "models/Post",
+
+  "initializers/AjaxPrefilter",
+  "initializers/Session",
+
   "models/Attachment",
   "models/Comment",
   "models/Group",
+  "models/Post",
   "models/Subscriber",
   "models/Subscription",
+  "models/Timeline",
   "models/User",
+
+  "controllers/SessionNewController",
+  "controllers/UsersNewController",
+
   "routes/HomeRoute",
+  "routes/SessionNewRoute",
+  "routes/UsersNewRoute",
+
   "views/ApplicationView",
-  "views/HomeView"
+  "views/HomeView",
+  "views/SessionNewView",
+  "views/UsersNewView"
 ], function(App) {
   "use strict";
 

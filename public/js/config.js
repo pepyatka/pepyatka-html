@@ -1,6 +1,8 @@
 "use strict";
 
 define({
+  host: "http://localhost:3000",
+
   shim : {
     'ember': {
       deps: ['jquery'],
@@ -32,6 +34,7 @@ define({
     'routes': 'app/routes',
     'views': 'app/views',
     'templates': 'app/templates',
+    'initializers': 'app/initializers',
 
     /* libs */
     'jquery': 'libs/jquery/2.1.3/jquery.min',
