@@ -4,8 +4,8 @@ define(["config",
   "use strict";
 
   Ember.$.ajaxPrefilter(function(options, originalOptions, jqXHR) {
-    var token = window.localStorage.getItem('token')
-    options.data = $.param($.extend(originalOptions.data, { token: token }))
+    var authToken = window.localStorage.getItem('authToken')
+    options.data = $.param($.extend(originalOptions.data, { authToken: authToken }))
   })
 
   Ember.$.ajaxSetup({
