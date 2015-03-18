@@ -17,17 +17,20 @@ define([
   "controllers/ApplicationController",
   "controllers/SessionNewController",
   "controllers/SessionDestroyController",
+  "controllers/TimelineController",
   "controllers/UsersNewController",
 
   "routes/HomeRoute",
   "routes/SessionNewRoute",
   "routes/SessionDestroyRoute",
+  "routes/TimelineRoute",
   "routes/UsersNewRoute",
 
   "views/ApplicationView",
   "views/HomeView",
   "views/SessionNewView",
   "views/TimelinePostView",
+  "views/TimelineView",
   "views/UsersNewView"
 ], function(App) {
   "use strict";

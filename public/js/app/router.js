@@ -10,6 +10,7 @@ define(["app/app"], function(App) {
     this.resource('users', function() {
       this.route('new', { path: '/signup' })
     })
+    this.resource('timeline', { path: '/timeline' })
     this.resource('groups', { path: '/groups'})
   })
 })
