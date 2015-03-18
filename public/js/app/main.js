@@ -24,6 +24,7 @@ define([
   "views/ApplicationView",
   "views/HomeView",
   "views/SessionNewView",
+  "views/TimelinePostView",
   "views/UsersNewView"
 ], function(App) {
   "use strict";
