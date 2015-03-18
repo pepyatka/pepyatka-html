@@ -14,11 +14,14 @@ define([
   "models/Timeline",
   "models/User",
 
+  "controllers/ApplicationController",
   "controllers/SessionNewController",
+  "controllers/SessionDestroyController",
   "controllers/UsersNewController",
 
   "routes/HomeRoute",
   "routes/SessionNewRoute",
+  "routes/SessionDestroyRoute",
   "routes/UsersNewRoute",
 
   "views/ApplicationView",

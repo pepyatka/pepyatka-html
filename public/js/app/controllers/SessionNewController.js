@@ -21,6 +21,7 @@ define(["config",
               screenName: result.users.screenName,
               identifier: result.users.id
             })
+            App.Session.set('currentUser', user)
           }, function() {
             // error
           })
