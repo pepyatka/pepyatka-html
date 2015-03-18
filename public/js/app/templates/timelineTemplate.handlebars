@@ -1,13 +1,13 @@
 {{#if controller.session.signedIn}}
   <div class="clearfix submitForm">
     <div>
-      {{textarea}}
+      {{textarea value=body}}
     </div>
     <div class="pull-left">
       Add:
     </div>
     <div class="pull-right">
-      <button>Post</button>
+      <button {{action 'create'}}>Post</button>
     </div>
   </div>
 {{/if}}

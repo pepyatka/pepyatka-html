@@ -5,7 +5,7 @@ define(["config",
 
   Ember.$.ajaxPrefilter(function(options, originalOptions, jqXHR) {
     var authToken = window.localStorage.getItem('authToken')
-    options.data = $.param($.extend(originalOptions.data, { authToken: authToken }))
+    jqXHR.setRequestHeader('X-Authentication-Token', authToken)
   })
 
   Ember.$.ajaxSetup({
