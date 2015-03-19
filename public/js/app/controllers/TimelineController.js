@@ -1,13 +1,8 @@
 define(["app/app",
         "ember"], function(App, Ember) {
   App.TimelineController = Ember.Controller.extend({
-    posts: function() {
-      return Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
-        sortProperties: ['createdAt'],
-        sortAscending: false,
-        content: this.get('content.posts')
-      })
-    }.property('content.posts'),
+    postSortProperties: ['createdAt:desc'],
+    posts: Ember.computed.sort('model.posts', 'postSortProperties'),
 
     actions: {
       create: function() {
