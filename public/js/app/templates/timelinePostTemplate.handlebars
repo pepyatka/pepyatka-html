@@ -1,10 +1,22 @@
 {{post.content.body}}
 
+<br/>
 {{#each comment in post.comments}}
   {{comment.body}}<br/>
 {{/each}}
 
 <br/>
+Likes:
+<br/>
+{{#each user in post.content.likes}}
+  {{user.screenName}}<br/>
+{{/each}}
+
+<br/>
+
 {{textarea value=post.newComment}}
 <button {{action 'create'}}>Post</button>
+<a {{action 'like'}}>Like</a>
+<a {{action 'unlike'}}>Un-like</a>
 
+<hr/>

@@ -3,6 +3,7 @@ define(["config", "app/app"], function(config, App) {
 
   Ember.Application.initializer({
     name: 'session',
+    after: "store",
 
     initialize: function(container, application) {
       application.deferReadiness()
@@ -28,7 +29,9 @@ define(["config", "app/app"], function(config, App) {
 
         authTokenChanged: function() {
           var done = function(result) {
-            this.set('currentUser', result.users)
+            var store = container.lookup('store:main')
+            var user = store.createRecord('user', result.users)
+            this.set('currentUser', user)
             this.set('signedIn', true)
 
             application.advanceReadiness()

@@ -15,11 +15,7 @@ define(["config",
         })
           .then(function(result) {
             App.Session.set('authToken', result.authToken)
-            var user = this.store.createRecord('user', {
-              username: result.users.username,
-              screenName: result.users.screenName,
-              identifier: result.users.id
-            })
+            var user = this.store.createRecord('user', result.users)
           }, function() {
             // error
           })
