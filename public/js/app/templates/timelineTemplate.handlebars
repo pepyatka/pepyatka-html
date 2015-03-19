@@ -14,7 +14,7 @@
 
 <div class="posts">
   <ul class="media-list">
-    {{#each post in posts}}
+    {{#each post in posts itemController="timeline-post"}}
       {{view "timeline-post" content=post}}
     {{/each}}
   </ul>

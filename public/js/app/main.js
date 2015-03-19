@@ -18,6 +18,7 @@ define([
   "controllers/SessionNewController",
   "controllers/SessionDestroyController",
   "controllers/TimelineController",
+  "controllers/TimelinePostController",
   "controllers/UsersNewController",
 
   "routes/HomeRoute",

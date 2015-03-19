@@ -1,1 +1,10 @@
-{{post.body}}
+{{post.content.body}}
+
+{{#each comment in post.comments}}
+  {{comment.body}}<br/>
+{{/each}}
+
+<br/>
+{{textarea value=post.newComment}}
+<button {{action 'create'}}>Post</button>
+
