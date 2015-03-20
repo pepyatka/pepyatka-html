@@ -24,7 +24,19 @@ define(["app/app"], function(App) {
       kill: function() {
         var postId = this.get('content.id')
         App.Post.kill(postId)
+      },
+
+      hide: function() {
+        var postId = this.get('content.id')
+        App.Post.hide(postId)
       }
-    }
+    },
+    canHide: function() {
+      var pc = this.parentController
+      if (pc != null && pc.constructor.toString() == "App.TimelineController") {
+        return pc.get("content.name") == "River of news"
+      }
+      return false
+    }.property()
   })
 });

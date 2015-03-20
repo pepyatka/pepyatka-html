@@ -135,6 +135,16 @@ define(["config",
       })
     },
 
+    hide: function(postId) {
+      $.ajax({
+        url: this.resourceUrl + '/' + postId + '/hide',
+        type: 'post',
+        success: function(response) {
+          console.log(response)
+        }
+      })
+    },
+
     find: function(postId) {
       var post = App.Post.create();
 

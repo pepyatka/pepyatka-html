@@ -5,6 +5,20 @@ define(["config",
 
     isProgressBarHidden: 'hidden',
 
+    visiblePosts: function() {
+      var posts = this.get('posts')
+      return posts.filter(function (post) { return post.isHidden !== true })
+    }.property('posts.@each'),
+
+    hiddenPosts: function() {
+      var posts = this.get('posts')
+      return posts.filter(function (post) { return post.isHidden === true })
+    }.property('posts.@each'),
+
+    hasHiddenPosts: function() {
+      return this.get('hiddenPosts').length > 0
+    }.property('hiddenPosts.@each'),
+
     actions: {
       subscribeTo: function() {
         var controller = this;

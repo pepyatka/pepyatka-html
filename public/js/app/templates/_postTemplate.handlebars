@@ -81,6 +81,11 @@
           <a {{action like id target="controller"}}>{{t label.like}}</a>
         {{/unless}}
 
+        {{#if canHide}}
+            -
+            <a {{action hide target="controller"}}>{{t label.hide}}</a>
+        {{/if}}
+
         {{#if postOwner}}
           (<a {{action editFormVisibility target="view"}}>{{t label.edit}}</a>
           |

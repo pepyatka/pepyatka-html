@@ -41,6 +41,7 @@ Em.I18n.translations = {
   'label.screenName': 'Name',
   'label.email': 'Email',
   'label.add-edit': 'Add/Edit',
+  'label.hide': 'Hide',
 
   'button.search': 'Search',
   'button.post': 'Post',

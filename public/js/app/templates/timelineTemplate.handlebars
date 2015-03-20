@@ -30,8 +30,12 @@
 
 <div class="posts">
   <ul class="media-list">
-    {{each controller.posts.arrangedContent itemViewClass="App.PartialPostView" itemController="post"}}
+    {{each controller.visiblePosts itemViewClass="App.PartialPostView" itemController="post"}}
   </ul>
 
   {{view App.Pagination}}
 </div>
+
+{{# if controller.hasHiddenPosts }}
+  <div id="showHidden">Show {{controller.hiddenPosts.length}} hidden entries</div>
+{{/if}}
