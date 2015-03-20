@@ -2,6 +2,7 @@
 
 define({
   host: "http://localhost:3000",
+  waitSeconds: 0,
 
   shim : {
     'ember': {
@@ -42,7 +43,6 @@ define({
     'ember': 'libs/emberjs/1.11.0-beta.1/ember.debug',
     'ember-data': 'libs/ember-data/1.0.0-beta.15/ember-data',
     'ember-template-compiler': 'libs/ember-template-compiler/1.12.0-beta.1/ember-template-compiler',
-    'bootstrap': 'libs/bootstrap/3.3.2/bootstrap.min',
 
     /* requirejs-plugins */
     'hbs': 'libs/requirejs-plugins/hbs',

@@ -34,7 +34,7 @@
 
           <div class="media-body">
             <div class="author">
-              {{#link-to 'timeline'}}{{controller.session.currentUser.screenName}}{{/link-to}}
+              {{#link-to 'timeline.index' controller.session.currentUser.username}}{{controller.session.currentUser.screenName}}{{/link-to}}
             </div>
             <div>
               settings - {{#link-to 'session.destroy'}}log out{{/link-to}}

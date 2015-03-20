@@ -1,9 +1,6 @@
 define(["app/app",
         "ember"], function(App, Ember) {
   App.TimelineController = Ember.Controller.extend({
-    postSortProperties: ['createdAt:desc'],
-    posts: Ember.computed.sort('model.posts', 'postSortProperties'),
-
     actions: {
       create: function() {
         var post = this.store.createRecord('post', {
