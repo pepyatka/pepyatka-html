@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="span9 media">
+  <div class="col-md-9 media">
     <div class="pull-left">
       <img class="media-object" src="/img/64x64.png">
     </div>
@@ -48,17 +48,17 @@
 
 {{#if view.showPostCreationForm}}
   <div class="postCreationField">
-    <div class="clearfix submitForm">
+    <div class="clearfix submit-form">
       <div>
         {{view App.CreatePostField action="submitPost" target="controller"
-              class="span9"}}
+              class="col-md-9"}}
       </div>
       <div class="pull-left">
         {{t label.add.file}}{{view App.UploadFileView name="file"}}
       </div>
       <div class="pull-right">
         {{view App.SubmitPostButton action="submitPost" target="controller"
-              class="btn pull-right"}}
+              class="btn btn-default pull-right"}}
       </div>
     </div>
 

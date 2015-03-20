@@ -1,24 +1,24 @@
 <div class="container">
-  <div class="row">
-    <div class="span5">
+  <div class="row header">
+    <div class="col-md-4">
       <h1 class="title">
         <a href="/">{{t title.title}}</a> <small class="mutted">{{t label.version}}</small>
       </h1>
     </div>
 
-    <div class="span4 searchFieldView clearfix">
-      <div>
+    <div class="col-md-5 search-field">
+      <div class="form-inline">
         {{view App.SearchField action="search" target="controller"
               valueBinding="view.search"
-              class="span3" viewName="textField"}}
+              class="form-control input-sm search-input" viewName="textField"}}
         {{view App.SearchButton action="search" target="controller"
-              class="btn pull-right"}}
+              class="btn btn-default btn-sm"}}
       </div>
     </div>
 
     {{#unless isAnonymous}}
       {{#unless App.properties.isAuthorized}}
-        <div class="span3 signin-toolbar">
+        <div class="col-md-3 signin-toolbar">
           {{#link-to 'signin'}}{{t label.signin}}{{/link-to}}
           or
           {{#link-to 'signup'}}{{t label.signup}}{{/link-to}}
@@ -29,18 +29,25 @@
 
 
   <div class="row">
-    <div class="span9">
-      {{outlet}}
+    <div class="col-md-9">
+      <div class="content">
+	    <div class="box">
+  	      <div class="box-header-timeline">CHANGE ME</div>
+		    <div class="box-body">
+              {{outlet}}
+			</div>
+	      </div>
+      </div>
     </div>
 
-    <div class="span3">
+    <div class="col-md-3 sidebar">
       {{#if App.properties.userId}}
-        <div class="media profile">
-          <div class="pull-left">
+        <div class="logged">
+          <div class="logged_avatar">
             <img class="media-object" src="/img/48x48.png">
           </div>
 
-          <div class="media-body">
+          <div class="logged_user">
             <div class="author">
               {{#link-to 'user' App.properties.username}}{{App.properties.screenName}}{{/link-to}}
             </div>
@@ -53,14 +60,17 @@
           </div>
         </div>
       {{/if}}
-    </div>
 
-    <div class="span3">
-      <div>
-        <h5>{{t header.groups}}</h5>
-
-        {{view App.GroupsView}}
-        <p><small>{{#link-to 'groups'}}{{t label.createGroup}}{{/link-to}}</small></p>
+      <div class="box">
+        <div class="box-header-groups">
+          {{t header.groups}}
+        </div>
+        <div class="box-body">
+          {{view App.GroupsView}}
+        </div>
+        <div class="box-footer">
+          {{#link-to 'groups'}}{{t label.createGroup}}{{/link-to}}
+        </div>
       </div>
 
       <div>
@@ -68,11 +78,12 @@
 
         {{view App.Tags}}
       </div>
+
     </div>
   </div>
 
   <div class="row">
-    <div class="span9">
+    <div class="col-md-9">
       <hr/>
       <footer>{{t message.footer}}</footer>
     </div>

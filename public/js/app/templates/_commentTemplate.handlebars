@@ -1,13 +1,11 @@
-<li class="media">
-  <div class="pull-left">
-    <i class="icon-comment-alt media-object" {{bind-attr title="createdAgo"}}></i>
-  </div>
+<div class="comment">
+  <a class="date" {{bind-attr title="createdAgo"}}></a>
 
+  <div class="body">
   {{#unless view.isEditFormVisible}}
-    <div class="media-body">
-      <span class="body">
-        {{prettifyText body}}
-      </span>
+    <span class="comment-text">
+      {{prettifyText body}}
+	</span>
       -
       <span class="author">
         {{#link-to 'user' createdBy.username}}
@@ -20,28 +18,26 @@
       </span>
 
       {{#if view.commentOwner}}
-        <span class="links">
+        <span class="controls">
           (<a {{action editFormVisibility target="view"}}>{{t label.edit}}</a>
           |
           <a {{action kill}}>{{t label.delete}}</a>)
         </span>
       {{/if}}
-    </div>
   {{else}}
     {{#view App.EditCommentForm}}
-      <div class="comment-form media">
-        <div class="media-body">
+      <div class="edit">
           <div>
             {{view App.EditCommentField action="update" target="controller"
-                  class="span7 input-tiny comment-area"}}
+                  class=""}}
           </div>
           <div>
             {{view App.SubmitCommentButton action="submit" target="controller"
-                  class="btn btn-small"}}
+                  class="btn btn-default btn-xs"}}
             <a {{action editFormVisibility target="view"}}>{{t label.cancel}}</a>
           </div>
-        </div>
       </div>
     {{/view}}
   {{/unless}}
-</li>
+  </div>
+</div>

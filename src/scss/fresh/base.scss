@@ -1,0 +1,23 @@
+body {
+	background: #9BB4C5 url('/img/background.png') repeat-x top;
+}
+
+a, a:hover, a:focus {
+	cursor: pointer;
+	//color: #7777cc;
+	color: #0000cc;
+}
+
+.settings-error {
+	margin-left: 180px;
+}
+
+.settings-error {
+	max-width: 174px;
+}
+
+
+footer {
+	font-size: 10px;
+	color: #aaa;
+}

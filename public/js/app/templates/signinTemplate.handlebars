@@ -1,25 +1,19 @@
-<div class="span3">
+<div class="col-md-3">
   <h2>Sign in</h2>
 
-  <form action="/session" method="post" class="form-horizontal">
-    <div class="control-group">
-      <label class="control-label" for="username">{{t label.username}}</label>
-      <div class="controls">
-        {{view Ember.TextField valueBinding="username" type="text" id="username" name="username" viewName="username"}}
-      </div>
+  <form action="/session" method="post">
+    <div class="form-group">
+      <label for="username">{{t label.username}}</label>
+      {{view Ember.TextField classNames="form-control" valueBinding="username" type="text" id="username" name="username" viewName="username"}}
     </div>
 
-    <div class="control-group">
-      <label class="control-label" for="password">{{t label.password}}</label>
-      <div class="controls">
-        {{view Ember.TextField valueBinding="password" type="password" id="password" name="password" viewName="password"}}
-      </div>
+    <div class="form-group">
+      <label for="password">{{t label.password}}</label>
+      {{view Ember.TextField valueBinding="password" type="password" id="password" name="password" viewName="password"}}
     </div>
 
-    <div class="control-group">
-      <div class="controls span2">
-        <button {{action signin}} class="btn btn-primary">{{t button.signIn}}</button>
-      </div>
+    <div class="form-group">
+      <button {{action signin}} class="btn btn-primary">{{t button.signIn}}</button>
     </div>
   </form>
 </div>
