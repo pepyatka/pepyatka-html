@@ -25,6 +25,8 @@ Em.I18n.translations = {
   'label.posts': 'posts',
   'label.comments': 'discussions',
   'label.createGroup': 'Create group',
+  'label.manageGroups': 'Browse/edit groups',
+  'label.manageFriends': 'Browse/edit friends',
   'label.you': 'You',
   'label.moreComments': 'more comments',
   'label.addComment': 'Add comment',
@@ -41,6 +43,10 @@ Em.I18n.translations = {
   'label.screenName': 'Name',
   'label.email': 'Email',
   'label.add-edit': 'Add/Edit',
+  'label.home': 'Home',
+  'label.direct': 'Direct messages',
+  'label.discussions': 'My discussions',
+  'label.best-of-day': 'Best of day',
 
   'button.search': 'Search',
   'button.post': 'Post',
@@ -51,6 +57,7 @@ Em.I18n.translations = {
   'button.signIn': 'Sign in',
   'button.save': 'Save',
 
+  'header.friends': 'Friends',
   'header.createGroup': 'Create group',
   'header.groups': 'Groups',
   'header.tags': 'Tags',

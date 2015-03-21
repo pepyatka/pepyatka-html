@@ -1,17 +1,20 @@
-<div class="row">
-  <div class="span9 media">
-    <div class="pull-left">
-      <img class="media-object" src="/img/64x64.png">
-    </div>
+<div class="profile">
+  <div class="row">
+    <div class="col-md-10">
+      <div class="avatar">
+        <img src="/img/64x64.png">
+      </div>
 
     {{#if view.isGroupAdmin}}
       {{#link-to 'settings' user.id}}{{t label.settings}}{{/link-to}}
     {{/if}}
 
-    <div class="media-body">
-      <h3 class="pull-left">{{content.user.info.screenName}}</h3>
-
-      <div class="pull-right profile-extra-info">
+      <div class="description">
+        <div class="name">{{content.user.info.screenName}}</div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="stats">
         {{#if view.subscriptionsLength}}
           <div>{{#link-to 'feedSubscriptions' controller.user.username}}{{content.user.statistics.subscriptions}} {{t label.subscriptions}}{{/link-to}}</div>
         {{/if}}
@@ -31,34 +34,44 @@
         {{#if view.commentsLength}}
           <div>{{#link-to 'comments' controller.user.username}}{{content.user.statistics.comments}} {{t label.comments}}{{/link-to}}</div>
         {{/if}}
-
-        {{#unless view.ownProfile}}
-          {{#if App.properties.userId}}
-            <div class="row profile-actions">
-              {{#if view.subscribedTo}}
-                <a {{action unsubscribeTo}}>{{t label.unsubscribe}}</a>
-              {{/if}}
-            </div>
-          {{/if}}
-        {{/unless}}
       </div>
-    </div>
+	</div>
   </div>
+
 </div>
 
+{{#unless view.ownProfile}}
+<div class="subscribe_controls">
+	<div class="row">
+		<div class="col-md-10">
+          {{#if App.properties.userId}}
+            {{#if view.subscribedTo}}
+				<a {{action unsubscribeTo}}>{{t label.unsubscribe}}</a>
+            {{/if}}
+          {{/if}}
+          {{#unless view.subscribedTo}}
+			  <a {{action subscribeTo}}>{{t label.subscribe}}</a>
+          {{/unless}}
+		</div>
+	</div>
+</div>
+{{/unless}}
+
 {{#if view.showPostCreationForm}}
-  <div class="postCreationField">
-    <div class="clearfix submitForm">
+  <div class="create_post">
+
       <div>
         {{view App.CreatePostField action="submitPost" target="controller"
-              class="span9"}}
+              class=""}}
       </div>
-      <div class="pull-left">
+	  <div class="row">
+        <div class="col-md-10">
         {{t label.add.file}}{{view App.UploadFileView name="file"}}
-      </div>
-      <div class="pull-right">
-        {{view App.SubmitPostButton action="submitPost" target="controller"
-              class="btn pull-right"}}
+        </div>
+        <div class="col-md-2">
+          {{view App.SubmitPostButton action="submitPost" target="controller"
+                class="btn btn-default btn-sm pull-right"}}
+        </div>
       </div>
     </div>
 
@@ -69,20 +82,10 @@
   </div>
 {{/if}}
 
-{{#unless view.ownProfile}}
-  {{#if App.properties.userId}}
-    <div class="row profile-actions">
-      {{#unless view.subscribedTo}}
-        <a {{action subscribeTo}}>{{t label.subscribe}}</a>
-      {{/unless}}
-    </div>
-  {{/if}}
-{{/unless}}
-
 <div class="posts">
-  <ul class="media-list">
-    {{each controller.posts.arrangedContent itemViewClass="App.PartialPostView" itemController="post"}}
-  </ul>
 
-  {{view App.Pagination}}
+    {{each controller.posts.arrangedContent itemViewClass="App.PartialPostView" itemController="post"}}
+
+    {{view App.Pagination}}
+
 </div>

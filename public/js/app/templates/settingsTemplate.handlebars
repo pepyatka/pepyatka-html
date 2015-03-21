@@ -1,24 +1,24 @@
-<div class="span9">
+<div class="col-md-9">
   <h2>{{t header.settings}}</h2>
 
-  <form action="/settings" method="post" class="form-horizontal">
-    <div class="control-group">
-      <label class="control-label" for="screenName">{{t label.screenName}}</label>
-      <div class="controls">
+  <form action="/settings" method="post">
+    <div class="form-group">
+      <label for="screenName">{{t label.screenName}}</label>
+      <div class="form-input">
         {{view Ember.TextField valueBinding="info.screenName" type="text" id="screenName" name="screenName"}}
       </div>
     </div>
     {{#unless view.isGroup}}
-      <div class="control-group">
-        <label class="control-label" for="email">{{t label.email}}</label>
-        <div class="controls">
+      <div class="form-group">
+        <label for="email">{{t label.email}}</label>
+        <div class="form-input">
           {{view Ember.TextField valueBinding="info.email" type="text" id="email" name="email"}}
         </div>
       </div>
 
-      <div class="control-group">
-        <label class="control-label" for="receive">{{t label.sendEmails}}</label>
-        <div class="controls">
+      <div class="form-group">
+        <label for="receive">{{t label.sendEmails}}</label>
+        <div class="form-input">
           {{view Ember.Select contentBinding="view.receiveEmailsContent"
           valueBinding="info.receiveEmails" name="receiveEmails"
           id="receiveEmails"
@@ -26,25 +26,23 @@
         </div>
       </div>
     {{/unless}}
-    <div class="control-group rss">
+    <div class="form-group rss">
       {{#if errors}}
         <div class="alert alert-error settings-error">{{errors.rss}}</div>
       {{/if}}
-      <label class="control-label" for="rss">RSS</label>
-      <div class="controls">
+      <label for="rss">RSS</label>
+      <div class="form-input">
         {{#each rss itemController="rss"}}
         {{view Ember.TextField valueBinding="url" type="text" class="rss" name="rss"}}
-        <button {{action removeUrl}} class="btn">Remove</button>
+        <button {{action removeUrl}} class="btn btn-default">Remove</button>
         <br />
         {{/each}}
-        <button {{action addUrl}} class="btn">Add url</button>
+        <button {{action addUrl}} class="btn btn-default">Add url</button>
       </div>
     </div>
 
-    <div class="control-group">
-      <div class="controls span2">
+    <div class="form-group">
         <button {{action save}} class="btn btn-primary">{{t button.save}}</button>
-      </div>
     </div>
   </form>
 </div>

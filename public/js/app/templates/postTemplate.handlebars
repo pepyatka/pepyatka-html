@@ -26,11 +26,11 @@
           <div class="media-body">
             <div>
               {{view App.EditPostField action="update" target="controller"
-                    class="span8 input-tiny comment-area"}}
+                    class="col-md-8 input-tiny comment-area"}}
             </div>
             <div>
               {{view App.SubmitPostButton action="update" target="controller"
-                    class="btn btn-small"}}
+                    class="btn btn-default btn-sm"}}
               <a {{action toggleVisibility target="view"}}>{{t label.cancel}}</a>
             </div>
           </div>
@@ -118,11 +118,11 @@
         <div class="media-body">
           <div>
             {{view App.CreateCommentField action="submit" target="App.CommentController"
-                  class="span7 input-tiny comment-area"}}
+                  class="col-md-7 input-sm comment-area"}}
           </div>
           <div>
             {{view App.SubmitCommentButton action="submit" target="App.CommentController"
-                  class="btn btn-small"}}
+                  class="btn btn-default btn-sm"}}
             <a {{action cancelComment target="view"}}>{{t label.cancel}}</a>
           </div>
         </div>

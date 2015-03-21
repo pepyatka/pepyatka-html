@@ -1,0 +1,114 @@
+.timeline-post-container{
+
+	padding-top: 14px;
+	padding-bottom: 14px;
+	border-bottom: 1px solid #eee;
+	line-height: 19px;
+
+	.avatar{
+		float: left;
+		line-height: 0;
+	}
+
+	.post-body{
+
+		margin-left: 63px;
+		font-size: 13px;
+		line-height: 16px;
+		color: #666;
+		a{
+			color: #7777cc;
+		}
+
+		.title{
+			margin-bottom: 2px;
+			a{
+				font-weight: bold;
+				color: #0000cc;
+			}
+		}
+
+		.text{
+			font-family: Arial,sans-serif;
+			font-size: 15px;
+			line-height: 19px;
+			a { color: #0000cc; }
+		}
+
+		.info{
+			margin-top: 2px;
+			&-private{
+				padding-left: 14px;
+				background: url("/img/lock.png") no-repeat left center;
+			}
+		}
+
+		.likes{
+			margin-top: 8px;
+			padding-left: 21px;
+			background: url("/img/smile.png") no-repeat top left;
+			ul{
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+			ul li{
+
+			}
+		}
+
+		.comment{
+			margin-top: 8px;
+
+			// Коментатор во френдах или нет
+			background: url("/img/comment-unknown.png") no-repeat top left;
+			&.friend {
+				background: url("/img/comment.png") no-repeat top left;
+			}
+
+			// Дата поста при наведении мышки
+			a.date{
+				display: inline;
+				float: left;
+				height: 16px;
+				width: 16px;
+			}
+
+			div.body{
+				margin-left: 21px;
+			}
+
+			span.comment-text{
+
+			}
+			span.author{
+
+			}
+			span.controls{
+
+			}
+
+			// форма редактирования коммента
+			div.edit{
+				textarea{
+					width: 90%;
+					height: 40px;
+					margin-bottom: 5px;
+				}
+			}
+
+
+		}
+
+		.more-comments{
+			margin-top: 8px;
+			padding-left: 21px;
+			font-style: italic;
+		}
+
+
+	}
+
+
+
+}
