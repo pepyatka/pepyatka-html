@@ -34,6 +34,7 @@
 	@extend .box-header;
 	color: #fff;
 	background-color: #84B757;
+	@include gradient-vertical(#94C16E, #7BB24B);
 }
 // Хедер для блока Группы на сайдбаре
 .box-header-groups{
@@ -69,6 +70,22 @@
 			text-decoration: none;
 		}
 		@include clearfix;
+
+		ul{
+			list-style: none;
+			margin: 0;
+			padding: 0;
+
+			li{
+				padding-bottom: 3px;
+				white-space: nowrap;
+				overflow: hidden;
+				a{
+					color: #0000cc;
+					font-size: 15px;
+				}
+			}
+		}
 	}
 	.box-footer {
 		padding: 5px 15px 10px 15px;

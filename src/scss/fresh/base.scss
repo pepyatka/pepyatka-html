@@ -17,7 +17,11 @@ a, a:hover, a:focus {
 }
 
 
-footer {
-	font-size: 10px;
-	color: #aaa;
+.footer {
+	margin-bottom: 20px;
+	padding-left: 10px;
+	font-size: 15px;
+	a, a:hover, a:focus {
+		color: #7777cc;
+	}
 }
