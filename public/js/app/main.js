@@ -15,6 +15,7 @@ define([
   "models/User",
 
   "controllers/ApplicationController",
+  "controllers/PostCommentController",
   "controllers/SessionNewController",
   "controllers/SessionDestroyController",
   "controllers/TimelineController",
@@ -32,6 +33,7 @@ define([
 
   "views/ApplicationView",
   "views/HomeView",
+  "views/PostCommentView",
   "views/SessionNewView",
   "views/TimelinePostView",
   "views/TimelineIndexView",

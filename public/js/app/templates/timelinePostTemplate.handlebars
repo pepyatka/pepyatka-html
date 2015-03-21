@@ -5,6 +5,13 @@
   {{comment.body}}<br/>
 {{/each}}
 
+<ul>
+  {{#each comment in post.comments itemController="post-comment"}}
+    {{view "post-comment" content=comment}}
+  {{/each}}
+</ul>
+
+
 <br/>
 Likes:
 <br/>
