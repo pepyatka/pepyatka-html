@@ -6,12 +6,12 @@ define(["config",
     isProgressBarHidden: 'hidden',
 
     visiblePosts: function() {
-      var posts = this.get('posts')
+      var posts = this.get('posts.arrangedContent')
       return posts.filter(function (post) { return !post.isHidden })
     }.property('posts.@each.isHidden'),
 
     hiddenPosts: function() {
-      var posts = this.get('posts')
+      var posts = this.get('posts.arrangedContent')
       return posts.filter(function (post) { return post.isHidden })
     }.property('posts.@each.isHidden'),
 
