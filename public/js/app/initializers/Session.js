@@ -30,7 +30,9 @@ define(["config", "app/app"], function(config, App) {
         authTokenChanged: function() {
           var done = function(result) {
             var store = container.lookup('store:main')
-            var user = store.createRecord('user', result.users)
+            var user = store.recordForId('user', result.users.id)
+            store.unloadRecord(user)
+            user = store.createRecord('user', result.users)
             this.set('currentUser', user)
             this.set('signedIn', true)
 
