@@ -53,6 +53,20 @@ define(["config",
         post.set('body', data.post.body)
     },
 
+    hidePost: function(data) {
+      var post = this.findPost(data.postId)
+
+      if (post)
+        post.set('isHidden', true)
+    },
+
+    unhidePost: function(data) {
+      var post = this.findPost(data.postId)
+
+      if (post)
+        post.set('isHidden', false)
+    },
+
     destroyPost: function(data) {
       var post = this.findPost(data.postId)
       this.currentController().get('content.posts').removeObject(post)
@@ -141,6 +155,8 @@ define(["config",
       this.get('socket').on('newPost', this.newPost.bind(this));
       this.get('socket').on('updatePost', this.updatePost.bind(this));
       this.get('socket').on('destroyPost', this.destroyPost.bind(this));
+      this.get('socket').on('hidePost', this.hidePost.bind(this));
+      this.get('socket').on('unhidePost', this.unhidePost.bind(this));
 
       this.get('socket').on('newComment', this.newComment.bind(this));
       this.get('socket').on('updateComment', this.updateComment.bind(this));
