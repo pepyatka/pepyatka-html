@@ -1,10 +1,8 @@
 {{post.content.body}}
 
 <br/>
-{{#each comment in post.comments}}
-  {{comment.body}}<br/>
-{{/each}}
-
+Comments:
+<br/>
 <ul>
   {{#each comment in post.comments itemController="post-comment"}}
     {{view "post-comment" content=comment}}
@@ -15,9 +13,12 @@
 <br/>
 Likes:
 <br/>
+<ul>
 {{#each user in post.content.likes}}
   {{user.screenName}}<br/>
 {{/each}}
+</ul>
+
 
 <br/>
 
