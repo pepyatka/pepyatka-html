@@ -7,12 +7,12 @@ define(["config",
 
     visiblePosts: function() {
       var posts = this.get('posts')
-      return posts.filter(function (post) { return post.isHidden !== true })
+      return posts.filter(function (post) { return !post.isHidden })
     }.property('posts.@each'),
 
     hiddenPosts: function() {
       var posts = this.get('posts')
-      return posts.filter(function (post) { return post.isHidden === true })
+      return posts.filter(function (post) { return post.isHidden })
     }.property('posts.@each'),
 
     hasHiddenPosts: function() {

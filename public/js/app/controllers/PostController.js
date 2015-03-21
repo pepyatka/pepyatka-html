@@ -29,14 +29,28 @@ define(["app/app"], function(App) {
       hide: function() {
         var postId = this.get('content.id')
         App.Post.hide(postId)
+      },
+
+      unhide: function() {
+        var postId = this.get('content.id')
+        App.Post.unhide(postId)
       }
     },
-    canHide: function() {
+
+    isRiverOfNews: function() {
       var pc = this.parentController
       if (pc != null && pc.constructor.toString() == "App.TimelineController") {
         return pc.get("content.name") == "River of news"
       }
       return false
+    },
+
+    canHide: function() {
+      return this.isRiverOfNews() && !this.get('content.isHidden')
+    }.property(),
+
+    canUnhide: function() {
+      return this.isRiverOfNews() && this.get('content.isHidden')
     }.property()
   })
 });
