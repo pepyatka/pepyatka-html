@@ -19,6 +19,8 @@ define(["config",
       return this.get('hiddenPosts').length > 0
     }.property('hiddenPosts.@each'),
 
+    hiddenPostsShown: false,
+
     actions: {
       subscribeTo: function() {
         var controller = this;
@@ -106,6 +108,10 @@ define(["config",
         //App.Post.submit(data, callbacks)
         attributes = { body: attrs.value, timelinesIds: timelineIds }
         App.Post.submit(attributes, callbacks)
+      },
+
+      'toggleShowHidden': function() {
+        this.toggleProperty('hiddenPostsShown')
       }
     },
 

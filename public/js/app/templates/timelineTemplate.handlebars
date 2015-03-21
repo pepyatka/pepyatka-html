@@ -33,9 +33,10 @@
     {{each controller.visiblePosts itemViewClass="App.PartialPostView" itemController="post"}}
   </ul>
 
+  {{# if controller.hasHiddenPosts }}
+      <a href="#" {{ action "toggleShowHidden" }}>Show {{hiddenPosts.length}} hidden entries</a>
+    {{ view App.HiddenPostsView }}
+  {{/if}}
+
   {{view App.Pagination}}
 </div>
-
-{{# if controller.hasHiddenPosts }}
-  <div id="showHidden">Show {{controller.hiddenPosts.length}} hidden entries</div>
-{{/if}}
