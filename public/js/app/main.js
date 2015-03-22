@@ -19,6 +19,7 @@ define([
   "models/User",
 
   "controllers/ApplicationController",
+  "controllers/PostController",
   "controllers/PostCommentController",
   "controllers/SessionNewController",
   "controllers/SessionDestroyController",
@@ -31,6 +32,7 @@ define([
   "controllers/UsersNewController",
 
   "routes/HomeRoute",
+  "routes/PostRoute",
   "routes/SessionNewRoute",
   "routes/SessionDestroyRoute",
   "routes/TimelineCommentsRoute",
@@ -41,6 +43,7 @@ define([
 
   "views/ApplicationView",
   "views/HomeView",
+  "views/PostView",
   "views/PostCommentView",
   "views/SessionNewView",
   "views/TimelineCommentsView",

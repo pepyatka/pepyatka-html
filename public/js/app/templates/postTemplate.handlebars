@@ -1,11 +1,10 @@
-{{post.content.body}}<br/>
-{{#link-to 'post' controller.session.currentUser.username post.content.id}}{{post.content.createdAt}}{{/link-to}}
+{{content.body}}
 
 <br/>
 Comments:
 <br/>
 <ul>
-  {{#each comment in post.comments itemController="post-comment"}}
+  {{#each comment in comments itemController="post-comment"}}
     {{view "post-comment" content=comment}}
   {{/each}}
 </ul>
@@ -15,7 +14,7 @@ Comments:
 Likes:
 <br/>
 <ul>
-{{#each user in post.content.likes}}
+{{#each user in content.likes}}
   {{user.screenName}}<br/>
 {{/each}}
 </ul>
