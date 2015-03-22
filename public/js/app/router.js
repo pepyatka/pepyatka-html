@@ -14,6 +14,7 @@ define(["app/app"], function(App) {
       this.route('index', { path: '/:username' })
       this.route('comments', { path: '/:username/comments' })
       this.route('likes', { path: '/:username/likes' })
+      this.route('subscribers', { path: '/:username/subscribers' })
     })
     this.resource('groups', { path: '/groups'})
   })

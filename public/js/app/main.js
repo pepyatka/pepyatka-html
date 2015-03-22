@@ -22,6 +22,7 @@ define([
   "controllers/TimelineIndexController",
   "controllers/TimelineLikesController",
   "controllers/TimelinePostController",
+  "controllers/TimelineSubscribersController",
   "controllers/UsersNewController",
 
   "routes/HomeRoute",
@@ -29,15 +30,17 @@ define([
   "routes/SessionDestroyRoute",
   "routes/TimelineIndexRoute",
   "routes/TimelineLikesRoute",
+  "routes/TimelineSubscribersRoute",
   "routes/UsersNewRoute",
 
   "views/ApplicationView",
   "views/HomeView",
   "views/PostCommentView",
   "views/SessionNewView",
-  "views/TimelinePostView",
   "views/TimelineIndexView",
   "views/TimelineLikesView",
+  "views/TimelinePostView",
+  "views/TimelineSubscribersView",
   "views/UsersNewView"
 ], function(App) {
   "use strict";
