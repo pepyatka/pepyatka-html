@@ -2,6 +2,9 @@ define([
   "app/app",
   "app/router",
 
+  "adapters/ApplicationAdapter",
+  "adapters/SubscriberAdapter",
+
   "initializers/AjaxPrefilter",
   "initializers/Session",
 

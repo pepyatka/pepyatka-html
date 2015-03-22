@@ -30,12 +30,13 @@ define({
   paths : {
     /* application */
     'App': 'app/main',
-    'models': 'app/models',
+    'adapters': 'app/adapters',
     'controllers': 'app/controllers',
-    'routes': 'app/routes',
-    'views': 'app/views',
-    'templates': 'app/templates',
     'initializers': 'app/initializers',
+    'models': 'app/models',
+    'routes': 'app/routes',
+    'templates': 'app/templates',
+    'views': 'app/views',
 
     /* libs */
     'jquery': 'libs/jquery/2.1.3/jquery.min',

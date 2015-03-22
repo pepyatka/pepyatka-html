@@ -3,7 +3,7 @@ define(["app/app"], function(App) {
 
   App.TimelineSubscribersRoute = Ember.Route.extend({
     model: function(params) {
-      return this.store.find('subscriber', params.username)
+      return this.store.findQuery('subscriber', params.username)
     }
   })
 })
