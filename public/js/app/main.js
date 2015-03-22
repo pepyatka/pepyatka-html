@@ -4,6 +4,7 @@ define([
 
   "adapters/ApplicationAdapter",
   "adapters/SubscriberAdapter",
+  "adapters/TimelineAdapter",
 
   "initializers/AjaxPrefilter",
   "initializers/Session",

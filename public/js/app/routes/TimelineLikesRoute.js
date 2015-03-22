@@ -3,7 +3,7 @@ define(["app/app"], function(App) {
 
   App.TimelineLikesRoute = Ember.Route.extend({
     model: function(params) {
-      return this.store.find('timeline', params.username)
+      return this.store.find('timeline', params.username + '/likes')
     }
   })
 })
