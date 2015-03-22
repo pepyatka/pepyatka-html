@@ -13,6 +13,13 @@ define(["config",
         comment.save()
           .then(function(newComment) {
           }.bind(this))
+      },
+
+      destroy: function() {
+        var comment = this.get('model')
+        comment.destroyRecord()
+          .then(function(comment) {
+          })
       }
     }
   })
