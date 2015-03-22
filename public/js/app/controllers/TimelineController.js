@@ -5,6 +5,22 @@ define(["config",
 
     isProgressBarHidden: 'hidden',
 
+    visiblePosts: function() {
+      var posts = this.get('posts.arrangedContent')
+      return posts.filter(function (post) { return !post.isHidden })
+    }.property('posts.@each.isHidden'),
+
+    hiddenPosts: function() {
+      var posts = this.get('posts.arrangedContent')
+      return posts.filter(function (post) { return post.isHidden })
+    }.property('posts.@each.isHidden'),
+
+    hasHiddenPosts: function() {
+      return this.get('hiddenPosts').length > 0
+    }.property('hiddenPosts.@each'),
+
+    hiddenPostsShown: false,
+
     actions: {
       subscribeTo: function() {
         var controller = this;
@@ -92,6 +108,10 @@ define(["config",
         //App.Post.submit(data, callbacks)
         attributes = { body: attrs.value, timelinesIds: timelineIds }
         App.Post.submit(attributes, callbacks)
+      },
+
+      'toggleShowHidden': function() {
+        this.toggleProperty('hiddenPostsShown')
       }
     },
 

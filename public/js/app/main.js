@@ -36,6 +36,7 @@ define([
   "views/SearchView",
   "views/SendToFieldView",
   "views/SettingsView",
+  "views/HiddenPostsView",
   "views/SigninView",
   "views/SignupView",
   "views/SubmitCommentButtonView",
