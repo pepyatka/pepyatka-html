@@ -26,11 +26,11 @@
         <div class="edit-post">
           <div>
             {{view App.EditPostField action="update" target="controller"
-                  class="col-md-8 input-sm comment-area"}}
+                  class="editarea"}}
           </div>
           <div>
             {{view App.SubmitPostButton action="update" target="controller"
-                  class="btn btn-default btn-sm"}}
+                  class="btn btn-default btn-xs"}}
             <a {{action toggleVisibility target="view"}}>{{t label.cancel}}</a>
           </div>
         </div>
@@ -127,7 +127,7 @@
         <div class="comment">
             <div class="edit">
                 <div>
-                  {{view App.CreateCommentField class=""}}
+                  {{view App.CreateCommentField class="editarea"}}
                 </div>
                 <div>
                   {{view App.SubmitCommentButton class="btn btn-default btn-xs"}}

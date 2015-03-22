@@ -21,6 +21,7 @@
 		}
 
 		.title{
+			font-size: 15px;
 			margin-bottom: 2px;
 			a{
 				font-weight: bold;
@@ -33,6 +34,10 @@
 			font-size: 15px;
 			line-height: 19px;
 			a { color: #0000cc; }
+		}
+
+		.edit-post{
+
 		}
 
 		.info{
@@ -90,11 +95,7 @@
 
 			// форма редактирования коммента
 			div.edit{
-				textarea{
-					width: 90%;
-					height: 40px;
-					margin-bottom: 5px;
-				}
+
 			}
 
 
