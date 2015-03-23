@@ -6,7 +6,8 @@ var gulp    = require('gulp'),
 	rename  = require('gulp-rename'),
 	uglify  = require('gulp-uglify'),
 	size    = require('gulp-size'),
-	replace = require('gulp-replace');
+	replace = require('gulp-replace'),
+	rjs = require('gulp-requirejs');
 
 gulp.task('default', ['styles', 'scripts', 'font-awesome']);
 
@@ -23,27 +24,17 @@ gulp.task("styles", function(){
 
 });
 
-gulp.task('scripts', function () {
-	var concatinated = size();
-	var uglified = size();
-	var gzipped = size({gzip: true});
-	gulp.src([
-		'bower_components/jquery/dist/jquery.js'
-	])
-		.pipe(concat('script.min.js'))
-		.pipe(concatinated)
-		.pipe(uglify())
-		.on("error", notify.onError("<%= error.message %>"))
-		.pipe(uglified)
-		.pipe(gulp.dest('public/js'))
-		.pipe(gzipped)
-		.pipe(notify({
-			onLast: true,
-			title: "Scripts compiled",
-			message: function () {
-				return concatinated.prettySize + ' | ' + uglified.prettySize + ' | ' + gzipped.prettySize;
-			}
-		}));
+gulp.task('rjs', function() {
+	rjs({
+		baseUrl: './public/js/main.js',
+		//baseUrl: './build.js',
+		out: 'bundle.js',
+		shim: {
+			// standard require.js shim options
+		}
+		// ... more require.js options
+	})
+		.pipe(gulp.dest('./public/dist/')); // pipe it to the output DIR
 });
 
 
