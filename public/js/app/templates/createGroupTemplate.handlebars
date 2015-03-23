@@ -1,16 +1,13 @@
-<div class="col-md-3">
-  <h2>{{t header.createGroup}}</h2>
-
-  <form action="/signup" method="post" class="form-horizontal">
-    <div class="form-group">
-      <label for="username">Group name</label>
-      <div class="form-input">
-        {{view Ember.TextField valueBinding="name" type="text" id="name" name="name"}}
+<h2>{{t header.createGroup}}</h2>
+  <div class="col-md-6">
+    <form action="/signup" method="post" class="form-horizontal">
+      <div class="form-group">
+        <label for="username">Group name</label>
+          {{view Ember.TextField classNames="form-control" valueBinding="name" type="text" id="name" name="name"}}
       </div>
-    </div>
 
-    <div class="form-group">
-        <button {{action submit}} class="btn btn-primary">{{t button.create}}</button>
-    </div>
-  </form>
-</div>
+      <div class="form-group">
+          <button {{action submit}} class="btn btn-primary">{{t button.create}}</button>
+      </div>
+    </form>
+  </div>
