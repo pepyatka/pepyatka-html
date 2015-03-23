@@ -1,10 +1,10 @@
-<div class="media a-post">
-  <div class="pull-left">
-    <img class="media-object" src="/img/64x64.png">
+<div class="single-post-container">
+  <div class="avatar">
+    <img src="/img/64x64.png">
   </div>
 
-  <div class="media-body post">
-    <h5 class="media-heading author">
+  <div class="post-body">
+    <div class="title">
       {{#link-to 'user' createdBy.username}}{{createdBy.info.screenName}}{{/link-to}}{{#unless
         view.myFeedOnly}}{{#if
         view.toOrColon}}:{{else}}{{#if
@@ -18,27 +18,27 @@
           postBinding="controller.content"}}{{/link-to}}{{maybeSep
           group listBinding="view.firstTwoGroups" sep=","}}
       {{/each}}
-    </h5>
+    </div>
 
     {{#if view.isEditFormVisible}}
       {{#view App.EditPostForm}}
-        <div class="edit-post-form media">
-          <div class="media-body">
+        <div class="edit-post">
             <div>
               {{view App.EditPostField action="update" target="controller"
-                    class="col-md-8 input-tiny comment-area"}}
+                    class="editarea"}}
             </div>
             <div>
               {{view App.SubmitPostButton action="update" target="controller"
                     class="btn btn-default btn-sm"}}
               <a {{action toggleVisibility target="view"}}>{{t label.cancel}}</a>
             </div>
-          </div>
         </div>
       {{/view}}
     {{else}}
       <div class="body">
-        <div class="text post-text">{{prettifyText body}}</div>
+        <div class="text">
+          {{prettifyText body}}
+        </div>
         {{view App.YoutubeEmbeddedView textBinding="body" }}
 
         {{#each attachment in attachments}}
@@ -67,7 +67,7 @@
       </div>
     {{/if}}
 
-    <div class="tagline">
+    <div class="info">
       {{#link-to 'post' this class="datetime"}}<time {{bind-attr datetime="createdAt"}}>{{createdAgo}}</time>{{/link-to}}
 
       {{#if App.properties.userId}}
@@ -90,13 +90,8 @@
     </div>
 
     {{#if anyLikes}}
-      <div class="media likes">
-        <div class="pull-left">
-          <i class="icon-heart media-object"></i>
-        </div>
-
-        <div class="media-body">
-          <ul class="unstyled inline pull-left">
+      <div class="likes">
+          <ul>
             {{view Ember.CollectionView contentBinding="likes"
                    itemViewClass="App.PartialLike"}}
           </ul>
@@ -104,29 +99,28 @@
           {{#if currentUserLiked}}
             <span>(<a {{action unlike target="controller"}}>{{t label.unlike}}</a>)</span>
           {{/if}}
-        </div>
       </div>
     {{/if}}
 
-    <ul class="unstyled comments">
+    <div class="comments">
       {{each content.comments.content itemViewClass="App.PartialCommentView" itemController="comment"}}
-    </ul>
+
 
     {{#view App.CommentForm}}
-      <div class="comment-form media">
-        <i class="icon-comment-alt media-object pull-left"></i>
-        <div class="media-body">
+		<div class="comment">
+          <div class="edit">
           <div>
             {{view App.CreateCommentField action="submit" target="App.CommentController"
-                  class="col-md-7 input-sm comment-area"}}
+                  class="editarea"}}
           </div>
           <div>
             {{view App.SubmitCommentButton action="submit" target="App.CommentController"
                   class="btn btn-default btn-sm"}}
             <a {{action cancelComment target="view"}}>{{t label.cancel}}</a>
           </div>
+          </div>
         </div>
-      </div>
     {{/view}}
+	</div>
   </div>
 </div>

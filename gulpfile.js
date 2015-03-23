@@ -7,6 +7,7 @@ var gulp    = require('gulp'),
 	uglify  = require('gulp-uglify'),
 	size    = require('gulp-size'),
 	replace = require('gulp-replace'),
+	handlebars = require('gulp-ember-handlebars'),
 	rjs = require('gulp-requirejs');
 
 gulp.task('default', ['styles', 'scripts', 'font-awesome']);
@@ -37,6 +38,15 @@ gulp.task('rjs', function() {
 		.pipe(gulp.dest('./public/dist/')); // pipe it to the output DIR
 });
 
+gulp.task('templates', function() {
+	gulp.src(['./public/js/app/templates/**/*.handlebars'])
+		.pipe(handlebars({
+			outputType: 'browser',
+			namespace: 'Ember.TEMPLATES'
+		}))
+		.pipe(concat('templates.js'))
+		.pipe(gulp.dest('./public/dist/'));
+});
 
 gulp.task('font-awesome', function () {
 	gulp.src('bower_components/fontawesome/fonts/**.*')

@@ -12,9 +12,7 @@
 
 	.post-body{
 
-		margin-left: 63px;
-		font-size: 13px;
-		line-height: 16px;
+		margin-left: 88px;
 		color: #666;
 		a{
 			color: #7777cc;
@@ -61,55 +59,5 @@
 
 			}
 		}
-
-		.comment{
-			margin-top: 8px;
-
-			// Коментатор во френдах или нет
-			background: url("/img/comment-unknown.png") no-repeat top left;
-			&.friend {
-				background: url("/img/comment.png") no-repeat top left;
-			}
-
-			// Дата поста при наведении мышки
-			a.date{
-				display: inline;
-				float: left;
-				height: 16px;
-				width: 16px;
-			}
-
-			div.body{
-				margin-left: 21px;
-			}
-
-			span.comment-text{
-
-			}
-			span.author{
-
-			}
-			span.controls{
-
-			}
-
-			// форма редактирования коммента
-			div.edit{
-
-			}
-
-
-		}
-
-		.more-comments{
-			margin-top: 8px;
-			padding-left: 21px;
-			font-style: italic;
-		}
-
-
 	}
-
-
-
 }

@@ -81,9 +81,11 @@
         {{/unless}}
 
         {{#if postOwner}}
+		  <span class="links">
           (<a {{action editFormVisibility target="view"}}>{{t label.edit}}</a>
           |
           <a {{action kill id target="controller"}}>{{t label.delete}}</a>)
+          </span>
         {{/if}}
       {{/if}}
     </div>
