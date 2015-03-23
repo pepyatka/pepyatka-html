@@ -4,16 +4,12 @@
   <form action="/signup" method="post">
     <div class="form-group">
       <label for="username">{{t label.username}}</label>
-      <div class="form-input">
-        {{view Ember.TextField valueBinding="username" type="text" id="username" name="username"}}
-      </div>
+        {{view Ember.TextField classNames="form-control" valueBinding="username" type="text" id="username" name="username"}}
     </div>
 
     <div class="form-group">
       <label class="control-label" for="password">{{t label.password}}</label>
-      <div class="form-input">
-        {{view Ember.TextField valueBinding="password" type="password" id="password" name="password"}}
-      </div>
+        {{view Ember.TextField classNames="form-control" valueBinding="password" type="password" id="password" name="password"}}
     </div>
 
     <div class="form-group">
