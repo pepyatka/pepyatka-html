@@ -1,6 +1,9 @@
 {{post.content.body}}<br/>
 {{#link-to 'post' controller.session.currentUser.username post.content.id}}{{post.content.createdAt}}{{/link-to}}
 
+{{textarea value=controller.body}}
+<button {{action 'update'}}>Post</button>
+
 <br/>
 Comments:
 <br/>
