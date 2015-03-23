@@ -106,10 +106,18 @@
         </div>
 
         <div class="media-body">
-          <ul class="unstyled inline pull-left">
-            {{view Ember.CollectionView contentBinding="likes"
-                   itemViewClass="App.PartialLike"}}
-          </ul>
+          {{#if partialLikes}}
+            <ul class="unstyled inline pull-left">
+              {{view Ember.CollectionView contentBinding="partialLikesList"
+                     itemViewClass="App.PartialLike"}}
+            </ul>
+            <span class="liked">{{t label.and}} <a {{action showAllLikes target="view"}}>{{remainingLikesCount}} {{t label.otherPeople}}</a></span>
+          {{else}}
+            <ul class="unstyled inline pull-left">
+              {{view Ember.CollectionView contentBinding="likes"
+                     itemViewClass="App.PartialLike"}}
+            </ul>
+          {{/if}}
           <span class="liked">{{t label.liked}}</span>
           {{#if currentUserLiked}}
             <span>(<a {{action unlike id target="controller"}}>{{t label.unlike}}</a>)</span>

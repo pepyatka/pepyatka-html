@@ -2,6 +2,7 @@ define(["config",
         "app/app"], function(config, App) {
   App.Post = Ember.Object.extend({
     showAllComments: false,
+    showAllLikes: false,
 
     // TODO: this is overwritten in Timeline find method
     comments: Ember.ArrayProxy.extend({content: []}),
@@ -37,6 +38,28 @@ define(["config",
 
       return likes.length > 0
     }.property('likes', 'likes.@each'),
+
+    partialLikes: function() {
+      if (this.showAllLikes) return false
+      var likes = this.get('likes')
+      if (!likes) return false
+      return likes.length > 4 // 5 likes or more trigger folding
+      // logic is that showing "and 1 other people" in case of 4 likes is useless
+      // and we'd rather show the fourth like directly.
+    }.property('showAllLikes', 'likes', 'likes.@each'),
+
+    // Grab first 3 likes to show.
+    partialLikesList: function() {
+      var likes = this.get('likes')
+      if (!likes) return;
+      return likes.objectsAt([0, 1, 2])
+    }.property('likes', 'likes.@each', 'currentUserLiked'),
+
+    remainingLikesCount: function() {
+      var likes = this.get('likes')
+      if (!likes) return;
+      return likes.length - 3
+    }.property('likes', 'likes.@each', 'currentUserLiked'),
 
     // TODO: this is a bound helper
     createdAgo: function() {

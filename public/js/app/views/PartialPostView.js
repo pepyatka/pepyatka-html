@@ -21,6 +21,10 @@ define(["app/app",
 
       showAllComments: function() {
         this.content.set('showAllComments', true)
+      },
+
+      showAllLikes: function() {
+        this.content.set('showAllLikes', true)
       }
     },
 
