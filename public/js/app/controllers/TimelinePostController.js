@@ -8,6 +8,13 @@ define(["config",
     body: Ember.computed.oneWay('model.body'),
 
     actions: {
+      destroy: function() {
+        var comment = this.get('model')
+        comment.destroyRecord()
+          .then(function(comment) {
+          })
+      },
+
       update: function() {
         var post = this.get('model')
         var body = this.get('body', '')
