@@ -11,6 +11,7 @@ define(["app/app"], function(App) {
       this.route('new', { path: '/signup' })
     })
     this.resource('timeline', { path: '/' }, function() {
+      this.route('home', { path: '/' })
       this.route('index', { path: '/:username' })
       this.route('comments', { path: '/:username/comments' })
       this.route('likes', { path: '/:username/likes' })
