@@ -45,6 +45,7 @@ define([
   "views/HomeView",
   "views/PostView",
   "views/PostCommentView",
+  "views/ProfileLinksView",
   "views/SessionNewView",
   "views/TimelineCommentsView",
   "views/TimelineIndexView",
