@@ -4,6 +4,7 @@ define([
 
   "adapters/ApplicationAdapter",
   "adapters/SubscriberAdapter",
+  "adapters/SubscriptionAdapter",
   "adapters/TimelineAdapter",
 
   "initializers/AjaxPrefilter",
@@ -29,6 +30,7 @@ define([
   "controllers/TimelineLikesController",
   "controllers/TimelinePostController",
   "controllers/TimelineSubscribersController",
+  "controllers/TimelineSubscriptionsController",
   "controllers/UsersNewController",
 
   "routes/HomeRoute",
@@ -40,6 +42,7 @@ define([
   "routes/TimelineHomeRoute",
   "routes/TimelineLikesRoute",
   "routes/TimelineSubscribersRoute",
+  "routes/TimelineSubscriptionsRoute",
   "routes/UsersNewRoute",
 
   "views/ApplicationView",
@@ -54,6 +57,7 @@ define([
   "views/TimelineLikesView",
   "views/TimelinePostView",
   "views/TimelineSubscribersView",
+  "views/TimelineSubscriptionsView",
   "views/UsersNewView"
 ], function(App) {
   "use strict";
