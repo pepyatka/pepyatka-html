@@ -1,0 +1,99 @@
+.box {
+  margin-bottom: 23px;
+  border: 0;
+  border-radius: 8px;
+  @include box-shadow(0 1px 1px rgba(0,0,0,.05));
+}
+
+// --- Block headers ---
+.box-header {
+  padding-left: 15px;
+  padding-right: 15px;
+  line-height: 28px;
+  height: 28px;
+  @include border-top-radius(8px);
+}
+
+// User profile, group profile
+.box-header-empty {
+  @extend .box-header;
+  background-color: #fff;
+}
+
+// Timeline header
+.box-header-timeline {
+  @extend .box-header;
+  color: #fff;
+  background-color: #227AC5;
+  @include gradient-vertical(#6797D2, #437EC7);
+}
+
+// Sidebar Friend block header
+.box-header-friends {
+  @extend .box-header;
+  color: #fff;
+  background-color: #84B757;
+  @include gradient-vertical(#94C16E, #7BB24B);
+}
+
+// Sidebar Group block header
+.box-header-groups {
+  @extend .box-header;
+  color: #fff;
+  background-color: #D5C555;
+  @include gradient-vertical(#D5C555, #CBB72D);
+}
+
+// Content and footer
+.content {
+  .box-body {
+      padding: 15px 25px 0px 25px;
+      background-color: #fff;
+      @include clearfix;
+  }
+  .box-footer {
+      padding: 5px 25px 5px 25px;
+      font-size: 11px;
+      @include border-bottom-radius(8px);
+      background-color: #fff;
+  }
+}
+
+.sidebar {
+  .box-body {
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    padding: 10px 15px 1px 15px;
+    background-color: #eee;
+    a {
+      color: #0000cc;
+      text-decoration: none;
+    }
+    @include clearfix;
+
+    ul{
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      li{
+        padding-bottom: 3px;
+        white-space: nowrap;
+        overflow: hidden;
+        a{
+          color: #0000cc;
+          font-size: 15px;
+        }
+      }
+    }
+  }
+  .box-footer {
+    padding: 5px 15px 10px 15px;
+    font-size: 11px;
+    @include border-bottom-radius(8px);
+    background-color: #eee;
+    a {
+      color: #77c;
+    }
+  }
+}

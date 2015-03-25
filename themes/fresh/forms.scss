@@ -1,0 +1,19 @@
+#sendTo {
+  height: 38px;
+}
+
+// textarea for add|edit posts and comments
+@mixin editarea {
+  border: 1px solid #b4b4b4;
+  border-top-color: #727272;
+  border-bottom-color: #dadada;
+  background: url("/img/textbox-bg.png") repeat-x top;
+  background-color: white;
+  padding: 3px;
+  width: 100%;
+  margin-bottom: 3px;
+  min-height: 30px;
+}
+.editarea {
+  @include editarea;
+}

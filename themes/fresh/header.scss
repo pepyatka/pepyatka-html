@@ -1,0 +1,25 @@
+// Header
+
+.header {
+  height: 80px;
+}
+
+.search-field {
+  margin-top: 23px;
+
+  .search-input {
+    width: 200px;
+  }
+}
+
+.signin-toolbar {
+  margin-top: 25px;
+}
+
+h1.title a {
+  color: #222;
+}
+
+h1.title a:hover {
+  text-decoration: none;
+}

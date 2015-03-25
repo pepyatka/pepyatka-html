@@ -10,6 +10,8 @@ Running the application
 -----------------------
 
 1. ```node index.js```
+1. Run ```npm install```
+1. Run ```jake watch```
 1. Open [http://localhost:3333/](http://localhost:3333/)
 
 

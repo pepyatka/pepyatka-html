@@ -17,6 +17,8 @@
   },
   "dependencies": {
     "express": "4.9.5",
-    "ejs": "0.8.3"
+    "ejs": "0.8.3",
+    "jake": "8.0.11",
+    "node-sass": "2.0.1"
   }
 }

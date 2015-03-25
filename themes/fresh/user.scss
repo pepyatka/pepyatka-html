@@ -1,0 +1,29 @@
+.profile{
+  padding-bottom: 16px;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 16px;
+
+  .avatar {
+    float: left;
+  }
+
+  .description {
+    margin-left: 90px;
+    .name {
+      font-size: 24px;
+    }
+  }
+  .stats {
+    text-align: right;
+  }
+}
+
+.subscribe_controls {
+  margin-bottom: 19px;
+}
+
+.create_post {
+  padding-bottom: 14px;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 14px;
+}

@@ -1,0 +1,43 @@
+.comments {
+  font-size: 13px;
+  line-height: 16px;
+
+  .comment {
+    margin-top: 8px;
+
+    // Commented or not
+    background: url("/img/comment-unknown.png") no-repeat top left;
+    &.friend {
+      background: url("/img/comment.png") no-repeat top left;
+    }
+
+    // Hover on date field
+    a.date {
+      display: inline;
+      float: left;
+      height: 16px;
+      width: 16px;
+    }
+
+    div.body {
+      margin-left: 21px;
+    }
+
+    span.comment-text {
+    }
+    span.author {
+    }
+    span.controls {
+    }
+
+    // Edit comment form
+    div.edit {
+    }
+  }
+
+  .more-comments {
+    margin-top: 8px;
+    padding-left: 21px;
+    font-style: italic;
+  }
+}
