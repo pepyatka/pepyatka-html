@@ -1,13 +1,20 @@
-define(["app/app"], function(App) {
+define(["app/app",
+        "moment"], function(App, moment) {
   "use strict";
 
   App.Comment = DS.Model.extend({
     identifier: DS.attr('string'),
     body: DS.attr('string'),
-    createdAt: DS.attr('string'),
-    updatedAt: DS.attr('string'),
-    createdBy: DS.attr('string'),
+    createdAt: DS.attr('number'),
+    updatedAt: DS.attr('number'),
 
-    post: DS.belongsTo('post')
+    createdBy: DS.belongsTo('user'),
+    post: DS.belongsTo('post'),
+
+    createdAgo: function() {
+      if (this.get('createdAt')) {
+        return moment(this.get('createdAt')).fromNow()
+      }
+    }.property('createdAt')
   })
 })

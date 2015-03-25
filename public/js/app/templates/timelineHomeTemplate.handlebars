@@ -1,21 +1,34 @@
 {{#if controller.session.signedIn}}
-  <div class="clearfix submitForm">
-    <div>
-      {{textarea value=body}}
+  <div class="submitForm">
+    <div class="row">
+      <div class="col-md-12">
+        sendTo
+      </div>
     </div>
-    <div class="pull-left">
-      Add:
+
+    <div class="row sumbitText">
+      <div class="col-md-12">
+        {{textarea value=body class="editarea"}}
+      </div>
     </div>
-    <div class="pull-right">
-      <button {{action 'create'}}>Post</button>
+
+    <div class="row submitControls">
+      <div class="col-md-6">
+        <div class="pull-left">
+          Add file
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="pull-right">
+          <button {{action 'create'}} class="btn btn-default btn-xs">Post</button>
+        </div>
+      </div>
     </div>
   </div>
 {{/if}}
 
 <div class="posts">
-  <ul class="media-list">
-    {{#each post in posts itemController="timeline-post"}}
-      {{view "timeline-post" content=post}}
-    {{/each}}
-  </ul>
+  {{#each post in posts itemController="timeline-post"}}
+    {{view "timeline-post" content=post}}
+  {{/each}}
 </div>

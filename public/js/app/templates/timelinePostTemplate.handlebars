@@ -1,35 +1,68 @@
-{{post.content.body}}<br/>
-{{#link-to 'post' controller.session.currentUser.username post.content.id}}{{post.content.createdAt}}{{/link-to}}
+<div class="timeline-post-container">
+  <div class="avatar">
+    <img src="/img/48x48.png" />
+  </div>
 
-{{textarea value=controller.body}}
-<button {{action 'update'}}>Post</button>
-<a {{action 'destroy'}}>Destroy</a>
+  <div class="post-body">
+    <div class="title">
+      {{#link-to 'timeline.home' post.model.createdBy.username}}{{post.model.createdBy.screenName}}{{/link-to}}
+    </div>
 
-<br/>
-Comments:
-<br/>
-<ul>
-  {{#each comment in post.comments itemController="post-comment"}}
-    {{view "post-comment" content=comment}}
-  {{/each}}
-</ul>
+    <div class="edit-post">
+      <div>
+        {{textarea value=controller.body class="editarea"}}
+      </div>
+      <div>
+        <button {{action 'update'}} class="btn btn-default btn-xs">Post</button>
+        <a href="#">Cancel</a>
+      </div>
+    </div>
 
+    <div class="body">
+      <div class="text">
+        {{post.content.body}}
+      </div>
+    </div>
+  </div>
 
-<br/>
-Likes:
-<br/>
-<ul>
-{{#each user in post.content.likes}}
-  {{user.screenName}}<br/>
-{{/each}}
-</ul>
+  <div class="info">
+    {{#link-to 'post' controller.session.currentUser.username post.content.id class="datetime"}}<time {{bind-attr datetime="post.model.createdAgo"}}>{{post.model.createdAgo}}</time>{{/link-to}}
 
+    <span class="links">
+      (<a href="#">Edit</a>
+      |
+      <a {{action 'destroy'}}>Destroy</a>)
+    </span>
 
-<br/>
+    <div class="likes">
+      <ul>
+        {{#each user in post.content.likes}}
+          <li>
+            {{#link-to 'timeline.index' user.id}}{{user.screenName}}{{/link-to}}
+          </li>
+        {{/each}}
+      </ul>
 
-{{textarea value=post.newComment}}
-<button {{action 'create'}}>Post</button>
-<a {{action 'like'}}>Like</a>
-<a {{action 'unlike'}}>Un-like</a>
+      <span><a {{action 'like'}}>Like</a></span>
+      <span>(<a {{action 'unlike'}}>Un-like</a>)</span>
+    </div>
 
-<hr/>
+    <div class="comments">
+      {{#each comment in post.comments itemController="post-comment"}}
+        {{view "post-comment" content=comment}}
+      {{/each}}
+    </div>
+  </div>
+
+  <div class="comment">
+    <div class="edit">
+      <div>
+        {{textarea value=post.newComment class="editarea"}}
+      </div>
+      <div>
+        <button {{action 'create'}} class="btn btn-default btn-xs">Post</button>
+        Cancel
+      </div>
+    </div>
+  </div>
+</div>

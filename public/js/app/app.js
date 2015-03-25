@@ -5,8 +5,11 @@ define(["ember"
        ], function(Ember) {
   "use strict";
 
-  var options = {}
-    , App
+  var options = {
+    LOG_TRANSITIONS: true,
+    LOG_TRANSITIONS_INTERNAL: true
+  }
+  var App
 
   App = Ember.Application.create(options)
   App.deferReadiness()
