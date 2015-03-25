@@ -18,6 +18,8 @@ Em.I18n.translations = {
   'label.delete': 'delete',
   'label.edit': 'edit',
   'label.unlike': 'Un-like',
+  'label.and': 'and',
+  'label.otherPeople': 'other people',
   'label.liked': 'liked this',
   'label.subscriptions': 'subscriptions',
   'label.subscribers': 'subscribers',
