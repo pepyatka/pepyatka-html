@@ -1,6 +1,8 @@
 define(["config",
         "app/app",
         "ember"], function(config, App, Ember) {
+  "use strict";
+
   App.SessionNewController = Ember.Controller.extend({
     resourceUrl: config.host + '/v1/session',
 

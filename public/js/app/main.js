@@ -22,6 +22,7 @@ define([
   "controllers/ApplicationController",
   "controllers/PostController",
   "controllers/PostCommentController",
+  "controllers/PubSubController",
   "controllers/SessionNewController",
   "controllers/SessionDestroyController",
   "controllers/TimelineCommentsController",

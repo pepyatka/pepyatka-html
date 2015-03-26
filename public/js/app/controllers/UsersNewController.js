@@ -1,5 +1,7 @@
 define(["config",
         "app/app"], function(config, App) {
+  "use strict";
+
   App.UsersNewController = Ember.Controller.extend({
     resourceUrl: config.host + '/v1/users',
 

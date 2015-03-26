@@ -1,6 +1,8 @@
 define(["config",
         "app/app",
         "ember"], function(config, App, Ember) {
+  "use strict";
+
   App.TimelineIndexController = Ember.Controller.extend({
     postSortProperties: ['createdAt:desc'],
     posts: Ember.computed.sort('model.posts', 'postSortProperties'),

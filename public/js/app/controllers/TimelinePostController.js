@@ -1,6 +1,8 @@
 define(["config",
         "app/app",
         "ember"], function(config, App, Ember) {
+  "use strict";
+
   App.TimelinePostController = Ember.Controller.extend({
     commentSortProperties: ['createdAt:asc'],
     comments: Ember.computed.sort('content.comments', 'commentSortProperties'),

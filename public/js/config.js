@@ -51,6 +51,7 @@ define({
     'ember-data': 'libs/ember-data/1.0.0-beta.15/ember-data',
     'ember-template-compiler': 'libs/ember-template-compiler/1.12.0-beta.1/ember-template-compiler',
     'moment': 'libs/momentjs/2.9.0/moment.min',
+    'socket.io': 'libs/socket.io/1.3.5/socket.io.min',
 
     /* requirejs-plugins */
     'hbs': 'libs/requirejs-plugins/hbs',

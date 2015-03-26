@@ -1,6 +1,8 @@
 define(["config",
         "app/app",
         "ember"], function(config, App, Ember) {
+  "use strict";
+
   App.PostCommentController = Ember.Controller.extend({
     body: Ember.computed.oneWay('model.body'),
 
