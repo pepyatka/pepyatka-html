@@ -38,7 +38,7 @@
       <ul>
         {{#each user in post.content.likes}}
           <li>
-            {{#link-to 'timeline.index' user.id}}{{user.screenName}}{{/link-to}}
+            {{#link-to 'timeline.index' user.username}}{{user.screenName}}{{/link-to}}
           </li>
         {{/each}}
       </ul>
