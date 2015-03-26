@@ -5,7 +5,19 @@ define(["config",
     commentSortProperties: ['createdAt:asc'],
     comments: Ember.computed.sort('content.comments', 'commentSortProperties'),
 
+    body: Ember.computed.oneWay('model.body'),
+
     actions: {
+      update: function() {
+        var post = this.get('model')
+        var body = this.get('body', '')
+
+        post.set('body', body)
+        post.save()
+          .then(function(newComment) {
+          }.bind(this))
+      },
+
       create: function() {
         var comment = this.store.createRecord('comment', {
           body: this.get('newComment'),
