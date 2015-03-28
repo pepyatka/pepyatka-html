@@ -1,6 +1,6 @@
 watchTask(['themes'], function () {
   this.watchFiles.include([
-    './**/*.scss'
+    './themes/**/*.scss'
   ]);
 });
 
