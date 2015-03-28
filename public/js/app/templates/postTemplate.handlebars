@@ -1,6 +1,6 @@
-<div class="timeline-post-container">
+<div class="single-post-container">
   <div class="avatar">
-    <img src="/img/48x48.png" />
+    <img src="/img/64x64.png" />
   </div>
 
   <div class="post-body">
@@ -27,31 +27,31 @@
 
   <div class="info">
     {{#link-to 'post' controller.session.currentUser.username content.id class="datetime"}}<time {{bind-attr datetime="model.createdAgo"}}>{{model.createdAgo}}</time>{{/link-to}}
+  </div>
 
-    <span class="links">
-      (<a href="#">Edit</a>
-      |
-      <a {{action 'destroy'}}>Destroy</a>)
-    </span>
+  <span class="links">
+    (<a href="#">Edit</a>
+    |
+    <a {{action 'destroy'}}>Destroy</a>)
+  </span>
 
-    <div class="likes">
-      <ul>
-        {{#each user in content.likes}}
-          <li>
-            {{#link-to 'timeline.index' user.username}}{{user.screenName}}{{/link-to}}
-          </li>
-        {{/each}}
-      </ul>
-
-      <span><a {{action 'like'}}>Like</a></span>
-      <span>(<a {{action 'unlike'}}>Un-like</a>)</span>
-    </div>
-
-    <div class="comments">
-      {{#each comment in post.comments itemController="post-comment"}}
-        {{view "post-comment" content=comment}}
+  <div class="likes">
+    <ul>
+      {{#each user in content.likes}}
+        <li>
+          {{#link-to 'timeline.index' user.username}}{{user.screenName}}{{/link-to}}
+        </li>
       {{/each}}
-    </div>
+    </ul>
+
+    <span><a {{action 'like'}}>Like</a></span>
+    <span>(<a {{action 'unlike'}}>Un-like</a>)</span>
+  </div>
+
+  <div class="comments">
+    {{#each comment in post.comments itemController="post-comment"}}
+      {{view "post-comment" content=comment}}
+    {{/each}}
   </div>
 
   <div class="comment">

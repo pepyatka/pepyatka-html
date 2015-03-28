@@ -1,18 +1,14 @@
 {{#if controller.session.signedIn}}
-  <div class="submitForm">
-    <div class="row">
-      <div class="col-md-12">
+  <div class="create-post">
+    <div class="send-to">
         sendTo
-      </div>
     </div>
 
-    <div class="row sumbitText">
-      <div class="col-md-12">
+    <div>
         {{textarea value=body class="editarea"}}
-      </div>
     </div>
 
-    <div class="row submitControls">
+    <div class="row">
       <div class="col-md-6">
         <div class="pull-left">
           Add file
@@ -24,5 +20,6 @@
         </div>
       </div>
     </div>
+
   </div>
 {{/if}}
