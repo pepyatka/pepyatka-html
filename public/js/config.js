@@ -37,6 +37,7 @@ define({
     /* application */
     'App': 'app/main',
     'adapters': 'app/adapters',
+    'fields': 'app/fields',
     'controllers': 'app/controllers',
     'initializers': 'app/initializers',
     'models': 'app/models',

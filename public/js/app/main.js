@@ -35,6 +35,8 @@ define([
   "controllers/TimelineSubscriptionsController",
   "controllers/UsersNewController",
 
+  "fields/CreatePostView",
+
   "routes/HomeRoute",
   "routes/PostRoute",
   "routes/SessionNewRoute",
