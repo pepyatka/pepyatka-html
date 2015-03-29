@@ -1,6 +1,7 @@
 define([
   "app/app",
   "app/router",
+  "",
 
   "adapters/ApplicationAdapter",
   "adapters/SubscriberAdapter",
@@ -53,6 +54,7 @@ define([
   "views/PostCommentView",
   "views/ProfileLinksView",
   "views/SessionNewView",
+  "views/SendToView",
   "views/SubmitPostView",
   "views/TimelineCommentsView",
   "views/TimelineIndexView",

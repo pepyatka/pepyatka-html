@@ -1,11 +1,11 @@
 {{#if controller.session.signedIn}}
   <div class="create-post">
     <div class="send-to">
-        sendTo
+      {{view 'send-to'}}
     </div>
 
     <div>
-        {{textarea value=body class="editarea"}}
+      {{textarea value=body class="editarea"}}
     </div>
 
     <div class="row">
@@ -20,6 +20,5 @@
         </div>
       </div>
     </div>
-
   </div>
 {{/if}}
