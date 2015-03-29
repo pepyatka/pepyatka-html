@@ -8,15 +8,20 @@ desc('Compile scss themes.')
 task('themes', function () {
   var sass = require('node-sass')
     , fs = require('fs')
-    , inFile = './themes/fresh/app.scss'
-    , outFile = './public/css/themes/fresh/app.css'
+    , result
+    , files = {
+      './themes/fresh/app.scss': './public/css/themes/fresh/app.css',
+      './themes/common/select2/4.0.0-rc.2/core.scss': './public/css/common/select2.css'
+    }
 
-  var result = sass.renderSync({
-    file: inFile,
-    outputStyle: 'compressed',
-    sourceMap: true
-  })
+  for (var value in files) {
+    result = sass.renderSync({
+      file: value,
+      outputStyle: 'compressed',
+      sourceMap: true
+    })
 
-  console.log(outFile + " has been prepared.")
-  fs.writeFileSync(outFile, result.css);
+    fs.writeFileSync(files[value], result.css)
+    console.log(files[value] + " has been prepared.")
+  }
 })
