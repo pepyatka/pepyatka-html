@@ -8,21 +8,23 @@
       {{#link-to 'timeline.index' post.model.createdBy.username}}{{post.model.createdBy.screenName}}{{/link-to}}
     </div>
 
-    <div class="edit-post">
-      <div>
-        {{textarea value=controller.body class="editarea"}}
+    {{#if view.isEdit}}
+      <div class="edit-post">
+        <div>
+          {{textarea value=controller.body class="editarea"}}
+        </div>
+        <div>
+          <button {{action 'update'}} class="btn btn-default btn-xs">Post</button>
+          <a {{action 'toggleEditability' target=view}}>Cancel</a>
+        </div>
       </div>
-      <div>
-        <button {{action 'update'}} class="btn btn-default btn-xs">Post</button>
-        <a href="#">Cancel</a>
+    {{else}}
+      <div class="body">
+        <div class="text">
+          {{post.content.body}}
+        </div>
       </div>
-    </div>
-
-    <div class="body">
-      <div class="text">
-        {{post.content.body}}
-      </div>
-    </div>
+    {{/if}}
   </div>
 
   <div class="info">
@@ -30,7 +32,7 @@
   </div>
 
   <span class="links">
-    (<a href="#">Edit</a>
+    (<a {{action 'toggleEditability' target=view}}>Edit</a>
     |
     <a {{action 'destroy'}}>Destroy</a>)
   </span>

@@ -20,10 +20,10 @@ define(["app/app",
 
     actions: {
       toggleEditability: function() {
-        var value = !this.get('isEnabled')
-        this.set('isEnabled', value)
-        this.$('#sendToSelect').select2('enable', value)
+        this.toggleProperty('isEnabled')
 
+        var value = this.get('isEnabled')
+        this.$('#sendToSelect').select2('enable', value)
         this.set('showToggler', !value)
       }
     }

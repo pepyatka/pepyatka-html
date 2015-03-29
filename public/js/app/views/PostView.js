@@ -4,6 +4,15 @@ define(["app/app",
 
   App.PostView = Ember.View.extend({
     templateName: 'post',
-    template: Ember.Handlebars.compile(tpl)
+    template: Ember.Handlebars.compile(tpl),
+
+    isEdit: false,
+
+    actions: {
+      toggleEditability: function() {
+        var value = !this.get('isEdit')
+        this.set('isEdit', value)
+      }
+    }
   })
 })

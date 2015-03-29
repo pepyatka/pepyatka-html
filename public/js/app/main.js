@@ -36,6 +36,7 @@ define([
   "controllers/UsersNewController",
 
   "fields/CreatePostView",
+  "fields/EditPostView",
 
   "routes/HomeRoute",
   "routes/PostRoute",
