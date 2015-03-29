@@ -49,7 +49,7 @@
   </div>
 
   <div class="comments">
-    {{#each comment in post.comments itemController="post-comment"}}
+    {{#each comment in content.comments itemController="post-comment"}}
       {{view "post-comment" content=comment}}
     {{/each}}
   </div>
@@ -57,7 +57,7 @@
   <div class="comment">
     <div class="edit">
       <div>
-        {{textarea value=post.newComment class="editarea"}}
+        {{textarea value=controller.newComment class="editarea"}}
       </div>
       <div>
         <button {{action 'create'}} class="btn btn-default btn-xs">Post</button>
