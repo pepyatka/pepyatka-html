@@ -34,14 +34,16 @@
   </div>
 
   <div class="info">
-    {{#link-to 'post' controller.session.currentUser.username content.id class="datetime"}}<time {{bind-attr datetime="model.createdAgo"}}>{{model.createdAgo}}</time>{{/link-to}}
+    {{#link-to 'post' post.content.createdBy.username content.id class="datetime"}}<time {{bind-attr datetime="model.createdAgo"}}>{{model.createdAgo}}</time>{{/link-to}}
   </div>
 
   <span class="links">
     <a {{action 'toggleCommentForm' target=view}}>Comment</a>
-    (<a {{action 'toggleEditability' target=view}}>Edit</a>
-    |
-    <a {{action 'destroy'}}>Destroy</a>)
+    {{#if view.isOwner}}
+      (<a {{action 'toggleEditability' target=view}}>Edit</a>
+      |
+      <a {{action 'destroy'}}>Destroy</a>)
+    {{/if}}
   </span>
 
   <div class="likes">

@@ -9,6 +9,13 @@ define(["app/app",
     isEdit: false,
     isFormVisible: false,
 
+    isOwner: function() {
+      var userId = this.get('controller.session.currentUser')
+      if (userId) userId = userId.id
+      var ownerId = this.get('controller.content.createdBy')
+      return userId == ownerId
+    }.property('controller.content.createdBy'),
+
     actions: {
       toggleEditability: function() {
         var value = !this.get('isEdit')

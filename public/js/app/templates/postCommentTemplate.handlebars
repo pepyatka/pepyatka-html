@@ -22,9 +22,11 @@
       </span>
 
       <span class="controls">
-        (<a {{action 'toggleEditability' target=view}}>Edit</a>
-        |
-        <a {{action 'destroy'}}>Destroy</a>)
+        {{#if view.isOwner}}
+          (<a {{action 'toggleEditability' target=view}}>Edit</a>
+          |
+          <a {{action 'destroy'}}>Destroy</a>)
+        {{/if}}
       </span>
     {{/if}}
   </div>

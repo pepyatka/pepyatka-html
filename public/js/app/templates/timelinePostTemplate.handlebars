@@ -28,14 +28,16 @@
   </div>
 
   <div class="info">
-    {{#link-to 'post' controller.session.currentUser.username post.content.id class="datetime"}}<time {{bind-attr datetime="post.model.createdAgo"}}>{{post.model.createdAgo}}</time>{{/link-to}}
+    {{#link-to 'post' post.content.createdBy.username post.content.id class="datetime"}}<time {{bind-attr datetime="post.model.createdAgo"}}>{{post.model.createdAgo}}</time>{{/link-to}}
   </div>
 
   <span class="links">
     <a {{action 'toggleCommentForm' target=view}}>Comment</a>
-    (<a {{action 'toggleEditability' target=view}}>Edit</a>
-    |
-    <a {{action 'destroy'}}>Destroy</a>)
+    {{#if view.isOwner}}
+      (<a {{action 'toggleEditability' target=view}}>Edit</a>
+      |
+      <a {{action 'destroy'}}>Destroy</a>)
+    {{/if}}
   </span>
 
   <div class="likes">
