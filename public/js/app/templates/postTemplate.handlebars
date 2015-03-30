@@ -73,7 +73,7 @@
     <div class="comment">
       <div class="edit">
         <div>
-          {{textarea value=controller.newComment class="editarea"}}
+          {{view 'create-comment'}}
         </div>
         <div>
           <button {{action 'create'}} class="btn btn-default btn-xs">Post</button>

@@ -5,7 +5,7 @@
     {{#if view.isEdit}}
       <div class="edit">
         <div>
-          {{textarea value=controller.body class="editarea"}}
+          {{view 'edit-comment'}}
         </div>
         <div>
           <button {{action 'update'}}>Post</button>

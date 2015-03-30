@@ -10,7 +10,7 @@ define(["app/app",
     isFormVisible: false,
 
     isOwner: function() {
-      if (this.get('controller.session.signedIn'))
+      if (!this.get('controller.session.signedIn'))
         return false
 
       var userId = this.get('controller.session.currentUser.id')

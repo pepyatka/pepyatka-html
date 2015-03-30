@@ -9,11 +9,11 @@ define(["app/app",
     isEdit: false,
 
     isOwner: function() {
-      if (this.get('controller.session.signedIn'))
+      if (!this.get('controller.session.signedIn'))
         return false
 
       var userId = this.get('controller.session.currentUser.id')
-      var ownerId = this.get('content.model.createdBy')
+      var ownerId = this.get('content.model.createdBy.id')
       return userId == ownerId
     }.property('content.model.createdBy'),
 

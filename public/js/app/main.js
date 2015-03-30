@@ -38,6 +38,8 @@ define([
 
   "fields/CreatePostView",
   "fields/EditPostView",
+  "fields/CreateCommentView",
+  "fields/EditCommentView",
 
   "routes/HomeRoute",
   "routes/PostRoute",
