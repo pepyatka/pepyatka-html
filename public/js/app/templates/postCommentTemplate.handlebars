@@ -1,5 +1,7 @@
 <div class="comment">
-  <a class="date" {{bind-attr title="comment.model.createdAgo"}}></a>
+  <a class="date" {{bind-attr title="comment.model.createdAgo"}}>
+      <i class="fa fa-comment-o icon"></i>
+  </a>
 
   <div class="body">
     {{#if view.isEdit}}
@@ -23,9 +25,9 @@
 
       <span class="controls">
         {{#if view.isOwner}}
-          (<a {{action 'toggleEditability' target=view}}>Edit</a>
+          (<a {{action 'toggleEditability' target=view}}>edit</a>
           |
-          <a {{action 'destroy'}}>Destroy</a>)
+          <a {{action 'destroy'}}>delete</a>)
         {{/if}}
       </span>
     {{/if}}
