@@ -29,32 +29,32 @@
 
   <div class="info">
     {{#link-to 'post' post.content.createdBy.username post.content.id class="datetime"}}<time {{bind-attr datetime="post.model.createdAgo"}}>{{post.model.createdAgo}}</time>{{/link-to}}
-  </div>
 
-  <span class="links">
-    {{#if controller.session.signedIn}}
-      <a {{action 'toggleCommentForm' target=view}}>Comment</a>
-    {{/if}}
-    {{#if view.isOwner}}
-      (<a {{action 'toggleEditability' target=view}}>Edit</a>
-      |
-      <a {{action 'destroy'}}>Destroy</a>)
-    {{/if}}
-  </span>
+    <span class="links">
+      {{#if controller.session.signedIn}}
+        <a {{action 'toggleCommentForm' target=view}}>Comment</a>
+      {{/if}}
+      {{#if view.isOwner}}
+        (<a {{action 'toggleEditability' target=view}}>Edit</a>
+        |
+        <a {{action 'destroy'}}>Destroy</a>)
+      {{/if}}
+    </span>
 
-  <div class="likes">
-    <ul>
-      {{#each user in post.content.likes}}
-        <li>
-          {{#link-to 'timeline.index' user.username}}{{user.screenName}}{{/link-to}}
-        </li>
-      {{/each}}
-    </ul>
+    <div class="likes">
+      <ul>
+        {{#each user in post.content.likes}}
+          <li>
+            {{#link-to 'timeline.index' user.username}}{{user.screenName}}{{/link-to}}
+          </li>
+        {{/each}}
+      </ul>
 
-    {{#if controller.session.signedIn}}
-      <span><a {{action 'like'}}>Like</a></span>
-      <span>(<a {{action 'unlike'}}>Un-like</a>)</span>
-    {{/if}}
+      {{#if controller.session.signedIn}}
+        <span><a {{action 'like'}}>Like</a></span>
+        <span>(<a {{action 'unlike'}}>Un-like</a>)</span>
+      {{/if}}
+    </div>
   </div>
 
   <div class="comments">
