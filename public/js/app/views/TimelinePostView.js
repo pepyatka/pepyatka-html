@@ -10,8 +10,10 @@ define(["app/app",
     isFormVisible: false,
 
     isOwner: function() {
-      var userId = this.get('controller.session.currentUser')
-      if (userId) userId = userId.id
+      if (this.get('controller.session.signedIn'))
+        return false
+
+      var userId = this.get('controller.session.currentUser.id')
       var ownerId = this.get('content.model.createdBy.id')
       return userId == ownerId
     }.property('content.model.createdBy'),

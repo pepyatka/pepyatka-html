@@ -32,7 +32,9 @@
   </div>
 
   <span class="links">
-    <a {{action 'toggleCommentForm' target=view}}>Comment</a>
+    {{#if controller.session.signedIn}}
+      <a {{action 'toggleCommentForm' target=view}}>Comment</a>
+    {{/if}}
     {{#if view.isOwner}}
       (<a {{action 'toggleEditability' target=view}}>Edit</a>
       |
@@ -49,8 +51,10 @@
       {{/each}}
     </ul>
 
-    <span><a {{action 'like'}}>Like</a></span>
-    <span>(<a {{action 'unlike'}}>Un-like</a>)</span>
+    {{#if controller.session.signedIn}}
+      <span><a {{action 'like'}}>Like</a></span>
+      <span>(<a {{action 'unlike'}}>Un-like</a>)</span>
+    {{/if}}
   </div>
 
   <div class="comments">
