@@ -18,6 +18,7 @@ define(["app/app"], function(App) {
       this.route('subscribers', { path: '/:username/subscribers' })
       this.route('subscriptions', { path: '/:username/subscriptions' })
     })
+    this.route('settings', { path: '/settings' })
     this.route('post', { path: '/:username/:postId' })
     this.resource('groups', { path: '/groups'})
   })

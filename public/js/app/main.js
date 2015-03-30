@@ -1,7 +1,6 @@
 define([
   "app/app",
   "app/router",
-  "",
 
   "adapters/ApplicationAdapter",
   "adapters/SubscriberAdapter",
@@ -27,6 +26,7 @@ define([
   "controllers/PubSubController",
   "controllers/SessionNewController",
   "controllers/SessionDestroyController",
+  "controllers/SettingsController",
   "controllers/TimelineCommentsController",
   "controllers/TimelineIndexController",
   "controllers/TimelineHomeController",
@@ -45,6 +45,7 @@ define([
   "routes/PostRoute",
   "routes/SessionNewRoute",
   "routes/SessionDestroyRoute",
+  "routes/SettingsRoute",
   "routes/TimelineCommentsRoute",
   "routes/TimelineIndexRoute",
   "routes/TimelineHomeRoute",
@@ -61,6 +62,7 @@ define([
   "views/PostCommentView",
   "views/ProfileLinksView",
   "views/SessionNewView",
+  "views/SettingsView",
   "views/SendToView",
   "views/SubmitPostView",
   "views/TimelineCommentsView",
