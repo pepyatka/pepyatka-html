@@ -4,7 +4,12 @@ define(["config",
   "use strict";
 
   App.PubSubController = Ember.Controller.extend({
-    needs: ['application', 'timeline-home', 'post'],
+    needs: ['application',
+            'post',
+            'timeline-home',
+            'timeline-index',
+            'timeline-likes',
+            'timeline-comments'],
 
     subscribedTo: {},
 
