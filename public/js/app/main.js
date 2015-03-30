@@ -21,6 +21,7 @@ define([
   "models/User",
 
   "controllers/ApplicationController",
+  "controllers/PostAttachmentController",
   "controllers/PostController",
   "controllers/PostCommentController",
   "controllers/PubSubController",
@@ -54,6 +55,7 @@ define([
   "views/HomeView",
   "views/PostView",
   "views/PostsView",
+  "views/PostAttachmentView",
   "views/PostCommentView",
   "views/ProfileLinksView",
   "views/SessionNewView",
