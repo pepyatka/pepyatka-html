@@ -1,12 +1,14 @@
 <div class="container">
-  <div class="row header">
+  <div class="row">
     <div class="col-md-4">
+        <div class="header">
       <h1 class="title">
        {{#link-to 'timeline.home'}}Pepyatka{{/link-to}} <small class="mutted">0.1.0</small>
       </h1>
+        </div>
     </div>
 
-    <div class="col-md-5 search-field">
+    <div class="col-xs-5 search-field">
       <div class="form-inline">
         <input class="form-control input-sm search-input" />
         <button class="btn btn-default btn-sm">Search</button>
@@ -14,7 +16,7 @@
     </div>
 
     {{#unless controller.session.signedIn}}
-      <div class="col-md-3 signin-toolbar">
+      <div class="col-xs-3 signin-toolbar">
         {{#link-to 'session.new'}}Sign In{{/link-to}}
         or
         {{#link-to 'users.new'}}Sign Up{{/link-to}}
@@ -31,6 +33,9 @@
           </div>
           <div class="box-body">
             {{outlet}}
+          </div>
+          <div class="box-footer">
+
           </div>
         </div>
       </div>
