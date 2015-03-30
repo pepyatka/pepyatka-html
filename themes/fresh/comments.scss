@@ -5,10 +5,10 @@
   .comment {
     margin-top: 8px;
 
-    // Commented or not
-    background: url("/img/comment-unknown.png") no-repeat top left;
-    &.friend {
-      background: url("/img/comment.png") no-repeat top left;
+    .icon{
+      margin-top: 2px;
+      float: left;
+      margin-right: 4px;
     }
 
     // Hover on date field
