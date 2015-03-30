@@ -1,8 +1,10 @@
 {{#if controller.session.signedIn}}
   <div class="create-post">
-    <div class="send-to">
-      {{view 'send-to'}}
-    </div>
+    {{#if view.sendToVisible}}
+      <div class="send-to">
+        {{view 'send-to'}}
+      </div>
+    {{/if}}
 
     <div>
       {{view 'create-post'}}
