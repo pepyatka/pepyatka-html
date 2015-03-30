@@ -4,8 +4,6 @@ define(["app/app",
 
   App.SettingsView = Ember.View.extend({
     templateName: 'settings',
-    template: Ember.Handlebars.compile(tpl),
-
-    screenNameBinding: Ember.Binding.oneWay('controller.model.screenName')
+    template: Ember.Handlebars.compile(tpl)
   })
 })
