@@ -56,4 +56,20 @@
       }
     }
   }
+
+  .attachments {
+    margin: 10px 0 10px 88px;
+    overflow: hidden;
+
+    .attachment {
+      float: left;
+      border: 1px solid silver;
+      padding: 1px;
+      margin-right: 8px;
+    }
+  }
+
+  .info {
+    clear: left;
+  }
 }
