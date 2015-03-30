@@ -8,31 +8,44 @@
       {{#link-to 'timeline.index' model.createdBy.username}}{{model.createdBy.screenName}}{{/link-to}}
     </div>
 
-    <div class="edit-post">
-      <div>
-        {{textarea value=controller.body class="editarea"}}
+    {{#if view.isEdit}}
+      <div class="edit-post">
+        <div>
+          {{view 'edit-post'}}
+        </div>
+        <div>
+          <button {{action 'update'}} class="btn btn-default btn-xs">Post</button>
+          <a {{action 'toggleEditability' target=view}}>Cancel</a>
+        </div>
       </div>
-      <div>
-        <button {{action 'update'}} class="btn btn-default btn-xs">Post</button>
-        <a href="#">Cancel</a>
+    {{else}}
+      <div class="body">
+        <div class="text">
+          {{content.body}}
+        </div>
       </div>
-    </div>
+    {{/if}}
+  </div>
 
-    <div class="body">
-      <div class="text">
-        {{content.body}}
-      </div>
-    </div>
+  <div class="attachments">
+    {{#each attachment in content.attachments itemController="post-attachment"}}
+      {{view "post-attachment" content=attachment}}
+    {{/each}}
   </div>
 
   <div class="info">
-    {{#link-to 'post' controller.session.currentUser.username content.id class="datetime"}}<time {{bind-attr datetime="model.createdAgo"}}>{{model.createdAgo}}</time>{{/link-to}}
+    {{#link-to 'post' post.content.createdBy.username content.id class="datetime"}}<time {{bind-attr datetime="model.createdAgo"}}>{{model.createdAgo}}</time>{{/link-to}}
   </div>
 
   <span class="links">
-    (<a href="#">Edit</a>
-    |
-    <a {{action 'destroy'}}>Destroy</a>)
+    {{#if controller.session.signedIn}}
+      <a {{action 'toggleCommentForm' target=view}}>Comment</a>
+    {{/if}}
+    {{#if view.isOwner}}
+      (<a {{action 'toggleEditability' target=view}}>Edit</a>
+      |
+      <a {{action 'destroy'}}>Destroy</a>)
+    {{/if}}
   </span>
 
   <div class="likes">
@@ -44,8 +57,10 @@
       {{/each}}
     </ul>
 
-    <span><a {{action 'like'}}>Like</a></span>
-    <span>(<a {{action 'unlike'}}>Un-like</a>)</span>
+    {{#if controller.session.signedIn}}
+      <span><a {{action 'like'}}>Like</a></span>
+      <span>(<a {{action 'unlike'}}>Un-like</a>)</span>
+    {{/if}}
   </div>
 
   <div class="comments">
@@ -54,15 +69,17 @@
     {{/each}}
   </div>
 
-  <div class="comment">
-    <div class="edit">
-      <div>
-        {{textarea value=controller.newComment class="editarea"}}
-      </div>
-      <div>
-        <button {{action 'create'}} class="btn btn-default btn-xs">Post</button>
-        Cancel
+  {{#if view.isFormVisible}}
+    <div class="comment">
+      <div class="edit">
+        <div>
+          {{view 'create-comment'}}
+        </div>
+        <div>
+          <button {{action 'create'}} class="btn btn-default btn-xs">Post</button>
+          <a {{action 'toggleCommentForm' target=view}}>Cancel</a>
+        </div>
       </div>
     </div>
-  </div>
+  {{/if}}
 </div>

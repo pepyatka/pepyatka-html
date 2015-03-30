@@ -1,0 +1,9 @@
+To:
+
+<select id="sendToSelect" multiple="multiple">
+  <option>My feed</option>
+</select>
+
+{{#if view.showToggler}}
+  <a {{action 'toggleEditability' target=view}}>Add/Edit</a>
+{{/if}}

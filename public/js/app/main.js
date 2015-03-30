@@ -1,6 +1,7 @@
 define([
   "app/app",
   "app/router",
+  "",
 
   "adapters/ApplicationAdapter",
   "adapters/SubscriberAdapter",
@@ -20,6 +21,7 @@ define([
   "models/User",
 
   "controllers/ApplicationController",
+  "controllers/PostAttachmentController",
   "controllers/PostController",
   "controllers/PostCommentController",
   "controllers/PubSubController",
@@ -33,6 +35,11 @@ define([
   "controllers/TimelineSubscribersController",
   "controllers/TimelineSubscriptionsController",
   "controllers/UsersNewController",
+
+  "fields/CreatePostView",
+  "fields/EditPostView",
+  "fields/CreateCommentView",
+  "fields/EditCommentView",
 
   "routes/HomeRoute",
   "routes/PostRoute",
@@ -50,9 +57,11 @@ define([
   "views/HomeView",
   "views/PostView",
   "views/PostsView",
+  "views/PostAttachmentView",
   "views/PostCommentView",
   "views/ProfileLinksView",
   "views/SessionNewView",
+  "views/SendToView",
   "views/SubmitPostView",
   "views/TimelineCommentsView",
   "views/TimelineIndexView",

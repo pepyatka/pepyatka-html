@@ -4,6 +4,8 @@ define(["config",
   "use strict";
 
   App.PubSubController = Ember.Controller.extend({
+    needs: ['application', 'timeline-home', 'post'],
+
     subscribedTo: {},
 
     disconnect: function(data) {
@@ -99,6 +101,30 @@ define(["config",
       this.get('socket').emit('subscribe', subscribedTo)
     },
 
+    isFirstPage: function() {
+      var pageStart = this.currentController().get('pageStart')
+      return pageStart === 0 ||
+        pageStart === undefined
+    },
+
+    currentController: function() {
+      var currentRouteName = this.get('controllers.application.currentRouteName')
+        , currentControllerName = currentRouteName.replace('.', '-')
+        , controller = this.get('controllers.' + currentControllerName)
+
+      return controller
+    },
+
+    findPost: function(postId) {
+      var currentController = this.currentController()
+      if (currentController.constructor == ".PostController")
+        return currentController.get('model')
+      else
+        return currentController.get('posts').find(function(post) {
+          return post.id === postId
+        })
+    },
+
     newPost: function(data) {
     },
 
@@ -124,6 +150,16 @@ define(["config",
     },
 
     newLike: function(data) {
+      if (!this.isFirstPage())
+        return
+
+      var post = this.findPost(data.postId)
+
+      if (post) {
+        // this post is already in the timeline
+      } else {
+        // let's fetch a post and add it to a timeline
+      }
     },
 
     removeLike: function(data) {

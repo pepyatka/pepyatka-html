@@ -19,7 +19,7 @@ define(["config",
 
       update: function() {
         var post = this.get('model')
-        var body = this.get('body', '')
+        var body = this.get('body')
 
         post.set('body', body)
         post.save()
