@@ -3,6 +3,10 @@ define(["app/app", "ember"], function(App, Ember) {
 
   App.CreateCommentView = Ember.TextArea.extend({
     classNames: ['editarea'],
-    valueBinding: 'parentView.controller.newComment'
+    valueBinding: 'parentView.controller.newComment',
+
+    becomeFocused: function() {
+      this.$().focus()
+    }.on('didInsertElement')
   })
 })
