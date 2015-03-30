@@ -11,7 +11,7 @@
     {{#if view.isEdit}}
       <div class="edit-post">
         <div>
-          {{textarea value=controller.body class="editarea"}}
+          {{view 'edit-post'}}
         </div>
         <div>
           <button {{action 'update'}} class="btn btn-default btn-xs">Post</button>

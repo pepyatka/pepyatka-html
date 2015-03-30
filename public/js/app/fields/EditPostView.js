@@ -3,6 +3,6 @@ define(["app/app", "ember"], function(App, Ember) {
 
   App.EditPostView = Ember.TextArea.extend({
     classNames: ['editarea'],
-    valueBinding: Ember.Binding.oneWay('controller.body')
+    valueBinding: 'parentView.controller.body'
   })
 })

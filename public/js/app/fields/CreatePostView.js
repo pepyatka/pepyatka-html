@@ -3,7 +3,7 @@ define(["app/app"], function(App) {
 
   App.CreatePostView = Ember.TextArea.extend({
     classNames: ['editarea'],
-    valueBinding: 'body',
+    valueBinding: 'parentView.controller.body',
 
     click: function() {
       var view = this.get('parentView.sendTo')
