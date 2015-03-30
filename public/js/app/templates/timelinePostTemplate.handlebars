@@ -46,6 +46,7 @@
         {{/if}}
       </span>
 
+      {{#if post.content.likes}}
       <div class="likes">
         <i class="fa fa-smile-o icon"></i>
         <ul>
@@ -55,9 +56,10 @@
             </li>
           {{/each}}
         </ul>
-
       </div>
+      {{/if}}
     </div>
+
 
     <div class="comments">
       {{#each comment in post.comments itemController="post-comment"}}
