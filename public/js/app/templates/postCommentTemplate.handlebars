@@ -2,28 +2,30 @@
   <a class="date" {{bind-attr title="comment.model.createdAgo"}}></a>
 
   <div class="body">
-    <span class="comment-text">
-      {{comment.model.body}}
-    </span>
-    -
-    <span class="author">
-      {{#link-to 'timeline.index' comment.model.createdBy.username}}{{comment.model.createdBy.screenName}}{{/link-to}}
-    </span>
-
-    <span class="controls">
-      (<a href="#">Edit</a>
-      |
-      <a {{action 'destroy'}}>Destroy</a>)
-    </span>
-
-    <div class="edit">
-      <div>
-        {{textarea value=controller.body class="editarea"}}
+    {{#if view.isEdit}}
+      <div class="edit">
+        <div>
+          {{textarea value=controller.body class="editarea"}}
+        </div>
+        <div>
+          <button {{action 'update'}}>Post</button>
+          <a {{action 'toggleEditability' target=view}}>Cancel</a>
+        </div>
       </div>
-      <div>
-        <button {{action 'update'}}>Post</button>
-        <a href="#">Cancel</a>
-      </div>
-    </div>
+    {{else}}
+      <span class="comment-text">
+        {{comment.model.body}}
+      </span>
+      -
+      <span class="author">
+        {{#link-to 'timeline.index' comment.model.createdBy.username}}{{comment.model.createdBy.screenName}}{{/link-to}}
+      </span>
+
+      <span class="controls">
+        (<a {{action 'toggleEditability' target=view}}>Edit</a>
+        |
+        <a {{action 'destroy'}}>Destroy</a>)
+      </span>
+    {{/if}}
   </div>
 </div>
