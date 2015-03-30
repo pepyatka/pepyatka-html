@@ -32,6 +32,7 @@
   </div>
 
   <span class="links">
+    <a {{action 'toggleCommentForm' target=view}}>Comment</a>
     (<a {{action 'toggleEditability' target=view}}>Edit</a>
     |
     <a {{action 'destroy'}}>Destroy</a>)
@@ -56,15 +57,17 @@
     {{/each}}
   </div>
 
-  <div class="comment">
-    <div class="edit">
-      <div>
-        {{textarea value=post.newComment class="editarea"}}
-      </div>
-      <div>
-        <button {{action 'create'}} class="btn btn-default btn-xs">Post</button>
-        Cancel
+  {{#if view.isFormVisible}}
+    <div class="comment">
+      <div class="edit">
+        <div>
+          {{textarea value=post.newComment class="editarea"}}
+        </div>
+        <div>
+          <button {{action 'create'}} class="btn btn-default btn-xs">Post</button>
+          <a {{action 'toggleCommentForm' target=view}}>Cancel</a>
+        </div>
       </div>
     </div>
-  </div>
+  {{/if}}
 </div>

@@ -7,10 +7,18 @@ define(["app/app",
     template: Ember.Handlebars.compile(tpl),
 
     isEdit: false,
+    isFormVisible: false,
 
     actions: {
       toggleEditability: function() {
         this.toggleProperty('isEdit')
+      },
+
+      toggleCommentForm: function() {
+        this.toggleProperty('isFormVisible')
+
+        if (!this.get('isFormVisible'))
+          this.set('controller.newComment', '')
       }
     }
   })
