@@ -27,11 +27,13 @@
     {{/if}}
   </div>
 
-  <div class="attachments">
-    {{#each attachment in content.attachments itemController="post-attachment"}}
-      {{view "post-attachment" content=attachment}}
-    {{/each}}
-  </div>
+  {{#if content.attachments}}
+    <div class="attachments">
+      {{#each attachment in content.attachments itemController="post-attachment"}}
+        {{view "post-attachment" content=attachment}}
+      {{/each}}
+    </div>
+  {{/if}}
 
   <div class="info">
     {{#link-to 'post' post.content.createdBy.username content.id class="datetime"}}<time {{bind-attr datetime="model.createdAgo"}}>{{model.createdAgo}}</time>{{/link-to}}

@@ -26,12 +26,12 @@
       </div>
     {{/if}}
 
-    {{#if post.content.attachments }}
-    <div class="attachments">
-      {{#each attachment in post.content.attachments itemController="post-attachment"}}
-        {{view "post-attachment" content=attachment}}
-      {{/each}}
-    </div>
+    {{#if post.content.attachments}}
+      <div class="attachments">
+        {{#each attachment in post.content.attachments itemController="post-attachment"}}
+          {{view "post-attachment" content=attachment}}
+        {{/each}}
+      </div>
     {{/if}}
 
     <div class="info">
