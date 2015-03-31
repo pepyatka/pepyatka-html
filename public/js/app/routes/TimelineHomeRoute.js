@@ -3,7 +3,7 @@ define(["app/app"], function(App) {
 
   App.TimelineHomeRoute = Ember.Route.extend({
     beforeModel: function() {
-      if (!this.session.currentUser)
+      if (!this.get('session.currentUser'))
         return this.transitionTo('session.new')
     },
 
