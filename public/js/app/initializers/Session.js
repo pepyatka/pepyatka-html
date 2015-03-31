@@ -46,7 +46,8 @@ define(["config", "app/app"], function(config, App) {
           window.localStorage.setItem('authToken', this.get('authToken'))
 
           if (this.get('authToken')
-              && this.get('authToken').length > 0)
+              && this.get('authToken').length > 0
+              && this.get('authToken') != 'null')
             Ember.$.ajax({
               url: this.resourceUrl,
               context: this
