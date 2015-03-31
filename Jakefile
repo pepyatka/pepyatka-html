@@ -21,6 +21,7 @@ task('themes', function () {
     , result
     , files = {
       './themes/fresh/app.scss': './public/css/themes/fresh/app.css',
+      './themes/helvetica/app.scss': './public/css/themes/helvetica/app.css',
       './themes/common/common.scss': './public/css/common/common.css'
     }
 
