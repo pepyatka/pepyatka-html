@@ -1,8 +1,18 @@
+var exec = require('child_process').exec
+
+desc('Compile js files.')
+task('compile', function() {
+  var proc = exec('node ./node_modules/requirejs/bin/r.js -o build.js')
+  proc.on('exit', process.exit)
+  proc.stdout.pipe(process.stdout, { end: false })
+  proc.stderr.pipe(process.stderr, { end: false })
+})
+
 watchTask(['themes'], function () {
   this.watchFiles.include([
     './themes/**/*.scss'
-  ]);
-});
+  ])
+})
 
 desc('Compile scss themes.')
 task('themes', function () {

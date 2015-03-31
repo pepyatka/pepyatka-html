@@ -2,6 +2,10 @@ define(["ember"
         , "ember-data"
         , "ember-template-compiler"
         , "bootstrap"
+        , "moment"
+        , "text"
+        , "socket.io"
+        , "select2"
        ], function(Ember) {
   "use strict";
 
