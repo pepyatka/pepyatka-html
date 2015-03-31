@@ -11,9 +11,7 @@ task('themes', function () {
     , result
     , files = {
       './themes/fresh/app.scss': './public/css/themes/fresh/app.css',
-      './themes/helvetica/app.scss': './public/css/themes/helvetica/app.css',
-      './themes/common/select2/4.0.0-rc.2/core.scss': './public/css/common/select2.css',
-      './themes/common/bootstrap/bootstrap.3.3.4.scss': './public/css/common/bootstrap.css'
+      './themes/common/common.scss': './public/css/common/common.css'
     }
 
   for (var value in files) {

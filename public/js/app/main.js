@@ -7,8 +7,11 @@ define([
   "adapters/SubscriptionAdapter",
   "adapters/TimelineAdapter",
 
+  "components/Pagination",
+
   "initializers/AjaxPrefilter",
   "initializers/Session",
+  "initializers/DS",
 
   "models/Attachment",
   "models/Comment",
@@ -56,6 +59,7 @@ define([
 
   "views/ApplicationView",
   "views/HomeView",
+  "views/PaginationView",
   "views/PostView",
   "views/PostsView",
   "views/PostAttachmentView",

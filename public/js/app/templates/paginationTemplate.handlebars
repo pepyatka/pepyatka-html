@@ -1,0 +1,9 @@
+<ul class="pager">
+  {{#if prevPageVisible}}
+    <li {{bind-attr class="prevPageDisabled"}}><a {{action 'prevPage'}}>« Newer items</a></li>
+  {{/if}}
+
+  {{#if nextPageVisible}}
+    <li {{bind-attr class="nextPageDisabled"}}><a {{action 'nextPage'}}>Older items »</a></li>
+  {{/if}}
+</ul>
