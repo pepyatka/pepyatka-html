@@ -31,9 +31,11 @@ define(["config", "app/app"], function(config, App) {
           var done = function(result) {
             var store = container.lookup('store:main')
             store.push('user', result.users)
-            var user = store.find('user', result.users.id)
+            store.find('user', result.users.id)
+              .then(function(user) {
+                this.set('currentUser', user)
+              }.bind(this))
 
-            this.set('currentUser', user)
             this.set('signedIn', true)
 
             application.advanceReadiness()
