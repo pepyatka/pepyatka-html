@@ -1,5 +1,6 @@
-define(["app/app",
-        "ember"], function(App, Ember) {
+define(["config",
+        "app/app",
+        "ember"], function(config, App, Ember) {
   "use strict";
 
   App.SettingsController = Ember.Controller.extend({
@@ -15,6 +16,22 @@ define(["app/app",
         user.save()
           .then(function(newUser) {
           }.bind(this))
+      },
+
+      updatePassword: function() {
+        Ember.$.ajax({
+          url: config.host + '/v1/users/updatePassword',
+          type: 'post',
+          data: {
+            "_method": "put",
+            currentPassword: this.get('currentPassword'),
+            password: this.get('password'),
+            passwordConfirmation: this.get('passwordConfirmation')
+          },
+          context: this
+        })
+          .then(function() {
+          })
       }
     }
   })

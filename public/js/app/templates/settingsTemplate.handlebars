@@ -3,3 +3,13 @@ Screen name: {{input name="screenName" value=screenName}}
 Private: {{input type="checkbox" name="isPrivate" checked=content.isPrivate}}
 <br/>
 <button {{action 'update'}}>Update</button>
+
+<hr/>
+
+Current password: {{input name="currentPassword" type="password" value=currentPassword}}
+<br/>
+New password: {{input name="password" type="password" value=password}}
+<br/>
+Confirm password: {{input name="passwordConfirmation" type="password" value=passwordConfirmation}}
+<br/>
+<button {{action 'updatePassword'}}>Update Password</button>
