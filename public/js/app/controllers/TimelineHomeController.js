@@ -1,8 +1,15 @@
 define(["app/app",
-        "ember"], function(App, Ember) {
-  App.TimelineHomeController = Ember.Controller.extend({
+        "ember",
+        "components/Pagination"], function(App, Ember) {
+  "use strict";
+
+  App.TimelineHomeController = Ember.Controller.extend(App.Pagination, {
     postSortProperties: ['createdAt:desc'],
     posts: Ember.computed.sort('model.posts', 'postSortProperties'),
+
+    didRequestRange: function(options) {
+      this.transitionToRoute({ queryParams: { offset: options.offset } })
+    },
 
     actions: {
       create: function() {

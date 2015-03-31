@@ -1,11 +1,16 @@
 define(["config",
         "app/app",
-        "ember"], function(config, App, Ember) {
+        "ember",
+        "components/Pagination"], function(config, App, Ember) {
   "use strict";
 
-  App.TimelineIndexController = Ember.Controller.extend({
+  App.TimelineIndexController = Ember.Controller.extend(App.Pagination, {
     postSortProperties: ['createdAt:desc'],
     posts: Ember.computed.sort('model.posts', 'postSortProperties'),
+
+    didRequestRange: function(options) {
+      this.transitionToRoute({ queryParams: { offset: options.offset } })
+    },
 
     actions: {
       create: function() {

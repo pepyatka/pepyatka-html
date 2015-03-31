@@ -39,6 +39,7 @@ define({
     'adapters': 'app/adapters',
     'fields': 'app/fields',
     'controllers': 'app/controllers',
+    'components': 'app/components',
     'initializers': 'app/initializers',
     'models': 'app/models',
     'routes': 'app/routes',

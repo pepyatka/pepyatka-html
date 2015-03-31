@@ -1,10 +1,15 @@
 define(["app/app",
-        "ember"], function(App, Ember) {
+        "ember",
+        "components/Pagination"], function(App, Ember) {
   "use strict";
 
-  App.TimelineLikesController = Ember.Controller.extend({
+  App.TimelineLikesController = Ember.Controller.extend(App.Pagination, {
     postSortProperties: ['createdAt:desc'],
     posts: Ember.computed.sort('model.posts', 'postSortProperties'),
+
+    didRequestRange: function(options) {
+      this.transitionToRoute({ queryParams: { offset: options.offset } })
+    },
 
     actions: {
       create: function() {
