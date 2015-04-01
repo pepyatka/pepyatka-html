@@ -5,6 +5,7 @@ define(["config",
 
   App.SessionNewController = Ember.Controller.extend({
     resourceUrl: config.host + '/v1/session',
+    errors: null,
 
     actions: {
       signin: function() {
@@ -22,8 +23,11 @@ define(["config",
             this.store.unloadRecord(user)
             user = this.store.createRecord('user', result.users)
             App.Session.set('currentUser', user)
-          }, function() {
-            // error
+            this.set('errors', null)
+
+            this.transitionToRoute('timeline.home')
+          }, function(err) {
+            this.set('errors', JSON.parse(err.responseText).err)
           })
       }
     }
