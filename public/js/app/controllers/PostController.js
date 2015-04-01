@@ -34,27 +34,23 @@ define(["config",
       },
 
       like: function() {
-        Ember.$.ajax({
-          url: config.host + '/v1/posts/' + this.get('content.id') + '/like',
-          type: 'post',
-          context: this
-        })
+        var post = this.get('model')
+
+        post.like()
           .then(function() {
             var user = this.get('session.currentUser')
             this.get('content.likes').pushObject(user)
-          })
+          }.bind(this))
       },
 
       unlike: function() {
-        Ember.$.ajax({
-          url: config.host + '/v1/posts/' + this.get('content.id') + '/unlike',
-          type: 'post',
-          context: this
-        })
+        var post = this.get('model')
+
+        post.unlike()
           .then(function() {
             var like = this.get('content.likes').findProperty('id', this.get('session.currentUser.id'))
             this.get('content.likes').removeObject(like)
-          })
+          }.bind(this))
       }
     }
   })
