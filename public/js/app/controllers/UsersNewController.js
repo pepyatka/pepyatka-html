@@ -4,6 +4,7 @@ define(["config",
 
   App.UsersNewController = Ember.Controller.extend({
     resourceUrl: config.host + '/v1/users',
+    errors: null,
 
     actions: {
       signup: function() {
@@ -17,9 +18,9 @@ define(["config",
         })
           .then(function(result) {
             App.Session.set('authToken', result.authToken)
-            var user = this.store.createRecord('user', result.users)
-          }, function() {
-            // error
+            this.set('errors', null)
+          }, function(err) {
+            this.set('errors', JSON.parse(err.responseText).err)
           })
       }
     }

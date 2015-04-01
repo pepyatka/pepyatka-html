@@ -1,6 +1,13 @@
 <div class="col-md-3">
   <h2>Sign up</h2>
 
+  {{#if errors}}
+    <div class="alert alert-danger" role="alert">
+      <span>Error:</span>
+      <span id="error-message">{{errors}}</span>
+    </div>
+  {{/if}}
+
   <form action="/session" method="post">
     <div class="form-group">
       <label for="username">Username</label>
