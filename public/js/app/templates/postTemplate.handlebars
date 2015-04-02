@@ -25,7 +25,6 @@
         </div>
       </div>
     {{/if}}
-  </div>
 
   {{#if content.attachments}}
     <div class="attachments">
@@ -36,32 +35,36 @@
   {{/if}}
 
   <div class="info">
-    {{#link-to 'post' post.content.createdBy.username content.id class="datetime"}}<time {{bind-attr datetime="model.createdAgo"}}>{{model.createdAgo}}</time>{{/link-to}}
-  </div>
+    <span class="post-date">
+      {{#link-to 'post' post.content.createdBy.username content.id class="datetime"}}<time {{bind-attr datetime="model.createdAgo"}}>{{model.createdAgo}}</time>{{/link-to}}
+    </span>
 
-  <span class="links">
-    {{#if controller.session.signedIn}}
-      <a {{action 'toggleCommentForm' target=view}}>Comment</a>
-    {{/if}}
-    {{#if view.isOwner}}
-      (<a {{action 'toggleEditability' target=view}}>Edit</a>
-      |
-      <a {{action 'destroy'}}>Destroy</a>)
-    {{/if}}
-  </span>
+    <span class="post-controls">
+      {{#if controller.session.signedIn}}
+        <a {{action 'toggleCommentForm' target=view}}>Comment</a>
+      {{/if}}
+      {{#if view.isOwner}}
+        (<a {{action 'toggleEditability' target=view}}>Edit</a>
+        |
+        <a {{action 'destroy'}}>Destroy</a>)
+      {{/if}}
+      {{#if controller.session.signedIn}}
+          <span><a {{action 'like'}}>Like</a></span>
+          <span>(<a {{action 'unlike'}}>Un-like</a>)</span>
+      {{/if}}
+    </span>
 
-  <div class="likes">
-    <ul>
-      {{#each user in content.likes}}
-        <li>
-          {{#link-to 'timeline.index' user.username}}{{user.screenName}}{{/link-to}}
-        </li>
-      {{/each}}
-    </ul>
-
-    {{#if controller.session.signedIn}}
-      <span><a {{action 'like'}}>Like</a></span>
-      <span>(<a {{action 'unlike'}}>Un-like</a>)</span>
+    {{#if post.content.likes}}
+        <div class="likes">
+            <i class="fa fa-smile-o icon"></i>
+            <ul>
+              {{#each user in post.content.likes}}
+                  <li>
+                    {{#link-to 'timeline.index' user.username}}{{user.screenName}}{{/link-to}}
+                  </li>
+              {{/each}}
+            </ul>
+        </div>
     {{/if}}
   </div>
 
@@ -84,4 +87,5 @@
       </div>
     </div>
   {{/if}}
+  </div>
 </div>

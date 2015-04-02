@@ -24,6 +24,7 @@
   font-size: 170%;
   font-weight: 700;
   margin-left: 10px;
+  @media (max-width: 991px){ margin-left: 0; }
   padding-bottom: 2px;
 }
 
@@ -44,12 +45,14 @@
 // Content and footer
 .content {
   .box-body {
-      padding: 15px 25px 0 11px;
+      padding: 15px 0 0 11px;
+      @media (max-width: 991px){ padding: 15px 0 0 0; }
       background-color: #fff;
       @include clearfix;
   }
   .box-footer {
-      padding: 5px 25px 5px 11px;
+      padding: 5px 0 5px 11px;
+      @media (max-width: 991px){ padding: 15px 0 0 0; }
       font-size: 11px;
       background-color: #fff;
   }
