@@ -6,5 +6,6 @@ define(["app/app"], function(App) {
     username: DS.attr('string'),
     type: DS.attr('string'),
     screenName: DS.attr('string'),
+    statistics: DS.attr()
   })
 })

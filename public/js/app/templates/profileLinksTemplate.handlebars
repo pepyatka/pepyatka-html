@@ -13,18 +13,26 @@
     </div>
     <div class="col-md-2">
       <div class="stats">
-        <div>
-          {{#link-to 'timeline.subscriptions' controller.session.currentUser.username}}10 subscriptions{{/link-to}}
-        </div>
-        <div>
-          {{#link-to 'timeline.subscribers' controller.session.currentUser.username}}10 subscribers{{/link-to}}
-        </div>
-        <div>
-          {{#link-to 'timeline.comments' controller.session.currentUser.username}}1000 comments{{/link-to}}
-        </div>
-        <div>
-          {{#link-to 'timeline.likes' controller.session.currentUser.username}}2000 likes{{/link-to}}
-        </div>
+        {{#if content.user.statistics.subscriptions}}
+          <div>
+            {{#link-to 'timeline.subscriptions' controller.session.currentUser.username}}{{content.user.statistics.subscriptions}} subscriptions{{/link-to}}
+          </div>
+        {{/if}}
+        {{#if content.user.statistics.subscribers}}
+          <div>
+            {{#link-to 'timeline.subscribers' controller.session.currentUser.username}}{{content.user.statistics.subscribers}} subscribers{{/link-to}}
+          </div>
+        {{/if}}
+        {{#if content.user.statistics.comments}}
+          <div>
+            {{#link-to 'timeline.comments' controller.session.currentUser.username}}{{content.user.statistics.comments}} comments{{/link-to}}
+          </div>
+        {{/if}}
+        {{#if content.user.statistics.likes}}
+          <div>
+            {{#link-to 'timeline.likes' controller.session.currentUser.username}}{{content.user.statistics.likes}} likes{{/link-to}}
+          </div>
+        {{/if}}
       </div>
     </div>
   </div>
