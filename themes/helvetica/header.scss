@@ -1,19 +1,38 @@
 // Header
 
-.header {
-  height: 70px;
-}
+@media (max-width: 991px) {
+  .header {
+    height: 40px;
+  }
 
-.search-field {
-  margin-top: 23px;
-  height: 70px;
-  .search-input{
-    width: 70%;
+  .search-field {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    .search-input {
+      width: 80%;
+    }
+    .form-control {
+      display: inline !important;
+    }
+  }
+
+  .signin-toolbar {
+    margin-bottom: 20px;
   }
 }
+@media (min-width: 992px) {
 
-.signin-toolbar {
-  margin-top: 25px;
+  .search-field {
+    margin-top: 24px;
+    .search-input{
+      width: 70%;
+    }
+  }
+
+  .signin-toolbar {
+    margin-top: 36px;
+    float: right;
+  }
 }
 
 h1.title a {

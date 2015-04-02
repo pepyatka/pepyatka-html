@@ -8,20 +8,28 @@
         </div>
     </div>
 
-    <div class="col-xs-5 search-field">
-      <div class="form-inline">
-        <input class="form-control input-sm search-input" />
-        <button class="btn btn-default btn-sm">Search</button>
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-md-6 search-field">
+          <div class="form-inline">
+            <input class="form-control input-sm search-input" />
+            <button class="btn btn-default btn-sm">Search</button>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          {{#unless controller.session.signedIn}}
+              <div class="signin-toolbar">
+                {{#link-to 'session.new'}}Sign In{{/link-to}}
+                  or
+                {{#link-to 'users.new'}}Sign Up{{/link-to}}
+              </div>
+          {{/unless}}
+        </div>
+
+
       </div>
     </div>
-
-    {{#unless controller.session.signedIn}}
-      <div class="col-xs-3 signin-toolbar">
-        {{#link-to 'session.new'}}Sign In{{/link-to}}
-        or
-        {{#link-to 'users.new'}}Sign Up{{/link-to}}
-      </div>
-    {{/unless}}
   </div>
 
   <div class="row">
