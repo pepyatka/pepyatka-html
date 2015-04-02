@@ -1,0 +1,5 @@
+<div class="posts">
+  {{#each post in hiddenPosts itemController="timeline-post"}}
+    {{view "timeline-post" content=post}}
+  {{/each}}
+</div>

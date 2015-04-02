@@ -4,6 +4,18 @@ define(["app/app",
 
   App.TimelineHomeView = Ember.View.extend({
     templateName: 'timeline/home',
-    template: Ember.Handlebars.compile(tpl)
+    template: Ember.Handlebars.compile(tpl),
+
+    hiddenPostsShown: false,
+
+    isRiverOfNews: function() {
+      return true
+    }.property(),
+
+    actions: {
+      toggleShowHidden: function() {
+        this.toggleProperty('hiddenPostsShown')
+      }
+    }
   })
 })

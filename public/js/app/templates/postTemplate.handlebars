@@ -43,6 +43,7 @@
       {{#if controller.session.signedIn}}
         <a {{action 'toggleCommentForm' target=view}}>Comment</a>
       {{/if}}
+
       {{#if view.isOwner}}
         (<a {{action 'toggleEditability' target=view}}>Edit</a>
         |

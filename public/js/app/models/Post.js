@@ -17,7 +17,7 @@ define(["config",
     likes: DS.hasMany('user'),
     groups: DS.hasMany('group'),
 
-    isHidden: DS.attr('string'),
+    isHidden: DS.attr('boolean'),
 
     timeline: DS.belongsTo('timeline'),
 
@@ -39,6 +39,36 @@ define(["config",
         url: this.resourceUrl + '/' + this.get('id') + '/unlike',
         type: 'post'
       })
-    }
+    },
+
+    hide: function() {
+      return Ember.$.ajax({
+        url: this.resourceUrl + '/' + this.get('id') + '/hide',
+        type: 'post',
+        context: this
+      })
+        .then(function(res) {
+          this.set('isHidden', true)
+        })
+    },
+
+    unhide: function() {
+      return Ember.$.ajax({
+        url: this.resourceUrl + '/' + this.get('id') + '/unhide',
+        type: 'post',
+        context: this
+      })
+        .then(function(res) {
+          this.set('isHidden', false)
+        })
+    },
+
+    canHide: function() {
+      return !this.get('isHidden')
+    }.property('isHidden'),
+
+    canUnhide: function() {
+      return this.get('isHidden')
+    }.property('isHidden')
   })
 })

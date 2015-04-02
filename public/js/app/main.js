@@ -61,6 +61,7 @@ define([
 
   "views/ApplicationView",
   "views/HomeView",
+  "views/HiddenPostsView",
   "views/PaginationView",
   "views/PostView",
   "views/PostsView",

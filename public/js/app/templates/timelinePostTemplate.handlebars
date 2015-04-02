@@ -43,6 +43,16 @@
         {{#if controller.session.signedIn}}
           <a {{action 'toggleCommentForm' target=view}}>Comment</a>
         {{/if}}
+
+        {{#if view.parentView.parentView.isRiverOfNews}}
+          -
+          {{#if post.model.canHide}}
+            <a {{action 'hide'}}>Hide</a>
+          {{else}}
+            <a {{action 'unhide'}}>Un-hide</a>
+          {{/if}}
+        {{/if}}
+
         {{#if view.isOwner}}
           (<a {{action 'toggleEditability' target=view}}>Edit</a>
           |

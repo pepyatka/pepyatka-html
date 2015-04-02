@@ -5,7 +5,21 @@ define(["app/app",
 
   App.TimelineHomeController = Ember.Controller.extend(App.Pagination, {
     postSortProperties: ['createdAt:desc'],
-    posts: Ember.computed.sort('model.posts', 'postSortProperties'),
+    allPosts: Ember.computed.sort('model.posts', 'postSortProperties'),
+
+    posts: function() {
+      var posts = this.get('allPosts')
+      return posts.filter(function (post) { return !post.get('isHidden') })
+    }.property('allPosts.@each.isHidden'),
+
+    hiddenPosts: function() {
+      var posts = this.get('allPosts')
+      return posts.filter(function (post) { return post.get('isHidden') })
+    }.property('allPosts.@each.isHidden'),
+
+    hasHiddenPosts: function() {
+      return this.get('hiddenPosts').length > 0
+    }.property('hiddenPosts.@each'),
 
     didRequestRange: function(options) {
       this.transitionToRoute({ queryParams: { offset: options.offset } })

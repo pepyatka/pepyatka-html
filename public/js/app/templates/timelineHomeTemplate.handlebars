@@ -1,3 +1,11 @@
 {{view "submit-post" sendToVisible="true"}}
 {{view "posts"}}
+
+{{#if controller.hasHiddenPosts}}
+  <a {{action "toggleShowHidden" target=view}}>Show {{hiddenPosts.length}} hidden entries</a>
+  {{#if view.hiddenPostsShown}}
+    {{view "hidden-posts"}}
+  {{/if}}
+{{/if}}
+
 {{view "pagination"}}

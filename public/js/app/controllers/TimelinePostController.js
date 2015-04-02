@@ -59,6 +59,22 @@ define(["config",
             var like = this.get('content.likes').findProperty('id', this.get('session.currentUser.id'))
             this.get('content.likes').removeObject(like)
           }.bind(this))
+      },
+
+      hide: function() {
+        var post = this.get('model')
+
+        post.hide()
+          .then(function() {
+          })
+      },
+
+      unhide: function() {
+        var post = this.get('model')
+
+        post.unhide()
+          .then(function() {
+          })
       }
     }
   })
