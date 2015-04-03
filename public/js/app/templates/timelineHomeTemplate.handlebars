@@ -2,10 +2,12 @@
 {{view "posts"}}
 
 {{#if controller.hasHiddenPosts}}
-  <a {{action "toggleShowHidden" target=view}}>Show {{hiddenPosts.length}} hidden entries</a>
+  <div class="show-hidden">
+    <a {{action "toggleShowHidden" target=view}}>Show {{hiddenPosts.length}} hidden entries</a>
   {{#if view.hiddenPostsShown}}
     {{view "hidden-posts"}}
   {{/if}}
+  </div>
 {{/if}}
 
 {{view "pagination"}}
