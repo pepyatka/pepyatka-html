@@ -23,3 +23,6 @@ coverage
 .DS_Store
 
 dist
+public/css/themes/fresh/app.css
+public/css/themes/helvetica/app.css
+public/css/common/common.css
