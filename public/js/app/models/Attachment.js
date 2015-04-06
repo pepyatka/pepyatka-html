@@ -3,8 +3,12 @@ define(["app/app"], function(App) {
 
   App.Attachment = DS.Model.extend({
     identifier: DS.attr('string'),
-    filename: DS.attr('string'),
-    isImage: DS.attr('boolean'),
+    file: DS.attr('file'), // FormData File object
+    url: DS.attr('string'),
+    thumbnailUrl: DS.attr('string'),
+    //filename: DS.attr('string'),
+    //isImage: DS.attr('boolean'),
+
     createdAt: DS.attr('number'),
     updatedAt: DS.attr('number'),
 

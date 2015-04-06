@@ -1,9 +1,9 @@
 <div class="attachment">
-  <a href="{{controller.originalUrlPrefix}}{{attachment.model.id}}" title="{{attachment.model.filename}}">
-    {{#if attachment.model.isImage}}
-      <img src="{{controller.previewUrlPrefix}}{{attachment.model.id}}" alt="{{attachment.model.filename}}" />
+  <a href="{{attachment.model.url}}" title="{{attachment.model.id}}">
+    {{#if attachment.model.thumbnailUrl}}
+      <img src="{{attachment.model.thumbnailUrl}}" alt="{{attachment.model.id}}" />
     {{else}}
-      {{attachment.model.filename}}
+      {{attachment.model.id}}
     {{/if}}
   </a>
 </div>

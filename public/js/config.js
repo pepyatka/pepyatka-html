@@ -43,7 +43,9 @@ define({
     'initializers': 'app/initializers',
     'models': 'app/models',
     'routes': 'app/routes',
+    'serializers': 'app/serializers',
     'templates': 'app/templates',
+    'transforms': 'app/transforms',
     'views': 'app/views',
 
     /* libs */
