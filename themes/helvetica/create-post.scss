@@ -1,0 +1,16 @@
+.create-post {
+
+  .attachments {
+    margin: 0 0 10px 0;
+    overflow: hidden;
+
+    .attachment {
+      float: left;
+      border: 1px solid silver;
+      padding: 1px;
+      margin-right: 8px;
+    }
+  }
+
+}
+
