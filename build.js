@@ -368,13 +368,13 @@
     //of its dependencies includes i18n bundles, they may not be included in the
     //built file unless the locale: section is set above.
     {
-      name: 'main',
+      name: 'config',
       include: ["app/app"]
     },
     {
-      name: 'app/main',
+      name: 'main',
       include: ["app/main"],
-      exclude: ["main"]
+      exclude: ["config"]
     }
 
     // {
