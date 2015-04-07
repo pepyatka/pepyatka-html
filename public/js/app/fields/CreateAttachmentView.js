@@ -16,12 +16,6 @@ define(["app/app"], function(App) {
         this.$().wrap('<form>').closest('form').get(0).reset()
         this.$().unwrap()
       }
-    },
-
-    click: function() {
-      var view = this.get('parentView.sendTo')
-      if (view)
-        view.set('isVisible', true)
     }
   })
 })
