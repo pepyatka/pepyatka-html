@@ -10,6 +10,7 @@ define([
   "components/Pagination",
 
   "initializers/AjaxPrefilter",
+  "initializers/PubSub",
   "initializers/Session",
   "initializers/DS",
 
@@ -26,7 +27,6 @@ define([
   "controllers/PostAttachmentController",
   "controllers/PostController",
   "controllers/PostCommentController",
-  "controllers/PubSubController",
   "controllers/SessionNewController",
   "controllers/SessionDestroyController",
   "controllers/SettingsController",
