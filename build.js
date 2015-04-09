@@ -47,8 +47,8 @@
     /* libs */
     'jquery': 'libs/jquery/2.1.3/jquery.min',
     'bootstrap': 'libs/bootstrap/3.3.2/bootstrap.min',
-    'ember': 'libs/emberjs/1.11.0-beta.1/ember.debug',
-    'ember-data': 'libs/ember-data/1.0.0-beta.15/ember-data',
+    'ember': 'libs/emberjs/1.11.0-beta.1/ember.min',
+    'ember-data': 'libs/ember-data/1.0.0-beta.15/ember-data.min',
     'ember-template-compiler': 'libs/ember-template-compiler/1.12.0-beta.1/ember-template-compiler',
     'moment': 'libs/momentjs/2.9.0/moment.min',
     'socket.io': 'libs/socket.io/1.3.5/socket.io.min',
@@ -118,7 +118,7 @@
   //- "closure.keepLines": Same as closure option, but keeps line returns
   //in the minified files.
   //- "none": no minification will be done.
-  optimize: "none",
+  optimize: "uglify2",
 
   //Introduced in 2.1.2: If using "dir" for an output directory, normally the
   //optimize setting is used to optimize the build bundles (the "modules"
