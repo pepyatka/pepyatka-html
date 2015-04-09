@@ -151,10 +151,15 @@ define(["config",
         updateComment: function(data) {
           var post = this.findPost(data.comments.postId)
 
-          if (post) {
-            // this post is already in the timeline
-          } else {
-            // let's fetch a post and add it to a timeline
+          var index = 0
+          var comment = post.get('comments').find(function(comment) {
+            index += 1
+            if (comment && comment.id)
+              return comment.id === data.comments.id
+          })
+
+          if (comment) {
+            comment.set('body', data.comments.body)
           }
         },
 
