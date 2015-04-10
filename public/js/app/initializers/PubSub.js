@@ -135,11 +135,10 @@ define(["config",
         },
 
         newComment: function(data) {
-          var that = this
-
           if (!this.isFirstPage())
             return
 
+          var that = this
           var post = this.store.getById('post', data.comments.postId)
 
           if (post) {
@@ -179,6 +178,9 @@ define(["config",
         },
 
         newLike: function(data) {
+          if (!this.isFirstPage())
+            return
+
           var that = this
           var userId = data.users.id
 
