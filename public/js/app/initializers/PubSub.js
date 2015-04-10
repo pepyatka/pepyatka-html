@@ -158,6 +158,15 @@ define(["config",
         },
 
         destroyComment: function(data) {
+          var comment = this.store.getById('comment', data.commentId)
+
+          if (!comment.get('isDeleted')) {
+            this.store.unloadRecord(comment)
+
+            var post = this.store.getById('post', data.postId)
+            comment = post.get('comments').findProperty('id', comment.get('id'))
+            post.get('comments').removeObject(comment)
+          }
         },
 
         newLike: function(data) {
