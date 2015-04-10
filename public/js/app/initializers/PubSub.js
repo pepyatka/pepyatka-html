@@ -200,6 +200,12 @@ define(["config",
         },
 
         removeLike: function(data) {
+          var post = this.store.getById('post', data.meta.postId)
+
+          if (post) {
+            var user = post.get('likes').findProperty('id', data.meta.userId)
+            post.get('likes').removeObject(user)
+          }
         }
       })
     }
