@@ -135,16 +135,25 @@ define(["config",
         },
 
         newComment: function(data) {
+          var that = this
+
           if (!this.isFirstPage())
             return
 
-          if (!this.store.recordIsLoaded('comment', data.comments.id)) {
-            var post = this.store.getById('post', data.comments.postId)
+          var post = this.store.getById('post', data.comments.postId)
 
-            this.store.pushPayload('comment', data)
-            var comment = this.store.getById('comment', data.comments.id)
+          if (post) {
+            if (!this.store.recordIsLoaded('comment', data.comments.id)) {
+              this.store.pushPayload('comment', data)
+              var comment = this.store.getById('comment', data.comments.id)
 
-            post.get('comments').pushObject(comment)
+              post.get('comments').pushObject(comment)
+            }
+          } else {
+            this.store.find('post', data.comments.postId)
+              .then(function(post) {
+                that.currentController().get('posts').addObject(post)
+              })
           }
         },
 
