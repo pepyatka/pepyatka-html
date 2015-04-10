@@ -125,13 +125,23 @@ define(["config",
         updatePost: function(data) {
         },
 
+        destroyPost: function(data) {
+        },
+
         hidePost: function(data) {
+          var post = this.store.getById('post', data.meta.postId)
+
+          if (post) {
+            post.set('isHidden', true)
+          }
         },
 
         unhidePost: function(data) {
-        },
+          var post = this.store.getById('post', data.meta.postId)
 
-        destroyPost: function(data) {
+          if (post) {
+            post.set('isHidden', false)
+          }
         },
 
         newComment: function(data) {
