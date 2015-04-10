@@ -10,6 +10,7 @@ define(["app/app",
 
     createdBy: DS.belongsTo('user'),
     post: DS.belongsTo('post'),
+    postId: DS.attr('string'),
 
     createdAgo: function() {
       if (this.get('createdAt')) {

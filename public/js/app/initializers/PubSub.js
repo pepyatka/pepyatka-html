@@ -117,17 +117,6 @@ define(["config",
           return controller
         },
 
-        findPost: function(postId) {
-          var controller = this.currentController()
-          if (controller.constructor == ".PostController") {
-            return controller.get('model')
-          } else {
-            return controller.get('posts').find(function(post) {
-              return post.id === postId
-            })
-          }
-        },
-
         newPost: function(data) {
           if (!this.isFirstPage())
             return
@@ -146,19 +135,24 @@ define(["config",
         },
 
         newComment: function(data) {
+          if (!this.isFirstPage())
+            return
+
+          if (!this.store.recordIsLoaded('comment', data.comments.id)) {
+            var post = this.store.getById('post', data.comments.postId)
+
+            this.store.pushPayload('comment', data)
+            var comment = this.store.getById('comment', data.comments.id)
+
+            post.get('comments').pushObject(comment)
+          }
         },
 
         updateComment: function(data) {
-          var post = this.findPost(data.comments.postId)
+          var commentId = data.comments.id
 
-          var index = 0
-          var comment = post.get('comments').find(function(comment) {
-            index += 1
-            if (comment && comment.id)
-              return comment.id === data.comments.id
-          })
-
-          if (comment) {
+          if (this.store.recordIsLoaded('comment', commentId)) {
+            var comment = this.store.getById('comment', commentId)
             comment.set('body', data.comments.body)
           }
         },
