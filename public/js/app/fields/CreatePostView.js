@@ -2,7 +2,7 @@ define(["app/app"], function(App) {
   "use strict";
 
   App.CreatePostView = Ember.TextArea.extend({
-    classNames: ['editarea'],
+    classNames: ['edit-post-area'],
     valueBinding: 'parentView.controller.body',
 
     click: function() {

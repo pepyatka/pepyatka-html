@@ -31,8 +31,11 @@
   padding: 3px;
   width: 100%;
   margin-bottom: 3px;
-  min-height: 30px;
 }
-.editarea {
+.edit-post-area {
   @include editarea;
+}
+.edit-comment-area{
+  @include editarea;
+  height: 26px;
 }
