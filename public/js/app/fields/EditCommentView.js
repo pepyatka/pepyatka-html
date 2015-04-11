@@ -2,7 +2,7 @@ define(["app/app", "ember"], function(App, Ember) {
   "use strict";
 
   App.EditCommentView = Ember.TextArea.extend({
-    classNames: ['editarea'],
+    classNames: ['edit-comment-area'],
     valueBinding: 'parentView.controller.body',
 
     becomeFocused: function() {
