@@ -82,20 +82,27 @@
       {{#each comment in post.comments itemController="post-comment"}}
         {{view "post-comment" content=comment}}
       {{/each}}
+
+      {{#if view.isFormVisible}}
+          <div class="comment">
+              <a class="date">
+                  <i class="fa fa-comment-o icon"></i>
+              </a>
+              <div class="body">
+                  <div class="edit">
+                      <div>
+                        {{view 'create-comment'}}
+                      </div>
+                      <div>
+                          <button {{action 'create'}} class="btn btn-default btn-xs">Post</button>
+                          <a {{action 'toggleCommentForm' target=view}}>Cancel</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      {{/if}}
     </div>
 
-    {{#if view.isFormVisible}}
-      <div class="comment">
-        <div class="edit">
-          <div>
-            {{view 'create-comment'}}
-          </div>
-          <div>
-            <button {{action 'create'}} class="btn btn-default btn-xs">Post</button>
-            <a {{action 'toggleCommentForm' target=view}}>Cancel</a>
-          </div>
-        </div>
-      </div>
-    {{/if}}
+
   </div>
 </div>
