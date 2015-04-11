@@ -34,7 +34,6 @@
 }
 .edit-post-area {
   @include editarea;
-  //min-height: 30px;
 }
 .edit-comment-area{
   @include editarea;
