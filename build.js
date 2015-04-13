@@ -61,6 +61,11 @@
     'text': 'libs/requirejs-plugins/text'
   },
 
+  hbs: {
+    disableI18n: true,
+    templateExtension: 'handlebars'
+  },
+
   //Configure CommonJS packages. See http://requirejs.org/docs/api.html#packages
   //for more information.
   packages: [],
@@ -120,7 +125,7 @@
   //- "closure.keepLines": Same as closure option, but keeps line returns
   //in the minified files.
   //- "none": no minification will be done.
-  optimize: "uglify2",
+  optimize: "none",
 
   //Introduced in 2.1.2: If using "dir" for an output directory, normally the
   //optimize setting is used to optimize the build bundles (the "modules"
