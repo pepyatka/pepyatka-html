@@ -120,6 +120,14 @@ define(["config",
         newPost: function(data) {
           if (!this.isFirstPage())
             return
+
+          var post = this.store.getById('post', data.posts.id)
+          if (!post) {
+            this.store.pushPayload('post', data)
+            post = this.store.getById('post', data.posts.id)
+
+            this.currentController().get('posts').addObject(post)
+          }
         },
 
         updatePost: function(data) {
