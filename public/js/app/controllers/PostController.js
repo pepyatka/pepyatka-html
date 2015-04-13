@@ -23,13 +23,12 @@ define(["config",
       create: function() {
         var comment = this.store.createRecord('comment', {
           body: this.get('newComment'),
-          post: this.get('content')
+          postId: this.get('content.id')
         })
 
         this.set('newComment', '')
         comment.save()
           .then(function(comment) {
-            this.get('content.comments').pushObject(comment)
           }.bind(this))
       },
 
