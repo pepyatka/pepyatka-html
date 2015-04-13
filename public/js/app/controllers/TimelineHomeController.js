@@ -6,6 +6,7 @@ define(["app/app",
   App.TimelineHomeController = Ember.Controller.extend(App.Pagination, {
     postSortProperties: ['createdAt:desc'],
     allPosts: Ember.computed.sort('model.posts', 'postSortProperties'),
+    attachments: [],
 
     posts: function() {
       var posts = this.get('allPosts')
@@ -26,14 +27,36 @@ define(["app/app",
     },
 
     actions: {
+      addAttachment: function(file) {
+        // Create an attachment record
+        var attachment = this.store.createRecord('attachment', {
+          file: file
+        })
+
+        // Save it to the backend
+        attachment.save()
+          .then(function(attachment) {
+            this.get('attachments').pushObject(attachment)
+          }.bind(this))
+      },
+
       create: function() {
+        // Create a post record
         var post = this.store.createRecord('post', {
           body: this.get('body')
         })
 
+        // Attach the attachments
+        post.get('attachments').pushObjects(this.get('attachments'))
+
+        // Clear the form
         this.set('body', '')
+        this.set('attachments', [])
+
+        // Save it to the backend
         post.save()
           .then(function(post) {
+            // Add the new post to the timeline
             this.get('content.posts').pushObject(post)
           }.bind(this))
       }
