@@ -131,6 +131,10 @@ define(["config",
         },
 
         updatePost: function(data) {
+          var post = this.store.getById('post', data.posts.id)
+          if (post) {
+            post.set('body', data.posts.body)
+          }
         },
 
         destroyPost: function(data) {
