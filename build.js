@@ -61,6 +61,11 @@
     'text': 'libs/requirejs-plugins/text'
   },
 
+  hbs: {
+    disableI18n: true,
+    templateExtension: 'handlebars'
+  },
+
   //Configure CommonJS packages. See http://requirejs.org/docs/api.html#packages
   //for more information.
   packages: [],
