@@ -9,6 +9,9 @@ define(["config",
 
     actions: {
       resetPassword: function() {
+        this.set('errors', null)
+        this.set('message', null)
+
         Ember.$.ajax({
           url: config.host + '/v1/passwords/' + this.get('token'),
           type: 'put',
@@ -18,7 +21,12 @@ define(["config",
           },
           context: this
         })
-          .then(function() {
+          .then(function(res) {
+            if (res.message)
+              this.set('message', res.message)
+          }, function(err) {
+            if (err.responseJSON.err)
+              this.set('errors', err.responseJSON.err)
           })
       }
     }
