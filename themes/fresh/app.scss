@@ -1,12 +1,12 @@
-@import "../common_theme/mixins";
+@import "../shared/mixins";
 @import "base";
 @import "boxes";
 @import "header";
 @import "sidebar";
-@import "../common_theme/forms";
+@import "../shared/forms";
 @import "post";
 @import "timeline-post";
 @import "single-post";
-@import "../common_theme/comments";
+@import "../shared/comments";
 @import "user";
-@import "../common_theme/timeline";
+@import "../shared/timeline";
