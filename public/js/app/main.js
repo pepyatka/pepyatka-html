@@ -26,9 +26,11 @@ define([
   "models/User",
 
   "controllers/ApplicationController",
+  "controllers/ForgotPasswordController",
   "controllers/PostAttachmentController",
   "controllers/PostController",
   "controllers/PostCommentController",
+  "controllers/ResetPasswordController",
   "controllers/SessionNewController",
   "controllers/SessionDestroyController",
   "controllers/SettingsController",
@@ -48,8 +50,10 @@ define([
   "fields/CreateCommentView",
   "fields/EditCommentView",
 
+  "routes/ForgotPasswordRoute",
   "routes/HomeRoute",
   "routes/PostRoute",
+  "routes/ResetPasswordRoute",
   "routes/SessionNewRoute",
   "routes/SessionDestroyRoute",
   "routes/SettingsRoute",
@@ -67,6 +71,7 @@ define([
   "transforms/FileTransform",
 
   "views/ApplicationView",
+  "views/ForgotPasswordView",
   "views/HomeView",
   "views/HiddenPostsView",
   "views/PaginationView",
@@ -75,6 +80,7 @@ define([
   "views/PostAttachmentView",
   "views/PostCommentView",
   "views/ProfileLinksView",
+  "views/ResetPasswordView",
   "views/SessionNewView",
   "views/SettingsView",
   "views/SendToView",
