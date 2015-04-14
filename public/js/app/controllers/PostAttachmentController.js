@@ -1,10 +1,6 @@
-define(["config",
-        "app/app",
-        "ember"], function(config, App, Ember) {
+define(["app/app",
+        "ember"], function(App, Ember) {
   "use strict";
 
-  App.PostAttachmentController = Ember.Controller.extend({
-    originalUrlPrefix: config.host + '/attachments/original/',
-    previewUrlPrefix: config.host + '/attachments/preview/'
-  })
+  App.PostAttachmentController = Ember.Controller.extend()
 })

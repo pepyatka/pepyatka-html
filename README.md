@@ -14,16 +14,16 @@ Find out more
 Setting up your environment
 ---------------------------
 
-Install nodejs
+Requirements:
+  - Node.js
 
 Running the application
 -----------------------
 
-1. Run ```npm install```
-1. ```node index.js```
-1. Run ```jake watch```
+1. Run `npm install`
+1. Run `npm start`
 1. Open [http://localhost:3333/](http://localhost:3333/)
-
+1. (for development, run `jake watch`)
 
 Copyright and license
 ---------------------

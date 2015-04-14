@@ -11,12 +11,18 @@
     </div>
 
     <div class="row">
-      <div class="col-md-6">
-        <div class="pull-left">
-          Add file
-        </div>
+      <div class="col-md-10">
+        {{#if controller.attachments}}
+          <div class="attachments">
+            {{#each attachment in controller.attachments itemController="post-attachment"}}
+              {{view "post-attachment" content=attachment}}
+            {{/each}}
+          </div>
+        {{/if}}
+
+        {{view 'create-attachment'}}
       </div>
-      <div class="col-md-6">
+      <div class="col-md-2">
         <div class="pull-right">
           <button {{action 'create'}} class="btn btn-default btn-xs">Post</button>
         </div>

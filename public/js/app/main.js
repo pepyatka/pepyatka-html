@@ -3,6 +3,8 @@ define([
   "app/router",
 
   "adapters/ApplicationAdapter",
+  "adapters/FormDataAdapter",
+  "adapters/AttachmentAdapter",
   "adapters/SubscriberAdapter",
   "adapters/SubscriptionAdapter",
   "adapters/TimelineAdapter",
@@ -41,6 +43,7 @@ define([
   "controllers/UsersNewController",
 
   "fields/CreatePostView",
+  "fields/CreateAttachmentView",
   "fields/EditPostView",
   "fields/CreateCommentView",
   "fields/EditCommentView",
@@ -58,6 +61,10 @@ define([
   "routes/TimelineSubscribersRoute",
   "routes/TimelineSubscriptionsRoute",
   "routes/UsersNewRoute",
+
+  "serializers/PostSerializer",
+
+  "transforms/FileTransform",
 
   "views/ApplicationView",
   "views/HomeView",

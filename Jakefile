@@ -1,5 +1,8 @@
 var exec = require('child_process').exec
 
+task('default', ['themes'], function (params) {
+});
+
 desc('Compile js files.')
 task('compile', function() {
   var proc = exec('node ./node_modules/requirejs/bin/r.js -o build.js')
