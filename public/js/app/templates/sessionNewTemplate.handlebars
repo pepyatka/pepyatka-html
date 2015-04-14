@@ -3,7 +3,6 @@
 
   {{#if errors}}
     <div class="alert alert-danger" role="alert">
-      <span>Error:</span>
       <span id="error-message">{{errors}}</span>
     </div>
   {{/if}}
@@ -23,4 +22,8 @@
       <button {{action "signin"}} class="btn btn-primary">Sign In</button>
     </div>
   </form>
+
+  {{#if errors}}
+    {{#link-to "forgot-password"}}Forgot your password?{{/link-to}}
+  {{/if}}
 </div>

@@ -12,6 +12,7 @@ define(["config",
         var user = this.get('model')
         user.set('screenName', this.get('screenName'))
         user.set('isPrivate', this.get('isPrivate'))
+        user.set('email', this.get('email'))
 
         user.save()
           .then(function(newUser) {

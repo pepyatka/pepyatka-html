@@ -20,6 +20,8 @@ define(["app/app"], function(App) {
       this.route('subscriptions', { path: '/:username/subscriptions' })
     })
     this.route('settings', { path: '/settings' })
+    this.route('forgot-password', { path: '/account/password' })
+    this.route('reset-password', { path: '/account/reset' })
     this.route('post', { path: '/:username/:postId' })
     this.resource('groups', { path: '/groups'})
   })
