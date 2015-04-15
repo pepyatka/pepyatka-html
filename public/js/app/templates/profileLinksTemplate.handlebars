@@ -1,17 +1,18 @@
 <div class="profile">
   <div class="row">
-    <div class="col-md-10">
+    <div class="col-md-9">
       <div class="avatar">
         <img src="/img/64x64.png">
       </div>
 
-      <a href="#">Settings</a>
-
       <div class="description">
         <div class="name">{{content.user.screenName}}</div>
+          <a href="#">Settings</a>
       </div>
+
+
     </div>
-    <div class="col-md-2">
+    <div class="col-md-3">
       <div class="stats">
         {{#if content.user.statistics.subscriptions}}
           <div>
