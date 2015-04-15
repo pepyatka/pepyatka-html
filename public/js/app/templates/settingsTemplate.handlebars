@@ -1,17 +1,41 @@
-Screen name: {{input name="screenName" value=screenName}}
-<br/>
-Email: {{input name="email" value=content.email}}
-<br/>
-Private: {{input type="checkbox" name="isPrivate" checked=content.isPrivate}}
-<br/>
-<button {{action 'update'}}>Update</button>
+<h1>Settings</h1>
+
+<div class="form-group">
+  <label>Screen name:</label>
+  {{input name="screenName" value=screenName class="form-control"}}
+</div>
+
+<div class="form-group">
+  <label>Email:</label>
+  {{input name="email" value=content.email class="form-control"}}
+</div>
+
+<div class="checkbox">
+  <label>
+    {{input type="checkbox" name="isPrivate" checked=content.isPrivate }}
+    Private
+  </label>
+</div>
+
+<button {{action 'update'}} class="btn btn-default">Update</button>
 
 <hr/>
 
-Current password: {{input name="currentPassword" type="password" value=currentPassword}}
-<br/>
-New password: {{input name="password" type="password" value=password}}
-<br/>
-Confirm password: {{input name="passwordConfirmation" type="password" value=passwordConfirmation}}
-<br/>
-<button {{action 'updatePassword'}}>Update Password</button>
+<h2>Change password</h2>
+
+<div class="form-group">
+  <label>Current password:</label>
+  {{input name="currentPassword" type="password" value=currentPassword class="form-control"}}
+</div>
+
+<div class="form-group">
+  <label>New password:</label>
+  {{input name="password" type="password" value=password class="form-control"}}
+</div>
+
+<div class="form-group">
+  <label>Confirm password:</label>
+  {{input name="passwordConfirmation" type="password" value=passwordConfirmation class="form-control"}}
+</div>
+
+<button {{action 'updatePassword'}} class="btn btn-default">Update Password</button>
