@@ -2,10 +2,16 @@ define(["app/app"], function(App) {
   "use strict";
 
   App.Group = DS.Model.extend({
-    identifier: DS.attr('string'),
     username: DS.attr('string'),
+    screenName: DS.attr('string'),
     type: DS.attr('string'),
-    info: DS.attr('string'),
-    rss: DS.attr('string')
+
+    isGroup: function() {
+      return this.get('type') === 'group'
+    }.property(),
+
+    isUser: function() {
+      return !this.isGroup()
+    }.property()
   })
 })

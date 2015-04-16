@@ -8,6 +8,8 @@ define(["config",
 
     actions: {
       signup: function() {
+        this.set('errors', null)
+
         var data = { username: this.get('username'),
                      password: this.get('password') }
         Ember.$.ajax({
@@ -18,7 +20,6 @@ define(["config",
         })
           .then(function(result) {
             App.Session.set('authToken', result.authToken)
-            this.set('errors', null)
           }, function(err) {
             this.set('errors', JSON.parse(err.responseText).err)
           })

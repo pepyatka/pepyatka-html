@@ -7,6 +7,14 @@ define(["app/app"], function(App) {
     type: DS.attr('string'),
     screenName: DS.attr('string'),
     email: DS.attr('string'),
-    statistics: DS.attr()
+    statistics: DS.attr(),
+
+    isGroup: function() {
+      return this.get('type') === 'group'
+    }.property(),
+
+    isUser: function() {
+      return !this.isGroup()
+    }.property()
   })
 })

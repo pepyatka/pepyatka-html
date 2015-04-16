@@ -15,7 +15,8 @@ define(["config",
     actions: {
       create: function() {
         var post = this.store.createRecord('post', {
-          body: this.get('body')
+          body: this.get('body'),
+          feeds: this.get('model.user.username')
         })
 
         this.set('body', '')

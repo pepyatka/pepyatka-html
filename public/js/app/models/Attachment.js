@@ -2,7 +2,6 @@ define(["app/app"], function(App) {
   "use strict";
 
   App.Attachment = DS.Model.extend({
-    identifier: DS.attr('string'),
     file: DS.attr('file'), // FormData File object
     url: DS.attr('string'),
     thumbnailUrl: DS.attr('string'),
