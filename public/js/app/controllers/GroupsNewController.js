@@ -8,6 +8,8 @@ define(["config",
 
     actions: {
       create: function() {
+        var that = this
+
         this.set('errors', null)
 
         var group = this.store.createRecord('group', {
@@ -16,9 +18,9 @@ define(["config",
 
         group.save()
           .then(function(result) {
-            this.transitionToRoute('timeline.index', this.get('username'))
+            that.transitionToRoute('timeline.index', that.get('username'))
           }, function(err) {
-            this.set('errors', JSON.parse(err.responseText).err)
+            that.set('errors', JSON.parse(err.responseText).err)
           })
       }
     }
