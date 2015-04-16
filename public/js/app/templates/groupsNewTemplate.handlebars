@@ -1,0 +1,30 @@
+<div class="col-md-3">
+  <h2>Create new group</h2>
+
+  <p>Pepyatka feeds are extremely flexible. They can even be used to
+  share privately with a group or as a discussion forums. <a>Learn
+  more about feeds</a></p>
+
+  {{#if errors}}
+    <div class="alert alert-danger" role="alert">
+      <span>Error:</span>
+      <span id="error-message">{{errors}}</span>
+    </div>
+  {{/if}}
+
+  <form action="/groups" method="post">
+    <div class="form-group">
+      <label for="password">Name</label>
+      {{input name="screenName" value=screenName class="form-control"}}
+    </div>
+
+    <div class="form-group">
+      <label for="username">Username</label>
+      {{input value=username type="text" class="form-control"}}
+    </div>
+
+    <div class="form-group">
+      <button {{action "create"}} class="btn btn-primary">Create feed</button>
+    </div>
+  </form>
+</div>

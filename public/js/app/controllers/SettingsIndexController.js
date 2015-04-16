@@ -3,7 +3,7 @@ define(["config",
         "ember"], function(config, App, Ember) {
   "use strict";
 
-  App.SettingsController = Ember.Controller.extend({
+  App.SettingsIndexController = Ember.Controller.extend({
     screenName: Ember.computed.oneWay('model.screenName'),
     isPrivate: Ember.computed.oneWay('model.isPrivate'),
 

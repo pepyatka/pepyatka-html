@@ -6,7 +6,6 @@ define(["config",
   App.Post = DS.Model.extend({
     resourceUrl: config.host + '/v1/posts',
 
-    identifier: DS.attr('string'),
     body: DS.attr('string'),
     createdAt: DS.attr('number'),
     updatedAt: DS.attr('number'),

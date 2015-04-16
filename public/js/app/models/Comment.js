@@ -3,7 +3,6 @@ define(["app/app",
   "use strict";
 
   App.Comment = DS.Model.extend({
-    identifier: DS.attr('string'),
     body: DS.attr('string'),
     createdAt: DS.attr('number'),
     updatedAt: DS.attr('number'),

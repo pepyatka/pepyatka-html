@@ -19,10 +19,16 @@ define(["app/app"], function(App) {
       this.route('subscribers', { path: '/:username/subscribers' })
       this.route('subscriptions', { path: '/:username/subscriptions' })
     })
-    this.route('settings', { path: '/settings' })
+    this.resource('settings', { path: '/settings' }, function() {
+      this.route('index', { path: '/' })
+      this.route('feed', { path: '/:username' })
+    })
     this.route('forgot-password', { path: '/account/password' })
     this.route('reset-password', { path: '/account/reset' })
     this.route('post', { path: '/:username/:postId' })
-    this.resource('groups', { path: '/groups'})
+    this.resource('groups', { path: '/groups' }, function() {
+      this.route('home', { path: '/' })
+      this.route('new', { path: '/new' })
+    })
   })
 })
