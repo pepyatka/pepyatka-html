@@ -3,8 +3,10 @@ define(["app/app"], function(App) {
 
   App.Subscription = DS.Model.extend({
     name: DS.attr('string'),
-    admins: DS.attr('string'),
+    user: DS.belongsTo('subscriber'),
 
-//    user: DS.belongsTo('user')
+    isPosts: function() {
+      return this.get('name') === 'Posts'
+    }.property()
   })
 })

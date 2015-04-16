@@ -1,0 +1,5 @@
+<ul>
+{{#each group in controller.session.currentUser.groups}}
+  <li>{{#link-to 'timeline.index' group.user.username}}{{group.user.screenName}}{{/link-to}}</li>
+{{/each}}
+</ul>

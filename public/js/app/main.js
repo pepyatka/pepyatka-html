@@ -82,6 +82,7 @@ define([
   "views/GroupsNewView",
   "views/HomeView",
   "views/HiddenPostsView",
+  "views/MyGroupsView",
   "views/PaginationView",
   "views/PostView",
   "views/PostsView",

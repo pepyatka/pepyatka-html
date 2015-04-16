@@ -30,7 +30,7 @@ define(["config", "app/app"], function(config, App) {
         authTokenChanged: function() {
           var done = function(result) {
             var store = container.lookup('store:main')
-            store.push('user', result.users)
+            store.pushPayload('user', result)
             store.find('user', result.users.id)
               .then(function(user) {
                 this.set('currentUser', user)

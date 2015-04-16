@@ -19,6 +19,9 @@ define({
     },
     'bootstrap': {
       deps: ['jquery']
+    },
+    'lodash': {
+      exports: '_'
     }
   },
 
@@ -57,6 +60,7 @@ define({
     'moment': 'libs/momentjs/2.9.0/moment.min',
     'socket.io': 'libs/socket.io/1.3.5/socket.io.min',
     'select2': 'libs/select2/4.0.0-rc.2/select2.min',
+    'lodash': 'libs/lodash/3.7.0/lodash.min',
 
     /* requirejs-plugins */
     'hbs': 'libs/requirejs-plugins/hbs',
