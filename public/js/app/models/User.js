@@ -10,7 +10,7 @@ define(["app/app"], function(App) {
     statistics: DS.attr(),
 
     isGroup: function() {
-      return this.get('type') === 'group'
+      return false
     }.property(),
 
     isUser: function() {

@@ -7,7 +7,7 @@ define(["app/app"], function(App) {
     type: DS.attr('string'),
 
     isGroup: function() {
-      return this.get('type') === 'group'
+      return true
     }.property(),
 
     isUser: function() {
