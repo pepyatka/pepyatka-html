@@ -22,6 +22,7 @@ Running the application
 
 1. Run `npm install`
 1. Run `npm start`
+1. (make sure [server](https://github.com/pepyatka/pepyatka-server) is running on [http://localhost:3000](http://localhost:3000/))
 1. Open [http://localhost:3333/](http://localhost:3333/)
 1. (for development, run `jake watch`)
 
