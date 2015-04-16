@@ -1,13 +1,13 @@
 <h1>Settings</h1>
 
 <div class="form-group">
-  <label>Screen name:</label>
-  {{input name="screenName" value=screenName class="form-control"}}
+  <label for="screenName">Screen name:</label>
+  {{input name="screenName" value=screenName class="form-control" id="screenName"}}
 </div>
 
 <div class="form-group">
-  <label>Email:</label>
-  {{input name="email" value=content.email class="form-control"}}
+  <label for="email">Email:</label>
+  {{input name="email" id="email" value=content.email class="form-control"}}
 </div>
 
 <div class="checkbox">
@@ -24,18 +24,18 @@
 <h2>Change password</h2>
 
 <div class="form-group">
-  <label>Current password:</label>
-  {{input name="currentPassword" type="password" value=currentPassword class="form-control"}}
+  <label for="currentPassword">Current password:</label>
+  {{input name="currentPassword" id="currentPassword" type="password" value=currentPassword class="form-control"}}
 </div>
 
 <div class="form-group">
-  <label>New password:</label>
-  {{input name="password" type="password" value=password class="form-control"}}
+  <label for="password">New password:</label>
+  {{input name="password" id="password" type="password" value=password class="form-control"}}
 </div>
 
 <div class="form-group">
-  <label>Confirm password:</label>
-  {{input name="passwordConfirmation" type="password" value=passwordConfirmation class="form-control"}}
+  <label for="passwordConfirmation">Confirm password:</label>
+  {{input name="passwordConfirmation" id="passwordConfirmation" type="password" value=passwordConfirmation class="form-control"}}
 </div>
 
 <button {{action 'updatePassword'}} class="btn btn-default">Update Password</button>
