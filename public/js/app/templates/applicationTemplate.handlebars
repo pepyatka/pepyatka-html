@@ -81,7 +81,7 @@
           </ul>
         </div>
         <div class="box-footer">
-          <a href="#">Browse/edit friends</a>
+          {{#link-to 'timeline.subscriptions' controller.session.currentUser.username}}Browse/edit friends{{/link-to}}
         </div>
       </div>
 

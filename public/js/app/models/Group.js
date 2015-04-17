@@ -11,7 +11,7 @@ define(["app/app"], function(App) {
     }.property(),
 
     isUser: function() {
-      return !this.isGroup()
+      return !this.get('isGroup')
     }.property()
   })
 })

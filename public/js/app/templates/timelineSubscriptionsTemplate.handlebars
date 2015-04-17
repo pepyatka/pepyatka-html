@@ -1,1 +1,37 @@
-subscriptions
+<h3>Users</h3>
+<ul>
+  {{#each subscription in model}}
+    {{#if subscription.isPosts}}
+      {{#if subscription.user.isUser}}
+        <li>
+          {{#link-to 'timeline.index' subscription.user.username}}
+            <div class="avatar">
+              <img src="/img/48x48.png" />
+            </div>
+
+            {{subscription.user.screenName}}
+          {{/link-to}}
+        </li>
+      {{/if}}
+    {{/if}}
+  {{/each}}
+</ul>
+
+<h3>Groups</h3>
+<ul>
+  {{#each subscription in model}}
+    {{#if subscription.isPosts}}
+      {{#if subscription.user.isGroup}}
+        <li>
+          {{#link-to 'timeline.index' subscription.user.username}}
+            <div class="avatar">
+              <img src="/img/48x48.png" />
+            </div>
+
+            {{subscription.user.screenName}}
+          {{/link-to}}
+        </li>
+      {{/if}}
+    {{/if}}
+  {{/each}}
+</ul>

@@ -20,7 +20,6 @@ define([
   "models/Comment",
   "models/Group",
   "models/Post",
-  "models/Subscriber",
   "models/Subscription",
   "models/Timeline",
   "models/User",
