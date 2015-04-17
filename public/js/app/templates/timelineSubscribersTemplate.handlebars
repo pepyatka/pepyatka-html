@@ -1,1 +1,14 @@
-subscribers
+<h3>Subscribers</h3>
+<ul>
+  {{#each user in model}}
+    <li>
+      {{#link-to 'timeline.index' user.username}}
+        <div class="avatar">
+          <img src="/img/48x48.png" />
+        </div>
+
+        {{user.screenName}}
+      {{/link-to}}
+    </li>
+  {{/each}}
+</ul>
