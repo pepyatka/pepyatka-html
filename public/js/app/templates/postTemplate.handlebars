@@ -8,14 +8,14 @@
       {{#link-to 'timeline.index' model.createdBy.username}}{{model.createdBy.screenName}}{{/link-to}}
     </div>
 
-    {{#if view.isEdit}}
+    {{#if controller.isEdit}}
       <div class="edit-post">
         <div>
           {{view 'edit-post'}}
         </div>
         <div>
           <button {{action 'update'}} class="btn btn-default btn-xs">Post</button>
-          <a {{action 'toggleEditability' target=view}}>Cancel</a>
+          <a {{action 'toggleEditability'}}>Cancel</a>
         </div>
       </div>
     {{else}}
@@ -45,7 +45,7 @@
       {{/if}}
 
       {{#if view.isOwner}}
-        (<a {{action 'toggleEditability' target=view}}>Edit</a>
+        (<a {{action 'toggleEditability'}}>Edit</a>
         |
         <a {{action 'destroy'}}>Destroy</a>)
       {{/if}}

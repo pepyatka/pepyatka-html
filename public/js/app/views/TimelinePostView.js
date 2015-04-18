@@ -6,7 +6,6 @@ define(["app/app",
     templateName: 'timeline-post',
     template: Ember.Handlebars.compile(tpl),
 
-    isEdit: false,
     isFormVisible: false,
 
     isOwner: function() {
@@ -19,10 +18,6 @@ define(["app/app",
     }.property('content.model.createdBy'),
 
     actions: {
-      toggleEditability: function() {
-        this.toggleProperty('isEdit')
-      },
-
       toggleCommentForm: function() {
         this.toggleProperty('isFormVisible')
 
