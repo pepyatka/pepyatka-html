@@ -6,7 +6,6 @@ define(["app/app",
     templateName: 'post',
     template: Ember.Handlebars.compile(tpl),
 
-    isEdit: false,
     isFormVisible: false,
 
     isOwner: function() {
@@ -19,11 +18,6 @@ define(["app/app",
     }.property('controller.content.createdBy'),
 
     actions: {
-      toggleEditability: function() {
-        var value = !this.get('isEdit')
-        this.set('isEdit', value)
-      },
-
       toggleCommentForm: function() {
         this.toggleProperty('isFormVisible')
 

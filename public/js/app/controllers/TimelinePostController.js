@@ -7,9 +7,15 @@ define(["config",
     commentSortProperties: ['createdAt:asc'],
     comments: Ember.computed.sort('content.comments', 'commentSortProperties'),
 
+    isEdit: false,
+
     body: Ember.computed.oneWay('model.body'),
 
     actions: {
+      toggleEditability: function() {
+        this.toggleProperty('isEdit')
+      },
+
       destroy: function() {
         var comment = this.get('model')
 
@@ -25,6 +31,7 @@ define(["config",
         post.set('body', body)
         post.save()
           .then(function(newComment) {
+            this.set('isEdit', false)
           }.bind(this))
       },
 

@@ -4,14 +4,14 @@
   </a>
 
   <div class="body">
-    {{#if view.isEdit}}
+    {{#if controller.isEdit}}
       <div class="edit">
         <div>
           {{view 'edit-comment'}}
         </div>
         <div>
           <button {{action 'update'}}>Post</button>
-          <a {{action 'toggleEditability' target=view}}>Cancel</a>
+          <a {{action 'toggleEditability' target=controller}}>Cancel</a>
         </div>
       </div>
     {{else}}
@@ -25,7 +25,7 @@
 
       <span class="controls">
         {{#if view.isOwner}}
-          (<a {{action 'toggleEditability' target=view}}>edit</a>
+          (<a {{action 'toggleEditability' target=controller}}>edit</a>
           |
           <a {{action 'destroy'}}>delete</a>)
         {{/if}}
