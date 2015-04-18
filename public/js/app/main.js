@@ -20,9 +20,10 @@ define([
   "models/Comment",
   "models/Group",
   "models/Post",
-  "models/Subscription",
-  "models/Timeline",
   "models/User",
+  "models/Subscription",
+  "models/Subscriber",
+  "models/Timeline",
 
   "controllers/ApplicationController",
   "controllers/ForgotPasswordController",
