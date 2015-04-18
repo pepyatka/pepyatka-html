@@ -39,3 +39,15 @@
 </div>
 
 <button {{action 'updatePassword'}} class="btn btn-default">Update Password</button>
+
+{{#if message}}
+  <div class="alert alert-info" role="alert">
+    <span id="error-message">{{message}}</span>
+  </div>
+{{/if}}
+
+{{#if errors}}
+  <div class="alert alert-danger" role="alert">
+    <span id="error-message">{{errors}}</span>
+  </div>
+{{/if}}
