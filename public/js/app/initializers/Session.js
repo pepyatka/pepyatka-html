@@ -27,7 +27,7 @@ define(["config", "app/app"], function(config, App) {
           this.set('signedIn', false)
         },
 
-        authTokenChanged: function() {
+        authTokenChanged: function(callback) {
           var done = function(result) {
             var store = container.lookup('store:main')
             store.pushPayload('user', result)
@@ -38,10 +38,12 @@ define(["config", "app/app"], function(config, App) {
 
             this.set('signedIn', true)
 
+            if (callback) callback();
             application.advanceReadiness()
           }
 
           var error = function() {
+            if (callback) callback();
             application.advanceReadiness()
           }
 
@@ -57,7 +59,7 @@ define(["config", "app/app"], function(config, App) {
             .then(done, error)
           else
             error()
-        }.observes('authToken')
+        }
       }).create()
 
       application.register('user:session', App.Session, { instantiate: false, singleton: true })
