@@ -44,6 +44,10 @@ define(["app/app",
     pageDidChange: function() {
       this.didRequestRange({ offset: this.get('offset') || 0,
                              limit: this.get('limit')})
-    }.observes('offset')
+    }.observes('offset'),
+
+    firstPage: function() {
+      return this.get('offset') == null || this.get('offset') == 0
+    }.property('offset')
   })
 })

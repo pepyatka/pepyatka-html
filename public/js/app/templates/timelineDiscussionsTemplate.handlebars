@@ -1,3 +1,6 @@
-{{view "submit-post" sendToVisible="true"}}
+{{#if controller.firstPage}}
+  {{view "submit-post" sendToVisible="true"}}
+{{/if}}
+
 {{view "posts"}}
 {{view "pagination"}}
