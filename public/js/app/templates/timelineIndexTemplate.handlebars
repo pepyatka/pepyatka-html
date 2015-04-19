@@ -1,4 +1,8 @@
 {{view "profile-links"}}
-{{view "submit-post"}}
+
+{{#if controller.firstPage}}
+  {{view "submit-post" sendToVisible="true"}}
+{{/if}}
+
 {{view "posts"}}
 {{view "pagination"}}
