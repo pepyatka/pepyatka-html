@@ -20,8 +20,9 @@ define(["config",
           .then(function(result) {
             App.Session.set('authToken', result.authToken)
             this.set('errors', null)
-
-            this.transitionToRoute('timeline.home')
+            App.Session.authTokenChanged(function () {
+                this.transitionToRoute('timeline.home')
+            }.bind(this))
           }, function(err) {
             this.set('errors', JSON.parse(err.responseText).err)
           })
