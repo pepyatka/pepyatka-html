@@ -1,7 +1,10 @@
 To:
 
 <select id="sendToSelect" multiple="multiple">
-  <option>My feed</option>
+  <option selected="selected" value="{{controller.session.currentUser.username}}">My feed</option>
+  {{#each group in controller.session.currentUser.groups}}
+    <option value="{{group.user.username}}">{{group.user.screenName}}</option>
+  {{/each}}
 </select>
 
 {{#if view.showToggler}}

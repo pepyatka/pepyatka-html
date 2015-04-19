@@ -43,7 +43,8 @@ define(["app/app",
       create: function() {
         // Create a post record
         var post = this.store.createRecord('post', {
-          body: this.get('body')
+          body: this.get('body'),
+          feeds: Ember.$('#sendToSelect').val()
         })
 
         // Attach the attachments
