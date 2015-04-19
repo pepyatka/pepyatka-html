@@ -10,7 +10,9 @@
         {{#if content.user.isGroup}}
           {{#link-to 'settings.feed' content.user.username}}Settings{{/link-to}}
         {{else}}
-          {{#link-to 'settings.index'}}Settings{{/link-to}}
+          {{#if view.isOwner}}
+            {{#link-to 'settings.index'}}Settings{{/link-to}}
+          {{/if}}
         {{/if}}
       </div>
     </div>
@@ -41,6 +43,7 @@
   </div>
 </div>
 
+{{#unless view.isOwner}}
 <div class="subscribe-controls">
     <div class="row">
         <div class="col-md-10">
@@ -48,5 +51,5 @@
         </div>
     </div>
 </div>
-
+{{/unless}}
 
