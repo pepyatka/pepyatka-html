@@ -1,9 +1,9 @@
-<h3>Users</h3>
+<h3 class="p-timeline-subscription-users-header">Users</h3>
 <ul>
   {{#each subscription in model}}
     {{#if subscription.isPosts}}
       {{#if subscription.user.isUser}}
-        <li>
+        <li class="p-timeline-subscription-user">
           {{#link-to 'timeline.index' subscription.user.username}}
             <div class="avatar">
               <img src="/img/48x48.png" />
@@ -17,12 +17,12 @@
   {{/each}}
 </ul>
 
-<h3>Groups</h3>
+<h3 class="p-timeline-subscription-groups-header">Groups</h3>
 <ul>
   {{#each subscription in model}}
     {{#if subscription.isPosts}}
       {{#if subscription.user.isGroup}}
-        <li>
+        <li class="p-timeline-sunsctiption-group">
           {{#link-to 'timeline.index' subscription.user.username}}
             <div class="avatar">
               <img src="/img/48x48.png" />

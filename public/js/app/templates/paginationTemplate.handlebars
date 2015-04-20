@@ -1,9 +1,9 @@
-<ul class="pager">
+<ul class="pager p-pagination-controls">
   {{#if prevPageVisible}}
-    <li {{bind-attr class="prevPageDisabled"}}><a {{action 'prevPage'}}>« Newer items</a></li>
+    <li {{bind-attr class="prevPageDisabled"}}><a {{action 'prevPage'}} class="p-pagination-newer">« Newer items</a></li>
   {{/if}}
 
   {{#if nextPageVisible}}
-    <li {{bind-attr class="nextPageDisabled"}}><a {{action 'nextPage'}}>Older items »</a></li>
+    <li {{bind-attr class="nextPageDisabled"}}><a {{action 'nextPage'}} class="p-pagination-older">Older items »</a></li>
   {{/if}}
 </ul>

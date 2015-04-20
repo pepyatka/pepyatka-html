@@ -1,12 +1,12 @@
 {{#if controller.session.signedIn}}
-  <div class="create-post">
+  <div class="create-post p-timeline-post-create">
     {{#if view.sendToVisible}}
       <div class="send-to">
         {{view 'send-to'}}
       </div>
     {{/if}}
 
-    <div>
+    <div class="p-create-post-view">
       {{view 'create-post'}}
     </div>
 
@@ -24,7 +24,7 @@
       </div>
       <div class="col-md-2">
         <div class="pull-right">
-          <button {{action 'create'}} class="btn btn-default btn-xs">Post</button>
+          <button {{action 'create'}} class="btn btn-default btn-xs p-create-post-action">Post</button>
         </div>
       </div>
     </div>

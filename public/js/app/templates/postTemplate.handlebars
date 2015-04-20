@@ -14,20 +14,20 @@
           {{view 'edit-post'}}
         </div>
         <div>
-          <button {{action 'update'}} class="btn btn-default btn-xs">Post</button>
-          <a {{action 'toggleEditability'}}>Cancel</a>
+          <button {{action 'update'}} class="btn btn-default btn-xs p-post-post">Post</button>
+          <a {{action 'toggleEditability'}} class="p-post-cancel">Cancel</a>
         </div>
       </div>
     {{else}}
       <div class="body">
-        <div class="text">
+        <div class="text p-post-text">
           {{content.body}}
         </div>
       </div>
     {{/if}}
 
   {{#if content.attachments}}
-    <div class="attachments">
+    <div class="attachments p-post-attachments">
       {{#each attachment in content.attachments itemController="post-attachment"}}
         {{view "post-attachment" content=attachment}}
       {{/each}}
@@ -41,26 +41,26 @@
 
     <span class="post-controls">
       {{#if controller.session.signedIn}}
-        <a {{action 'toggleCommentForm' target=view}}>Comment</a>
+        <a {{action 'toggleCommentForm' target=view}} class="p-post-comment">Comment</a>
       {{/if}}
 
       {{#if view.isOwner}}
-        (<a {{action 'toggleEditability'}}>Edit</a>
+        (<a {{action 'toggleEditability'}} class="p-post-toggle-editability">Edit</a>
         |
-        <a {{action 'destroy'}}>Destroy</a>)
+        <a {{action 'destroy'}} class="p-post-destroy">Destroy</a>)
       {{/if}}
       {{#if controller.session.signedIn}}
-          <span><a {{action 'like'}}>Like</a></span>
-          <span>(<a {{action 'unlike'}}>Un-like</a>)</span>
+          <span><a {{action 'like'}} class="p-post-like">Like</a></span>
+          <span>(<a {{action 'unlike'}} class="p-post-unlike">Un-like</a>)</span>
       {{/if}}
     </span>
 
     {{#if content.likes}}
         <div class="likes">
             <i class="fa fa-smile-o icon"></i>
-            <ul>
+            <ul class="p-post-likes">
               {{#each user in content.likes}}
-                  <li>
+                  <li class="p-post-user-like">
                     {{#link-to 'timeline.index' user.username}}{{user.screenName}}{{/link-to}}
                   </li>
               {{/each}}
@@ -82,8 +82,8 @@
           {{view 'create-comment'}}
         </div>
         <div>
-          <button {{action 'create'}} class="btn btn-default btn-xs">Post</button>
-          <a {{action 'toggleCommentForm' target=view}}>Cancel</a>
+          <button {{action 'create'}} class="btn btn-default btn-xs p-post-post-comment">Post</button>
+          <a {{action 'toggleCommentForm' target=view}} class="p-post-cancel-comment">Cancel</a>
         </div>
       </div>
     </div>

@@ -1,53 +1,53 @@
-<h1>Settings</h1>
+<h1 class="p-settings-header">Settings</h1>
 
-<div class="form-group">
+<div class="form-group p-settings-screenname">
   <label for="screenName">Screen name:</label>
   {{input name="screenName" value=screenName class="form-control" id="screenName"}}
 </div>
 
-<div class="form-group">
+<div class="form-group p-settings-email">
   <label for="email">Email:</label>
   {{input name="email" id="email" value=content.email class="form-control"}}
 </div>
 
-<div class="checkbox">
+<div class="checkbox p-settings-private">
   <label>
     {{input type="checkbox" name="isPrivate" checked=content.isPrivate }}
     Private
   </label>
 </div>
 
-<button {{action 'update'}} class="btn btn-default">Update</button>
+<button {{action 'update'}} class="btn btn-default p-settings-update">Update</button>
 
 <hr/>
 
-<h2>Change password</h2>
+<h2 class="p-settings-changepassword-header">Change password</h2>
 
-<div class="form-group">
+<div class="form-group p-settings-currentpassword">
   <label for="currentPassword">Current password:</label>
   {{input name="currentPassword" id="currentPassword" type="password" value=currentPassword class="form-control"}}
 </div>
 
-<div class="form-group">
+<div class="form-group p-settings-newpassword">
   <label for="password">New password:</label>
   {{input name="password" id="password" type="password" value=password class="form-control"}}
 </div>
 
-<div class="form-group">
+<div class="form-group p-settings-confirmpassword">
   <label for="passwordConfirmation">Confirm password:</label>
   {{input name="passwordConfirmation" id="passwordConfirmation" type="password" value=passwordConfirmation class="form-control"}}
 </div>
 
-<button {{action 'updatePassword'}} class="btn btn-default">Update Password</button>
+<button {{action 'updatePassword'}} class="btn btn-default p-settings-updatepassword">Update Password</button>
 
 {{#if message}}
-  <div class="alert alert-info" role="alert">
+  <div class="alert alert-info p-settings-alert" role="alert">
     <span id="error-message">{{message}}</span>
   </div>
 {{/if}}
 
 {{#if errors}}
-  <div class="alert alert-danger" role="alert">
+  <div class="alert alert-danger p-settings-message" role="alert">
     <span id="error-message">{{errors}}</span>
   </div>
 {{/if}}

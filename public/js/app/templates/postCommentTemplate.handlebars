@@ -1,17 +1,17 @@
-<div class="comment">
+<div class="comment p-comment">
   <a class="date" {{bind-attr title="comment.model.createdAgo"}}>
       <i class="fa fa-comment-o icon"></i>
   </a>
 
-  <div class="body">
+  <div class="body p-comment-body">
     {{#if controller.isEdit}}
       <div class="edit">
         <div>
           {{view 'edit-comment'}}
         </div>
-        <div>
-          <button {{action 'update'}}>Post</button>
-          <a {{action 'toggleEditability' target=controller}}>Cancel</a>
+        <div class="p-comment-actions">
+          <button {{action 'update'}} class="p-comment-post">Post</button>
+          <a {{action 'toggleEditability' target=controller}} class="p-comment-cancel">Cancel</a>
         </div>
       </div>
     {{else}}
@@ -25,9 +25,9 @@
 
       <span class="controls">
         {{#if view.isOwner}}
-          (<a {{action 'toggleEditability' target=controller}}>edit</a>
+          (<a {{action 'toggleEditability' target=controller}} class="p-comment-edit">edit</a>
           |
-          <a {{action 'destroy'}}>delete</a>)
+          <a {{action 'destroy'}} class="p-comment-delete">delete</a>)
         {{/if}}
       </span>
     {{/if}}

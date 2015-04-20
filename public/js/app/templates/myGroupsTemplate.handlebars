@@ -1,5 +1,5 @@
-<ul>
+<ul class="p-my-groups">
   {{#each group in controller.session.currentUser.groups}}
-    <li>{{#link-to 'timeline.index' group.user.username}}{{group.user.screenName}}{{/link-to}}</li>
+    <li class="p-my-groups-link">{{#link-to 'timeline.index' group.user.username}}{{group.user.screenName}}{{/link-to}}</li>
   {{/each}}
 </ul>
