@@ -1,8 +1,8 @@
-<h1>Settings</h1>
+<h1 class="p-update-settings-header">Settings</h1>
 
-<div class="form-group">
-  <label>Screen name:</label>
-  {{input name="screenName" value=screenName class="form-control"}}
+<div class="form-group p-update-settings-form">
+  <label for="screenName">Screen name:</label>
+  {{input id="screenName" name="screenName" value=screenName class="form-control"}}
 </div>
 
-<button {{action 'update'}} class="btn btn-default">Update</button>
+<button {{action 'update'}} class="btn btn-default p-update-settings-action">Update</button>

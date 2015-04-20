@@ -1,8 +1,8 @@
 <div class="col-md-12">
-  <h2>Sign up</h2>
+  <h2 class="p-signup-header">Sign up</h2>
 
   {{#if errors}}
-    <div class="alert alert-danger" role="alert">
+    <div class="alert alert-danger p-signup-errors" role="alert">
       <span>Error:</span>
       <span id="error-message">{{errors}}</span>
     </div>
@@ -10,7 +10,7 @@
 
   <div class="row">
     <div class="col-md-6">
-      <form action="/session" method="post">
+      <form action="/session" method="post" class="p-signup-form">
         <div class="form-group">
           <label for="username">Username</label>
           {{input id="username" value=username type="text" class="form-control"}}
