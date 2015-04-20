@@ -23,8 +23,11 @@ define(["config", "app/app"], function(config, App) {
 
         reset: function() {
           this.set('authToken', null)
-          this.set('currentUser', null)
-          this.set('signedIn', false)
+
+          this.authTokenChanged(function() {
+            this.set('currentUser', null)
+            this.set('signedIn', false)
+          }.bind(this))
         },
 
         authTokenChanged: function(callback) {
