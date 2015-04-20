@@ -1,4 +1,4 @@
-<div class="col-md-3">
+<div class="col-md-12">
   <h2 class="p-create-new-group-header">Create new group</h2>
 
   <p class="p-create-new-group-description">Pepyatka feeds are extremely flexible. They can even be used to
@@ -12,19 +12,23 @@
     </div>
   {{/if}}
 
-  <form action="/groups" method="post" class="p-create-new-group-form">
-    <div class="form-group p-create-new-group-name">
-      <label for="screenName">Name</label>
-      {{input id="screenName" name="screenName" value=screenName class="form-control"}}
-    </div>
+  <div class="row">
+    <div class="col-md-6">
+      <form action="/groups" method="post" class="p-create-new-group-form">
+        <div class="form-group p-create-new-group-name">
+          <label for="screenName">Name</label>
+          {{input id="screenName" name="screenName" value=screenName class="form-control"}}
+        </div>
 
-    <div class="form-group p-create-new-group-username">
-      <label for="username">Username</label>
-      {{input id="username" value=username type="text" class="form-control"}}
-    </div>
+        <div class="form-group p-create-new-group-username">
+          <label for="username">Username</label>
+          {{input id="username" value=username type="text" class="form-control"}}
+        </div>
 
-    <div class="form-group p-create-new-group-action">
-      <button {{action "create"}} class="btn btn-primary p-create-feed">Create feed</button>
+        <div class="form-group p-create-new-group-action">
+          <button {{action "create"}} class="btn btn-default p-create-feed">Create feed</button>
+        </div>
+      </form>
     </div>
-  </form>
+  </div>
 </div>
