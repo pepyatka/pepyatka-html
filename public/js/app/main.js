@@ -25,7 +25,6 @@ define([
   "models/Subscriber",
   "models/Timeline",
 
-  "controllers/ApplicationController",
   "controllers/ForgotPasswordController",
   "controllers/GroupsHomeController",
   "controllers/GroupsNewController",
@@ -76,7 +75,9 @@ define([
 
   "transforms/FileTransform",
 
-  "views/ApplicationView",
+  "views/AuthorizedView",
+  "views/UnauthorizedView",
+
   "views/ForgotPasswordView",
   "views/GroupsHomeView",
   "views/GroupsNewView",

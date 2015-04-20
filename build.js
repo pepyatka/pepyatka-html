@@ -39,6 +39,7 @@
     'controllers': 'app/controllers',
     'components': 'app/components',
     'initializers': 'app/initializers',
+    'layouts': 'app/layouts',
     'models': 'app/models',
     'routes': 'app/routes',
     'serializers': 'app/serializers',
