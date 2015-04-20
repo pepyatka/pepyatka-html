@@ -3,7 +3,7 @@
     {{#link-to 'timeline.index' post.model.createdBy.username (query-params offset=0)}}<img src="/img/48x48.png" />{{/link-to}}
   </div>
 
-  <div class="post-body">
+  <div class="post-body p-timeline-post">
     <div class="title">
       {{#link-to 'timeline.index' post.model.createdBy.username}}{{post.model.createdBy.screenName}}{{/link-to}}
     </div>
@@ -34,42 +34,42 @@
       </div>
     {{/if}}
 
-    <div class="info">
+    <div class="info p-timeline-post-info">
       <span class="post-date">
         {{#link-to 'post' post.content.createdBy.username post.content.id class="datetime"}}<time {{bind-attr datetime="post.model.createdAgo"}}>{{post.model.createdAgo}}</time>{{/link-to}}
       </span>
 
       <span class="post-controls">
         {{#if controller.session.signedIn}}
-          <a {{action 'toggleCommentForm' target=view}}>Comment</a>
+          <a {{action 'toggleCommentForm' target=view}} class="p-timeline-post-comment-action">Comment</a>
         {{/if}}
 
         {{#if view.parentView.parentView.isRiverOfNews}}
           -
           {{#if post.model.canHide}}
-            <a {{action 'hide'}}>Hide</a>
+            <a {{action 'hide'}} class="p-timeline-post-hide-action">Hide</a>
           {{else}}
-            <a {{action 'unhide'}}>Un-hide</a>
+            <a {{action 'unhide'}} class="p-timeline-post-unhide-action">Un-hide</a>
           {{/if}}
         {{/if}}
 
         {{#if view.isOwner}}
-          (<a {{action 'toggleEditability'}}>Edit</a>
+          (<a {{action 'toggleEditability'}} class="p-timeline-post-edit-action">Edit</a>
           |
-          <a {{action 'destroy'}}>Destroy</a>)
+          <a {{action 'destroy'}} class="p-timeline-post-destroy-action">Destroy</a>)
         {{/if}}
         {{#if controller.session.signedIn}}
-            <span><a {{action 'like'}}>Like</a></span>
-          <span>(<a {{action 'unlike'}}>Un-like</a>)</span>
+            <span><a {{action 'like'}} class="p-timeline-post-like-action">Like</a></span>
+          <span>(<a {{action 'unlike'}} class="p-timeline-post-unlike-action">Un-like</a>)</span>
         {{/if}}
       </span>
 
       {{#if post.content.likes}}
         <div class="likes">
           <i class="fa fa-smile-o icon"></i>
-          <ul>
+          <ul class="p-timeline-user-likes">
             {{#each user in post.content.likes}}
-              <li>
+              <li class="p-timeline-user-like">
                 {{#link-to 'timeline.index' user.username}}{{user.screenName}}{{/link-to}}
               </li>
             {{/each}}
@@ -84,18 +84,18 @@
       {{/each}}
 
       {{#if view.isFormVisible}}
-          <div class="comment">
+          <div class="comment" class="p-timeline-comment">
               <a class="date">
                   <i class="fa fa-comment-o icon"></i>
               </a>
               <div class="body">
-                  <div class="edit">
-                      <div>
+                  <div class="edit" class="p-timeline-edit-comment">
+                      <div class="p-timeline-comment-create">
                         {{view 'create-comment'}}
                       </div>
-                      <div>
-                          <button {{action 'create'}} class="btn btn-default btn-xs">Post</button>
-                          <a {{action 'toggleCommentForm' target=view}}>Cancel</a>
+                      <div class="p-timeline-comment-actions">
+                          <button {{action 'create'}} class="btn btn-default btn-xs p-timeline-comment-post">Post</button>
+                          <a {{action 'toggleCommentForm' target=view}} class="p-timeline-comment-cancel">Cancel</a>
                       </div>
                   </div>
               </div>

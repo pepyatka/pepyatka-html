@@ -12,8 +12,8 @@
       <div class="row">
         <div class="col-md-6 search-field">
           <div class="form-inline">
-            <input class="form-control input-sm search-input" />
-            <button class="btn btn-default btn-sm">Search</button>
+            <input class="form-control input-sm search-input p-search-input" />
+            <button class="btn btn-default btn-sm p-search-action">Search</button>
           </div>
         </div>
 
@@ -75,9 +75,9 @@
         </div>
         <div class="box-body">
           <ul>
-            <li>{{#link-to 'timeline.home'}}Home{{/link-to}}</li>
-            <li><a href="#">Direct messages</a></li>
-            <li>{{#link-to 'timeline.discussions'}}My discussions{{/link-to}}</li>
+            <li class="p-home">{{#link-to 'timeline.home'}}Home{{/link-to}}</li>
+            <li class="p-direct-messages"><a href="#">Direct messages</a></li>
+            <li class="p-my-discussions">{{#link-to 'timeline.discussions'}}My discussions{{/link-to}}</li>
           </ul>
         </div>
         <div class="box-footer">
@@ -101,7 +101,7 @@
 
   <div class="row">
     <div class="col-md-9">
-      <footer>Footer</footer>
+      <footer class="p-footer">Footer</footer>
     </div>
   </div>
 </div>

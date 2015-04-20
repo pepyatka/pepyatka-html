@@ -1,30 +1,30 @@
 <div class="col-md-3">
-  <h2>Create new group</h2>
+  <h2 class="p-create-new-group-header">Create new group</h2>
 
-  <p>Pepyatka feeds are extremely flexible. They can even be used to
+  <p class="p-create-new-group-description">Pepyatka feeds are extremely flexible. They can even be used to
   share privately with a group or as a discussion forums. <a>Learn
   more about feeds</a></p>
 
   {{#if errors}}
-    <div class="alert alert-danger" role="alert">
+    <div class="alert alert-danger p-create-new-group-error" role="alert">
       <span>Error:</span>
       <span id="error-message">{{errors}}</span>
     </div>
   {{/if}}
 
-  <form action="/groups" method="post">
-    <div class="form-group">
-      <label for="password">Name</label>
+  <form action="/groups" method="post" class="p-create-new-group-form">
+    <div class="form-group p-create-new-group-name">
+      <label for="screenName">Name</label>
       {{input name="screenName" value=screenName class="form-control"}}
     </div>
 
-    <div class="form-group">
+    <div class="form-group p-create-new-group-username">
       <label for="username">Username</label>
       {{input value=username type="text" class="form-control"}}
     </div>
 
-    <div class="form-group">
-      <button {{action "create"}} class="btn btn-primary">Create feed</button>
+    <div class="form-group p-create-new-group-action">
+      <button {{action "create"}} class="btn btn-primary p-create-feed">Create feed</button>
     </div>
   </form>
 </div>

@@ -1,15 +1,15 @@
 <div class="col-md-12">
-  <h2>Sign in</h2>
+  <h2 class="p-signin-header">Sign in</h2>
 
   {{#if errors}}
-    <div class="alert alert-danger" role="alert">
+    <div class="alert alert-danger p-signin-error" role="alert">
       <span id="error-message">{{errors}}</span>
     </div>
   {{/if}}
 
   <div class="row">
     <div class="col-md-6">
-      <form action="/session" method="post">
+      <form action="/session" method="post" class="p-signin">
         <div class="form-group">
           <label for="username">Username</label>
           {{input id="username" value=username type="text" class="form-control"}}
@@ -21,7 +21,7 @@
         </div>
 
         <div class="form-group">
-          <button {{action "signin"}} class="btn btn-default">Sign In</button>
+          <button {{action "signin"}} class="btn btn-default p-singin-action">Sign In</button>
         </div>
       </form>
 
