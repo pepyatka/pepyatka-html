@@ -1,6 +1,6 @@
 <div class="timeline-post-container">
   <div class="avatar">
-    <img src="/img/48x48.png" />
+    {{#link-to 'timeline.index' controller.session.currentUser.username (query-params offset=0)}}<img src="/img/48x48.png" />{{/link-to}}
   </div>
 
   <div class="post-body">
