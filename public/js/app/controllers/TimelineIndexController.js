@@ -5,8 +5,13 @@ define(["config",
   "use strict";
 
   App.TimelineIndexController = Ember.Controller.extend(App.Pagination, {
-    postSortProperties: ['createdAt:desc'],
-    posts: Ember.computed.sort('model.posts', 'postSortProperties'),
+    posts: function() {
+      return Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
+        sortProperties: ['createdAt'],
+        sortAscending: false,
+        content: this.get('model.posts')
+      })
+    }.property('model.posts'),
 
     didRequestRange: function(options) {
       this.transitionToRoute({ queryParams: { offset: options.offset } })

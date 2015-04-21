@@ -4,8 +4,19 @@ define(["app/app",
   "use strict";
 
   App.TimelineHomeController = Ember.Controller.extend(App.Pagination, {
-    postSortProperties: ['createdAt:desc'],
-    allPosts: Ember.computed.sort('model.posts', 'postSortProperties'),
+    // NOTE: this code doesn't work reliably, see
+    // https://github.com/emberjs/ember.js/issues/10343
+    // postSortProperties: ['createdAt:desc'],
+    // allPosts: Ember.computed.sort('model.posts', 'postSortProperties'),
+
+    allPosts: function() {
+      return Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
+        sortProperties: ['createdAt'],
+        sortAscending: false,
+        content: this.get('model.posts')
+      })
+    }.property('model.posts'),
+
     attachments: [],
 
     posts: function() {
