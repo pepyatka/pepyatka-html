@@ -24,9 +24,6 @@ define(["app/app",
 
         this.set('body', '')
         post.save()
-          .then(function(post) {
-            this.get('content.posts').pushObject(post)
-          }.bind(this))
       }
     }
   })
