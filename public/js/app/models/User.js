@@ -1,5 +1,6 @@
 define(["lodash",
-        "app/app"], function(_, App) {
+        "app/app",
+        'moment'], function(_, App, moment) {
   "use strict";
 
   App.User = DS.Model.extend({
@@ -9,6 +10,8 @@ define(["lodash",
     email: DS.attr('string'),
     statistics: DS.attr(),
     subscriptions: DS.hasMany('subscription'),
+    createdAt: DS.attr('number'),
+    updatedAt: DS.attr('number'),
 
     isGroup: function() {
       return this.get('type') === 'group'
@@ -23,6 +26,13 @@ define(["lodash",
         return subscription.get('user.isGroup') &&
           subscription.get('isPosts')
       })
-    }.property()
+    }.property(),
+
+    updatedAgo: function() {
+      console.log(this.get('updatedAt'))
+      if (this.get('updatedAt')) {
+        return moment(this.get('updatedAt')).fromNow()
+      }
+    }.property('updatedAt')
   })
 })
