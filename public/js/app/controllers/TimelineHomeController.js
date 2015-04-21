@@ -55,10 +55,6 @@ define(["app/app",
 
         // Save it to the backend
         post.save()
-          .then(function(post) {
-            // Add the new post to the timeline
-            this.get('content.posts').pushObject(post)
-          }.bind(this))
       }
     }
   })
