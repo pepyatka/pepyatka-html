@@ -1,3 +1,6 @@
 {{view "profile-links"}}
+{{#unless controller.firstPage}}
+  {{view "pagination"}}
+{{/unless}}
 {{view "posts"}}
 {{view "pagination"}}
