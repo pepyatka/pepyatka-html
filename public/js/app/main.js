@@ -36,6 +36,7 @@ define([
   "controllers/SessionDestroyController",
   "controllers/SettingsIndexController",
   "controllers/SettingsFeedController",
+  "controllers/TimelineGenericController",
   "controllers/TimelineCommentsController",
   "controllers/TimelineIndexController",
   "controllers/TimelineDiscussionsController",

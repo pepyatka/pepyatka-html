@@ -1,31 +1,7 @@
 define(["app/app",
-        "ember",
-        "components/Pagination"], function(App, Ember) {
+        "controllers/TimelineGenericController"], function(App) {
   "use strict";
 
-  App.TimelineDiscussionsController = Ember.Controller.extend(App.Pagination, {
-    posts: function() {
-      return Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
-        sortProperties: ['createdAt'],
-        sortAscending: false,
-        content: this.get('model.posts')
-      })
-    }.property('model.posts'),
-
-    didRequestRange: function(options) {
-      this.transitionToRoute({ queryParams: { offset: options.offset } })
-    },
-
-    actions: {
-      create: function() {
-        var post = this.store.createRecord('post', {
-          body: this.get('body'),
-          feeds: Ember.$('#sendToSelect').val()
-        })
-
-        this.set('body', '')
-        post.save()
-      }
-    }
-  })
+  // Timeline on /filter/discussions
+  App.TimelineDiscussionsController = App.TimelineGenericController.extend()
 })
