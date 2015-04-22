@@ -6,6 +6,15 @@
   <div class="post-body">
     <div class="title">
       {{#link-to 'timeline.index' post.model.createdBy.username}}{{post.model.createdBy.screenName}}{{/link-to}}
+      {{#if post.model.groups}}
+        to
+        {{#each post.model.postedTo as |feed index|}}
+            {{#unless index}}
+              {{#link-to 'timeline.index' post.model.createdBy.username ~}}{{post.model.timelineScreenName}}'s feed{{/link-to ~}}
+            {{else}}, {{#link-to 'timeline.index' feed.username ~}}{{feed.screenName}}{{/link-to ~}}
+            {{/unless}}
+        {{/each}}
+      {{/if}}
     </div>
 
     {{#if controller.isEdit}}
