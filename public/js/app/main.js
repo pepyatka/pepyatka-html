@@ -29,6 +29,7 @@ define([
   "controllers/GroupsHomeController",
   "controllers/GroupsNewController",
   "controllers/PostAttachmentController",
+  "controllers/PostGenericController",
   "controllers/PostController",
   "controllers/PostCommentController",
   "controllers/ResetPasswordController",
