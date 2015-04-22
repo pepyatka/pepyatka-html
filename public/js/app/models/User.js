@@ -29,7 +29,6 @@ define(["lodash",
     }.property(),
 
     updatedAgo: function() {
-      console.log(this.get('updatedAt'))
       if (this.get('updatedAt')) {
         return moment(this.get('updatedAt')).fromNow()
       }
