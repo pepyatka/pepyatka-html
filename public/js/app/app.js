@@ -6,6 +6,7 @@ define(["ember"
         , "text"
         , "socket.io"
         , "select2"
+        , "lodash"
        ], function(Ember) {
   "use strict";
 
