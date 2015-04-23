@@ -80,33 +80,37 @@ define([
   "views/AuthorizedView",
   "views/UnauthorizedView",
 
+  // page views
   "views/ForgotPasswordView",
   "views/GroupsHomeView",
   "views/GroupsNewView",
   "views/HomeView",
-  "views/HiddenPostsView",
-  "views/MyGroupsView",
-  "views/PaginationView",
   "views/PostView",
-  "views/PostsView",
-  "views/PostAttachmentView",
-  "views/PostCommentView",
-  "views/ProfileLinksView",
   "views/ResetPasswordView",
   "views/SessionNewView",
   "views/SettingsIndexView",
   "views/SettingsFeedView",
-  "views/SendToView",
-  "views/SubmitPostView",
   "views/TimelineCommentsView",
   "views/TimelineIndexView",
   "views/TimelineDiscussionsView",
   "views/TimelineHomeView",
   "views/TimelineLikesView",
-  "views/TimelinePostView",
   "views/TimelineSubscribersView",
   "views/TimelineSubscriptionsView",
-  "views/UsersNewView"
+  "views/UsersNewView",
+
+  // partial views
+  "views/BreadcrumbsView",
+  "views/HiddenPostsView",
+  "views/MyGroupsView",
+  "views/PaginationView",
+  "views/PostsView",
+  "views/PostAttachmentView",
+  "views/PostCommentView",
+  "views/ProfileLinksView",
+  "views/SendToView",
+  "views/SubmitPostView",
+  "views/TimelinePostView"
 ], function(App) {
   "use strict";
 
