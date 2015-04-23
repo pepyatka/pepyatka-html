@@ -107,6 +107,7 @@ define([
   "views/PostsView",
   "views/PostAttachmentView",
   "views/PostCommentView",
+  "views/PostLikesView",
   "views/ProfileLinksView",
   "views/SendToView",
   "views/SubmitPostView",
