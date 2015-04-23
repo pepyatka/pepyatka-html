@@ -4,10 +4,21 @@
     <i class="fa fa-smile-o fa-stack-1x icon"></i>
   </span>
   <ul class="p-timeline-user-likes">
-    {{#each user in view.likes}}
-      <li class="p-timeline-user-like">
-        {{#link-to 'timeline.index' user.username}}{{user.screenName}}{{/link-to}}
-      </li>
-    {{/each}}
+    {{#if view.isHidden}}
+      {{#each user in view.shownLikes}}
+        <li class="p-timeline-user-like">
+          {{#link-to 'timeline.index' user.username}}{{user.screenName}}{{/link-to}}
+        </li>
+      {{/each}}
+      and
+      <a {{action 'toggleHidden' target=view}}>{{view.hiddenLikes.length}} other people</a>
+      liked this
+    {{else}}
+      {{#each user in view.likes}}
+        <li class="p-timeline-user-like">
+          {{#link-to 'timeline.index' user.username}}{{user.screenName}}{{/link-to}}
+        </li>
+      {{/each}}
+    {{/if}}
   </ul>
 </div>
