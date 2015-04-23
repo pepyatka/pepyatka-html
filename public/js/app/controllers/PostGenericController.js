@@ -36,7 +36,8 @@ define(["config",
         this.set('newComment', '')
         comment.save()
           .then(function(comment) {
-            if (!this.store.recordIsLoaded('comment', comment.id)) {
+            var object = this.get('content.comments').findProperty('id', comment.get('id'))
+            if (!object) {
               this.get('content.comments').pushObject(comment)
             }
           }.bind(this))
