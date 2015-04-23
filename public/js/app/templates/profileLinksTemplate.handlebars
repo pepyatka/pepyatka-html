@@ -9,10 +9,6 @@
         <div class="name">{{content.user.screenName}}</div>
         {{#if content.user.isGroup}}
           {{#link-to 'settings.feed' content.user.username}}Settings{{/link-to}}
-        {{else}}
-          {{#if view.isOwner}}
-            {{#link-to 'settings.index'}}Settings{{/link-to}}
-          {{/if}}
         {{/if}}
       </div>
     </div>
