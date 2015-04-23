@@ -8,6 +8,10 @@ define(["config",
   App.TimelineIndexController = App.TimelineGenericController.extend({
     selectFeedsOnCreate: false,
 
+    isSubscribed: function() {
+      return this.get('session.currentUser.subscriptions').isAny('id', this.get('model.id'))
+    }.property('session.currentUser.id', 'session.currentUser.subscriptions.@each', 'model.id'),
+
     actions: {
       subscribe: function() {
         var user = this.get('model.user')
