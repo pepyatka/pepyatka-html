@@ -1,33 +1,14 @@
 define(["config",
         "app/app",
         "ember",
-        "components/Pagination"], function(config, App, Ember) {
+        "controllers/TimelineGenericController"], function(config, App, Ember) {
   "use strict";
 
-  App.TimelineIndexController = Ember.Controller.extend(App.Pagination, {
-    posts: function() {
-      return Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
-        sortProperties: ['createdAt'],
-        sortAscending: false,
-        content: this.get('model.posts')
-      })
-    }.property('model.posts'),
-
-    didRequestRange: function(options) {
-      this.transitionToRoute({ queryParams: { offset: options.offset } })
-    },
+  // Timeline on /username
+  App.TimelineIndexController = App.TimelineGenericController.extend({
+    selectFeedsOnCreate: false,
 
     actions: {
-      create: function() {
-        var post = this.store.createRecord('post', {
-          body: this.get('body'),
-          feeds: this.get('model.user.username')
-        })
-
-        this.set('body', '')
-        post.save()
-      },
-
       subscribe: function() {
         var user = this.get('model.user')
         Ember.$.ajax({
