@@ -1,5 +1,6 @@
 define(["lodash",
-        "app/app"], function(_, App) {
+        "app/app",
+        "models/User"], function(_, App, User) {
   "use strict";
 
   App.Subscriber = App.User.extend({
