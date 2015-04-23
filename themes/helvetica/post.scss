@@ -39,8 +39,17 @@
 
   .likes {
     margin-top: 8px;
+    .icon-stack {
+      height: auto;
+      line-height: 0.9;
+      width: auto;
+      float: left;
+    }
     .icon {
-      margin-top: 2px;
+      float: left;
+      color: #fff;
+    }
+    .icon-bg {
       float: left;
       color: #ffb914;
     }

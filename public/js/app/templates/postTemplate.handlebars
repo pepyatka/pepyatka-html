@@ -50,22 +50,25 @@
         <a {{action 'destroy'}} class="p-post-destroy">Destroy</a>)
       {{/if}}
       {{#if controller.session.signedIn}}
-          <span><a {{action 'like'}} class="p-post-like">Like</a></span>
-          <span>(<a {{action 'unlike'}} class="p-post-unlike">Un-like</a>)</span>
+        <span><a {{action 'like'}} class="p-post-like">Like</a></span>
+        <span>(<a {{action 'unlike'}} class="p-post-unlike">Un-like</a>)</span>
       {{/if}}
     </span>
 
     {{#if content.likes}}
-        <div class="likes">
-            <i class="fa fa-smile-o icon"></i>
-            <ul class="p-post-likes">
-              {{#each user in content.likes}}
-                  <li class="p-post-user-like">
-                    {{#link-to 'timeline.index' user.username}}{{user.screenName}}{{/link-to}}
-                  </li>
-              {{/each}}
-            </ul>
-        </div>
+      <div class="likes">
+        <span class="fa-stack fa-lg icon-stack">
+          <i class="fa fa-circle fa-stack-1x icon-bg"></i>
+          <i class="fa fa-smile-o fa-stack-1x icon"></i>
+        </span>
+        <ul class="p-post-likes">
+          {{#each user in content.likes}}
+            <li class="p-post-user-like">
+              {{#link-to 'timeline.index' user.username}}{{user.screenName}}{{/link-to}}
+            </li>
+          {{/each}}
+        </ul>
+      </div>
     {{/if}}
   </div>
 
