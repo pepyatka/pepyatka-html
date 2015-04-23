@@ -26,7 +26,7 @@ define(["lodash",
         return subscription.get('user.isGroup') &&
           subscription.get('isPosts')
       })
-    }.property(),
+    }.property('subscriptions.@each'),
 
     updatedAgo: function() {
       if (this.get('updatedAt')) {
