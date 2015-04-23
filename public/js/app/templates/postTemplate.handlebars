@@ -50,8 +50,12 @@
         <a {{action 'destroy'}} class="p-post-destroy">Destroy</a>)
       {{/if}}
       {{#if controller.session.signedIn}}
-        <span><a {{action 'like'}} class="p-post-like">Like</a></span>
-        <span>(<a {{action 'unlike'}} class="p-post-unlike">Un-like</a>)</span>
+        -
+        {{#if isLiked}}
+          <span><a {{action 'unlike'}} class="p-post-unlike">Un-like</a></span>
+        {{else}}
+          <span><a {{action 'like'}} class="p-post-like">Like</a></span>
+        {{/if}}
       {{/if}}
     </span>
 

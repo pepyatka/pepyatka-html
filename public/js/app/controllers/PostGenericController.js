@@ -18,6 +18,10 @@ define(["config",
       })
     }.property('model.posts'),
 
+    isLiked: function() {
+      return this.get('model.likes').isAny('id', this.get('session.currentUser.id'))
+    }.property('model.likes', 'session.currentUser.id'),
+
     isEdit: false,
 
     body: Ember.computed.oneWay('model.body'),

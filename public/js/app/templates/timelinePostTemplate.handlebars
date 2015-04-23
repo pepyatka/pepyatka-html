@@ -59,8 +59,12 @@
           <a {{action 'destroy'}} class="p-timeline-post-destroy-action">Destroy</a>)
         {{/if}}
         {{#if controller.session.signedIn}}
+          -
+          {{#if controller.isLiked}}
+            <span><a {{action 'unlike'}} class="p-timeline-post-unlike-action">Un-like</a></span>
+          {{else}}
             <span><a {{action 'like'}} class="p-timeline-post-like-action">Like</a></span>
-          <span>(<a {{action 'unlike'}} class="p-timeline-post-unlike-action">Un-like</a>)</span>
+          {{/if}}
         {{/if}}
       </span>
 
