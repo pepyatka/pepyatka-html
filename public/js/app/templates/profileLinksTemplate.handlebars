@@ -2,17 +2,13 @@
   <div class="row">
     <div class="col-md-9">
       <div class="avatar">
-        <img src="/img/64x64.png">
+        <img src="/img/64x64.png" >
       </div>
 
       <div class="description">
         <div class="name">{{content.user.screenName}}</div>
         {{#if content.user.isGroup}}
           {{#link-to 'settings.feed' content.user.username}}Settings{{/link-to}}
-        {{else}}
-          {{#if view.isOwner}}
-            {{#link-to 'settings.index'}}Settings{{/link-to}}
-          {{/if}}
         {{/if}}
       </div>
     </div>
