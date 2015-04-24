@@ -21,13 +21,15 @@
         </div>
 
         <div class="form-group">
-          <button {{action "signin"}} class="btn btn-default p-singin-action">Sign In</button>
+          <button {{action "signin"}} class="btn btn-default p-singin-action">Sign in</button>
         </div>
       </form>
 
       {{#if errors}}
         {{#link-to "forgot-password"}}Forgot your password?{{/link-to}}
       {{/if}}
+
+      <p>New to Pepyatka? {{#link-to "users.new"}}Create an account »{{/link-to}}</p>
     </div>
   </div>
 </div>
