@@ -1,6 +1,7 @@
-define(["config",
+define(["lodash",
+        "config",
         "moment",
-        "app/app"], function(config, moment, App) {
+        "app/app"], function(_, config, moment, App) {
   "use strict";
 
   App.Post = DS.Model.extend({
@@ -25,6 +26,20 @@ define(["config",
         return moment(this.get('createdAt')).fromNow()
       }
     }.property('createdAt'),
+
+    postedTo: function() {
+      if (this.get('groups')) {
+        return this.get('groups')
+          .toArray()
+          .insertAt(0, this.get('timeline'))
+      }
+    }.property('timeline', 'groups'),
+
+    timelineScreenName: function() {
+      if (this.get('createdBy.screenName')) {
+        return _.chain(this.get('createdBy.screenName')).split(' ').first().value()
+      }
+    }.property('createdBy'),
 
     like: function() {
       return Ember.$.ajax({
