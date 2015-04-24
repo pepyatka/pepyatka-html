@@ -6,3 +6,15 @@
 </div>
 
 <button {{action 'update'}} class="btn btn-default p-update-settings-action">Update</button>
+
+{{#if message}}
+  <div class="alert alert-info p-settings-alert" role="alert">
+    <span id="error-message">{{message}}</span>
+  </div>
+{{/if}}
+
+{{#if errors}}
+  <div class="alert alert-danger p-settings-message" role="alert">
+    <span id="error-message">{{errors}}</span>
+  </div>
+{{/if}}

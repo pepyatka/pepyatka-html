@@ -19,6 +19,18 @@
 
 <button {{action 'update'}} class="btn btn-default p-settings-update">Update</button>
 
+{{#if message}}
+  <div class="alert alert-info p-settings-alert" role="alert">
+    <span id="error-message">{{message}}</span>
+  </div>
+{{/if}}
+
+{{#if errors}}
+  <div class="alert alert-danger p-settings-message" role="alert">
+    <span id="error-message">{{errors}}</span>
+  </div>
+{{/if}}
+
 <hr/>
 
 <h2 class="p-settings-changepassword-header">Change password</h2>
@@ -40,14 +52,14 @@
 
 <button {{action 'updatePassword'}} class="btn btn-default p-settings-updatepassword">Update Password</button>
 
-{{#if message}}
+{{#if passwordMessage}}
   <div class="alert alert-info p-settings-alert" role="alert">
-    <span id="error-message">{{message}}</span>
+    <span id="error-message">{{passwordMessage}}</span>
   </div>
 {{/if}}
 
-{{#if errors}}
+{{#if passwordErrors}}
   <div class="alert alert-danger p-settings-message" role="alert">
-    <span id="error-message">{{errors}}</span>
+    <span id="error-message">{{passwordErrors}}</span>
   </div>
 {{/if}}
