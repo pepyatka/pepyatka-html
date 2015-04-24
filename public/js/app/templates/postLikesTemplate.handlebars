@@ -7,7 +7,7 @@
     {{#if view.isHidden}}
       {{#each user in view.shownLikes}}
         <li class="p-timeline-user-like">
-          {{#link-to 'timeline.index' user.username}}{{user.screenName}}{{/link-to}}
+          {{#link-to 'timeline.index' user.username (query-params offset=0)}}{{user.screenName}}{{/link-to}}
         </li>
       {{/each}}
       and
@@ -16,7 +16,7 @@
     {{else}}
       {{#each user in view.likes}}
         <li class="p-timeline-user-like">
-          {{#link-to 'timeline.index' user.username}}{{user.screenName}}{{/link-to}}
+          {{#link-to 'timeline.index' user.username (query-params offset=0)}}{{user.screenName}}{{/link-to}}
         </li>
       {{/each}}
     {{/if}}

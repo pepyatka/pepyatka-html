@@ -5,7 +5,7 @@
 
   <div class="post-body">
     <div class="title">
-      {{#link-to 'timeline.index' model.createdBy.username}}{{model.createdBy.screenName}}{{/link-to}}
+      {{#link-to 'timeline.index' model.createdBy.username (query-params offset=0)}}{{model.createdBy.screenName}}{{/link-to}}
     </div>
 
     {{#if controller.isEdit}}
@@ -36,7 +36,7 @@
 
   <div class="info">
     <span class="post-date">
-      {{#link-to 'post' model.createdBy.username content.id class="datetime"}}<time {{bind-attr datetime="model.createdAgo"}}>{{model.createdAgo}}</time>{{/link-to}}
+      {{#link-to 'post' model.createdBy.username content.id (query-params offset=0) class="datetime"}}<time {{bind-attr datetime="model.createdAgo"}}>{{model.createdAgo}}</time>{{/link-to}}
     </span>
 
     <span class="post-controls">

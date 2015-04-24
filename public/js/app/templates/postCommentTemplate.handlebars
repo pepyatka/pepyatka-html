@@ -1,6 +1,6 @@
 <div class="comment p-comment">
   <a class="date" {{bind-attr title="comment.model.createdAgo"}}>
-      <i class="fa fa-comment-o icon"></i>
+    <i class="fa fa-comment-o icon"></i>
   </a>
 
   <div class="body p-comment-body">
@@ -20,7 +20,7 @@
       </span>
       -
       <span class="author">
-        {{#link-to 'timeline.index' comment.model.createdBy.username}}{{comment.model.createdBy.screenName}}{{/link-to}}
+        {{#link-to 'timeline.index' comment.model.createdBy.username (query-params offset=0)}}{{comment.model.createdBy.screenName}}{{/link-to}}
       </span>
 
       <span class="controls">

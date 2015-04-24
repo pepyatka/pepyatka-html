@@ -4,7 +4,7 @@
 <ul>
   {{#each user in model}}
     <li class="p-user-subscriber">
-      {{#link-to 'timeline.index' user.username}}
+      {{#link-to 'timeline.index' user.username (query-params offset=0)}}
         <div class="avatar">
           <img src="/img/48x48.png" />
         </div>

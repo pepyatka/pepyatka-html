@@ -1,7 +1,7 @@
 <ul class="p-my-groups">
   {{#each group in controller.session.currentUser.groups}}
     <li class="p-my-groups-link">
-      {{#link-to 'timeline.index' group.user.username}}{{group.user.screenName}}{{/link-to}}
+      {{#link-to 'timeline.index' group.user.username (query-params offset=0)}}{{group.user.screenName}}{{/link-to}}
       <div>{{group.user.updatedAgo}}</div>
     </li>
   {{/each}}
