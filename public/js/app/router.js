@@ -31,4 +31,9 @@ define(["app/app"], function(App) {
       this.route('new', { path: '/new' })
     })
   })
+
+  App.Router.reopen({
+    location: 'history'
+  })
+
 })
