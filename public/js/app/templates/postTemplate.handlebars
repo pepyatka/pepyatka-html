@@ -26,51 +26,50 @@
       </div>
     {{/if}}
 
-  {{#if content.attachments}}
-    <div class="attachments p-post-attachments">
-      {{#each attachment in content.attachments itemController="post-attachment"}}
-        {{view "post-attachment" content=attachment}}
+    {{#if content.attachments}}
+      <div class="attachments p-post-attachments">
+        {{#each attachment in content.attachments itemController="post-attachment"}}
+          {{view "post-attachment" content=attachment}}
+        {{/each}}
+      </div>
+    {{/if}}
+
+    <div class="info">
+      <span class="post-date">
+        {{#link-to 'post' model.createdBy.username content.id (query-params offset=0) class="datetime"}}<time {{bind-attr datetime="model.createdAgo"}}>{{model.createdAgo}}</time>{{/link-to}}
+      </span>
+
+      <span class="post-controls">
+        {{#if controller.session.signedIn}}
+          <a {{action 'focusCommentForm' target=view}} class="p-post-comment">Comment</a>
+        {{/if}}
+
+        {{#if view.isOwner}}
+          (<a {{action 'toggleEditability'}} class="p-post-toggle-editability">Edit</a>
+          |
+          <a {{action 'destroy'}} class="p-post-destroy">Destroy</a>)
+        {{/if}}
+        {{#if controller.session.signedIn}}
+          -
+          {{#if isLiked}}
+            <span><a {{action 'unlike'}} class="p-post-unlike">Un-like</a></span>
+          {{else}}
+            <span><a {{action 'like'}} class="p-post-like">Like</a></span>
+          {{/if}}
+        {{/if}}
+      </span>
+
+      {{#if content.likes}}
+        {{view 'post-likes' likes=content.likes}}
+      {{/if}}
+    </div>
+
+    <div class="comments">
+      {{#each comment in content.comments itemController="post-comment"}}
+        {{view "post-comment" content=comment}}
       {{/each}}
     </div>
-  {{/if}}
 
-  <div class="info">
-    <span class="post-date">
-      {{#link-to 'post' model.createdBy.username content.id (query-params offset=0) class="datetime"}}<time {{bind-attr datetime="model.createdAgo"}}>{{model.createdAgo}}</time>{{/link-to}}
-    </span>
-
-    <span class="post-controls">
-      {{#if controller.session.signedIn}}
-        <a {{action 'toggleCommentForm' target=view}} class="p-post-comment">Comment</a>
-      {{/if}}
-
-      {{#if view.isOwner}}
-        (<a {{action 'toggleEditability'}} class="p-post-toggle-editability">Edit</a>
-        |
-        <a {{action 'destroy'}} class="p-post-destroy">Destroy</a>)
-      {{/if}}
-      {{#if controller.session.signedIn}}
-        -
-        {{#if isLiked}}
-          <span><a {{action 'unlike'}} class="p-post-unlike">Un-like</a></span>
-        {{else}}
-          <span><a {{action 'like'}} class="p-post-like">Like</a></span>
-        {{/if}}
-      {{/if}}
-    </span>
-
-    {{#if content.likes}}
-      {{view 'post-likes' likes=content.likes}}
-    {{/if}}
-  </div>
-
-  <div class="comments">
-    {{#each comment in content.comments itemController="post-comment"}}
-      {{view "post-comment" content=comment}}
-    {{/each}}
-  </div>
-
-  {{#if view.isFormVisible}}
     <div class="comment">
       <div class="edit">
         <div>
@@ -78,10 +77,8 @@
         </div>
         <div>
           <button {{action 'create'}} class="btn btn-default btn-xs p-post-post-comment">Post</button>
-          <a {{action 'toggleCommentForm' target=view}} class="p-post-cancel-comment">Cancel</a>
         </div>
       </div>
     </div>
-  {{/if}}
   </div>
 </div>

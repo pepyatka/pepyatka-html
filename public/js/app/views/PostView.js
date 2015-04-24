@@ -6,8 +6,6 @@ define(["app/app",
     templateName: 'post',
     template: Ember.Handlebars.compile(tpl),
 
-    isFormVisible: false,
-
     isOwner: function() {
       if (!this.get('controller.session.signedIn'))
         return false
@@ -18,11 +16,8 @@ define(["app/app",
     }.property('controller.content.createdBy'),
 
     actions: {
-      toggleCommentForm: function() {
-        this.toggleProperty('isFormVisible')
-
-        if (!this.get('isFormVisible'))
-          this.set('controller.newComment', '')
+      focusCommentForm: function() {
+        this.$('.edit-comment-area').focus()
       }
     }
   })
