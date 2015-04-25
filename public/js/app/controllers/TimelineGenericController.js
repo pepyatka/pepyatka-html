@@ -1,6 +1,7 @@
 define(["app/app",
         "ember",
-        "components/Pagination"], function(App, Ember) {
+        "lodash",
+        "components/Pagination"], function(App, Ember, _) {
   "use strict";
 
   // "Abstract" generic controller for timelines
@@ -29,6 +30,13 @@ define(["app/app",
     didRequestRange: function(options) {
       this.transitionToRoute({ queryParams: { offset: options.offset } })
     },
+
+    myFeed: function() {
+      return (this.get('model.user.id') == this.get('session.currentUser.id')
+              && this.get('model.user.isUser'))
+        || (_.contains(this.get('model.subscribers'), this.get('session.currentUser.id'))
+            && this.get('model.user.isGroup'))
+    }.property('model.user.id', 'session.currentUser.id'),
 
     actions: {
       addAttachment: function(file) {

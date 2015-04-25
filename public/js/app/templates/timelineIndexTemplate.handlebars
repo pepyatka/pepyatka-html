@@ -1,7 +1,9 @@
 {{view "profile-links"}}
 
-{{#if controller.firstPage}}
-  {{view "submit-post"}}
+{{#if controller.myFeed}}
+  {{#if controller.firstPage}}
+    {{view "submit-post"}}
+  {{/if}}
 {{/if}}
 
 {{#unless controller.firstPage}}
