@@ -21,7 +21,9 @@ define(["config",
             App.Session.set('authToken', result.authToken)
             this.set('errors', null)
             App.Session.authTokenChanged(function () {
-                this.transitionToRoute('timeline.home')
+              this.transitionToRoute('timeline.home')
+              this.set('username', '')
+              this.set('password', '')
             }.bind(this))
           }, function(err) {
             this.set('errors', JSON.parse(err.responseText).err)
