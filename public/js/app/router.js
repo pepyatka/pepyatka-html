@@ -30,5 +30,6 @@ define(["app/app"], function(App) {
       this.route('home', { path: '/' })
       this.route('new', { path: '/new' })
     })
+    this.route('not-found', { path: '/404'})
   })
 })

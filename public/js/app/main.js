@@ -85,6 +85,7 @@ define([
   "views/GroupsHomeView",
   "views/GroupsNewView",
   "views/HomeView",
+  "views/NotFoundView",
   "views/PostView",
   "views/ResetPasswordView",
   "views/SessionNewView",
