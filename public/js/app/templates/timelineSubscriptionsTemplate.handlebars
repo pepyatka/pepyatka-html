@@ -1,14 +1,14 @@
 {{view "breadcrumbs" steps="Subscriptions" user=content.query}}
 
 <h3 class="p-timeline-subscription-users-header">Users</h3>
-<ul>
+<ul class="tile-list">
   {{#each subscription in model}}
     {{#if subscription.isPosts}}
       {{#if subscription.user.isUser}}
         <li class="p-timeline-subscription-user">
           {{#link-to 'timeline.index' subscription.user.username (query-params offset=0)}}
             <div class="avatar">
-              <img src="/img/48x48.png" />
+              <img src="/img/default-userpic-75.gif" />
             </div>
 
             {{subscription.user.screenName}}
@@ -20,14 +20,14 @@
 </ul>
 
 <h3 class="p-timeline-subscription-groups-header">Groups</h3>
-<ul>
+<ul class="tile-list">
   {{#each subscription in model}}
     {{#if subscription.isPosts}}
       {{#if subscription.user.isGroup}}
         <li class="p-timeline-sunsctiption-group">
           {{#link-to 'timeline.index' subscription.user.username (query-params offset=0)}}
             <div class="avatar">
-              <img src="/img/48x48.png" />
+              <img src="/img/default-userpic-75.gif" />
             </div>
 
             {{subscription.user.screenName}}

@@ -1,12 +1,12 @@
 {{view "breadcrumbs" steps="Subscribers" user=content.query}}
 
 <h3 class="p-user-subscribers">Subscribers</h3>
-<ul>
+<ul class="tile-list">
   {{#each user in model}}
     <li class="p-user-subscriber">
       {{#link-to 'timeline.index' user.username (query-params offset=0)}}
         <div class="avatar">
-          <img src="/img/48x48.png" />
+          <img src="/img/default-userpic-75.gif" />
         </div>
 
         {{user.screenName}}
