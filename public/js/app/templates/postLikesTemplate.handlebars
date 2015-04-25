@@ -3,22 +3,30 @@
     <i class="fa fa-circle fa-stack-1x icon-bg"></i>
     <i class="fa fa-smile-o fa-stack-1x icon"></i>
   </span>
-  <ul class="p-timeline-user-likes">
-    {{#if view.isHidden}}
+
+  {{#if view.isHidden}}
+    <ul class="p-timeline-user-likes">
       {{#each user in view.shownLikes}}
         <li class="p-timeline-user-like">
           {{#link-to 'timeline.index' user.username (query-params offset=0)}}{{user.screenName}}{{/link-to}}
         </li>
       {{/each}}
+    </ul>
+    <span>
       and
       <a {{action 'toggleHidden' target=view}}>{{view.hiddenLikes.length}} other people</a>
       liked this
-    {{else}}
+    </span>
+  {{else}}
+    <ul class="p-timeline-user-likes">
       {{#each user in view.likes}}
         <li class="p-timeline-user-like">
           {{#link-to 'timeline.index' user.username (query-params offset=0)}}{{user.screenName}}{{/link-to}}
         </li>
       {{/each}}
-    {{/if}}
-  </ul>
+    </ul>
+    <span>
+      liked this
+    </span>
+  {{/if}}
 </div>
