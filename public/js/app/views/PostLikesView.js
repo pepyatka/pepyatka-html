@@ -10,19 +10,19 @@ define(["app/app",
 
     isHidden: function() {
       return this.get('hidden') && this.get('likes.length') > 4
-    }.property('likes.length', 'hidden'),
+    }.property('likes.[]', 'hidden'),
 
     shownLikes: function() {
       return this.get('likes').filter(function(item, index) {
         if (index < 3) { return true }
       })
-    }.property('likes'),
+    }.property('likes.[]'),
 
     hiddenLikes: function() {
       return this.get('likes').filter(function(item, index) {
         if (index >= 3) { return true }
       })
-    }.property('likes'),
+    }.property('likes.[]'),
 
     actions: {
       toggleHidden: function() {
