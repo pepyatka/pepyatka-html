@@ -8,7 +8,7 @@ define(["config",
     isPrivate: Ember.computed.oneWay('model.isPrivate'),
 
     actions: {
-      update: function() {
+      update: function () {
         this.set('errors', null)
         this.set('message', null)
 
@@ -18,14 +18,14 @@ define(["config",
         user.set('email', user.get('email'))
 
         user.save()
-          .then(function(newUser) {
+          .then(function (newUser) {
             this.set('message', 'Updated!')
-          }.bind(this), function(err) {
+          }.bind(this), function (err) {
             this.set('errors', err.responseJSON.err)
           }.bind(this))
       },
 
-      updatePassword: function() {
+      updatePassword: function () {
         this.set('passwordErrors', null)
         this.set('passwordMessage', null)
 
@@ -40,12 +40,42 @@ define(["config",
           },
           context: this
         })
-          .then(function(res) {
+          .then(function (res) {
             if (res.message)
               this.set('passwordMessage', res.message)
-          }, function(err) {
+          }, function (err) {
             if (err.responseJSON.err)
               this.set('passwordErrors', err.responseJSON.err)
+          })
+      },
+
+      previewProfilePicture: function (newFile) {
+        this.set('newProfilePicture', newFile)
+      },
+
+      updateProfilePicture: function () {
+        var that = this
+
+        var picture = this.get('newProfilePicture')
+        if (!picture) return
+
+        var data = new FormData()
+        data.append('file', picture)
+
+        Ember.$.ajax({
+          url: config.host + '/v1/users/updateProfilePicture',
+          type: 'post',
+          data: data,
+          processData: false,
+          contentType: false,
+          context: this
+        })
+          .then(function (res) {
+            // TODO[yole] update model, avoid full page refresh
+            window.location.reload(true)
+          }, function (err) {
+            if (err.responseJSON.err)
+              this.set('profilePicErrors', err.responseJSON.err)
           })
       }
     }

@@ -53,7 +53,7 @@
       {{#if controller.session.signedIn}}
         <div class="logged">
           <div class="logged-avatar">
-            {{#link-to 'timeline.index' controller.session.currentUser.username (query-params offset=0)}}<img class="media-object" src="/img/48x48.png">{{/link-to}}
+            {{#link-to 'timeline.index' controller.session.currentUser.username (query-params offset=0)}}<img class="media-object" src="{{ controller.session.currentUser.profilePictureMedium }}">{{/link-to}}
           </div>
 
           <div class="logged-user">

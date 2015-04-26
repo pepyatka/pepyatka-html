@@ -6,7 +6,7 @@
     <li class="p-user-subscriber">
       {{#link-to 'timeline.index' user.username (query-params offset=0)}}
         <div class="avatar">
-          <img src="/img/default-userpic-75.png" />
+          <img src="{{ user.profilePictureMedium }}" />
         </div>
 
         {{user.screenName}}

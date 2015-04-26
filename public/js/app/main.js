@@ -53,6 +53,7 @@ define([
   "fields/EditPostView",
   "fields/CreateCommentView",
   "fields/EditCommentView",
+  "fields/UpdateProfilePictureView",
 
   "routes/ForgotPasswordRoute",
   "routes/GroupsHomeRoute",
