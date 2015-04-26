@@ -1,6 +1,6 @@
 <div class="timeline-post-container">
   <div class="avatar">
-    {{#link-to 'timeline.index' post.model.createdBy.username (query-params offset=0)}}<img src="/img/48x48.png" />{{/link-to}}
+    {{#link-to 'timeline.index' post.model.createdBy.username (query-params offset=0)}}<img src="{{ post.model.createdBy.profilePictureMedium }}" />{{/link-to}}
   </div>
 
   <div class="post-body p-timeline-post">

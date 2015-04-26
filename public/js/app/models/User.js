@@ -12,6 +12,8 @@ define(["lodash",
     subscriptions: DS.hasMany('subscription'),
     createdAt: DS.attr('number'),
     updatedAt: DS.attr('number'),
+    profilePictureLargeUrl: DS.attr('string'),
+    profilePictureMediumUrl: DS.attr('string'),
 
     isGroup: function() {
       return this.get('type') === 'group'
@@ -20,6 +22,22 @@ define(["lodash",
     isUser: function() {
       return !this.get('isGroup')
     }.property(),
+
+    profilePictureLarge: function() {
+      var url = this.get('profilePictureLargeUrl')
+      if (_.isEmpty(url)) {
+        return '/img/64x64.png'
+      }
+      return url
+    }.property('profilePictureLargeUrl'),
+
+    profilePictureMedium: function() {
+      var url = this.get('profilePictureMediumUrl')
+      if (_.isEmpty(url)) {
+        return '/img/48x48.png'
+      }
+      return url
+    }.property('profilePictureMediumUrl'),
 
     groups: function() {
       return _.filter(this.get('subscriptions.currentState'), function(subscription) {
