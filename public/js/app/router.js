@@ -32,4 +32,9 @@ define(["app/app"], function(App) {
     })
     this.route('not-found', { path: '/404'})
   })
+
+  App.Router.reopen({
+    location: 'history'
+  })
+
 })
