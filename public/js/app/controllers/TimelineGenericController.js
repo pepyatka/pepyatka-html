@@ -16,7 +16,7 @@ define(["app/app",
 
     posts: function() {
       return Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
-        sortProperties: ['createdAt'],
+        sortProperties: ['updatedAt'],
         sortAscending: false,
         content: this.get('model.posts')
       })
