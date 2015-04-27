@@ -26,7 +26,7 @@ define(["lodash",
     profilePictureLarge: function() {
       var url = this.get('profilePictureLargeUrl')
       if (_.isEmpty(url)) {
-        return '/img/default-userpic-75.gif'
+        return '/img/default-userpic-75.png'
       }
       return url
     }.property('profilePictureLargeUrl'),
@@ -34,7 +34,7 @@ define(["lodash",
     profilePictureMedium: function() {
       var url = this.get('profilePictureMediumUrl')
       if (_.isEmpty(url)) {
-        return '/img/48x48.png'
+        return '/img/default-userpic-48.png'
       }
       return url
     }.property('profilePictureMediumUrl'),
