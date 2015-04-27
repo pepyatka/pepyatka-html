@@ -103,6 +103,7 @@ define([
 
   // partial views
   "views/BreadcrumbsView",
+  "views/FooterView",
   "views/HiddenPostsView",
   "views/MyGroupsView",
   "views/PaginationView",
