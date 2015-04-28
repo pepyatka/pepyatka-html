@@ -7,6 +7,8 @@ define(["ember"
         , "socket.io"
         , "select2"
         , "lodash"
+        , "jquery.anchorlinks"
+        , "numeral"
        ], function(Ember) {
   "use strict";
 

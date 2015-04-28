@@ -22,6 +22,9 @@ define({
     },
     'lodash': {
       exports: '_'
+    },
+    'jquery.anchorlinks': {
+      deps: ['jquery']
     }
   },
 
@@ -43,6 +46,7 @@ define({
     'fields': 'app/fields',
     'controllers': 'app/controllers',
     'components': 'app/components',
+    'helpers': 'app/helpers',
     'initializers': 'app/initializers',
     'layouts': 'app/layouts',
     'models': 'app/models',
@@ -63,6 +67,7 @@ define({
     'socket.io': 'libs/socket.io/1.3.5/socket.io.min',
     'select2': 'libs/select2/4.0.0-rc.2/select2.min',
     'lodash': 'libs/lodash/3.7.0/lodash.min',
+    'jquery.anchorlinks': 'libs/plugins/jquery.anchorlinks',
 
     /* requirejs-plugins */
     'hbs': 'libs/requirejs-plugins/hbs',

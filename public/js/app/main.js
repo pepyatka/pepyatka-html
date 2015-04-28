@@ -11,6 +11,8 @@ define([
 
   "components/Pagination",
 
+  "helpers/Handlebars",
+
   "initializers/AjaxPrefilter",
   "initializers/PubSub",
   "initializers/Session",
