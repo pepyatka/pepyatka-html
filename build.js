@@ -54,6 +54,7 @@
     'ember-data': 'libs/ember-data/1.0.0-beta.15/ember-data.min',
     'ember-template-compiler': 'libs/ember-template-compiler/1.12.0-beta.1/ember-template-compiler',
     'moment': 'libs/momentjs/2.9.0/moment.min',
+    'numeral': 'libs/numeraljs/1.5.3/numeral.min',
     'socket.io': 'libs/socket.io/1.3.5/socket.io.min',
     'select2': 'libs/select2/4.0.0-rc.2/select2.min',
     'lodash': 'libs/lodash/3.7.0/lodash.min',
