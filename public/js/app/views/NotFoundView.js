@@ -1,5 +1,6 @@
 define(["app/app",
-        "text!templates/notFoundTemplate.handlebars"], function(App, tpl) {
+        "text!templates/notFoundTemplate.handlebars",
+        "views/UnauthorizedView"], function(App, tpl) {
   "use strict";
 
   App.NotFoundView = App.UnauthorizedView.extend({

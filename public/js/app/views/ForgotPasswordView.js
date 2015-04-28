@@ -1,5 +1,6 @@
 define(["app/app",
-        "text!templates/forgotPasswordTemplate.handlebars"], function(App, tpl) {
+        "text!templates/forgotPasswordTemplate.handlebars",
+        "views/UnauthorizedView"], function(App, tpl) {
   "use strict";
 
   App.ForgotPasswordView = App.UnauthorizedView.extend({

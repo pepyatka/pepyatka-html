@@ -1,5 +1,6 @@
 define(["app/app",
-        "text!templates/sessionNewTemplate.handlebars"], function(App, tpl) {
+        "text!templates/sessionNewTemplate.handlebars",
+        "views/UnauthorizedView"], function(App, tpl) {
   "use strict";
 
   App.SessionNewView = App.UnauthorizedView.extend({

@@ -1,5 +1,6 @@
 define(["app/app",
-        "text!templates/timelineIndexTemplate.handlebars"], function(App, tpl) {
+        "text!templates/timelineIndexTemplate.handlebars",
+        "views/AuthorizedView"], function(App, tpl) {
   "use strict";
 
   App.TimelineIndexView = App.AuthorizedView.extend({

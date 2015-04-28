@@ -1,5 +1,6 @@
 define(["app/app",
-        "text!templates/groupsHomeTemplate.handlebars"], function(App, tpl) {
+        "text!templates/groupsHomeTemplate.handlebars",
+        "views/AuthorizedView"], function(App, tpl) {
   "use strict";
 
   App.GroupsHomeView = App.AuthorizedView.extend({

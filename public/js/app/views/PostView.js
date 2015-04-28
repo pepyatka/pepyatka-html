@@ -1,5 +1,6 @@
 define(["app/app",
-        "text!templates/postTemplate.handlebars"], function(App, tpl) {
+        "text!templates/postTemplate.handlebars",
+        "views/AuthorizedView"], function(App, tpl) {
   "use strict";
 
   App.PostView = App.AuthorizedView.extend({

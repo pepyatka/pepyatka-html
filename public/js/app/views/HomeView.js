@@ -1,5 +1,6 @@
 define(["app/app",
-        "text!templates/homeTemplate.handlebars"], function(App, tpl) {
+        "text!templates/homeTemplate.handlebars",
+        "views/UnauthorizedView"], function(App, tpl) {
   "use strict";
 
   App.HomeView = App.UnauthorizedView.extend({

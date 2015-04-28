@@ -1,5 +1,6 @@
 define(["app/app",
-        "text!templates/settingsIndexTemplate.handlebars"], function(App, tpl) {
+        "text!templates/settingsIndexTemplate.handlebars",
+        "views/AuthorizedView"], function(App, tpl) {
   "use strict";
 
   App.SettingsIndexView = App.AuthorizedView.extend({

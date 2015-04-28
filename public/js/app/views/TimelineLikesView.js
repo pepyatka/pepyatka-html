@@ -1,5 +1,6 @@
 define(["app/app",
-        "text!templates/timelineLikesTemplate.handlebars"], function(App, tpl) {
+        "text!templates/timelineLikesTemplate.handlebars",
+        "views/AuthorizedView"], function(App, tpl) {
   "use strict";
 
   App.TimelineLikesView = App.AuthorizedView.extend({

@@ -1,5 +1,6 @@
 define(["app/app",
-        "text!templates/timelineHomeTemplate.handlebars"], function(App, tpl) {
+        "text!templates/timelineHomeTemplate.handlebars",
+        "views/AuthorizedView"], function(App, tpl) {
   "use strict";
 
   App.TimelineHomeView = App.AuthorizedView.extend({

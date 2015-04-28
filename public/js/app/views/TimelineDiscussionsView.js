@@ -1,5 +1,6 @@
 define(["app/app",
-        "text!templates/timelineDiscussionsTemplate.handlebars"], function(App, tpl) {
+        "text!templates/timelineDiscussionsTemplate.handlebars",
+        "views/AuthorizedView"], function(App, tpl) {
   "use strict";
 
   App.TimelineDiscussionsView = App.AuthorizedView.extend({
