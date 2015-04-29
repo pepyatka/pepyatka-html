@@ -1,7 +1,8 @@
-define(["app/app",
+define(["config",
+        "app/app",
         "ember",
         "lodash",
-        "components/Pagination"], function(App, Ember, _) {
+        "components/Pagination"], function(config, App, Ember, _) {
   "use strict";
 
   // "Abstract" generic controller for timelines
@@ -39,6 +40,30 @@ define(["app/app",
     }.property('model.user.id', 'session.currentUser.id'),
 
     actions: {
+      subscribe: function() {
+        var user = this.get('model.user')
+        Ember.$.ajax({
+          url: config.host + '/v1/users/' + user.get('username') + '/subscribe',
+          type: 'post',
+          context: this
+        })
+          .then(function() {
+            this.transitionToRoute('home')
+          })
+      },
+
+      unsubscribe: function() {
+        var user = this.get('model.user')
+        Ember.$.ajax({
+          url: config.host + '/v1/users/' + user.get('username') + '/unsubscribe',
+          type: 'post',
+          context: this
+        })
+          .then(function() {
+            this.transitionToRoute('home')
+          })
+      },
+
       addAttachment: function(file) {
         // Create an attachment record
         var attachment = this.store.createRecord('attachment', {
