@@ -48,7 +48,7 @@ define(["config",
           context: this
         })
           .then(function() {
-            this.transitionToRoute('home')
+            this.transitionToRoute('timeline.home')
           })
       },
 
@@ -60,7 +60,7 @@ define(["config",
           context: this
         })
           .then(function() {
-            this.transitionToRoute('home')
+            this.transitionToRoute('timeline.home')
           })
       },
 
