@@ -1,6 +1,7 @@
 define(["config",
         "moment",
-        "app/app"], function(config, moment, App) {
+        "lodash",
+        "app/app"], function(config, moment, _, App) {
   "use strict";
 
   App.Post = DS.Model.extend({
@@ -15,10 +16,21 @@ define(["config",
     comments: DS.hasMany('comment'),
     likes: DS.hasMany('user'),
     groups: DS.hasMany('group'),
+    subscriptions: DS.hasMany('subscription'),
 
     isHidden: DS.attr('boolean'),
 
     timeline: DS.belongsTo('timeline'),
+
+    anyFeeds: function() {
+      return this.get('publicSubscriptions.length') > 1
+    }.property('publicSubscriptions'),
+
+    publicSubscriptions: function() {
+      return _.filter(this.get('subscriptions.currentState'), function(feed) {
+        return feed.get('name') == 'Posts'
+      })
+    }.property('subscriptions'),
 
     createdAgo: function() {
       if (this.get('createdAt')) {

@@ -5,7 +5,7 @@
 
   <div class="post-body p-timeline-post">
     <div class="title">
-      {{#link-to 'timeline.index' post.model.createdBy.username (query-params offset=0)}}{{post.model.createdBy.screenName}}{{/link-to}}
+      {{view 'post-title' post=post.model}}
     </div>
 
     {{#if controller.isEdit}}

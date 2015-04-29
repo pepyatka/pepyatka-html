@@ -1,0 +1,10 @@
+{{#if view.post.anyFeeds}}
+  {{log view.post.publicSubscriptions}}
+  {{#link-to 'timeline.index' view.post.createdBy.username (query-params offset=0)}}{{view.post.createdBy.screenName}}{{/link-to}}
+  to
+  {{#each feed in view.post.publicSubscriptions}}
+    {{#link-to 'timeline.index' feed.user.username}}{{feed.user.screenName}}{{/link-to}}
+  {{/each}}
+{{else}}
+  {{#link-to 'timeline.index' view.post.createdBy.username (query-params offset=0)}}{{view.post.createdBy.screenName}}{{/link-to}}
+{{/if}}
