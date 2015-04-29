@@ -39,6 +39,13 @@ define(["config",
             && this.get('model.user.isGroup'))
     }.property('model.user.id', 'session.currentUser.id'),
 
+    isSubscribed: function() {
+      var currentUser = this.get('session.currentUser')
+      if (!currentUser) { return false }
+
+      return currentUser.get('subscriptions').isAny('id', this.get('model.id'))
+    }.property('session.currentUser.id', 'session.currentUser.subscriptions.@each', 'model.id'),
+
     actions: {
       subscribe: function() {
         var user = this.get('model.user')
