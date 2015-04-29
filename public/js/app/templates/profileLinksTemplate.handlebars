@@ -39,17 +39,18 @@
   </div>
 </div>
 
-{{#unless view.isOwner}}
-  <div class="subscribe-controls">
-    <div class="row">
-      <div class="col-md-10">
-        {{#if isSubscribed}}
-          <a {{action 'unsubscribe'}} class="p-subscribe">Unsubscribe</a>
-        {{else}}
-          <a {{action 'subscribe'}} class="p-unsubscribe">Subscribe</a>
-        {{/if}}
+{{#if controller.session.currentUser}}
+  {{#unless view.isOwner}}
+    <div class="subscribe-controls">
+      <div class="row">
+        <div class="col-md-10">
+          {{#if isSubscribed}}
+            <a {{action 'unsubscribe'}} class="p-subscribe">Unsubscribe</a>
+          {{else}}
+            <a {{action 'subscribe'}} class="p-unsubscribe">Subscribe</a>
+          {{/if}}
+        </div>
       </div>
     </div>
-  </div>
-{{/unless}}
-
+  {{/unless}}
+{{/if}}
