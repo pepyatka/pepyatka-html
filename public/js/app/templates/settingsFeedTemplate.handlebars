@@ -24,3 +24,9 @@
 {{view 'update-profile-picture'}}
 
 <button {{action 'updateProfilePicture'}} class="btn btn-default p-settings-updateprofilepicture">Update</button>
+
+{{#if profilePicErrors}}
+    <div class="alert alert-danger p-settings-message" role="alert">
+        <span id="error-message">{{profilePicErrors}}</span>
+    </div>
+{{/if}}
