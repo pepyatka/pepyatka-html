@@ -1,9 +1,10 @@
 define(["config",
         "app/app",
-        "ember"], function(config, App, Ember) {
+        "ember",
+        "controllers/SettingsGenericController"], function(config, App, Ember) {
   "use strict";
 
-  App.SettingsFeedController = Ember.Controller.extend({
+  App.SettingsFeedController = App.SettingsGenericController.extend({
     screenName: Ember.computed.oneWay('model.screenName'),
 
     actions: {
@@ -20,6 +21,11 @@ define(["config",
           }.bind(this), function(err) {
             this.set('errors', err.responseJSON.err)
           }.bind(this))
+      },
+
+      updateProfilePicture: function () {
+        var username = this.get('model').get('username')
+        this.uploadProfilePicture('/v1/groups/' + username + '/updateProfilePicture')
       }
     }
   })

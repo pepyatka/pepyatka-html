@@ -1,9 +1,10 @@
 define(["config",
         "app/app",
-        "ember"], function(config, App, Ember) {
+        "ember",
+        "controllers/SettingsGenericController"], function(config, App, Ember) {
   "use strict";
 
-  App.SettingsIndexController = Ember.Controller.extend({
+  App.SettingsIndexController = App.SettingsGenericController.extend({
     screenName: Ember.computed.oneWay('model.screenName'),
     isPrivate: Ember.computed.oneWay('model.isPrivate'),
 
@@ -49,34 +50,8 @@ define(["config",
           })
       },
 
-      previewProfilePicture: function (newFile) {
-        this.set('newProfilePicture', newFile)
-      },
-
       updateProfilePicture: function () {
-        var that = this
-
-        var picture = this.get('newProfilePicture')
-        if (!picture) return
-
-        var data = new FormData()
-        data.append('file', picture)
-
-        Ember.$.ajax({
-          url: config.host + '/v1/users/updateProfilePicture',
-          type: 'post',
-          data: data,
-          processData: false,
-          contentType: false,
-          context: this
-        })
-          .then(function (res) {
-            // TODO[yole] update model, avoid full page refresh
-            window.location.reload(true)
-          }, function (err) {
-            if (err.responseJSON.err)
-              this.set('profilePicErrors', err.responseJSON.err)
-          })
+        this.uploadProfilePicture('/v1/users/updateProfilePicture')
       }
     }
   })
