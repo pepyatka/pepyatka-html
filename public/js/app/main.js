@@ -37,6 +37,7 @@ define([
   "controllers/ResetPasswordController",
   "controllers/SessionNewController",
   "controllers/SessionDestroyController",
+  "controllers/SettingsGenericController",
   "controllers/SettingsIndexController",
   "controllers/SettingsFeedController",
   "controllers/TimelineGenericController",
