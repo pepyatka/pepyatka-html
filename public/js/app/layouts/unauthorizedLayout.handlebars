@@ -1,9 +1,9 @@
 <div class="container">
-  <div class="row">
+  <div class="row header-row">
     <div class="col-md-4">
       <div class="header">
         <h1 class="title">
-          {{#link-to 'timeline.home' (query-params offset=0)}}Pepyatka{{/link-to}} <small class="mutted">0.1.0</small>
+          {{#link-to 'timeline.home' (query-params offset=0)}}Freefeed{{/link-to}} <small class="mutted">0.1.0</small>
         </h1>
       </div>
     </div>
@@ -21,8 +21,6 @@
           {{#unless controller.session.signedIn}}
             <div class="signin-toolbar">
               {{#link-to 'session.new'}}Sign In{{/link-to}}
-              or
-              {{#link-to 'users.new'}}Sign Up{{/link-to}}
             </div>
           {{/unless}}
         </div>
