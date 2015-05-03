@@ -37,4 +37,12 @@ define(["app/app"], function(App) {
     location: 'history'
   })
 
+  App.Router.reopen({
+    notifyGoogleAnalytics: function() {
+      return ga('send', 'pageview', {
+          'page': this.get('url'),
+          'title': this.get('url')
+        });
+    }.on('didTransition')
+  });
 })
