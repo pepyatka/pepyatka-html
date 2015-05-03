@@ -1,9 +1,7 @@
 <div class="col-md-12">
   <h2 class="p-create-new-group-header">Create new group</h2>
 
-  <p class="p-create-new-group-description">Pepyatka feeds are extremely flexible. They can even be used to
-  share privately with a group or as a discussion forums. <a>Learn
-  more about feeds</a></p>
+  <p class="p-create-new-group-description">Freefeed group is just a feed, but multiple users can contribute to its contents. Everyone in the group can share stuff with each other and leave comments that others in the group can see.</p>
 
   {{#if errors}}
     <div class="alert alert-danger p-create-new-group-error" role="alert">
@@ -26,7 +24,7 @@
         </div>
 
         <div class="form-group p-create-new-group-action">
-          <button {{action "create"}} class="btn btn-default p-create-feed">Create feed</button>
+          <button {{action "create"}} class="btn btn-default p-create-feed">Create group</button>
         </div>
       </form>
     </div>
