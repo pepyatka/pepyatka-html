@@ -64,10 +64,13 @@
       display: inline;
     }
     ul li:after {
-      content: ','
+      content: ',';
+      margin-left: -3px;
+      display: inline-block;
     }
     ul li:last-of-type:after {
-      content:''
+      content:'';
+      display: none;
     }
     span {
       display: block;
