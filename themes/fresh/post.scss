@@ -1,6 +1,6 @@
-.post-body{
-
+.post-body {
   color: #666;
+
   a {
     color: #7777cc;
   }
@@ -8,30 +8,44 @@
   .title {
     font-size: 15px;
     margin-bottom: 2px;
+
     a {
       font-weight: bold;
       color: #0000cc;
     }
   }
 
-  .text {
-    a { color: #0000cc; }
+  .body {
+    margin-bottom: 10px;
+
+    .text {
+      color: #000;
+
+      a {
+        color: #0000cc;
+      }
+    }
   }
 
-  .edit-post {
+  .attachments {
+    margin-bottom: 2px;
+    overflow: hidden;
+
+    .attachment {
+      float: left;
+      border: 1px solid silver;
+      padding: 1px;
+      margin: 0 8px 8px 0;
+    }
   }
 
   .info {
-    margin-top: 2px;
-    clear: left;
-  }
+    font-size: 13px;
+    line-height: 16px;
 
-  .post-date{
-    a { color: #666; }
-  }
-
-  .post-controls{
-
+    .post-date a {
+      color: #666;
+    }
   }
 
   .likes {
@@ -51,18 +65,4 @@
       display: inline;
     }
   }
-
-  .attachments {
-    margin: 10px 0;
-    overflow: hidden;
-
-    .attachment {
-      float: left;
-      border: 1px solid silver;
-      padding: 1px;
-      margin-right: 8px;
-    }
-  }
-
 }
-
