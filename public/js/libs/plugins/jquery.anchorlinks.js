@@ -54,6 +54,7 @@
           .after($("<a></a>")
                  .attr("title", m[1])
                  .attr("href", m[1])
+                 .attr("target", "_blank")
                  .html(name))
 
         // Recurse on the new tail node to check for more URLs
