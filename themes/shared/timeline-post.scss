@@ -7,10 +7,12 @@
   .avatar {
     float: left;
     line-height: 0;
+    @media (max-width: 767px) { margin: 0 10px 3px 0; }
   }
 
   .post-body {
     margin-left: 63px;
+    @media (max-width: 767px) { margin-left: 0; }
 
     .title {
       font-size: 15px;
@@ -18,7 +20,6 @@
     }
 
     .text {
-      font-family: "helvetica neue",helvetica,Arial,sans-serif;
       font-size: 15px;
       line-height: 19px;
     }
