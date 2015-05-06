@@ -77,11 +77,18 @@ define(["config",
           file: file
         })
 
-        // Save it to the backend
+        // Add a throbber (placeholder object, to show uploading progress)
+        var attachmentList = this.get('attachments')
+        var throbber = this.store.createRecord('attachment', { thumbnailUrl: '/img/uploading.gif' })
+        var throbberIndex = attachmentList.length
+        attachmentList.pushObject(throbber)
+
+        // Save the attachment record to the backend
         attachment.save()
           .then(function(attachment) {
-            this.get('attachments').pushObject(attachment)
-          }.bind(this))
+            // Replace the throbber with a real record
+            attachmentList.replace(throbberIndex, 1, [ attachment ])
+          })
       },
 
       create: function() {
@@ -99,8 +106,12 @@ define(["config",
           feeds: feeds
         })
 
-        // Attach the attachments
-        post.get('attachments').pushObjects(this.get('attachments'))
+        // Attach the attachments (without throbbers, if any)
+        var attachmentList = this.get('attachments')
+          .filter(function(item) {
+            return !!item.id
+          })
+        post.get('attachments').pushObjects(attachmentList)
 
         // Clear the form
         this.set('body', '')
