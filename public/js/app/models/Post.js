@@ -16,7 +16,6 @@ define(["config",
     comments: DS.hasMany('comment'),
     likes: DS.hasMany('user'),
     groups: DS.hasMany('group'),
-    subscriptions: DS.hasMany('subscription'),
 
     isHidden: DS.attr('boolean'),
 
@@ -26,11 +25,10 @@ define(["config",
       return this.get('publicSubscriptions.length') > 1
     }.property('publicSubscriptions'),
 
+    // TODO(yole) reimplement
     publicSubscriptions: function() {
-      return _.filter(this.get('subscriptions.currentState'), function(feed) {
-        return feed.get('name') == 'Posts'
-      })
-    }.property('subscriptions'),
+      return []
+    },
 
     createdAgo: function() {
       if (this.get('createdAt')) {
