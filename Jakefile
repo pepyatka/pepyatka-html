@@ -31,11 +31,13 @@ task('themes', function () {
   for (var value in files) {
     result = sass.renderSync({
       file: value,
+      outFile: files[value],
       outputStyle: 'compressed',
       sourceMap: true
     })
 
     fs.writeFileSync(files[value], result.css)
+    fs.writeFileSync(files[value] + ".map", result.map)
     console.log(files[value] + " has been prepared.")
   }
 })
