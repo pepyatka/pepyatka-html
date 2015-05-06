@@ -5,7 +5,9 @@
   {{input id="screenName" name="screenName" value=screenName class="form-control"}}
 </div>
 
-<button {{action 'update'}} class="btn btn-default p-update-settings-action">Update</button>
+<p>
+  <button {{action 'update'}} class="btn btn-default p-update-settings-action">Update</button>
+</p>
 
 {{#if message}}
   <div class="alert alert-info p-settings-alert" role="alert">
@@ -25,7 +27,9 @@
   {{view 'update-profile-picture'}}
 </div>
 
-<button {{action 'updateProfilePicture'}} class="btn btn-default p-settings-updateprofilepicture">Update</button>
+<p>
+  <button {{action 'updateProfilePicture'}} class="btn btn-default p-settings-updateprofilepicture">Update</button>
+</p>
 
 {{#if profilePicErrors}}
     <div class="alert alert-danger p-settings-message" role="alert">

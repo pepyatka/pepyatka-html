@@ -17,7 +17,9 @@
   </label>
 </div -->
 
-<button {{action 'update'}} class="btn btn-default p-settings-update">Update</button>
+<p>
+  <button {{action 'update'}} class="btn btn-default p-settings-update">Update</button>
+</p>
 
 {{#if message}}
   <div class="alert alert-info p-settings-alert" role="alert">
@@ -50,7 +52,9 @@
   {{input name="passwordConfirmation" id="passwordConfirmation" type="password" value=passwordConfirmation class="form-control"}}
 </div>
 
-<button {{action 'updatePassword'}} class="btn btn-default p-settings-updatepassword">Update Password</button>
+<p>
+  <button {{action 'updatePassword'}} class="btn btn-default p-settings-updatepassword">Update Password</button>
+</p>
 
 {{#if passwordMessage}}
   <div class="alert alert-info p-settings-alert" role="alert">
@@ -70,7 +74,9 @@
   {{view 'update-profile-picture'}}
 </div>
 
-<button {{action 'updateProfilePicture'}} class="btn btn-default p-settings-updateprofilepicture">Update</button>
+<p>
+  <button {{action 'updateProfilePicture'}} class="btn btn-default p-settings-updateprofilepicture">Update</button>
+</p>
 
 {{#if profilePicErrors}}
     <div class="alert alert-danger p-settings-message" role="alert">
