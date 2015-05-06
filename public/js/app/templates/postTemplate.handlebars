@@ -44,11 +44,6 @@
           <a {{action 'focusCommentForm' target=view}} class="p-post-comment">Comment</a>
         {{/if}}
 
-        {{#if view.isOwner}}
-          (<a {{action 'toggleEditability'}} class="p-post-toggle-editability">Edit</a>
-          |
-          <a {{action 'destroy'}} class="p-post-destroy">Destroy</a>)
-        {{/if}}
         {{#if controller.session.signedIn}}
           -
           {{#if isLiked}}
@@ -56,6 +51,13 @@
           {{else}}
             <span><a {{action 'like'}} class="p-post-like">Like</a></span>
           {{/if}}
+        {{/if}}
+
+        {{#if view.isOwner}}
+          -
+          <a {{action 'toggleEditability'}} class="p-post-toggle-editability">Edit</a>
+          -
+          <a {{action 'destroy'}} class="p-post-destroy">Destroy</a>)
         {{/if}}
       </span>
 
