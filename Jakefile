@@ -33,7 +33,8 @@ task('themes', function () {
       file: value,
       outFile: files[value],
       outputStyle: 'compressed',
-      sourceMap: true
+      sourceMap: true,
+      sourceMapContents: true
     })
 
     fs.writeFileSync(files[value], result.css)
