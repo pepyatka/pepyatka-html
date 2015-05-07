@@ -6,27 +6,30 @@
 
   {{#if view.isHidden}}
     <ul class="p-timeline-user-likes">
-      {{#each user in view.shownLikes}}
+      {{#each  view.shownLikes as |user index|}}
         <li class="p-timeline-user-like">
-          {{#link-to 'timeline.index' user.username (query-params offset=0)}}{{user.screenName}}{{/link-to}}
+          {{#link-to 'timeline.index' user.username (query-params offset=0)}}{{user.screenName}}{{/link-to}}<!--
+          -->{{#unless (isLast index in view.shownLikes)}}, {{else}}
+              <span>
+                and
+                  <a {{action 'toggleHidden' target=view}}>{{view.hiddenLikes.length}} other people</a>
+                liked this
+              </span>
+             {{/unless}}
         </li>
       {{/each}}
     </ul>
-    <span>
-      and
-      <a {{action 'toggleHidden' target=view}}>{{view.hiddenLikes.length}} other people</a>
-      liked this
-    </span>
+
   {{else}}
     <ul class="p-timeline-user-likes">
-      {{#each user in view.likes}}
+      {{#each  view.likes as |user index|}}
         <li class="p-timeline-user-like">
-          {{#link-to 'timeline.index' user.username (query-params offset=0)}}{{user.screenName}}{{/link-to}}
+          {{#link-to 'timeline.index' user.username (query-params offset=0)}}{{user.screenName}}{{/link-to}}<!--
+          -->{{#unless (isLast index in view.likes)}}, {{else}}
+              <span>liked this</span>
+             {{/unless}}
         </li>
       {{/each}}
     </ul>
-    <span>
-      liked this
-    </span>
   {{/if}}
 </div>
