@@ -66,26 +66,12 @@
     }
     ul {
       list-style: none;
-      margin: 0;
       padding: 0;
       margin: 0 4px 4px 21px;
       float: left;
     }
     ul li {
       display: inline;
-    }
-    ul li:after {
-      content: ',';
-      margin-left: -3px;
-      display: inline-block;
-    }
-    ul li:last-of-type:after {
-      content:'';
-      display: none;
-    }
-    span {
-      display: block;
-      float: left;
     }
   }
 }
