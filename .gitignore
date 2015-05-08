@@ -24,5 +24,8 @@ coverage
 
 dist
 public/css/themes/fresh/app.css
+public/css/themes/fresh/app.css.map
 public/css/themes/helvetica/app.css
+public/css/themes/helvetica/app.css.map
 public/css/common/common.css
+public/css/common/common.css.map
