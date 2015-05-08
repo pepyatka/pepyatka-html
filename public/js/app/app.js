@@ -14,7 +14,11 @@ define(["ember"
 
   var options = {
     LOG_TRANSITIONS: true,
-    LOG_TRANSITIONS_INTERNAL: true
+    LOG_TRANSITIONS_INTERNAL: true,
+    rootElement: '#ember-app',
+    ready: function () {
+      $("#ember-app").empty();
+    }
   }
   var App
 
