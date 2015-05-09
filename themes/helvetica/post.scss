@@ -72,6 +72,12 @@
     }
     ul li {
       display: inline;
+      i {
+        font-style: normal;
+      }
+      &:nth-last-child(2) i {
+        display: none;
+      }
     }
   }
 }
