@@ -4,6 +4,10 @@ define(["app/app", "ember"], function(App, Ember) {
   App.EditPostView = Ember.TextArea.extend(Ember.TargetActionSupport, {
     classNames: ['edit-post-area'],
     valueBinding: 'parentView.controller.body',
-    action: 'update'
+    action: 'update',
+
+    becomeFocused: function() {
+      this.$().focus()
+    }.on('didInsertElement')
   })
 })
