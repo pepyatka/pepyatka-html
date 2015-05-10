@@ -1,6 +1,7 @@
-define(["app/app"], function(App) {
+define(["app/app",
+        "components/TransitionalRoute"], function(App) {
   "use strict";
 
-  App.SessionNewRoute = Ember.Route.extend({
+  App.SessionNewRoute = Ember.Route.extend(App.TransitionalRoute, {
   })
 })

@@ -1,7 +1,8 @@
-define(["app/app"], function(App) {
+define(["app/app",
+        "components/TransitionalRoute"], function(App) {
   "use strict";
 
-  App.TimelineSubscribersRoute = Ember.Route.extend({
+  App.TimelineSubscribersRoute = Ember.Route.extend(App.TransitionalRoute, {
     actions: {
       error: function (error) {
         this.transitionTo('not-found')
