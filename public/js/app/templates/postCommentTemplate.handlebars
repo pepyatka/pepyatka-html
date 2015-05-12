@@ -1,5 +1,6 @@
 <div class="comment p-comment">
   <a class="date" {{bind-attr title="comment.model.createdAgo"}}>
+    <time {{bind-attr datetime="comment.model.createdAtISO"}}></time>
     <i class="fa fa-comment-o icon"></i>
   </a>
 
