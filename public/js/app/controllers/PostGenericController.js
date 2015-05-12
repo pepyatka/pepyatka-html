@@ -43,7 +43,7 @@ define(["config",
     }.observes('maxComments'),
 
     firstComments: function() {
-      return this.get('model.comments').slice(0, this.get('model.comments.length') - 1)
+      return this.get('model.comments').slice(0, 1)
     }.property('model.comments', 'model.comments.length'),
 
     lastComments: function() {
