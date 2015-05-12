@@ -10,6 +10,7 @@ define(["config",
     body: DS.attr('string'),
     createdAt: DS.attr('number'),
     updatedAt: DS.attr('number'),
+    omittedComments: DS.attr('number'),
 
     createdBy: DS.belongsTo('user'),
     attachments: DS.hasMany('attachment'),

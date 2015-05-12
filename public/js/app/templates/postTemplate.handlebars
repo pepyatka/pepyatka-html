@@ -67,9 +67,19 @@
     </div>
 
     <div class="comments">
-      {{#each comment in content.comments itemController="post-comment"}}
-        {{view "post-comment" content=comment}}
-      {{/each}}
+      {{#if isOmittedComments}}
+        {{#each comment in firstComments itemController="post-comment"}}
+          {{view "post-comment" content=comment}}
+        {{/each}}
+        <a {{action 'showAllComments'}}>{{model.omittedComments}} more comments</a>
+        {{#each comment in lastComments itemController="post-comment"}}
+          {{view "post-comment" content=comment}}
+        {{/each}}
+      {{else}}
+        {{#each comment in model.comments itemController="post-comment"}}
+          {{view "post-comment" content=comment}}
+        {{/each}}
+      {{/if}}
     </div>
 
     <div class="comment">

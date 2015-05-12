@@ -22,13 +22,41 @@ define(["config",
       return this.get('model.likes').isAny('id', this.get('session.currentUser.id'))
     }.property('model.likes', 'session.currentUser.id'),
 
+    isOmittedComments: function() {
+      return this.get('model.omittedComments') > 0
+    }.property('model.omittedComments'),
+
     isEdit: false,
+    maxComments: 2,
 
     body: Ember.computed.oneWay('model.body'),
+
+    reloadModel: function() {
+      var that = this
+      this.store.findOneQuery('post', this.get('model.id'), { maxComments: this.get('maxComments') })
+        .then(function(record) {
+          that.set('model', record)
+          // ember keeps values that are already loaded in the store
+          // so we need to reset some of model properties
+          that.set('model.omittedComments', null)
+        })
+    }.observes('maxComments'),
+
+    firstComments: function() {
+      return this.get('model.comments').slice(0, this.get('model.comments.length') - 1)
+    }.property('model.comments', 'model.comments.length'),
+
+    lastComments: function() {
+      return this.get('model.comments').slice(this.get('model.comments.length') - 1, this.get('model.comments.length'))
+    }.property('model.comments', 'model.comments.length'),
 
     actions: {
       toggleEditability: function() {
         this.toggleProperty('isEdit')
+      },
+
+      showAllComments: function() {
+        this.set('maxComments', 'all')
       },
 
       create: function() {
