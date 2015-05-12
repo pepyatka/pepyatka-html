@@ -26,6 +26,11 @@ define(["config",
       return this.get('model.omittedComments') > 0
     }.property('model.omittedComments'),
 
+    omittedComments: function() {
+      if (this.get('model.omittedComments') > 0)
+        return this.get('model.omittedComments') + this.get('model.comments.length') - 2
+    }.property('model.omittedComments', 'model.comments.length'),
+
     isEdit: false,
     maxComments: 2,
 

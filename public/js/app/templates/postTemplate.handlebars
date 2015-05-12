@@ -71,7 +71,7 @@
         {{#each comment in firstComments itemController="post-comment"}}
           {{view "post-comment" content=comment}}
         {{/each}}
-        <a {{action 'showAllComments'}}>{{model.omittedComments}} more comments</a>
+        <a {{action 'showAllComments'}}>{{omittedComments}} more comments</a>
         {{#each comment in lastComments itemController="post-comment"}}
           {{view "post-comment" content=comment}}
         {{/each}}
