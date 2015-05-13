@@ -76,9 +76,19 @@
     </div>
 
     <div class="comments">
-      {{#each comment in post.comments itemController="post-comment"}}
-        {{view "post-comment" content=comment}}
-      {{/each}}
+      {{#if controller.isOmittedComments}}
+        {{#each comment in controller.firstComments itemController="post-comment"}}
+          {{view "post-comment" content=comment}}
+        {{/each}}
+        <a {{action 'showAllComments'}}>{{controller.omittedComments}} more comments</a>
+        {{#each comment in controller.lastComments itemController="post-comment"}}
+          {{view "post-comment" content=comment}}
+        {{/each}}
+      {{else}}
+        {{#each comment in post.comments itemController="post-comment"}}
+          {{view "post-comment" content=comment}}
+        {{/each}}
+      {{/if}}
 
       {{#if view.isFormVisible}}
           <div class="comment p-timeline-comment">
