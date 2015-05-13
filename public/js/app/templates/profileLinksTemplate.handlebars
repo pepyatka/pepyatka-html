@@ -26,12 +26,12 @@
         {{/if}}
         {{#if content.user.statistics.comments}}
           <div class="p-stats-comments">
-            {{#link-to 'timeline.comments' content.user.username}}{{content.user.statistics.comments}} comments{{/link-to}}
+            {{#link-to 'timeline.comments' content.user.username (query-params offset=0)}}{{content.user.statistics.comments}} comments{{/link-to}}
           </div>
         {{/if}}
         {{#if content.user.statistics.likes}}
           <div class="p-stats-likes">
-            {{#link-to 'timeline.likes' content.user.username}}{{content.user.statistics.likes}} likes{{/link-to}}
+            {{#link-to 'timeline.likes' content.user.username (query-params offset=0)}}{{content.user.statistics.likes}} likes{{/link-to}}
           </div>
         {{/if}}
       </div>
