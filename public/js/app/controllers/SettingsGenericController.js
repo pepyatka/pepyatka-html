@@ -31,9 +31,16 @@ define(["config",
         })
     },
 
+    themes: ["helvetica", "fresh"],
+
     actions: {
       previewProfilePicture: function (newFile) {
         this.set('newProfilePicture', newFile)
+      },
+
+      themeSelect: function(theme) {
+        document.cookie = "theme=" + theme;
+        Ember.$('link#theme-css').attr("href", "/css/themes/" + theme + "/app.css");
       }
     }
   })

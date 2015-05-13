@@ -57,6 +57,7 @@ define([
   "fields/CreateCommentView",
   "fields/EditCommentView",
   "fields/UpdateProfilePictureView",
+  "fields/ThemeSelectorView",
 
   "routes/ForgotPasswordRoute",
   "routes/GroupsHomeRoute",

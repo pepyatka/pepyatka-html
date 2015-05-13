@@ -83,3 +83,8 @@
         <span id="error-message">{{profilePicErrors}}</span>
     </div>
 {{/if}}
+
+<div class="form-group p-settings-themeselector">
+  <label for="theme-selector">Theme:</label>
+  {{view 'theme-selector' content=themes value=theme}}
+</div>

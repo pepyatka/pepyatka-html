@@ -5,10 +5,13 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Pepyatka</title>
   <link rel="stylesheet" href="/css/common/common.css" />
-  <!--<link rel="stylesheet" href="/css/themes/fresh/app.css" />-->
-  <link rel="stylesheet" href="/css/themes/helvetica/app.css" />
+  <noscript><link rel="stylesheet" href="/css/themes/helvetica/app.css" /></noscript>
   <link rel="stylesheet" href="/css/font-awesome.min.css">
   <link rel="icon" href="/img/favicon.png" type="image/x-icon" />
+  <script type="text/javascript">
+    var theme = /(?:^| )theme=([a-z0-9]+)/.exec(document.cookie);
+    document.write('<link rel="stylesheet" id="theme-css" href="/css/themes/' + (theme && theme[1] || 'helvetica') + '/app.css" />');
+  </script>
 </head>
 <body>
   <script src="/js/libs/requirejs/2.1.15/require.min.js"></script>
