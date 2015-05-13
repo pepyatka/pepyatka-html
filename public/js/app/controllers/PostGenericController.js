@@ -40,7 +40,6 @@ define(["config",
       var that = this
       this.store.findOneQuery('post', this.get('model.id'), { maxComments: this.get('maxComments') })
         .then(function(record) {
-          that.set('model', record)
           // ember keeps values that are already loaded in the store
           // so we need to reset some of model properties
           that.set('model.omittedComments', null)
