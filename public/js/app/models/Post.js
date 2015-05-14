@@ -37,6 +37,12 @@ define(["config",
       }
     }.property('createdAt'),
 
+    createdAtISO: function() {
+      if (this.get('createdAt')) {
+        return moment(this.get('createdAt')).format()
+      }
+    }.property('createdAt'),
+
     like: function() {
       return Ember.$.ajax({
         url: this.resourceUrl + '/' + this.get('id') + '/like',
