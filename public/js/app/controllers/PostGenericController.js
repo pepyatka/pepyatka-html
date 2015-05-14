@@ -36,16 +36,6 @@ define(["config",
 
     body: Ember.computed.oneWay('model.body'),
 
-    reloadModel: function() {
-      var that = this
-      this.store.findOneQuery('post', this.get('model.id'), { maxComments: this.get('maxComments') })
-        .then(function(record) {
-          // ember keeps values that are already loaded in the store
-          // so we need to reset some of model properties
-          that.set('model.omittedComments', null)
-        })
-    }.observes('maxComments'),
-
     firstComments: function() {
       return this.get('model.comments').slice(0, 1)
     }.property('model.comments', 'model.comments.length'),
@@ -60,7 +50,7 @@ define(["config",
       },
 
       showAllComments: function() {
-        this.set('maxComments', 'all')
+        this.store.findOneQuery('post', this.get('model.id'), { maxComments: 'all' })
       },
 
       create: function() {
