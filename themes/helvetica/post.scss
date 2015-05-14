@@ -50,24 +50,14 @@
 
   .likes {
     margin-top: 8px;
-    .icon-stack {
-      height: auto;
-      line-height: 0.9;
-      width: auto;
-      float: left;
-    }
     .icon {
-      float: left;
-      color: #fff;
-    }
-    .icon-bg {
       float: left;
       color: #ffb914;
     }
     ul {
       list-style: none;
       padding: 0;
-      margin: 0 4px 10px 21px;
+      margin: 0 4px 10px 8px;
       float: left;
     }
     ul li {
