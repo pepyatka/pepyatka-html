@@ -1,7 +1,8 @@
-define(["app/app"], function(App) {
+define(["app/app",
+        "components/TransitionalRoute"], function(App) {
   "use strict";
 
-  App.TimelineLikesRoute = Ember.Route.extend({
+  App.TimelineLikesRoute = Ember.Route.extend(App.TransitionalRoute, {
     queryParams: {
       offset: {
         refreshModel: true
