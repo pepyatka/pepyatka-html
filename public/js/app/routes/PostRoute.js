@@ -8,7 +8,7 @@ define(["app/app",
     },
 
     model: function(params) {
-      return this.store.find('post', params.postId)
+      return this.store.findOneQuery('post', params.postId, { maxComments: 'all' })
     },
 
     actions: {
