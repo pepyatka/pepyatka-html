@@ -31,8 +31,18 @@ define(["config",
         return this.get('model.omittedComments') + this.get('model.comments.length') - 2
     }.property('model.omittedComments', 'model.comments.length'),
 
+    isOmittedLikes: function() {
+      return this.get('model.omittedLikes') > 0
+    }.property('model.omittedLikes'),
+
+    omittedLikes: function() {
+      if (this.get('model.omittedLikes') > 0)
+        return this.get('model.omittedLikes') + this.get('model.likes.length') - 3
+    }.property('model.omittedLikes', 'model.likes.length'),
+
     isEdit: false,
     maxComments: 2,
+    maxLikes: 3,
 
     body: Ember.computed.oneWay('model.body'),
 
@@ -44,13 +54,29 @@ define(["config",
       return this.get('model.comments').slice(this.get('model.comments.length') - 1, this.get('model.comments.length'))
     }.property('model.comments', 'model.comments.length'),
 
+    firstLikes: function() {
+      return this.get('model.likes').slice(0, 3)
+    }.property('model.likes', 'model.likes.length'),
+
     actions: {
       toggleEditability: function() {
         this.toggleProperty('isEdit')
       },
 
       showAllComments: function() {
-        this.store.findOneQuery('post', this.get('model.id'), { maxComments: 'all' })
+        this.set('maxComments', 'all')
+        this.store.findOneQuery('post', this.get('model.id'), {
+          maxComments: this.get('maxComments'),
+          maxLikes: this.get('maxLikes')
+        })
+      },
+
+      showAllLikes: function() {
+        this.set('maxLikes', 'all')
+        this.store.findOneQuery('post', this.get('model.id'), {
+          maxComments: this.get('maxComments'),
+          maxLikes: this.get('maxLikes')
+        })
       },
 
       create: function() {

@@ -1,25 +1,24 @@
 <div class="likes">
   <i class="fa fa-heart icon"></i>
 
-  {{#if view.isHidden}}
+  {{#if controller.isOmittedLikes}}
     <ul class="p-timeline-user-likes">
-      {{#each  view.shownLikes as |user index|}}
+      {{#each controller.firstLikes as |user index|}}
         <li class="p-timeline-user-like">
           {{#link-to 'timeline.index' user.username (query-params offset=0)}}{{user.screenName}}{{/link-to}}<!--
-          -->{{#unless (isLast index in view.shownLikes)}}, {{else}}
+          -->{{#unless (isLast index in controller.firstLikes)}}, {{else}}
               <span>
                 and
-                  <a {{action 'toggleHidden' target=view}}>{{view.hiddenLikes.length}} other people</a>
+                  <a {{action 'showAllLikes'}}>{{controller.omittedLikes}} other people</a>
                 liked this
               </span>
              {{/unless}}
         </li>
       {{/each}}
     </ul>
-
   {{else}}
     <ul class="p-timeline-user-likes">
-      {{#each  view.likes as |user index|}}
+      {{#each view.likes as |user index|}}
         <li class="p-timeline-user-like">
           {{#link-to 'timeline.index' user.username (query-params offset=0)}}{{user.screenName}}{{/link-to}}<!--
           -->{{#unless (isLast index in view.likes)}}, {{else}}

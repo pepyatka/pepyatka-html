@@ -30,6 +30,9 @@ define(["app/app", "ember"], function(App, Ember) {
   })
 
   Ember.Handlebars.registerBoundHelper('isLast', function(index, where, collection) {
+    if (typeof collection === 'undefined')
+      return
+
     return index === collection.length - 1;
   });
 

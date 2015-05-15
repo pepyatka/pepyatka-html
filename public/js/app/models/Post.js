@@ -11,6 +11,7 @@ define(["config",
     createdAt: DS.attr('number'),
     updatedAt: DS.attr('number'),
     omittedComments: DS.attr('number'),
+    omittedLikes: DS.attr('number'),
 
     createdBy: DS.belongsTo('user'),
     attachments: DS.hasMany('attachment'),
