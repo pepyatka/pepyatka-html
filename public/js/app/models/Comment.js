@@ -15,6 +15,13 @@ define(["app/app",
       if (this.get('createdAt')) {
         return moment(this.get('createdAt')).fromNow()
       }
-    }.property('createdAt')
+    }.property('createdAt'),
+
+    createdAtISO: function() {
+      if (this.get('createdAt')) {
+        return moment(this.get('createdAt')).format()
+      }
+    }.property('createdAt'),
+
   })
 })

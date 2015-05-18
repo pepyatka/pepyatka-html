@@ -11,6 +11,7 @@ define(["config",
     createdAt: DS.attr('number'),
     updatedAt: DS.attr('number'),
     omittedComments: DS.attr('number'),
+    omittedLikes: DS.attr('number'),
 
     createdBy: DS.belongsTo('user'),
     attachments: DS.hasMany('attachment'),
@@ -34,6 +35,12 @@ define(["config",
     createdAgo: function() {
       if (this.get('createdAt')) {
         return moment(this.get('createdAt')).fromNow()
+      }
+    }.property('createdAt'),
+
+    createdAtISO: function() {
+      if (this.get('createdAt')) {
+        return moment(this.get('createdAt')).format()
       }
     }.property('createdAt'),
 
