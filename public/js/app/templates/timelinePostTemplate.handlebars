@@ -76,7 +76,7 @@
     </div>
 
     <div class="comments">
-      {{#if controller.isOmittedComments}}
+      {{#if controller.hasOmittedComments}}
         {{#each comment in controller.firstComments itemController="post-comment"}}
           {{view "post-comment" content=comment}}
         {{/each}}
