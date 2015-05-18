@@ -32,17 +32,19 @@ define(["config",
     }.property('model.omittedComments', 'model.comments.length'),
 
     isOmittedLikes: function() {
-      return this.get('model.omittedLikes') > 0
-    }.property('model.omittedLikes'),
+      return this.get('maxLikes') != 'all' &&
+        (this.get('model.omittedLikes') != 0 ||
+         this.get('model.likes.length') > 4)
+    }.property('maxLikes', 'model.omittedLikes', 'model.likes.length'),
 
     omittedLikes: function() {
-      if (this.get('model.omittedLikes') > 0)
-        return this.get('model.omittedLikes') + this.get('model.likes.length') - 3
-    }.property('model.omittedLikes', 'model.likes.length'),
+      var likes = this.get('model.likes')
+      return likes.get('length') + this.get('model.omittedLikes') - 3
+    }.property('model.omittedLikes', 'model.likes', 'model.likes.length'),
 
     isEdit: false,
     maxComments: 2,
-    maxLikes: 3,
+    maxLikes: 4,
 
     body: Ember.computed.oneWay('model.body'),
 
@@ -55,8 +57,13 @@ define(["config",
     }.property('model.comments', 'model.comments.length'),
 
     firstLikes: function() {
-      return this.get('model.likes').slice(0, 3)
-    }.property('model.likes', 'model.likes.length'),
+      var likes = this.get('model.likes')
+      var omittedLikes = this.get('model.omittedLikes') || 0
+      if (likes.get('length') < 5 && omittedLikes == 0)
+        return likes
+      else
+        return likes.slice(0, 3)
+    }.property('model.likes', 'model.likes.length', 'model.omittedLikes'),
 
     actions: {
       toggleEditability: function() {
