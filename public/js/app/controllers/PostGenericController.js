@@ -22,7 +22,7 @@ define(["config",
       return this.get('model.likes').isAny('id', this.get('session.currentUser.id'))
     }.property('model.likes', 'session.currentUser.id'),
 
-    isOmittedComments: function() {
+    hasOmittedComments: function() {
       return this.get('model.omittedComments') > 0
     }.property('model.omittedComments'),
 
@@ -31,7 +31,7 @@ define(["config",
         return this.get('model.omittedComments') + this.get('model.comments.length') - 2
     }.property('model.omittedComments', 'model.comments.length'),
 
-    isOmittedLikes: function() {
+    hasOmittedLikes: function() {
       return this.get('maxLikes') != 'all' &&
         (this.get('model.omittedLikes') != 0 ||
          this.get('model.likes.length') > 4)
