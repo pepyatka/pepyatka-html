@@ -6,7 +6,7 @@
       {{#each controller.firstLikes as |user index|}}
         <li class="p-timeline-user-like">
           {{#link-to 'timeline.index' user.username (query-params offset=0)}}{{user.screenName}}{{/link-to}}<!--
-          -->{{#unless (isLast index in controller.firstLikes)}}, {{else}}
+          -->{{#unless (isLast index length=controller.firstLikes.length)}}, {{else}}
               <span>
                 and
                   <a {{action 'showAllLikes'}}>{{controller.omittedLikes}} other people</a>
@@ -21,7 +21,7 @@
       {{#each view.likes as |user index|}}
         <li class="p-timeline-user-like">
           {{#link-to 'timeline.index' user.username (query-params offset=0)}}{{user.screenName}}{{/link-to}}<!--
-          -->{{#unless (isLast index in view.likes)}}, {{else}}
+          -->{{#unless (isLast index length=view.likes.length)}}, {{else}}
               <span>liked this</span>
              {{/unless}}
         </li>
