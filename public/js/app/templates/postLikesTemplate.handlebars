@@ -1,7 +1,7 @@
 <div class="likes">
   <i class="fa fa-heart icon"></i>
 
-  {{#if controller.isOmittedLikes}}
+  {{#if controller.hasOmittedLikes}}
     <ul class="p-timeline-user-likes">
       {{#each controller.firstLikes as |user index|}}
         <li class="p-timeline-user-like">
