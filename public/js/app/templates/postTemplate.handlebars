@@ -36,7 +36,7 @@
 
     <div class="info">
       <span class="post-date">
-        {{#link-to 'post' model.createdBy.username content.id (query-params offset=0) class="datetime"}}<time {{bind-attr datetime="model.createdAgo"}}>{{model.createdAgo}}</time>{{/link-to}}
+        {{#link-to 'post' model.createdBy.username content.id (query-params offset=0) class="datetime"}}<time {{bind-attr datetime="model.createdAtISO"}}>{{model.createdAgo}}</time>{{/link-to}}
       </span>
 
       <span class="post-controls">
@@ -67,19 +67,9 @@
     </div>
 
     <div class="comments">
-      {{#if isOmittedComments}}
-        {{#each comment in firstComments itemController="post-comment"}}
-          {{view "post-comment" content=comment}}
-        {{/each}}
-        <a {{action 'showAllComments'}}>{{omittedComments}} more comments</a>
-        {{#each comment in lastComments itemController="post-comment"}}
-          {{view "post-comment" content=comment}}
-        {{/each}}
-      {{else}}
-        {{#each comment in model.comments itemController="post-comment"}}
-          {{view "post-comment" content=comment}}
-        {{/each}}
-      {{/if}}
+      {{#each comment in model.comments itemController="post-comment"}}
+        {{view "post-comment" content=comment}}
+      {{/each}}
     </div>
 
     <div class="comment">

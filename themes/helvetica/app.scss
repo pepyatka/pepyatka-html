@@ -3,10 +3,10 @@
 @import "boxes";
 @import "header";
 @import "sidebar";
-@import "forms";
+@import "../shared/forms";
 @import "post";
 @import "../shared/timeline-post";
-@import "single-post";
+@import "../shared/single-post";
 @import "comments";
 @import "user";
 @import "../shared/timeline";

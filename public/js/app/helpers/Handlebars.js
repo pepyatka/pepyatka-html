@@ -29,12 +29,12 @@ define(["app/app", "ember"], function(App, Ember) {
     return options.inverse(this)
   })
 
-  Ember.Handlebars.registerBoundHelper('isLast', function(index, where, collection) {
-    return index === collection.length - 1;
+  Ember.Handlebars.registerBoundHelper('isLast', function(index, options) {
+    return index === options.hash.length - 1
   });
 
   Ember.Handlebars.registerBoundHelper('isFirst', function(index) {
-    return index === 0;
+    return index === 0
   });
 
 })

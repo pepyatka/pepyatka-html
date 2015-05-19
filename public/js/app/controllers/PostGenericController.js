@@ -31,21 +31,22 @@ define(["config",
         return this.get('model.omittedComments') + this.get('model.comments.length') - 2
     }.property('model.omittedComments', 'model.comments.length'),
 
+    isOmittedLikes: function() {
+      return this.get('maxLikes') != 'all' &&
+        (this.get('model.omittedLikes') != 0 ||
+         this.get('model.likes.length') > 4)
+    }.property('maxLikes', 'model.omittedLikes', 'model.likes.length'),
+
+    omittedLikes: function() {
+      var likes = this.get('model.likes')
+      return likes.get('length') + this.get('model.omittedLikes') - 3
+    }.property('model.omittedLikes', 'model.likes', 'model.likes.length'),
+
     isEdit: false,
     maxComments: 2,
+    maxLikes: 4,
 
     body: Ember.computed.oneWay('model.body'),
-
-    reloadModel: function() {
-      var that = this
-      this.store.findOneQuery('post', this.get('model.id'), { maxComments: this.get('maxComments') })
-        .then(function(record) {
-          that.set('model', record)
-          // ember keeps values that are already loaded in the store
-          // so we need to reset some of model properties
-          that.set('model.omittedComments', null)
-        })
-    }.observes('maxComments'),
 
     firstComments: function() {
       return this.get('model.comments').slice(0, 1)
@@ -55,6 +56,15 @@ define(["config",
       return this.get('model.comments').slice(this.get('model.comments.length') - 1, this.get('model.comments.length'))
     }.property('model.comments', 'model.comments.length'),
 
+    firstLikes: function() {
+      var likes = this.get('model.likes')
+      var omittedLikes = this.get('model.omittedLikes') || 0
+      if (likes.get('length') < 5 && omittedLikes == 0)
+        return likes
+      else
+        return likes.slice(0, 3)
+    }.property('model.likes', 'model.likes.length', 'model.omittedLikes'),
+
     actions: {
       toggleEditability: function() {
         this.toggleProperty('isEdit')
@@ -62,6 +72,18 @@ define(["config",
 
       showAllComments: function() {
         this.set('maxComments', 'all')
+        this.store.findOneQuery('post', this.get('model.id'), {
+          maxComments: this.get('maxComments'),
+          maxLikes: this.get('maxLikes')
+        })
+      },
+
+      showAllLikes: function() {
+        this.set('maxLikes', 'all')
+        this.store.findOneQuery('post', this.get('model.id'), {
+          maxComments: this.get('maxComments'),
+          maxLikes: this.get('maxLikes')
+        })
       },
 
       create: function() {
