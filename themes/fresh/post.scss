@@ -16,7 +16,7 @@
   }
 
   .body {
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 
     .text {
       color: #000;
@@ -51,15 +51,15 @@
   .likes {
     margin-top: 8px;
     .icon {
-      margin-top: 2px;
+      margin-top: 1px;
       float: left;
       color: #ffb914;
     }
     ul {
       list-style: none;
-      margin: 0;
       padding: 0;
-      margin-left: 21px;
+      margin: 0 4px 10px 6px;
+      float: left;
     }
     ul li {
       display: inline;
