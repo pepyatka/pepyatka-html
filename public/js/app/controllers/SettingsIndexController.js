@@ -22,6 +22,7 @@ define(["config",
           .then(function (newUser) {
             this.set('message', 'Updated!')
           }.bind(this), function (err) {
+            user.rollback()
             this.set('errors', err.responseJSON.err)
           }.bind(this))
       },
