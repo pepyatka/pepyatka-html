@@ -51,14 +51,16 @@
   .likes {
     margin-top: 8px;
     .icon {
+      margin-top: 1px;
       float: left;
       color: #ffb914;
     }
     ul {
       list-style: none;
       padding: 0;
-      margin: 0 4px 10px 8px;
+      margin: 0 4px 10px 6px;
       float: left;
+      max-width: 555px;
     }
     ul li {
       display: inline;
