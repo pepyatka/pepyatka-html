@@ -16,6 +16,15 @@ body.transition-active:before {
     center;
 }
 
+body.transition-active.transition-static:before {
+  background-color: transparent;
+  opacity: 1;
+}
+
+div.jsonly>p {
+  padding-left: 2px;
+}
+
 @media (min-width: 1200px){
   .container {
     width: 961px;
