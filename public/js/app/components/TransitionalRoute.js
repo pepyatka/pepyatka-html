@@ -12,7 +12,7 @@ define(["app/app",
     afterModel: function() {
       this._super()
       window.scrollTo(0,0)
-      Ember.$('body').removeClass('transition-active')
+      Ember.$('body').removeClass('transition-active transition-static')
     }
 
   })
