@@ -7,7 +7,9 @@ define(["app/app", "ember"], function(App, Ember) {
     action: 'create',
 
     becomeFocused: function() {
-      this.$().focus()
+      if (this.get('parentView.templateName') != 'post') {
+        this.$().focus()
+      }
     }.on('didInsertElement')
   })
 })
