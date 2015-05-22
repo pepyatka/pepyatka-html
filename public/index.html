@@ -15,7 +15,7 @@
   </noscript>
   <link rel="icon" href="/img/favicon.png" type="image/x-icon" />
 </head>
-<body>
+<body class="transition-active transition-static">
   <div id="ember-app">
     <div class="container">
       <div class="row header-row">
@@ -24,6 +24,9 @@
             <h1 class="title">
               <a href="/">Pepyatka</a>
             </h1>
+            <div class="jsonly">
+              <p>Hold on there, tiger.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -35,11 +38,6 @@
               <noscript>
                 <div class="alert alert-danger" role="alert" id="js-disabled-warn"><strong>Javascript is disabled!</strong> Looks like you have JavaScript disabled in your browser. Please enable it to enjoy our service.</div>
               </noscript>
-
-              <div class="jsonly">
-                <p>Hold on there, tiger.</p>
-                <img src="/img/uploading.gif" alt="Loading..."/>
-              </div>
             </div>
           </div>
         </div>
