@@ -10,12 +10,15 @@ define(["config",
     body: DS.attr('string'),
     createdAt: DS.attr('number'),
     updatedAt: DS.attr('number'),
+    omittedComments: DS.attr('number'),
+    omittedLikes: DS.attr('number'),
 
     createdBy: DS.belongsTo('user'),
     attachments: DS.hasMany('attachment'),
     comments: DS.hasMany('comment'),
     likes: DS.hasMany('user'),
     groups: DS.hasMany('group'),
+    postedTo: DS.hasMany('subscription'),
 
     isHidden: DS.attr('boolean'),
 
@@ -25,14 +28,21 @@ define(["config",
       return this.get('publicSubscriptions.length') > 1
     }.property('publicSubscriptions'),
 
-    // TODO(yole) reimplement
     publicSubscriptions: function() {
-      return []
-    },
+      return _.filter(this.get('postedTo.currentState'), function(feed) {
+        return feed.get('name') == 'Posts'
+      })
+    }.property('postedTo'),
 
     createdAgo: function() {
       if (this.get('createdAt')) {
         return moment(this.get('createdAt')).fromNow()
+      }
+    }.property('createdAt'),
+
+    createdAtISO: function() {
+      if (this.get('createdAt')) {
+        return moment(this.get('createdAt')).format()
       }
     }.property('createdAt'),
 

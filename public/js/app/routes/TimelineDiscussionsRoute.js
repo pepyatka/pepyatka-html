@@ -1,7 +1,8 @@
-define(["app/app"], function(App) {
+define(["app/app",
+        "components/TransitionalRoute"], function(App) {
   "use strict";
 
-  App.TimelineDiscussionsRoute = Ember.Route.extend({
+  App.TimelineDiscussionsRoute = Ember.Route.extend(App.TransitionalRoute, {
     queryParams: {
       offset: {
         refreshModel: true
@@ -9,6 +10,7 @@ define(["app/app"], function(App) {
     },
 
     beforeModel: function() {
+      this._super.apply(this, arguments)
       if (!this.get('session.currentUser'))
         return this.transitionTo('session.new')
     },

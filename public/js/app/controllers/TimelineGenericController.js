@@ -54,8 +54,11 @@ define(["config",
           type: 'post',
           context: this
         })
-          .then(function() {
-            this.transitionToRoute('timeline.home')
+          .then(function(response) {
+            var user = this.store.recordForId('user', response.users.id)
+            this.store.unloadRecord(user)
+            this.store.pushPayload('user', response)
+            this.get('session').set('currentUser', this.store.getById('user', response.users.id))
           })
       },
 
@@ -66,8 +69,11 @@ define(["config",
           type: 'post',
           context: this
         })
-          .then(function() {
-            this.transitionToRoute('timeline.home')
+          .then(function(response) {
+            var user = this.store.recordForId('user', response.users.id)
+            this.store.unloadRecord(user)
+            this.store.pushPayload('user', response)
+            this.get('session').set('currentUser', this.store.getById('user', response.users.id))
           })
       },
 

@@ -1,14 +1,15 @@
 define(["app/app",
-        "ember"], function(App, Emberx) {
+        "ember",
+        "components/TransitionalRoute"], function(App, Ember) {
   "use strict";
 
-  App.PostRoute = Ember.Route.extend({
+  App.PostRoute = Ember.Route.extend(App.TransitionalRoute, {
     deactivate: function() {
       this.controllerFor('pub-sub').unsubscribe()
     },
 
     model: function(params) {
-      return this.store.find('post', params.postId)
+      return this.store.findOneQuery('post', params.postId, { maxComments: 'all' })
     },
 
     actions: {
