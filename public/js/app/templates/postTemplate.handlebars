@@ -72,15 +72,17 @@
       {{/each}}
     </div>
 
-    <div class="comment">
-      <div class="edit">
-        <div>
-          {{view 'create-comment'}}
-        </div>
-        <div>
-          <button {{action 'create'}} class="btn btn-default btn-xs p-post-post-comment">Post</button>
+    {{#if controller.session.signedIn}}
+      <div class="comment">
+        <div class="edit">
+          <div>
+            {{view 'create-comment'}}
+          </div>
+          <div>
+            <button {{action 'create'}} class="btn btn-default btn-xs p-post-post-comment">Post</button>
+          </div>
         </div>
       </div>
-    </div>
+    {{/if}}
   </div>
 </div>
