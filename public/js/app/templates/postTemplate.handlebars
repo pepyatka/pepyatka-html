@@ -70,19 +70,24 @@
       {{#each comment in model.comments itemController="post-comment"}}
         {{view "post-comment" content=comment}}
       {{/each}}
-    </div>
 
-    {{#if controller.session.signedIn}}
-      <div class="comment">
-        <div class="edit">
-          <div>
-            {{view 'create-comment'}}
-          </div>
-          <div>
-            <button {{action 'create'}} class="btn btn-default btn-xs p-post-post-comment">Post</button>
+      {{#if controller.session.signedIn}}
+        <div class="comment p-timeline-comment">
+          <a class="date">
+            <i class="fa fa-comment-o icon"></i>
+          </a>
+          <div class="body">
+            <div class="edit p-timeline-edit-comment">
+              <div class="p-timeline-comment-create">
+                {{view 'create-comment'}}
+              </div>
+              <div class="p-timeline-comment-actions">
+                <button {{action 'create'}} class="btn btn-default btn-xs p-timeline-comment-post">Post</button>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    {{/if}}
+      {{/if}}
+    </div>
   </div>
 </div>
