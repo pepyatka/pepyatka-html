@@ -62,6 +62,7 @@ define([
   "routes/GroupsHomeRoute",
   "routes/GroupsNewRoute",
   "routes/HomeRoute",
+  "routes/NotFoundRoute",
   "routes/PostRoute",
   "routes/ResetPasswordRoute",
   "routes/SessionNewRoute",
