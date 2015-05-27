@@ -6,6 +6,12 @@ define(["app/app"], function(App) {
     valueBinding: 'parentView.controller.body',
     action: 'create',
 
+    keyPress: function (e) {
+      if (e.which === 13) {
+        return false
+      }
+    },
+
     click: function() {
       var view = this.get('parentView.sendTo')
       if (view)

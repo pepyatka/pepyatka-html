@@ -6,6 +6,12 @@ define(["app/app", "ember"], function(App, Ember) {
     valueBinding: 'parentView.controller.newComment',
     action: 'create',
 
+    keyPress: function (e) {
+      if (e.which === 13) {
+        return false
+      }
+    },
+
     becomeFocused: function() {
       if (this.get('parentView.templateName') != 'post')
         this.$().focus()
