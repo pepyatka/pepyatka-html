@@ -5,7 +5,7 @@ define(["app/app",
   App.Pagination = Ember.Mixin.create({
     queryParams: ['offset'],
 
-    limit: 25,
+    limit: 30,
     offset: 0,
 
     actions: {
