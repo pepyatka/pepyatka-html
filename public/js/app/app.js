@@ -8,6 +8,7 @@ define(["ember"
         , "select2"
         , "lodash"
         , "jquery.anchorlinks"
+        , "momentjs.relativeTime"
         , "numeral"
        ], function(Ember) {
   "use strict";

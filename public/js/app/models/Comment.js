@@ -13,7 +13,7 @@ define(["app/app",
 
     createdAgo: function() {
       if (this.get('createdAt')) {
-        return moment(this.get('createdAt')).fromNow()
+        return moment(this.get('createdAt')).fromNowOrNow()
       }
     }.property('createdAt'),
 
