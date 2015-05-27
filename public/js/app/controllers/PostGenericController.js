@@ -114,10 +114,10 @@ define(["config",
       },
 
       destroy: function() {
-        var comment = this.get('model')
+        var post = this.get('model')
 
-        comment.destroyRecord()
-          .then(function(comment) {
+        post.destroyRecord()
+          .then(function(post) {
           })
       },
 
