@@ -35,7 +35,8 @@ define(["config",
       return this.get('maxLikes') != 'all' &&
         (this.get('model.omittedLikes') != 0 ||
          this.get('model.likes.length') > 4)
-    }.property('maxLikes', 'model.omittedLikes', 'model.likes.length'),
+        || this.get('isLoadingLikes') === true
+    }.property('maxLikes', 'model.omittedLikes', 'model.likes.length', 'isLoadingLikes'),
 
     omittedLikes: function() {
       var likes = this.get('model.likes')
@@ -45,6 +46,7 @@ define(["config",
     isEdit: false,
     maxComments: 2,
     maxLikes: 4,
+    isLoadingLikes: false,
 
     body: Ember.computed.oneWay('model.body'),
 
@@ -79,10 +81,17 @@ define(["config",
       },
 
       showAllLikes: function() {
+        var that = this
+
+        this.set('isLoadingLikes', true)
         this.set('maxLikes', 'all')
         this.store.findOneQuery('post', this.get('model.id'), {
           maxComments: this.get('maxComments'),
           maxLikes: this.get('maxLikes')
+        }).then(function() {
+          Ember.run.later(function() {
+            that.set('isLoadingLikes', false)
+          }, 250)
         })
       },
 
