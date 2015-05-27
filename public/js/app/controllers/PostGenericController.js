@@ -24,12 +24,17 @@ define(["config",
 
     hasOmittedComments: function() {
       return this.get('model.omittedComments') > 0
-    }.property('model.omittedComments'),
+        || this.get('isLoadingComments') === true
+    }.property('model.omittedComments', 'isLoadingComments'),
 
     omittedComments: function() {
-      if (this.get('model.omittedComments') > 0)
-        return this.get('model.omittedComments') + this.get('model.comments.length') - 2
-    }.property('model.omittedComments', 'model.comments.length'),
+      if (this.get('isLoadingComments')) {
+        return this.get('omittedCommentsOld')
+      } else {
+        if (this.get('model.omittedComments') > 0)
+          return this.get('model.omittedComments') + this.get('model.comments.length') - 2
+      }
+    }.property('model.omittedComments', 'model.comments.length', 'isLoadingComments'),
 
     hasOmittedLikes: function() {
       return this.get('maxLikes') != 'all' &&
@@ -47,6 +52,7 @@ define(["config",
     maxComments: 2,
     maxLikes: 4,
     isLoadingLikes: false,
+    isLoadingComments: false,
 
     body: Ember.computed.oneWay('model.body'),
 
@@ -73,10 +79,22 @@ define(["config",
       },
 
       showAllComments: function() {
+        var that = this
+
+        // NOTE: we are setting omittedCommentsOld because for UX we
+        // are going to show spinner for extra 0.25s, however new data
+        // will be already loaded at that time, so we must show old
+        // data to simulate loading process
+        this.set('omittedCommentsOld', this.get('omittedComments'))
+        this.set('isLoadingComments', true)
         this.set('maxComments', 'all')
         this.store.findOneQuery('post', this.get('model.id'), {
           maxComments: this.get('maxComments'),
           maxLikes: this.get('maxLikes')
+        }).then(function() {
+          Ember.run.later(function() {
+            that.set('isLoadingComments', false)
+          }, 250)
         })
       },
 
