@@ -49,6 +49,7 @@ define(["config",
     }.property('model.omittedLikes', 'model.likes', 'model.likes.length'),
 
     isEdit: false,
+    isFormVisible: false,
     maxComments: 2,
     maxLikes: 4,
     isLoadingLikes: false,
@@ -85,6 +86,13 @@ define(["config",
     }.property('model.omittedLikes', 'allLikes'),
 
     actions: {
+      toggleCommentForm: function() {
+        this.toggleProperty('isFormVisible')
+
+        if (!this.get('isFormVisible'))
+          this.set('newComment', '')
+      },
+
       toggleEditability: function() {
         this.toggleProperty('isEdit')
       },
@@ -133,6 +141,7 @@ define(["config",
         this.set('newComment', '')
         comment.save()
           .then(function(comment) {
+            this.set('isFormVisible', false)
             var object = this.get('content.comments').findProperty('id', comment.get('id'))
             if (!object) {
               this.get('content.comments').pushObject(comment)

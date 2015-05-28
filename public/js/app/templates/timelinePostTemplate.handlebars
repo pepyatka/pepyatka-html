@@ -41,7 +41,7 @@
 
       <span class="post-controls">
         {{#if controller.session.signedIn}}
-          <a {{action 'toggleCommentForm' target=view}} class="p-timeline-post-comment-action">Comment</a>
+          <a {{action 'toggleCommentForm'}} class="p-timeline-post-comment-action">Comment</a>
         {{/if}}
 
         {{#if controller.session.signedIn}}
@@ -93,7 +93,7 @@
         {{/each}}
       {{/if}}
 
-      {{#if view.isFormVisible}}
+      {{#if controller.isFormVisible}}
           <div class="comment p-timeline-comment">
               <a class="date">
                   <i class="fa fa-comment-o icon"></i>
@@ -105,7 +105,7 @@
                       </div>
                       <div class="p-timeline-comment-actions">
                           <button {{action 'create'}} class="btn btn-default btn-xs p-timeline-comment-post">Post</button>
-                          <a {{action 'toggleCommentForm' target=view}} class="p-timeline-comment-cancel">Cancel</a>
+                          <a {{action 'toggleCommentForm'}} class="p-timeline-comment-cancel">Cancel</a>
                       </div>
                   </div>
               </div>
@@ -115,12 +115,12 @@
           {{#unless controller.hasOmittedComments}}
             {{#if controller.session.signedIn}}
               <div class="add-comment-block">
-                <a class="fa-stack fa-1x" {{action 'toggleCommentForm' target=view}}>
+                <a class="fa-stack fa-1x" {{action 'toggleCommentForm'}}>
                   <i class="fa fa-comment-o fa-stack-1x"></i>
                   <i class="fa fa-square fa-inverse fa-stack-1x"></i>
                   <i class="fa fa-plus fa-stack-1x"></i>
                 </a>
-                <a class="add-comment-link" {{action 'toggleCommentForm' target=view}}>Add comment</a>
+                <a class="add-comment-link" {{action 'toggleCommentForm'}}>Add comment</a>
               </div>
             {{/if}}
           {{/unless}}

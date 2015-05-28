@@ -6,8 +6,6 @@ define(["app/app",
     templateName: 'timeline-post',
     template: Ember.Handlebars.compile(tpl),
 
-    isFormVisible: false,
-
     isOwner: function() {
       if (!this.get('controller.session.signedIn'))
         return false
@@ -15,15 +13,6 @@ define(["app/app",
       var userId = this.get('controller.session.currentUser.id')
       var ownerId = this.get('content.model.createdBy.id')
       return userId == ownerId
-    }.property('content.model.createdBy'),
-
-    actions: {
-      toggleCommentForm: function() {
-        this.toggleProperty('isFormVisible')
-
-        if (!this.get('isFormVisible'))
-          this.set('controller.newComment', '')
-      }
-    }
+    }.property('content.model.createdBy')
   })
 })
