@@ -11,7 +11,7 @@ body.transition-active:before {
   z-index: 1;
   background:
     #fff
-    url('/img/uploading.gif')
+    url('/img/throbber-100.gif')
     no-repeat
     center;
 }
