@@ -220,7 +220,7 @@ define(["config",
 
           if (post) {
             var user = this.store.getById('user', userId)
-            post.get('likes').addObject(user)
+            post.get('likes').unshiftObject(user)
           } else {
             this.store.find('post', data.meta.postId)
               .then(function(post) {
