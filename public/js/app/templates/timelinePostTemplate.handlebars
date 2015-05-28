@@ -80,10 +80,11 @@
         {{#each comment in controller.firstComments itemController="post-comment"}}
           {{view "post-comment" content=comment}}
         {{/each}}
-        <a class="more-comments" {{action 'showAllComments'}}>{{controller.omittedComments}} more comments</a>
-        {{#if controller.isLoadingComments}}
-          <span class="throbber"><img src="/img/throbber-16.gif" width="16" height="16" /></span>
-        {{/if}}
+
+        <a {{bind-attr class=":more-comments controller.isLoadingComments:loading"}} {{action 'showAllComments'}}>
+          {{controller.omittedComments}} more comments
+        </a>
+
         {{#each comment in controller.lastComments itemController="post-comment"}}
           {{view "post-comment" content=comment}}
         {{/each}}
