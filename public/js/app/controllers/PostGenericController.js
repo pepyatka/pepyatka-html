@@ -154,7 +154,7 @@ define(["config",
         post.like()
           .then(function() {
             var user = this.get('session.currentUser')
-            this.get('content.likes').pushObject(user)
+            this.get('content.likes').unshiftObject(user)
           }.bind(this))
       },
 
