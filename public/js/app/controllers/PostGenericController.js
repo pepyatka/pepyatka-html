@@ -64,14 +64,25 @@ define(["config",
       return this.get('model.comments').slice(this.get('model.comments.length') - 1, this.get('model.comments.length'))
     }.property('model.comments', 'model.comments.length'),
 
+    allLikes: function() {
+      var user_id = this.get('session.currentUser.id')
+      var likes = this.get('model.likes').toArray().sort(function(a, b) {
+        if (a.id == user_id) return -1
+        if (b.id == user_id) return 1
+      });
+
+      return likes
+    }.property('model.likes', 'session.currentUser.id'),
+
     firstLikes: function() {
-      var likes = this.get('model.likes')
+      var likes = this.get('allLikes')
       var omittedLikes = this.get('model.omittedLikes') || 0
+
       if (likes.get('length') < 5 && omittedLikes == 0)
         return likes
       else
         return likes.slice(0, 3)
-    }.property('model.likes', 'model.likes.length', 'model.omittedLikes'),
+    }.property('model.omittedLikes', 'allLikes'),
 
     actions: {
       toggleEditability: function() {
@@ -154,7 +165,7 @@ define(["config",
         post.like()
           .then(function() {
             var user = this.get('session.currentUser')
-            this.get('content.likes').unshiftObject(user)
+            this.get('content.likes').addObject(user)
           }.bind(this))
       },
 
