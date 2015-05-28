@@ -15,6 +15,9 @@
              {{/unless}}
         </li>
       {{/each}}
+      {{#if controller.isLoadingLikes}}
+        <span class="spinner"><img src="/img/ajax.gif" width="16" height="16" /></span>
+      {{/if}}
     </ul>
   {{else}}
     <ul class="p-timeline-user-likes">

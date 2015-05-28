@@ -46,7 +46,13 @@ define(["config",
       return currentUser.get('subscriptions').isAny('id', this.get('model.id'))
     }.property('session.currentUser.id', 'session.currentUser.subscriptions.@each', 'model.id'),
 
+    isAttachmentsVisible: false,
+
     actions: {
+      showAttachments: function() {
+        this.toggleProperty('isAttachmentsVisible')
+      },
+
       subscribe: function() {
         var user = this.get('model.user')
         Ember.$.ajax({
@@ -122,6 +128,7 @@ define(["config",
         // Clear the form
         this.set('body', '')
         this.set('attachments', [])
+        this.set('isAttachmentsVisible', false)
 
         // Save it to the backend
         post.save()

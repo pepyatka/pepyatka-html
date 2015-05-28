@@ -48,7 +48,7 @@ define(["lodash",
 
     updatedAgo: function() {
       if (this.get('updatedAt')) {
-        return moment(this.get('updatedAt')).fromNow()
+        return moment(this.get('updatedAt')).fromNowOrNow()
       }
     }.property('updatedAt')
   })

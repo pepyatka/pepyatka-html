@@ -60,6 +60,7 @@
     'select2': 'libs/select2/4.0.0-rc.2/select2.min',
     'lodash': 'libs/lodash/3.7.0/lodash.min',
     'jquery.anchorlinks': 'libs/plugins/jquery.anchorlinks',
+    'momentjs.relativeTime': 'libs/plugins/momentjs.relativeTime',
 
     /* requirejs-plugins */
     'hbs': 'libs/requirejs-plugins/hbs',
@@ -107,6 +108,9 @@
     },
     'jquery.anchorlinks': {
       deps: ['jquery']
+    },
+    'momentjs.relativeTime': {
+      deps: ['moment']
     }
   },
 

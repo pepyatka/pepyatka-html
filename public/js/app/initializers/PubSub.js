@@ -140,7 +140,9 @@ define(["config",
         destroyPost: function(data) {
           var post = this.store.getById('post', data.meta.postId)
           if (post) {
-            this.currentController().get('posts').removeObject(post)            
+            var posts = this.currentController().get('posts')
+            if (posts)
+              posts.removeObject(post)
           }
         },
 
