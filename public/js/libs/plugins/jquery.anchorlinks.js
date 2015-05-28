@@ -22,19 +22,19 @@
         var shorten = false
 
         // shorten url if it's nested more than 2 levels, e.g. http://google.com/a/b
-        if (name.split('/').length > 4) {
+        if (name.split('/').length > 4 && name.split('/')[4].length > 1) {
           name = name.split('/').slice(0, 4).join('/')
           shorten = true
         }
 
         // shorten url after ? symbol e.g. http://google.com/a?123
-        if (name.split('?').length > 1) {
+        if (name.split('?').length > 1 && name.split('?')[1].length > 2) {
           name = name.split('?')[0]
           shorten = true
         }
 
         // shorten url after # symbol e.g. http://google.com/a#123
-        if (name.split('#').length > 1) {
+        if (name.split('#').length > 1 && name.split('#')[1].length > 2) {
           name = name.split('#')[0]
           shorten = true
         }
