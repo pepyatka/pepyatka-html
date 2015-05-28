@@ -21,7 +21,7 @@
     </ul>
   {{else}}
     <ul class="p-timeline-user-likes">
-      {{#each view.likes as |user index|}}
+      {{#each controller.allLikes as |user index|}}
         <li class="p-timeline-user-like">
           {{#link-to 'timeline.index' user.username (query-params offset=0)}}{{user.screenName}}{{/link-to}}<!--
           -->{{#unless (isLast index length=view.likes.length)}}, {{else}}
