@@ -2,10 +2,12 @@
   $.fn.anchorTextUrls = function() {
     // Test a text node's contents for URLs and split and rebuild it with an achor
     var testAndTag = function(el) {
-      // Test for URLs along whitespace and punctuation boundaries (don't look too hard or you will be consumed)
-      var m = el.nodeValue.match(/(https?:\/\/.*?)[.!?;,]?(\s+|"|$)/)
+      // Test for URLs along whitespace and punctuation boundaries
+      // (don't look too hard or you will be consumed)
+      var expression = /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi
+      var m = el.nodeValue.match(expression)
 
-      // If we've found a valid URL, m[1] contains the URL
+      // If we've found a valid URL, m[0] contains the URL
       if (m) {
         // Clone the text node to hold the "tail end" of the split
         // node
@@ -13,10 +15,10 @@
 
         // Substring the nodeValue attribute of the text nodes based
         // on the match boundaries
-        el.nodeValue = el.nodeValue.substring(0, el.nodeValue.indexOf(m[1]))
-        tail.nodeValue = tail.nodeValue.substring(tail.nodeValue.indexOf(m[1]) + m[1].length)
+        el.nodeValue = el.nodeValue.substring(0, el.nodeValue.indexOf(m[0]))
+        tail.nodeValue = tail.nodeValue.substring(tail.nodeValue.indexOf(m[0]) + m[0].length)
 
-        var name = m[1]
+        var name = m[0]
         var shorten = false
 
         // shorten url if it's nested more than 2 levels, e.g. http://google.com/a/b
@@ -52,8 +54,8 @@
         $(el)
           .after(tail)
           .after($("<a></a>")
-                 .attr("title", m[1])
-                 .attr("href", m[1])
+                 .attr("title", m[0])
+                 .attr("href", m[0])
                  .attr("target", "_blank")
                  .html(name))
 
