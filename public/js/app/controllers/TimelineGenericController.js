@@ -46,6 +46,13 @@ define(["config",
       return currentUser.get('subscriptions').isAny('id', this.get('model.id'))
     }.property('session.currentUser.id', 'session.currentUser.subscriptions.@each', 'model.id'),
 
+    isAdmin: function() {
+      var adminIds = this.get('model.user.administratorIds')
+      var currentUserId = this.get('session.currentUser.id')
+
+      return adminIds.indexOf(currentUserId) !== -1
+    }.property('session.currentUser.id'),
+
     isAttachmentsVisible: false,
 
     actions: {
