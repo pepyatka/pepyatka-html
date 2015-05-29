@@ -91,7 +91,7 @@ define(["config",
 
         // Add a throbber (placeholder object, to show uploading progress)
         var attachmentList = this.get('attachments')
-        var throbber = this.store.createRecord('attachment', { thumbnailUrl: '/img/uploading.gif' })
+        var throbber = this.store.createRecord('attachment', { thumbnailUrl: '/img/throbber-100.gif' })
         var throbberIndex = attachmentList.length
         attachmentList.pushObject(throbber)
 

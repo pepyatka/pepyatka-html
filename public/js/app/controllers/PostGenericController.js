@@ -101,7 +101,7 @@ define(["config",
         var that = this
 
         // NOTE: we are setting omittedCommentsOld because for UX we
-        // are going to show spinner for extra 0.25s, however new data
+        // are going to show throbber for extra 0.25s, however new data
         // will be already loaded at that time, so we must show old
         // data to simulate loading process
         this.set('omittedCommentsOld', this.get('omittedComments'))
