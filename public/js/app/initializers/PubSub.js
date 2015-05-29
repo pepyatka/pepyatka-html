@@ -173,6 +173,7 @@ define(["config",
             if (!this.store.recordIsLoaded('comment', data.comments.id)) {
               this.store.pushPayload('comment', data)
               var comment = this.store.getById('comment', data.comments.id)
+              comment.set('isRealtime', true)
 
               post.get('comments').pushObject(comment)
             }

@@ -62,7 +62,15 @@ define(["config",
     }.property('model.comments', 'model.comments.length'),
 
     lastComments: function() {
-      return this.get('model.comments').slice(this.get('model.comments.length') - 1, this.get('model.comments.length'))
+      var len = this.get('model.comments.length')
+      if (len < 2)
+        return this.get('model.comments').slice(len - 1, len)
+
+      var lastTwo = this.get('model.comments').slice(len - 2, len)
+      if (lastTwo[1].get('isRealtime') === true) {
+        return lastTwo
+      }
+      return [lastTwo[1]]
     }.property('model.comments', 'model.comments.length'),
 
     allLikes: function() {
@@ -146,6 +154,7 @@ define(["config",
         comment.save()
           .then(function(comment) {
             this.set('isFormVisible', false)
+            comment.set('isRealtime', true)
             var object = this.get('content.comments').findProperty('id', comment.get('id'))
             if (!object) {
               this.get('content.comments').pushObject(comment)
