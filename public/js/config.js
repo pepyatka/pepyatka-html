@@ -60,7 +60,7 @@ define({
     'views': 'app/views',
 
     /* libs */
-    'jquery': 'libs/jquery/2.1.3/jquery.min',
+    'jquery': 'libs/jquery/2.1.4/jquery.min',
     'bootstrap': 'libs/bootstrap/3.3.4/bootstrap.min',
     'ember': 'libs/emberjs/1.11.0-beta.1/ember.debug',
     'ember-data': 'libs/ember-data/1.0.0-beta.15/ember-data',
