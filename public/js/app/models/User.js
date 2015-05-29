@@ -41,7 +41,7 @@ define(["lodash",
     }.property('profilePictureMediumUrl'),
 
     groups: function() {
-      return _.filter(this.get('subscriptions.currentState'), function(subscription) {
+      return _.filter(this.get('subscriptions').toArray(), function(subscription) {
         return subscription.get('user.isGroup') &&
           subscription.get('isPosts')
       })

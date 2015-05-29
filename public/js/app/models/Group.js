@@ -6,6 +6,7 @@ define(["app/app"], function(App) {
     screenName: DS.attr('string'),
     type: DS.attr('string'),
     administratorIds: DS.attr(),
+    timelines: DS.hasMany('subscription'),
 
     isGroup: function() {
       return this.get('type') === 'group'
