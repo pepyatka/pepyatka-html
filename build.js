@@ -50,7 +50,7 @@
 
     /* libs */
     'jquery': 'libs/jquery/2.1.3/jquery.min',
-    'bootstrap': 'libs/bootstrap/3.3.2/bootstrap.min',
+    'bootstrap': 'libs/bootstrap/3.3.4/bootstrap.min',
     'ember': 'libs/emberjs/1.11.0-beta.1/ember.min',
     'ember-data': 'libs/ember-data/1.0.0-beta.15/ember-data.min',
     'ember-template-compiler': 'libs/ember-template-compiler/1.12.0-beta.1/ember-template-compiler.min',
