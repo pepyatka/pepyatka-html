@@ -24,18 +24,24 @@ define(["config",
 
     hasOmittedComments: function() {
       return this.get('model.omittedComments') > 0
-    }.property('model.omittedComments'),
+        || this.get('isLoadingComments') === true
+    }.property('model.omittedComments', 'isLoadingComments'),
 
     omittedComments: function() {
-      if (this.get('model.omittedComments') > 0)
-        return this.get('model.omittedComments') + this.get('model.comments.length') - 2
-    }.property('model.omittedComments', 'model.comments.length'),
+      if (this.get('isLoadingComments')) {
+        return this.get('omittedCommentsOld')
+      } else {
+        if (this.get('model.omittedComments') > 0)
+          return this.get('model.omittedComments') + this.get('model.comments.length') - 2
+      }
+    }.property('model.omittedComments', 'model.comments.length', 'isLoadingComments'),
 
     hasOmittedLikes: function() {
       return this.get('maxLikes') != 'all' &&
         (this.get('model.omittedLikes') != 0 ||
          this.get('model.likes.length') > 4)
-    }.property('maxLikes', 'model.omittedLikes', 'model.likes.length'),
+        || this.get('isLoadingLikes') === true
+    }.property('maxLikes', 'model.omittedLikes', 'model.likes.length', 'isLoadingLikes'),
 
     omittedLikes: function() {
       var likes = this.get('model.likes')
@@ -45,6 +51,8 @@ define(["config",
     isEdit: false,
     maxComments: 2,
     maxLikes: 4,
+    isLoadingLikes: false,
+    isLoadingComments: false,
 
     body: Ember.computed.oneWay('model.body'),
 
@@ -56,14 +64,25 @@ define(["config",
       return this.get('model.comments').slice(this.get('model.comments.length') - 1, this.get('model.comments.length'))
     }.property('model.comments', 'model.comments.length'),
 
+    allLikes: function() {
+      var user_id = this.get('session.currentUser.id')
+      var likes = this.get('model.likes').toArray().sort(function(a, b) {
+        if (a.id == user_id) return -1
+        if (b.id == user_id) return 1
+      });
+
+      return likes
+    }.property('model.likes', 'session.currentUser.id'),
+
     firstLikes: function() {
-      var likes = this.get('model.likes')
+      var likes = this.get('allLikes')
       var omittedLikes = this.get('model.omittedLikes') || 0
+
       if (likes.get('length') < 5 && omittedLikes == 0)
         return likes
       else
         return likes.slice(0, 3)
-    }.property('model.likes', 'model.likes.length', 'model.omittedLikes'),
+    }.property('model.omittedLikes', 'allLikes'),
 
     actions: {
       toggleEditability: function() {
@@ -71,18 +90,37 @@ define(["config",
       },
 
       showAllComments: function() {
+        var that = this
+
+        // NOTE: we are setting omittedCommentsOld because for UX we
+        // are going to show spinner for extra 0.25s, however new data
+        // will be already loaded at that time, so we must show old
+        // data to simulate loading process
+        this.set('omittedCommentsOld', this.get('omittedComments'))
+        this.set('isLoadingComments', true)
         this.set('maxComments', 'all')
         this.store.findOneQuery('post', this.get('model.id'), {
           maxComments: this.get('maxComments'),
           maxLikes: this.get('maxLikes')
+        }).then(function() {
+          Ember.run.later(function() {
+            that.set('isLoadingComments', false)
+          }, 250)
         })
       },
 
       showAllLikes: function() {
+        var that = this
+
+        this.set('isLoadingLikes', true)
         this.set('maxLikes', 'all')
         this.store.findOneQuery('post', this.get('model.id'), {
           maxComments: this.get('maxComments'),
           maxLikes: this.get('maxLikes')
+        }).then(function() {
+          Ember.run.later(function() {
+            that.set('isLoadingLikes', false)
+          }, 250)
         })
       },
 
@@ -114,10 +152,10 @@ define(["config",
       },
 
       destroy: function() {
-        var comment = this.get('model')
+        var post = this.get('model')
 
-        comment.destroyRecord()
-          .then(function(comment) {
+        post.destroyRecord()
+          .then(function(post) {
           })
       },
 
@@ -127,7 +165,7 @@ define(["config",
         post.like()
           .then(function() {
             var user = this.get('session.currentUser')
-            this.get('content.likes').pushObject(user)
+            this.get('content.likes').addObject(user)
           }.bind(this))
       },
 
