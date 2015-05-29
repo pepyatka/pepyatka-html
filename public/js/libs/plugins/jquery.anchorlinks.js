@@ -4,7 +4,7 @@
     var testAndTag = function(el) {
       // Test for URLs along whitespace and punctuation boundaries
       // (don't look too hard or you will be consumed)
-      var expression = /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi
+      var expression = /((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi
       var m = el.nodeValue.match(expression)
 
       // If we've found a valid URL, m[0] contains the URL

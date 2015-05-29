@@ -14,6 +14,7 @@ define(["lodash",
     updatedAt: DS.attr('number'),
     profilePictureLargeUrl: DS.attr('string'),
     profilePictureMediumUrl: DS.attr('string'),
+    administratorIds: DS.attr(),
 
     isGroup: function() {
       return this.get('type') === 'group'

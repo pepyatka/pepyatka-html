@@ -49,6 +49,7 @@ define(["config",
     }.property('model.omittedLikes', 'model.likes', 'model.likes.length'),
 
     isEdit: false,
+    isFormVisible: false,
     maxComments: 2,
     maxLikes: 4,
     isLoadingLikes: false,
@@ -85,6 +86,13 @@ define(["config",
     }.property('model.omittedLikes', 'allLikes'),
 
     actions: {
+      toggleCommentForm: function() {
+        this.toggleProperty('isFormVisible')
+
+        if (!this.get('isFormVisible'))
+          this.set('newComment', '')
+      },
+
       toggleEditability: function() {
         this.toggleProperty('isEdit')
       },
@@ -93,7 +101,7 @@ define(["config",
         var that = this
 
         // NOTE: we are setting omittedCommentsOld because for UX we
-        // are going to show spinner for extra 0.25s, however new data
+        // are going to show throbber for extra 0.25s, however new data
         // will be already loaded at that time, so we must show old
         // data to simulate loading process
         this.set('omittedCommentsOld', this.get('omittedComments'))
@@ -133,6 +141,7 @@ define(["config",
         this.set('newComment', '')
         comment.save()
           .then(function(comment) {
+            this.set('isFormVisible', false)
             var object = this.get('content.comments').findProperty('id', comment.get('id'))
             if (!object) {
               this.get('content.comments').pushObject(comment)

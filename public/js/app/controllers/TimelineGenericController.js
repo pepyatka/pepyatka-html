@@ -46,6 +46,13 @@ define(["config",
       return currentUser.get('subscriptions').isAny('id', this.get('model.id'))
     }.property('session.currentUser.id', 'session.currentUser.subscriptions.@each', 'model.id'),
 
+    isAdmin: function() {
+      var adminIds = this.get('model.user.administratorIds')
+      var currentUserId = this.get('session.currentUser.id')
+
+      return adminIds.indexOf(currentUserId) !== -1
+    }.property('session.currentUser.id'),
+
     isAttachmentsVisible: false,
 
     actions: {
@@ -91,7 +98,7 @@ define(["config",
 
         // Add a throbber (placeholder object, to show uploading progress)
         var attachmentList = this.get('attachments')
-        var throbber = this.store.createRecord('attachment', { thumbnailUrl: '/img/uploading.gif' })
+        var throbber = this.store.createRecord('attachment', { thumbnailUrl: '/img/throbber-100.gif' })
         var throbberIndex = attachmentList.length
         attachmentList.pushObject(throbber)
 

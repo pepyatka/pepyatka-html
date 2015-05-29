@@ -8,7 +8,9 @@
       <div class="description">
         <div class="name">{{content.user.screenName}}</div>
         {{#if content.user.isGroup}}
-          {{#link-to 'settings.feed' content.user.username}}Settings{{/link-to}}
+          {{#if controller.isAdmin}}
+            {{#link-to 'settings.feed' content.user.username}}Settings{{/link-to}}
+          {{/if}}
         {{/if}}
       </div>
     </div>
