@@ -99,6 +99,7 @@ define(["config",
 
       showAllComments: function() {
         var that = this
+        var oldUpdatedAt = this.get('model.updatedAt')
 
         // NOTE: we are setting omittedCommentsOld because for UX we
         // are going to show throbber for extra 0.25s, however new data
@@ -110,7 +111,8 @@ define(["config",
         this.store.findOneQuery('post', this.get('model.id'), {
           maxComments: this.get('maxComments'),
           maxLikes: this.get('maxLikes')
-        }).then(function() {
+        }).then(function(post) {
+          post.set('updatedAt', oldUpdatedAt)
           Ember.run.later(function() {
             that.set('isLoadingComments', false)
           }, 250)
@@ -119,13 +121,15 @@ define(["config",
 
       showAllLikes: function() {
         var that = this
+        var oldUpdatedAt = this.get('model.updatedAt')
 
         this.set('isLoadingLikes', true)
         this.set('maxLikes', 'all')
         this.store.findOneQuery('post', this.get('model.id'), {
           maxComments: this.get('maxComments'),
           maxLikes: this.get('maxLikes')
-        }).then(function() {
+        }).then(function(post) {
+          post.set('updatedAt', oldUpdatedAt)
           Ember.run.later(function() {
             that.set('isLoadingLikes', false)
           }, 250)
@@ -151,11 +155,13 @@ define(["config",
 
       update: function() {
         var post = this.get('model')
+        var oldUpdatedAt = this.get('model.updatedAt')
         var body = this.get('body')
 
         post.set('body', body)
         post.save()
-          .then(function(newComment) {
+          .then(function(post) {
+            post.set('updatedAt', oldUpdatedAt)
             this.set('isEdit', false)
           }.bind(this))
       },
