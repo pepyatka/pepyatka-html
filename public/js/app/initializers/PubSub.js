@@ -105,9 +105,8 @@ define(["config",
         },
 
         isFirstPage: function() {
-          var pageStart = this.currentController().get('pageStart')
-          return pageStart === 0 ||
-            pageStart === undefined
+          var offset = this.currentController().get('offset')
+          return offset === 0 || offset === undefined
         },
 
         currentController: function() {
