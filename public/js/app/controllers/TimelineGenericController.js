@@ -142,7 +142,6 @@ define(["config",
         post.save()
           .then(function(post) {
             var object = that.get('model.posts').findProperty('id', post.get('id'))
-            console.log(object)
             if (!object) {
               that.get('model.posts').addObject(post)
             }
