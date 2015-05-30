@@ -38,15 +38,18 @@ define(["config",
 
         monitor: function() {
           var channel = this.get('channel')
-          if (channel.constructor === App.Timeline)
-            this.subscribe('timeline', channel.get('id'))
-          else if (channel.constructor === App.Post)
-            this.subscribe('post', channel.get('id'))
-          else if (channel.constructor === Ember.ArrayProxy) {
-            channel.get('content').forEach(function(post) {
-              this.subscribe('post', post.get('id'))
-            }, this)}
-        }.observes('channel.id', 'channel.content.length'),
+          if (channel) {
+            if (channel.constructor === App.Timeline)
+              this.subscribe('timeline', channel.get('id'))
+            else if (channel.constructor === App.Post)
+              this.subscribe('post', channel.get('id'))
+            else if (channel.constructor === Ember.ArrayProxy) {
+              channel.get('content').forEach(function(post) {
+                this.subscribe('post', post.get('id'))
+              }, this)
+            }
+          }
+        }.observes('channel', 'channel.id', 'channel.content.length'),
 
         subscribe: function(channel, ids) {
           if (!ids) return
@@ -95,6 +98,7 @@ define(["config",
           }
 
           this.subscribedTo = {}
+          this.set('channel', null)
           this.socket.emit('unsubscribe', unsubscribedTo)
         },
 
