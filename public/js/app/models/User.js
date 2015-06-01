@@ -16,6 +16,26 @@ define(["lodash",
     profilePictureMediumUrl: DS.attr('string'),
     administratorIds: DS.attr(),
 
+    hasPosts: function() {
+      return this.get('statistics.posts') > 0
+    }.property('statistics.posts'),
+
+    hasLikes: function() {
+      return this.get('statistics.likes') > 0
+    }.property('statistics.likes'),
+
+    hasComments: function() {
+      return this.get('statistics.comments') > 0
+    }.property('statistics.comments'),
+
+    hasSubscriptions: function() {
+      return this.get('statistics.subscriptions') > 0
+    }.property('statistics.subscriptions'),
+
+    hasSubscribers: function() {
+      return this.get('statistics.subscribers') > 0
+    }.property('statistics.subscribers'),
+
     isGroup: function() {
       return this.get('type') === 'group'
     }.property(),
