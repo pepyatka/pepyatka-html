@@ -1,21 +1,12 @@
-(function($) {
+require(['linkify'], function(linkify) {
   $.fn.anchorTextUrls = function() {
     // Test a text node's contents for URLs and split and rebuild it with an achor
     var testAndTag = function(el) {
-      // Test for URLs along whitespace and punctuation boundaries
-      // (don't look too hard or you will be consumed)
-      var expression = /(https?:\/\/?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi
-      var m = el.nodeValue.match(expression)
-
-      // If we've found a valid URL, m[0] contains the URL
-      if (m) {
+      linkify.find(el.nodeValue).forEach(function(linkifyUrl) {
         // Clone the text node to hold the "tail end" of the split
         // node
+        var url = linkifyUrl.value
         var tail = $(el).clone()[0]
-        var url = m[0]
-
-        // NOTE: my regex kung-fu is not strong enough
-        if (url) url = url.replace(/\.+$/, '')
 
         // Substring the nodeValue attribute of the text nodes based
         // on the match boundaries
@@ -59,13 +50,13 @@
           .after(tail)
           .after($("<a></a>")
                  .attr("title", url)
-                 .attr("href", url)
+                 .attr("href", linkifyUrl.href)
                  .attr("target", "_blank")
                  .html(name))
 
         // Recurse on the new tail node to check for more URLs
         testAndTag(tail)
-      }
+      })
 
       // Behave like a function
       return false
@@ -85,4 +76,4 @@
       })
     })
   }
-}(jQuery))
+})
