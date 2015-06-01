@@ -4,7 +4,7 @@
     var testAndTag = function(el) {
       // Test for URLs along whitespace and punctuation boundaries
       // (don't look too hard or you will be consumed)
-      var expression = /((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi
+      var expression = /(https?:\/\/?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi
       var m = el.nodeValue.match(expression)
 
       // If we've found a valid URL, m[0] contains the URL
@@ -12,13 +12,17 @@
         // Clone the text node to hold the "tail end" of the split
         // node
         var tail = $(el).clone()[0]
+        var url = m[0]
+
+        // NOTE: my regex kung-fu is not strong enough
+        if (url) url = url.replace(/\.+$/, '')
 
         // Substring the nodeValue attribute of the text nodes based
         // on the match boundaries
-        el.nodeValue = el.nodeValue.substring(0, el.nodeValue.indexOf(m[0]))
-        tail.nodeValue = tail.nodeValue.substring(tail.nodeValue.indexOf(m[0]) + m[0].length)
+        el.nodeValue = el.nodeValue.substring(0, el.nodeValue.indexOf(url))
+        tail.nodeValue = tail.nodeValue.substring(tail.nodeValue.indexOf(url) + url.length)
 
-        var name = m[0]
+        var name = url
         var shorten = false
 
         // shorten url if it's nested more than 2 levels, e.g. http://google.com/a/b
@@ -54,8 +58,8 @@
         $(el)
           .after(tail)
           .after($("<a></a>")
-                 .attr("title", m[0])
-                 .attr("href", m[0])
+                 .attr("title", url)
+                 .attr("href", url)
                  .attr("target", "_blank")
                  .html(name))
 

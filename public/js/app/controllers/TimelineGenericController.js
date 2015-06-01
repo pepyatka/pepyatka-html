@@ -21,7 +21,7 @@ define(["config",
         sortAscending: false,
         content: this.get('model.posts')
       })
-    }.property('model.posts'),
+    }.property('model.posts.[]'),
 
     // 'attachments' should be an instance property (set on init), not a prototype property
     setupAttachments: function() {
@@ -50,7 +50,7 @@ define(["config",
       var adminIds = this.get('model.user.administratorIds')
       var currentUserId = this.get('session.currentUser.id')
 
-      return adminIds.indexOf(currentUserId) !== -1
+      return adminIds && adminIds.indexOf(currentUserId) !== -1
     }.property('session.currentUser.id'),
 
     isAttachmentsVisible: false,
@@ -112,7 +112,7 @@ define(["config",
 
       create: function() {
         // Allow/disallow selecting feeds
-        var feeds;
+        var feeds
         if (this.get('selectFeedsOnCreate')) {
           feeds = Ember.$('#sendToSelect').val()
         } else {
@@ -138,7 +138,14 @@ define(["config",
         this.set('isAttachmentsVisible', false)
 
         // Save it to the backend
+        var that = this
         post.save()
+          .then(function(post) {
+            var object = that.get('model.posts').findProperty('id', post.get('id'))
+            if (!object) {
+              that.get('model.posts').addObject(post)
+            }
+          })
       }
     }
   })
