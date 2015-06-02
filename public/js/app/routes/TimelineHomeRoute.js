@@ -1,18 +1,14 @@
 define(["app/app",
-        "components/TransitionalRoute"], function(App) {
+        "components/TransitionalRoute",
+        "components/AuthorizableRoute"], function(App) {
   "use strict";
 
-  App.TimelineHomeRoute = Ember.Route.extend(App.TransitionalRoute,{
+  App.TimelineHomeRoute = Ember.Route.extend(App.TransitionalRoute,
+                                             App.AuthorizableRoute, {
     queryParams: {
       offset: {
         refreshModel: true
       }
-    },
-
-    beforeModel: function() {
-      this._super.apply(this, arguments)
-      if (!this.get('session.currentUser'))
-        return this.transitionTo('session.new')
     },
 
     model: function(params) {

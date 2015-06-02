@@ -1,8 +1,10 @@
 define(["app/app",
-        "components/TransitionalRoute"], function(App) {
+        "components/TransitionalRoute",
+        "components/AuthorizableRoute"], function(App) {
   "use strict";
 
-  App.SettingsRoute = Ember.Route.extend(App.TransitionalRoute, {
+  App.SettingsRoute = Ember.Route.extend(App.TransitionalRoute,
+                                         App.AuthorizableRoute, {
     beforeModel: function() {
       this._super.apply(this, arguments)
       if (!this.get('session.currentUser'))

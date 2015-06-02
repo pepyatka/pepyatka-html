@@ -60,6 +60,8 @@
     'select2': 'libs/select2/4.0.0-rc.2/select2.min',
     'lodash': 'libs/lodash/3.7.0/lodash.min',
     'jquery.anchorlinks': 'libs/plugins/jquery.anchorlinks',
+    'linkify-jquery': 'libs/linkify/2.0.0-alpha.3/linkify-jquery.amd.min',
+    'linkify': 'libs/linkify/2.0.0-alpha.3/linkify.amd.min',
     'momentjs.relativeTime': 'libs/plugins/momentjs.relativeTime',
 
     /* requirejs-plugins */
@@ -107,10 +109,13 @@
       exports: '_'
     },
     'jquery.anchorlinks': {
-      deps: ['jquery']
+      deps: ['jquery', 'linkify']
     },
     'momentjs.relativeTime': {
       deps: ['moment']
+    },
+    'linkify-jquery': {
+      deps: ['jquery']
     }
   },
 

@@ -9,6 +9,8 @@ define(["ember"
         , "lodash"
         , "jquery.anchorlinks"
         , "momentjs.relativeTime"
+        , "linkify"
+        , "linkify-jquery"
         , "numeral"
        ], function(Ember) {
   "use strict";

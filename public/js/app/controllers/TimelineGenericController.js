@@ -72,6 +72,7 @@ define(["config",
             this.store.unloadRecord(user)
             this.store.pushPayload('user', response)
             this.get('session').set('currentUser', this.store.getById('user', response.users.id))
+            this.incrementProperty('model.user.statistics.subscribers')
           })
       },
 
@@ -87,6 +88,7 @@ define(["config",
             this.store.unloadRecord(user)
             this.store.pushPayload('user', response)
             this.get('session').set('currentUser', this.store.getById('user', response.users.id))
+            this.decrementProperty('model.user.statistics.subscribers')
           })
       },
 
