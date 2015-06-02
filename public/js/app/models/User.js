@@ -75,6 +75,10 @@ define(["lodash",
       if (this.get('updatedAt')) {
         return moment(this.get('updatedAt')).fromNowOrNow()
       }
-    }.property('updatedAt')
+    }.property('updatedAt'),
+
+    inTitleName: function() {
+      return this.get('screenName').split(' ')[0]
+    }.property('screenName')
   })
 })
