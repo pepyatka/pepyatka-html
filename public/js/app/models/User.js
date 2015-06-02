@@ -78,7 +78,15 @@ define(["lodash",
     }.property('updatedAt'),
 
     inTitleName: function() {
-      return this.get('screenName').split(' ')[0]
+      var shortName = this.get('screenName')
+      if (this.get('isUser')) {
+        shortName = shortName.split(' ')[0] + "'"
+        if (shortName[shortName.length - 2] !== 's') {
+          shortName = shortName + "s"
+        }
+        shortName += " feed"
+      }
+      return shortName
     }.property('screenName')
   })
 })
