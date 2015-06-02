@@ -68,7 +68,7 @@ define(["lodash",
     }.property('subscriptions.@each'),
 
     recentGroups: function() {
-      return this.get('groups').slice(0, 3)
+      return this.get('groups').slice(0, 4)
     }.property('groups'),
 
     updatedAgo: function() {
