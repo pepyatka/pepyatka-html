@@ -21,7 +21,7 @@ define(["config",
           .then(function(group) {
             // this group has been just created and we can add all
             // timeline to currentUser
-            that.get('session.currentUser.subscriptions').addObjects(group.get('timelines'))
+            that.get('session.currentUser.subscriptions').unshiftObjects(group.get('timelines'))
             that.transitionToRoute('timeline.index', that.get('username'))
           }, function(err) {
             that.set('errors', JSON.parse(err.responseText).err)

@@ -67,6 +67,10 @@ define(["lodash",
       })
     }.property('subscriptions.@each'),
 
+    recentGroups: function() {
+      return this.get('groups').slice(0, 3)
+    }.property('groups'),
+
     updatedAgo: function() {
       if (this.get('updatedAt')) {
         return moment(this.get('updatedAt')).fromNowOrNow()
