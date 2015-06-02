@@ -54,6 +54,7 @@ define(["config",
     }.property('session.currentUser.id'),
 
     isAttachmentsVisible: false,
+    isSendToVisible: false,
 
     actions: {
       showAttachments: function() {
@@ -138,6 +139,7 @@ define(["config",
         this.set('body', '')
         this.set('attachments', [])
         this.set('isAttachmentsVisible', false)
+        this.set('isSendToVisible', false)
 
         // Save it to the backend
         var that = this
