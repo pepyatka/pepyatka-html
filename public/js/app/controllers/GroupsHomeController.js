@@ -10,7 +10,7 @@ define(["config",
       if (this.get('showAllGroups'))
         return this.get('session.currentUser.groups')
       else
-        return this.get('session.currentUser.groups').slice(0, 3)
+        return this.get('session.currentUser.groups').slice(0, 6)
     }.property('session.currentUser.group', 'showAllGroups'),
 
     actions: {
