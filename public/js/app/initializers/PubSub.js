@@ -129,7 +129,7 @@ define(["config",
             this.store.pushPayload('post', data)
             post = this.store.getById('post', data.posts.id)
 
-            this.currentController().model.get('posts').addObject(post)
+            this.currentController().model.get('posts').unshiftObject(post)
           }
         },
 

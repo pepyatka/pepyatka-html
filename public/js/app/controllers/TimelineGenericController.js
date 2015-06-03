@@ -15,14 +15,6 @@ define(["config",
     //postSortProperties: ['createdAt:desc'],
     //posts: Ember.computed.sort('model.posts', 'postSortProperties'),
 
-    posts: function() {
-      return Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
-        sortProperties: ['updatedAt'],
-        sortAscending: false,
-        content: this.get('model.posts')
-      })
-    }.property('model.posts.[]'),
-
     // 'attachments' should be an instance property (set on init), not a prototype property
     setupAttachments: function() {
       this.set('attachments', []);
