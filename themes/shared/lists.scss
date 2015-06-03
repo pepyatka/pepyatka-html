@@ -26,3 +26,13 @@ ul.tile-list {
 
   @include clearfix();
 }
+
+.list-controls {
+  .manage-controls {
+    text-align: right;
+    float: right;
+  }
+  .filter-controls {
+    float: left;
+  }
+}

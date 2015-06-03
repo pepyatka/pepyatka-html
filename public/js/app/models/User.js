@@ -67,10 +67,26 @@ define(["lodash",
       })
     }.property('subscriptions.@each'),
 
+    recentGroups: function() {
+      return this.get('groups').slice(0, 4)
+    }.property('groups'),
+
     updatedAgo: function() {
       if (this.get('updatedAt')) {
         return moment(this.get('updatedAt')).fromNowOrNow()
       }
-    }.property('updatedAt')
+    }.property('updatedAt'),
+
+    inTitleName: function() {
+      var shortName = this.get('screenName')
+      if (this.get('isUser')) {
+        shortName = shortName.split(' ')[0] + "'"
+        if (shortName[shortName.length - 2] !== 's') {
+          shortName = shortName + "s"
+        }
+        shortName += " feed"
+      }
+      return shortName
+    }.property('screenName')
   })
 })

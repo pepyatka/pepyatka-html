@@ -28,6 +28,13 @@ define(["config",
       return this.get('publicSubscriptions.length') > 0
     }.property('publicSubscriptions'),
 
+    groupsOnly: function() {
+      var feeds = this.get('postedTo').toArray()
+      return _.filter(feeds, function(feed) {
+        return feed.get('user.isGroup')
+      }).length === feeds.length
+    }.property('postedTo'),
+
     publicSubscriptions: function() {
       var subscriptions = _.filter(this.get('postedTo').toArray(), function(feed) {
         return feed.get('name') == 'Posts'
