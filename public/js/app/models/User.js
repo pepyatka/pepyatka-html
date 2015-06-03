@@ -87,6 +87,13 @@ define(["lodash",
         shortName += " feed"
       }
       return shortName
+    }.property('screenName'),
+
+    screenNameOrYou: function() {
+      if (App.get('Session.currentUser.id') === this.get('id'))
+        return 'You'
+
+      return this.get('screenName')
     }.property('screenName')
   })
 })
