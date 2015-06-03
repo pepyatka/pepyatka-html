@@ -18,7 +18,18 @@ define(["app/app", "ember"], function(App, Ember) {
     //   collapseEffect: 'fadeOut'
     // })
 
-    return new Ember.Handlebars.SafeString(text.html())
+    var html = text.html()
+
+    // make links from @login
+    var parts = html.split(/(<.*?>)/g), i
+    for (i = 0; i < parts.length; i += 4) {
+      parts[i] = parts[i].replace(/\B@([a-z0-9]+)/g, function(u) {
+        return '<a href="/' + u.substr(1) + '">' + u + '</a>'
+      })
+    }
+    html = parts.join("")
+
+    return new Ember.Handlebars.SafeString(html)
   })
 
   Ember.Handlebars.registerBoundHelper('ifpositive', function(property, options) {
