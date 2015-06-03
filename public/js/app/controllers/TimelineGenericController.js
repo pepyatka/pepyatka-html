@@ -145,7 +145,7 @@ define(["config",
           .then(function(post) {
             var object = that.get('model.posts').findProperty('id', post.get('id'))
             if (!object) {
-              that.get('model.posts').addObject(post)
+              that.get('model.posts').unshiftObject(post)
             }
           })
       }
