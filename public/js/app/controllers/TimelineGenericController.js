@@ -27,9 +27,9 @@ define(["config",
     myFeed: function() {
       return (this.get('model.user.id') == this.get('session.currentUser.id')
               && this.get('model.user.isUser'))
-        || (_.contains(this.get('model.subscribers'), this.get('session.currentUser.id'))
+        || (this.get('model.subscribers').isAny('id', this.get('session.currentUser.id'))
             && this.get('model.user.isGroup'))
-    }.property('model.user.id', 'session.currentUser.id'),
+    }.property('model.user.id', 'session.currentUser.id', 'model.subscribers'),
 
     isSubscribed: function() {
       var currentUser = this.get('session.currentUser')
@@ -62,10 +62,13 @@ define(["config",
         })
           .then(function(response) {
             var user = this.store.recordForId('user', response.users.id)
-            this.store.unloadRecord(user)
             this.store.pushPayload('user', response)
+            this.store.pushPayload('subscriber', response)
+            var subscriber = this.store.recordForId('subscriber', response.users.id)
+
             this.get('session').set('currentUser', this.store.getById('user', response.users.id))
             this.incrementProperty('model.user.statistics.subscribers')
+            this.get('model.subscribers').addObject(subscriber)
           })
       },
 
@@ -78,10 +81,13 @@ define(["config",
         })
           .then(function(response) {
             var user = this.store.recordForId('user', response.users.id)
-            this.store.unloadRecord(user)
             this.store.pushPayload('user', response)
+            this.store.pushPayload('subscriber', response)
+            var subscriber = this.store.recordForId('subscriber', response.users.id)
+
             this.get('session').set('currentUser', this.store.getById('user', response.users.id))
             this.decrementProperty('model.user.statistics.subscribers')
+            this.get('model.subscribers').removeObject(subscriber)
           })
       },
 
