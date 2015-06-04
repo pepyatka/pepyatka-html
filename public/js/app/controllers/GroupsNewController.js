@@ -22,7 +22,7 @@ define(["config",
             // this group has been just created and we can add all
             // timeline to currentUser
             that.get('session.currentUser.subscriptions').unshiftObjects(group.get('timelines'))
-            that.transitionToRoute('timeline.index', that.get('username'), { queryParams: { offset: 0 }})
+            that.transitionToRoute('timeline.index', group.get('username'), { queryParams: { offset: 0 }})
           }, function(err) {
             that.set('errors', JSON.parse(err.responseText).err)
           })
