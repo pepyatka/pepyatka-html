@@ -63,7 +63,9 @@ define(["config",
           .then(function(response) {
             var user = this.store.recordForId('user', response.users.id)
             this.store.pushPayload('user', response)
-            this.store.pushPayload('subscriber', response)
+            var subscriberResponse = response
+            subscriberResponse.subscribers = subscriberResponse.users
+            this.store.pushPayload('subscriber', subscriberResponse)
             var subscriber = this.store.recordForId('subscriber', response.users.id)
 
             this.get('session').set('currentUser', this.store.getById('user', response.users.id))
@@ -82,7 +84,9 @@ define(["config",
           .then(function(response) {
             var user = this.store.recordForId('user', response.users.id)
             this.store.pushPayload('user', response)
-            this.store.pushPayload('subscriber', response)
+            var subscriberResponse = response
+            subscriberResponse.subscribers = subscriberResponse.users
+            this.store.pushPayload('subscriber', subscriberResponse)
             var subscriber = this.store.recordForId('subscriber', response.users.id)
 
             this.get('session').set('currentUser', this.store.getById('user', response.users.id))
