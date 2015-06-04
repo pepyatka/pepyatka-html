@@ -27,16 +27,15 @@ define(["config",
     myFeed: function() {
       return (this.get('model.user.id') == this.get('session.currentUser.id')
               && this.get('model.user.isUser'))
-        || (this.get('model.subscribers').isAny('id', this.get('session.currentUser.id'))
-            && this.get('model.user.isGroup'))
-    }.property('model.user.id', 'session.currentUser.id', 'model.subscribers'),
+        || (this.get('isSubscribed'))
+    }.property('model.user.id', 'session.currentUser.id', 'isSubscribed'),
 
     isSubscribed: function() {
       var currentUser = this.get('session.currentUser')
       if (!currentUser) { return false }
 
-      return currentUser.get('subscriptions').isAny('id', this.get('model.id'))
-    }.property('session.currentUser.id', 'session.currentUser.subscriptions.@each', 'model.id'),
+      return (this.get('model.subscribers').isAny('id', currentUser.get('id')) && this.get('model.user.isGroup'))
+    }.property('model.subscribers', 'session.currentUser.id'),
 
     isAdmin: function() {
       var adminIds = this.get('model.user.administratorIds')
@@ -63,7 +62,9 @@ define(["config",
           .then(function(response) {
             var user = this.store.recordForId('user', response.users.id)
             this.store.pushPayload('user', response)
-            this.store.pushPayload('subscriber', response)
+            var subscriberResponse = response
+            subscriberResponse.subscribers = subscriberResponse.users
+            this.store.pushPayload('subscriber', subscriberResponse)
             var subscriber = this.store.recordForId('subscriber', response.users.id)
 
             this.get('session').set('currentUser', this.store.getById('user', response.users.id))
@@ -82,7 +83,9 @@ define(["config",
           .then(function(response) {
             var user = this.store.recordForId('user', response.users.id)
             this.store.pushPayload('user', response)
-            this.store.pushPayload('subscriber', response)
+            var subscriberResponse = response
+            subscriberResponse.subscribers = subscriberResponse.users
+            this.store.pushPayload('subscriber', subscriberResponse)
             var subscriber = this.store.recordForId('subscriber', response.users.id)
 
             this.get('session').set('currentUser', this.store.getById('user', response.users.id))
