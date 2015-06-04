@@ -27,16 +27,15 @@ define(["config",
     myFeed: function() {
       return (this.get('model.user.id') == this.get('session.currentUser.id')
               && this.get('model.user.isUser'))
-        || (this.get('model.subscribers').isAny('id', this.get('session.currentUser.id'))
-            && this.get('model.user.isGroup'))
-    }.property('model.user.id', 'session.currentUser.id', 'model.subscribers'),
+        || (this.get('isSubscribed'))
+    }.property('model.user.id', 'session.currentUser.id', 'isSubscribed'),
 
     isSubscribed: function() {
       var currentUser = this.get('session.currentUser')
       if (!currentUser) { return false }
 
-      return currentUser.get('subscriptions').isAny('id', this.get('model.id'))
-    }.property('session.currentUser.id', 'session.currentUser.subscriptions.@each', 'model.id'),
+      return (this.get('model.subscribers').isAny('id', currentUser.get('id')) && this.get('model.user.isGroup'))
+    }.property('model.subscribers', 'session.currentUser.id'),
 
     isAdmin: function() {
       var adminIds = this.get('model.user.administratorIds')
