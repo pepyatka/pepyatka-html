@@ -34,7 +34,7 @@ define(["config",
       var currentUser = this.get('session.currentUser')
       if (!currentUser) { return false }
 
-      return (this.get('model.subscribers').isAny('id', currentUser.get('id')) && this.get('model.user.isGroup'))
+      return (this.get('model.subscribers').isAny('id', currentUser.get('id')))
     }.property('model.subscribers', 'session.currentUser.id'),
 
     isAdmin: function() {
