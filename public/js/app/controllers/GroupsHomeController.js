@@ -11,7 +11,7 @@ define(["config",
         return this.get('session.currentUser.groups')
       else
         return this.get('session.currentUser.groups').slice(0, 6)
-    }.property('session.currentUser.group', 'showAllGroups'),
+    }.property('session.currentUser.groups', 'showAllGroups'),
 
     actions: {
       toggleAllGroups: function() {
