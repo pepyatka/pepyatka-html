@@ -67,7 +67,7 @@ define(["config",
         return this.get('model.comments').slice(len - 1, len)
 
       var lastTwo = this.get('model.comments').slice(len - 2, len)
-      if (lastTwo[1].get('isRealtime') === true) {
+      if (lastTwo[1].get('isRealtime') === true && len > 2) {
         return lastTwo
       }
       return [lastTwo[1]]
