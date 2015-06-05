@@ -5,7 +5,7 @@
     <ul class="p-timeline-user-likes">
       {{#each controller.firstLikes as |user index|}}
         <li class="p-timeline-user-like">
-          {{#link-to 'timeline.index' user.username (query-params offset=0)}}{{user.screenName}}{{/link-to}}<!--
+          {{#link-to 'timeline.index' user.username (query-params offset=0)}}{{user.screenNameOrYou}}{{/link-to}}<!--
           -->{{#unless (isLast index length=controller.firstLikes.length)}}, {{else}}
               <span>
                 and
@@ -16,14 +16,14 @@
         </li>
       {{/each}}
       {{#if controller.isLoadingLikes}}
-        <span class="spinner"><img src="/img/ajax.gif" width="16" height="16" /></span>
+        <span class="throbber"><img src="/img/throbber-16.gif" width="16" height="16" /></span>
       {{/if}}
     </ul>
   {{else}}
     <ul class="p-timeline-user-likes">
       {{#each controller.allLikes as |user index|}}
         <li class="p-timeline-user-like">
-          {{#link-to 'timeline.index' user.username (query-params offset=0)}}{{user.screenName}}{{/link-to}}<!--
+          {{#link-to 'timeline.index' user.username (query-params offset=0)}}{{user.screenNameOrYou}}{{/link-to}}<!--
           -->{{#unless (isLast index length=view.likes.length)}}, {{else}}
               <span>liked this</span>
              {{/unless}}

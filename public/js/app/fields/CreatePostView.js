@@ -13,9 +13,9 @@ define(["app/app"], function(App) {
     },
 
     click: function() {
-      var view = this.get('parentView.sendTo')
-      if (view)
-        view.set('isVisible', true)
+      var view = this.get('parentView')
+      if (view.get('sendTo'))
+        view.set('controller.isSendToVisible', true)
     }
   })
 })

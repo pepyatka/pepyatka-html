@@ -5,8 +5,10 @@ define(["app/app"], function(App) {
       attachments: { serialize: 'ids' }
     },
 
-    serializeIntoHash: function(data, type, record, options) {
-      this._super(data, type, record, options)
+    serializeIntoHash: function(data, type, snapshot, options) {
+      this._super(data, type, snapshot, options)
+
+      var record = snapshot.record
 
       if (record.get('feeds')) {
         data.meta = {

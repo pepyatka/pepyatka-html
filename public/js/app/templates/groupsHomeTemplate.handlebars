@@ -1,7 +1,29 @@
-{{!--
-<!-- View: Active groups - All groups
-<br/>
-{{#link-to 'groups.new'}}Create a group{{/link-to}} | Find groups
--->
-{{#link-to 'groups.new'}}Create a group{{/link-to}}
---}}
+<div class="row list-controls">
+  <div class="col-md-6 filter-controls">
+    View:
+    {{#if controller.showAllGroups}}
+      <a {{action 'toggleAllGroups'}}>Active groups</a> -
+      All groups
+    {{else}}
+      Active groups -
+      <a {{action 'toggleAllGroups'}}>All groups</a>
+    {{/if}}
+  </div>
+  <div class="col-md-3 manage-controls">
+    {{#link-to 'groups.new'}}Create a group{{/link-to}}
+  </div>
+</div>
+
+<ul class="tile-list">
+  {{#each group in controller.groups}}
+    <li class="p-timeline-group-user">
+      {{#link-to 'timeline.index' group.user.username (query-params offset=0)}}
+        <div class="avatar">
+          <img src="{{ group.user.profilePictureLarge }}" />
+        </div>
+
+        {{group.user.screenName}}
+      {{/link-to}}
+    </li>
+  {{/each}}
+</ul>

@@ -9,8 +9,18 @@ define(["app/app",
     viewName: 'sendTo',
 
     isEnabled: false,
-    isVisible: false,
     showToggler: true,
+
+    isVisible: function() {
+      return this.get('controller.isSendToVisible')
+    }.property('controller.isSendToVisible'),
+
+    resetField: function() {
+      if (this.get('isVisible') === true) {
+        var field = this.$("#sendToSelect")
+        field.select2('val', this.get('controller.session.currentUser.username'))
+      }
+    }.observes('isVisible'),
 
     didInsertElement: function() {
       var field = this.$("#sendToSelect")

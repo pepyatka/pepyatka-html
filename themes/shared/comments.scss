@@ -39,6 +39,12 @@
   .more-comments {
     padding-left: 19px;
     font-style: italic;
+
+    &.loading {
+      background: url('/img/throbber-16.gif') top left no-repeat;
+      padding-left: 21px;
+      margin-left: -2px;
+    }
   }
 
   .add-comment-block {

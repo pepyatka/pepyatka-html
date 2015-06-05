@@ -49,17 +49,19 @@
     'views': 'app/views',
 
     /* libs */
-    'jquery': 'libs/jquery/2.1.3/jquery.min',
-    'bootstrap': 'libs/bootstrap/3.3.2/bootstrap.min',
-    'ember': 'libs/emberjs/1.11.0-beta.1/ember.min',
-    'ember-data': 'libs/ember-data/1.0.0-beta.15/ember-data.min',
-    'ember-template-compiler': 'libs/ember-template-compiler/1.12.0-beta.1/ember-template-compiler',
+    'jquery': 'libs/jquery/2.1.4/jquery.min',
+    'bootstrap': 'libs/bootstrap/3.3.4/bootstrap.min',
+    'ember': 'libs/emberjs/1.11.3/ember.min',
+    'ember-data': 'libs/ember-data/1.0.0-beta.18/ember-data.min',
+    'ember-template-compiler': 'libs/ember-template-compiler/1.11.3/ember-template-compiler.min',
     'moment': 'libs/momentjs/2.9.0/moment.min',
     'numeral': 'libs/numeraljs/1.5.3/numeral.min',
     'socket.io': 'libs/socket.io/1.3.5/socket.io.min',
     'select2': 'libs/select2/4.0.0-rc.2/select2.min',
     'lodash': 'libs/lodash/3.7.0/lodash.min',
     'jquery.anchorlinks': 'libs/plugins/jquery.anchorlinks',
+    'linkify-jquery': 'libs/linkify/2.0.0-alpha.3/linkify-jquery.amd.min',
+    'linkify': 'libs/linkify/2.0.0-alpha.3/linkify.amd.min',
     'momentjs.relativeTime': 'libs/plugins/momentjs.relativeTime',
 
     /* requirejs-plugins */
@@ -107,10 +109,13 @@
       exports: '_'
     },
     'jquery.anchorlinks': {
-      deps: ['jquery']
+      deps: ['jquery', 'linkify']
     },
     'momentjs.relativeTime': {
       deps: ['moment']
+    },
+    'linkify-jquery': {
+      deps: ['jquery']
     }
   },
 

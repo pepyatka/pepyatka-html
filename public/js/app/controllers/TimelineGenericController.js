@@ -15,14 +15,6 @@ define(["config",
     //postSortProperties: ['createdAt:desc'],
     //posts: Ember.computed.sort('model.posts', 'postSortProperties'),
 
-    posts: function() {
-      return Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
-        sortProperties: ['updatedAt'],
-        sortAscending: false,
-        content: this.get('model.posts')
-      })
-    }.property('model.posts'),
-
     // 'attachments' should be an instance property (set on init), not a prototype property
     setupAttachments: function() {
       this.set('attachments', []);
@@ -35,18 +27,25 @@ define(["config",
     myFeed: function() {
       return (this.get('model.user.id') == this.get('session.currentUser.id')
               && this.get('model.user.isUser'))
-        || (_.contains(this.get('model.subscribers'), this.get('session.currentUser.id'))
-            && this.get('model.user.isGroup'))
-    }.property('model.user.id', 'session.currentUser.id'),
+        || (this.get('isSubscribed'))
+    }.property('model.user.id', 'session.currentUser.id', 'isSubscribed'),
 
     isSubscribed: function() {
       var currentUser = this.get('session.currentUser')
       if (!currentUser) { return false }
 
-      return currentUser.get('subscriptions').isAny('id', this.get('model.id'))
-    }.property('session.currentUser.id', 'session.currentUser.subscriptions.@each', 'model.id'),
+      return (this.get('model.subscribers').isAny('id', currentUser.get('id')))
+    }.property('model.subscribers', 'session.currentUser.id'),
+
+    isAdmin: function() {
+      var adminIds = this.get('model.user.administratorIds')
+      var currentUserId = this.get('session.currentUser.id')
+
+      return adminIds && adminIds.indexOf(currentUserId) !== -1
+    }.property('session.currentUser.id'),
 
     isAttachmentsVisible: false,
+    isSendToVisible: false,
 
     actions: {
       showAttachments: function() {
@@ -62,9 +61,15 @@ define(["config",
         })
           .then(function(response) {
             var user = this.store.recordForId('user', response.users.id)
-            this.store.unloadRecord(user)
             this.store.pushPayload('user', response)
+            var subscriberResponse = response
+            subscriberResponse.subscribers = subscriberResponse.users
+            this.store.pushPayload('subscriber', subscriberResponse)
+            var subscriber = this.store.recordForId('subscriber', response.users.id)
+
             this.get('session').set('currentUser', this.store.getById('user', response.users.id))
+            this.incrementProperty('model.user.statistics.subscribers')
+            this.get('model.subscribers').addObject(subscriber)
           })
       },
 
@@ -77,9 +82,15 @@ define(["config",
         })
           .then(function(response) {
             var user = this.store.recordForId('user', response.users.id)
-            this.store.unloadRecord(user)
             this.store.pushPayload('user', response)
+            var subscriberResponse = response
+            subscriberResponse.subscribers = subscriberResponse.users
+            this.store.pushPayload('subscriber', subscriberResponse)
+            var subscriber = this.store.recordForId('subscriber', response.users.id)
+
             this.get('session').set('currentUser', this.store.getById('user', response.users.id))
+            this.decrementProperty('model.user.statistics.subscribers')
+            this.get('model.subscribers').removeObject(subscriber)
           })
       },
 
@@ -91,7 +102,7 @@ define(["config",
 
         // Add a throbber (placeholder object, to show uploading progress)
         var attachmentList = this.get('attachments')
-        var throbber = this.store.createRecord('attachment', { thumbnailUrl: '/img/uploading.gif' })
+        var throbber = this.store.createRecord('attachment', { thumbnailUrl: '/img/throbber-100.gif' })
         var throbberIndex = attachmentList.length
         attachmentList.pushObject(throbber)
 
@@ -105,7 +116,7 @@ define(["config",
 
       create: function() {
         // Allow/disallow selecting feeds
-        var feeds;
+        var feeds
         if (this.get('selectFeedsOnCreate')) {
           feeds = Ember.$('#sendToSelect').val()
         } else {
@@ -129,9 +140,17 @@ define(["config",
         this.set('body', '')
         this.set('attachments', [])
         this.set('isAttachmentsVisible', false)
+        this.set('isSendToVisible', false)
 
         // Save it to the backend
+        var that = this
         post.save()
+          .then(function(post) {
+            var object = that.get('model.posts').findProperty('id', post.get('id'))
+            if (!object) {
+              that.get('model.posts').unshiftObject(post)
+            }
+          })
       }
     }
   })

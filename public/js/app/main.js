@@ -10,6 +10,8 @@ define([
   "adapters/TimelineAdapter",
 
   "components/Pagination",
+  "components/TransitionalRoute",
+  "components/AuthorizableRoute",
 
   "helpers/Handlebars",
 

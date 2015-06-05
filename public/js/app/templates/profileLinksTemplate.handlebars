@@ -8,28 +8,30 @@
       <div class="description">
         <div class="name">{{content.user.screenName}}</div>
         {{#if content.user.isGroup}}
-          {{#link-to 'settings.feed' content.user.username}}Settings{{/link-to}}
+          {{#if controller.isAdmin}}
+            {{#link-to 'settings.feed' content.user.username}}Settings{{/link-to}}
+          {{/if}}
         {{/if}}
       </div>
     </div>
     <div class="col-md-3">
       <div class="stats">
-        {{#if content.user.statistics.subscriptions}}
+        {{#if content.user.hasSubscriptions}}
           <div class="p-stats-subscriptions">
             {{#link-to 'timeline.subscriptions' content.user.username}}{{content.user.statistics.subscriptions}} subscriptions{{/link-to}}
           </div>
         {{/if}}
-        {{#if content.user.statistics.subscribers}}
+        {{#if content.user.hasSubscribers}}
           <div class="p-stats-subscribers">
             {{#link-to 'timeline.subscribers' content.user.username}}{{content.user.statistics.subscribers}} subscribers{{/link-to}}
           </div>
         {{/if}}
-        {{#if content.user.statistics.comments}}
+        {{#if content.user.hasComments}}
           <div class="p-stats-comments">
             {{#link-to 'timeline.comments' content.user.username (query-params offset=0)}}{{content.user.statistics.comments}} comments{{/link-to}}
           </div>
         {{/if}}
-        {{#if content.user.statistics.likes}}
+        {{#if content.user.hasLikes}}
           <div class="p-stats-likes">
             {{#link-to 'timeline.likes' content.user.username (query-params offset=0)}}{{content.user.statistics.likes}} likes{{/link-to}}
           </div>

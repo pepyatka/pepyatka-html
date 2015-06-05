@@ -25,13 +25,25 @@ define(["config",
     timeline: DS.belongsTo('timeline'),
 
     anyFeeds: function() {
-      return this.get('publicSubscriptions.length') > 1
+      return this.get('publicSubscriptions.length') > 0
     }.property('publicSubscriptions'),
 
+    groupsOnly: function() {
+      var feeds = this.get('postedTo').toArray()
+      return _.filter(feeds, function(feed) {
+        return feed.get('user.isGroup')
+      }).length === feeds.length
+    }.property('postedTo'),
+
     publicSubscriptions: function() {
-      return _.filter(this.get('postedTo.currentState'), function(feed) {
+      var subscriptions = _.filter(this.get('postedTo').toArray(), function(feed) {
         return feed.get('name') == 'Posts'
       })
+      // this post has been sumitted to home feed
+      if (subscriptions.length === 1 && subscriptions[0].get('user.isUser')) {
+        subscriptions = []
+      }
+      return subscriptions
     }.property('postedTo'),
 
     createdAgo: function() {

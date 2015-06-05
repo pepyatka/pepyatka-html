@@ -1,38 +1,35 @@
-(function($) {
+require(['linkify'], function(linkify) {
   $.fn.anchorTextUrls = function() {
     // Test a text node's contents for URLs and split and rebuild it with an achor
     var testAndTag = function(el) {
-      // Test for URLs along whitespace and punctuation boundaries (don't look too hard or you will be consumed)
-      var m = el.nodeValue.match(/(https?:\/\/.*?)[.!?;,]?(\s+|"|$)/)
-
-      // If we've found a valid URL, m[1] contains the URL
-      if (m) {
+      linkify.find(el.nodeValue).forEach(function(linkifyUrl) {
         // Clone the text node to hold the "tail end" of the split
         // node
+        var url = linkifyUrl.value
         var tail = $(el).clone()[0]
 
         // Substring the nodeValue attribute of the text nodes based
         // on the match boundaries
-        el.nodeValue = el.nodeValue.substring(0, el.nodeValue.indexOf(m[1]))
-        tail.nodeValue = tail.nodeValue.substring(tail.nodeValue.indexOf(m[1]) + m[1].length)
+        el.nodeValue = el.nodeValue.substring(0, el.nodeValue.indexOf(url))
+        tail.nodeValue = tail.nodeValue.substring(tail.nodeValue.indexOf(url) + url.length)
 
-        var name = m[1]
+        var name = url
         var shorten = false
 
         // shorten url if it's nested more than 2 levels, e.g. http://google.com/a/b
-        if (name.split('/').length > 4) {
+        if (name.split('/').length > 4 && name.split('/')[4].length > 1) {
           name = name.split('/').slice(0, 4).join('/')
           shorten = true
         }
 
         // shorten url after ? symbol e.g. http://google.com/a?123
-        if (name.split('?').length > 1) {
+        if (name.split('?').length > 1 && name.split('?')[1].length > 2) {
           name = name.split('?')[0]
           shorten = true
         }
 
         // shorten url after # symbol e.g. http://google.com/a#123
-        if (name.split('#').length > 1) {
+        if (name.split('#').length > 1 && name.split('#')[1].length > 2) {
           name = name.split('#')[0]
           shorten = true
         }
@@ -52,14 +49,14 @@
         $(el)
           .after(tail)
           .after($("<a></a>")
-                 .attr("title", m[1])
-                 .attr("href", m[1])
+                 .attr("title", url)
+                 .attr("href", linkifyUrl.href)
                  .attr("target", "_blank")
                  .html(name))
 
         // Recurse on the new tail node to check for more URLs
         testAndTag(tail)
-      }
+      })
 
       // Behave like a function
       return false
@@ -79,4 +76,4 @@
       })
     })
   }
-}(jQuery))
+})

@@ -3,7 +3,7 @@ define(["app/app"], function(App) {
 
   App.Timeline = DS.Model.extend({
     name: DS.attr('string'),
-    subscribers: DS.attr('string'),
+    subscribers: DS.hasMany('subscriber'),
 
     posts: DS.hasMany('post'),
     // NOTE: timeline.user always belongs to User model no matter what

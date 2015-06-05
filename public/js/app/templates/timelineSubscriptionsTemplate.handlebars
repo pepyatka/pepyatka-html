@@ -11,7 +11,7 @@
               <img src="{{ subscription.user.profilePictureMedium }}" />
             </div>
 
-            {{subscription.user.screenName}}
+            {{subscription.user.screenNameOrYou}}
           {{/link-to}}
         </li>
       {{/if}}
@@ -19,7 +19,6 @@
   {{/each}}
 </ul>
 
-{{#if 0}}
 <h3 class="p-timeline-subscription-groups-header">Groups</h3>
 <ul class="tile-list">
   {{#each subscription in model}}
@@ -31,11 +30,10 @@
               <img src="{{ subscription.user.profilePictureMedium }}" />
             </div>
 
-            {{subscription.user.screenName}}
+            {{subscription.user.screenNameOrYou}}
           {{/link-to}}
         </li>
       {{/if}}
     {{/if}}
   {{/each}}
 </ul>
-{{/if}}
