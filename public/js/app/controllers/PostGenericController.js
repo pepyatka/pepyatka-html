@@ -29,7 +29,7 @@ define(["config",
 
     omittedComments: function() {
       if (this.get('isLoadingComments')) {
-        return this.get('omittedCommentsOld')
+        return this.get('omittedComment')
       } else {
         if (this.get('model.omittedComments') > 0)
           return this.get('model.omittedComments') + this.get('model.comments.length') - 2
@@ -109,11 +109,6 @@ define(["config",
         var that = this
         var oldUpdatedAt = this.get('model.updatedAt')
 
-        // NOTE: we are setting omittedCommentsOld because for UX we
-        // are going to show throbber for extra 0.25s, however new data
-        // will be already loaded at that time, so we must show old
-        // data to simulate loading process
-        this.set('omittedCommentsOld', this.get('omittedComments'))
         this.set('isLoadingComments', true)
         this.set('maxComments', 'all')
         Ember.run.later(function() {
