@@ -9,8 +9,9 @@ require(['linkify'], function(linkify) {
         var shorten = false
 
         // shorten url if it's nested more than 2 levels, e.g. http://google.com/a/b
-        if (name.split('/').length > 4 && name.split('/')[4].length > 1) {
-          name = name.split('/').slice(0, 4).join('/')
+        var index = name.indexOf('://') > 0 ? 4 : 2
+        if (name.split('/').length > index && name.split('/')[index].length > 1) {
+          name = name.split('/').slice(0, index).join('/')
           shorten = true
         }
 
@@ -34,7 +35,7 @@ require(['linkify'], function(linkify) {
         }
 
         if (shorten)
-          name = name + "&hellip;"
+          name = name + "\u2026"
 
         return name
       }
