@@ -13,6 +13,13 @@ define(["app/app",
 
     model: function(params) {
       return this.store.findOneQuery('user', params.username)
+    },
+
+    setupController: function(controller, model) {
+      controller.set('model', model)
+
+      controller.set('errors', null)
+      controller.set('message', null)
     }
   })
 })
