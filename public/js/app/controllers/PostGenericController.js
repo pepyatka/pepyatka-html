@@ -116,15 +116,15 @@ define(["config",
         this.set('omittedCommentsOld', this.get('omittedComments'))
         this.set('isLoadingComments', true)
         this.set('maxComments', 'all')
-        this.store.findOneQuery('post', this.get('model.id'), {
-          maxComments: this.get('maxComments'),
-          maxLikes: this.get('maxLikes')
-        }).then(function(post) {
-          post.set('updatedAt', oldUpdatedAt)
-          Ember.run.later(function() {
+        Ember.run.later(function() {
+          that.store.findOneQuery('post', that.get('model.id'), {
+            maxComments: that.get('maxComments'),
+            maxLikes: that.get('maxLikes')
+          }).then(function(post) {
+            post.set('updatedAt', oldUpdatedAt)
             that.set('isLoadingComments', false)
-          }, 250)
-        })
+          })
+        }, 250)
       },
 
       showAllLikes: function() {
@@ -133,15 +133,15 @@ define(["config",
 
         this.set('isLoadingLikes', true)
         this.set('maxLikes', 'all')
-        this.store.findOneQuery('post', this.get('model.id'), {
-          maxComments: this.get('maxComments'),
-          maxLikes: this.get('maxLikes')
-        }).then(function(post) {
-          post.set('updatedAt', oldUpdatedAt)
-          Ember.run.later(function() {
+        Ember.run.later(function() {
+          that.store.findOneQuery('post', that.get('model.id'), {
+            maxComments: that.get('maxComments'),
+            maxLikes: that.get('maxLikes')
+          }).then(function(post) {
+            post.set('updatedAt', oldUpdatedAt)
             that.set('isLoadingLikes', false)
-          }, 250)
-        })
+          })
+        }, 250)
       },
 
       create: function() {
