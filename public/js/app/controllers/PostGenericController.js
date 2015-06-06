@@ -87,10 +87,33 @@ define(["config",
       var likes = this.get('allLikes')
       var omittedLikes = this.get('model.omittedLikes') || 0
 
-      if (likes.get('length') < 5 && omittedLikes == 0)
+      if (likes.get('length') < 5 && omittedLikes == 0) {
         return likes
-      else
-        return likes.slice(0, 3)
+      } else {
+        var items = likes.slice(0, 3)
+        if (((items.length === 3) ||
+             (items.length < 3 && this.get('omittedLikes') === 0))
+           && this.get('omittedLikes') !== 1)
+          return items
+
+        // we do not have enough information to render likes, need to
+        // request server for this
+        var that = this
+        var oldUpdatedAt = this.get('model.updatedAt')
+
+        this.set('isLoadingLikes', true)
+        Ember.run.later(function() {
+          that.store.findOneQuery('post', that.get('model.id'), {
+            maxComments: that.get('maxComments'),
+            maxLikes: 'all'
+          }).then(function(post) {
+            post.set('updatedAt', oldUpdatedAt)
+            that.set('isLoadingLikes', false)
+          })
+        }, 250)
+
+        return items
+      }
     }.property('model.omittedLikes', 'allLikes'),
 
     actions: {
