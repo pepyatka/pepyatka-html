@@ -29,7 +29,7 @@ define(["config",
 
     omittedComments: function() {
       if (this.get('isLoadingComments')) {
-        return this.get('omittedComment')
+        return this.get('model.omittedComments')
       } else {
         if (this.get('model.omittedComments') > 0)
           return this.get('model.omittedComments') + this.get('model.comments.length') - 2
