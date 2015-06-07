@@ -131,7 +131,7 @@ define(["config",
             Ember.run.next(function() {
               post = that.store.getById('post', data.posts.id)
 
-              that.currentController().model.get('posts').unshiftObject(post)
+              that.currentController().get('model.posts').unshiftObject(post)
             })
           }
         },
@@ -146,7 +146,7 @@ define(["config",
         destroyPost: function(data) {
           var post = this.store.getById('post', data.meta.postId)
           if (post) {
-            var posts = this.currentController().get('posts')
+            var posts = this.currentController().get('model.posts')
             if (posts)
               posts.removeObject(post)
           }
@@ -186,7 +186,7 @@ define(["config",
           } else {
             this.store.find('post', data.comments.postId)
               .then(function(post) {
-                that.currentController().get('posts').addObject(post)
+                that.currentController().get('model.posts').unshiftObject(post)
               })
           }
         },
@@ -231,7 +231,7 @@ define(["config",
           } else {
             this.store.find('post', data.meta.postId)
               .then(function(post) {
-                that.currentController().get('posts').addObject(post)
+                that.currentController().get('model.posts').unshiftObject(post)
               })
           }
         },
