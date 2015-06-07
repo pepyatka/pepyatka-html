@@ -27,7 +27,7 @@ define(["config",
     myFeed: function() {
       return (this.get('model.user.id') == this.get('session.currentUser.id')
               && this.get('model.user.isUser'))
-        || (this.get('isSubscribed'))
+        || (this.get('isSubscribed') && this.get('model.user.isGroup'))
     }.property('model.user.id', 'session.currentUser.id', 'isSubscribed'),
 
     isSubscribed: function() {
