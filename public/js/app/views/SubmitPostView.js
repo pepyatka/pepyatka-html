@@ -4,6 +4,10 @@ define(["app/app",
 
   App.SubmitPostView = Ember.View.extend({
     templateName: 'submit-post',
-    template: Ember.Handlebars.compile(tpl)
+    template: Ember.Handlebars.compile(tpl),
+
+    isDisabled: function() {
+      return this.get('parentView.controller.isUploadingAttachment')
+    }.property('parentView.controller.isUploadingAttachment'),
   })
 })
