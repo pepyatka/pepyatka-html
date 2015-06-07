@@ -1,5 +1,6 @@
 define(["app/app",
-        "text!templates/submitPostTemplate.handlebars"], function(App, tpl) {
+        "text!templates/submitPostTemplate.handlebars",
+        "ember"], function(App, tpl, Ember) {
   "use strict";
 
   App.SubmitPostView = Ember.View.extend({
@@ -7,7 +8,9 @@ define(["app/app",
     template: Ember.Handlebars.compile(tpl),
 
     isDisabled: function() {
-      return this.get('parentView.controller.isUploadingAttachment')
-    }.property('parentView.controller.isUploadingAttachment'),
+      var attachments = this.get('parentView.controller.isUploadingAttachment')
+      var empty = Ember.isBlank(this.get('createPost.value'))
+      return attachments || empty
+    }.property('parentView.controller.isUploadingAttachment', 'createPost.value'),
   })
 })

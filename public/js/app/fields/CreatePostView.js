@@ -5,6 +5,7 @@ define(["app/app"], function(App) {
     classNames: ['edit-post-area'],
     valueBinding: 'parentView.controller.body',
     action: 'create',
+    viewName: 'createPost',
 
     keyPress: function (e) {
       if (e.which === 13) {
