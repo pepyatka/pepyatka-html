@@ -127,9 +127,12 @@ define(["config",
           var post = this.store.getById('post', data.posts.id)
           if (!post) {
             this.store.pushPayload('post', data)
-            post = this.store.getById('post', data.posts.id)
+            var that = this
+            Ember.run.next(function() {
+              post = that.store.getById('post', data.posts.id)
 
-            this.currentController().model.get('posts').unshiftObject(post)
+              that.currentController().model.get('posts').unshiftObject(post)
+            })
           }
         },
 
