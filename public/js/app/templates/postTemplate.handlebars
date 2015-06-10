@@ -36,7 +36,7 @@
 
     <div class="info">
       <span class="post-date">
-        {{#link-to 'post' content.postedTo.firstObject.user.username content.id (query-params offset=0) class="datetime"}}<time {{bind-attr datetime="model.createdAtISO" title="model.createdAtISO"}}>{{model.createdAgo}}</time>{{/link-to}}
+        {{#link-to 'post' content.postedToFirstObject content.id (query-params offset=0) class="datetime"}}<time {{bind-attr datetime="model.createdAtISO" title="model.createdAtISO"}}>{{model.createdAgo}}</time>{{/link-to}}
       </span>
 
       <span class="post-controls">
