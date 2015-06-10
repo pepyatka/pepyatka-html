@@ -8,11 +8,13 @@
     {{#link-to 'timeline.index' view.post.createdBy.username (query-params offset=0)}}{{view.post.createdBy.screenName}}{{/link-to}}
   {{else}}
     {{#link-to 'timeline.index' view.post.createdBy.username (query-params offset=0)}}{{view.post.createdBy.screenName}}{{/link-to}}
-    to
-    {{#each view.post.publicSubscriptions as |feed index|}}
-      {{#link-to 'timeline.index' feed.user.username}}{{feed.user.inTitleName}}{{/link-to}}<!--
-      -->{{#unless (isLast index length=view.post.publicSubscriptions.length)}},{{/unless}}
-    {{/each}}
+    {{#unless view.isFeedPage}}
+      to
+      {{#each view.post.publicSubscriptions as |feed index|}}
+        {{#link-to 'timeline.index' feed.user.username}}{{feed.user.inTitleName}}{{/link-to}}<!--
+        -->{{#unless (isLast index length=view.post.publicSubscriptions.length)}},{{/unless}}
+      {{/each}}
+    {{/unless}}
   {{/if}}
 {{else}}
   {{#link-to 'timeline.index' view.post.createdBy.username (query-params offset=0)}}{{view.post.createdBy.screenName}}{{/link-to}}
