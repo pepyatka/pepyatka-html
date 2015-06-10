@@ -1,10 +1,14 @@
-define(["app/app"], function(App) {
+define(["app/app", "ember"], function(App, Ember) {
   "use strict";
 
   App.CreatePostView = Ember.TextArea.extend(Ember.TargetActionSupport, {
     classNames: ['edit-post-area'],
     valueBinding: 'parentView.controller.body',
-    action: 'create',
+    action: function() {
+      if (!(this.get('parentView.controller.isUploadingAttachment')
+           || Ember.isBlank(this.get('value'))))
+        return 'create'
+    }.property('parentView.controller.isUploadingAttachment'),
     viewName: 'createPost',
 
     keyPress: function (e) {
