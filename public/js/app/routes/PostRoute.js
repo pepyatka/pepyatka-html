@@ -12,11 +12,11 @@ define(["app/app",
       return this.store.findOneQuery('post', params.postId, { maxComments: 'all' })
     },
 
-    actions: {
-      error: function (error) {
-        this.transitionTo('not-found')
-      }
-    },
+    // actions: {
+    //   error: function (error) {
+    //     this.transitionTo('not-found')
+    //   }
+    // },
 
     setupController: function(controller, model) {
       this.controllerFor('pub-sub').set('channel', model)
