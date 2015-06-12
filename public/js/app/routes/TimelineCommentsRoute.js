@@ -9,11 +9,11 @@ define(["app/app",
       }
     },
 
-    actions: {
-      error: function (error) {
-        this.transitionTo('not-found')
-      }
-    },
+    // actions: {
+    //   error: function (error) {
+    //     this.transitionTo('not-found')
+    //   }
+    // },
 
     model: function(params) {
       return this.store.findOneQuery('timeline', params.username + '/comments', { offset: params.offset  })
