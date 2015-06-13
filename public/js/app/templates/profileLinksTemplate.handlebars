@@ -43,15 +43,22 @@
 
 {{#if controller.session.currentUser}}
   {{#unless view.isOwner}}
-    <div class="subscribe-controls">
+    <div class="profile-controls">
       <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-7 subscribe-controls">
           {{#if isSubscribed}}
             <a {{action 'unsubscribe'}} class="p-subscribe">Unsubscribe</a>
           {{else}}
             <a {{action 'subscribe'}} class="p-unsubscribe">Subscribe</a>
           {{/if}}
         </div>
+        {{#unless isSubscribed}}
+          {{#unless isBanned}}
+            <div class="col-md-5 block-controls">
+              <a {{action 'ban'}}>Block this user</a>
+            </div>
+          {{/unless}}
+        {{/unless}}
       </div>
     </div>
   {{/unless}}

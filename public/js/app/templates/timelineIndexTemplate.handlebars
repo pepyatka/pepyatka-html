@@ -1,13 +1,16 @@
 {{view "profile-links"}}
 
-{{#if controller.myFeed}}
-  {{#if controller.firstPage}}
-    {{view "submit-post"}}
+{{#if isBanned}}
+  You have blocked {{model.user.screenName}}, so all of {{model.user.screenName}}'s posts and comments are invisible to you. <a {{action 'unban'}}>Un-block this user</a>
+{{else}}
+  {{#if controller.myFeed}}
+    {{#if controller.firstPage}}
+      {{view "submit-post"}}
+    {{/if}}
   {{/if}}
-{{/if}}
-
-{{#unless controller.firstPage}}
+  {{#unless controller.firstPage}}
+    {{view "pagination"}}
+  {{/unless}}
+  {{view "posts"}}
   {{view "pagination"}}
-{{/unless}}
-{{view "posts"}}
-{{view "pagination"}}
+{{/if}}

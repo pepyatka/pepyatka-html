@@ -13,11 +13,11 @@ define(["app/app",
       return this.store.findOneQuery('timeline', params.username, { offset: params.offset  })
     },
 
-    actions: {
-      error: function (error) {
-        this.transitionTo('not-found')
-      }
-    },
+    // actions: {
+    //   error: function (error) {
+    //     this.transitionTo('not-found')
+    //   }
+    // },
 
     deactivate: function() {
       this.controllerFor('pub-sub').unsubscribe()
