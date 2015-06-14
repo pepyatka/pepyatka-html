@@ -37,13 +37,6 @@ define(["config",
       return (this.get('model.subscribers').isAny('id', currentUser.get('id')))
     }.property('model.subscribers', 'session.currentUser.id'),
 
-    isBanned: function() {
-      var currentUser = this.get('session.currentUser')
-      if (!currentUser) { return false }
-
-      return _.any(currentUser.get('banIds'), _.identity, this.get('model.user.id'))
-    }.property('model.user.id', 'session.currentUser.banIds.[]'),
-
     isAdmin: function() {
       var adminIds = this.get('model.user.administratorIds')
       var currentUserId = this.get('session.currentUser.id')
@@ -161,30 +154,6 @@ define(["config",
             if (!object) {
               that.get('model.posts').unshiftObject(post)
             }
-          })
-      },
-
-      ban: function() {
-        var user = this.get('model.user')
-        Ember.$.ajax({
-          url: config.host + '/v1/users/' + user.get('username') + '/ban',
-          type: 'post',
-          context: this
-        })
-          .then(function(response) {
-            this.get('session.currentUser.banIds').addObject(this.get('model.user.id'))
-          })
-      },
-
-      unban: function() {
-        var user = this.get('model.user')
-        Ember.$.ajax({
-          url: config.host + '/v1/users/' + user.get('username') + '/unban',
-          type: 'post',
-          context: this
-        })
-          .then(function(response) {
-            this.get('session.currentUser.banIds').removeObject(this.get('model.user.id'))
           })
       }
     }
