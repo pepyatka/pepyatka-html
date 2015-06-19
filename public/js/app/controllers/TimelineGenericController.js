@@ -10,6 +10,10 @@ define(["config",
     selectFeedsOnCreate: true,
     attachFilesOnCreate: true,
 
+    title: function() {
+      return ''
+    }.property(),
+
     // NOTE: this code doesn't work reliably, see
     // https://github.com/emberjs/ember.js/issues/10343
     //postSortProperties: ['createdAt:desc'],

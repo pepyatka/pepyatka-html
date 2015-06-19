@@ -5,6 +5,10 @@ define(["app/app",
 
   // Timeline on homepage
   App.TimelineHomeController = App.TimelineGenericController.extend({
+    title: function() {
+      return 'Home'
+    }.property(),
+
     hiddenPosts: function() {
       var posts = this.get('model.posts')
       return posts.filter(function (post) { return post.get('isHidden') })
