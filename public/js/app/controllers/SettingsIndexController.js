@@ -9,7 +9,7 @@ define(["config",
     isPrivate: Ember.computed.oneWay('model.isPrivate'),
 
     title: function() {
-      return 'You'
+      return 'Settings'
     }.property(),
 
     actions: {

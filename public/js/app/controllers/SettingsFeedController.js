@@ -8,7 +8,7 @@ define(["config",
     screenName: Ember.computed.oneWay('model.screenName'),
 
     title: function() {
-      return 'Group'
+      return 'Settings'
     }.property(),
 
     actions: {
