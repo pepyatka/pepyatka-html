@@ -5,6 +5,10 @@ define(["app/app",
 
   // Timeline on /username
   App.TimelineIndexController = App.TimelineGenericController.extend({
-    selectFeedsOnCreate: false
+    selectFeedsOnCreate: false,
+
+    title: function() {
+      return ''
+    }.property()
   })
 })

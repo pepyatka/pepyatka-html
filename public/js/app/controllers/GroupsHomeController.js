@@ -6,6 +6,10 @@ define(["config",
   App.GroupsHomeController = Ember.Controller.extend({
     showAllGroups: false,
 
+    title: function() {
+      return 'Groups'
+    }.property(),
+
     groups: function() {
       if (this.get('showAllGroups'))
         return this.get('session.currentUser.groups')

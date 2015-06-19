@@ -3,5 +3,8 @@ define(["app/app",
   "use strict";
 
   App.TimelineSubscriptionsController = Ember.Controller.extend({
+    title: function() {
+      return ''
+    }.property()
   })
 })

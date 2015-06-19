@@ -7,6 +7,10 @@ define(["config",
   App.SettingsFeedController = App.SettingsGenericController.extend({
     screenName: Ember.computed.oneWay('model.screenName'),
 
+    title: function() {
+      return 'Group'
+    }.property(),
+
     actions: {
       update: function() {
         this.set('errors', null)

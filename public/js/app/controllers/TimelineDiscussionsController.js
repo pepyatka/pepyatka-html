@@ -3,5 +3,9 @@ define(["app/app",
   "use strict";
 
   // Timeline on /filter/discussions
-  App.TimelineDiscussionsController = App.TimelineGenericController.extend()
+  App.TimelineDiscussionsController = App.TimelineGenericController.extend({
+    title: function() {
+      return 'My discussions'
+    }.property()
+  })
 })

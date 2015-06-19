@@ -8,6 +8,10 @@ define(["config",
     screenName: Ember.computed.oneWay('model.screenName'),
     isPrivate: Ember.computed.oneWay('model.isPrivate'),
 
+    title: function() {
+      return 'You'
+    }.property(),
+
     actions: {
       update: function () {
         this.set('errors', null)
