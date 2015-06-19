@@ -1,4 +1,4 @@
-define(["config", "app/app"], function(config, App) {
+define(["config", "auth_storage", "app/app"], function(config, auth_storage, App) {
   "use strict";
 
   Ember.Application.initializer({
@@ -15,7 +15,7 @@ define(["config", "app/app"], function(config, App) {
         init: function() {
           this._super()
 
-          var token = window.localStorage.getItem('authToken')
+          var token = auth_storage.getStoredToken()
           this.set('authToken', token) // this won't trigger authTokenChanged
           this.set('signedIn', false)
           this.authTokenChanged()
@@ -50,7 +50,7 @@ define(["config", "app/app"], function(config, App) {
             application.advanceReadiness()
           }
 
-          window.localStorage.setItem('authToken', this.get('authToken'))
+          auth_storage.storeToken(this.get('authToken'))
 
           if (this.get('authToken')
               && this.get('authToken').length > 0
