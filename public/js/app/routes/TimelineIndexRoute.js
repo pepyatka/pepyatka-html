@@ -1,8 +1,8 @@
 define(["app/app",
-        "components/TransitionalRoute"], function(App) {
+        "components/CustomErrorRoute"], function(App) {
   "use strict";
 
-  App.TimelineIndexRoute = Ember.Route.extend(App.TransitionalRoute, {
+  App.TimelineIndexRoute = Ember.Route.extend(App.CustomErrorRoute, {
     queryParams: {
       offset: {
         refreshModel: true
@@ -12,12 +12,6 @@ define(["app/app",
     model: function(params) {
       return this.store.findOneQuery('timeline', params.username, { offset: params.offset  })
     },
-
-    // actions: {
-    //   error: function (error) {
-    //     this.transitionTo('not-found')
-    //   }
-    // },
 
     deactivate: function() {
       this.controllerFor('pub-sub').unsubscribe()
