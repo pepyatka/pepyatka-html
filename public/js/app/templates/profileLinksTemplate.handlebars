@@ -54,9 +54,11 @@
             {{/if}}
           </div>
           {{#unless isSubscribed}}
-            <div class="col-md-5 block-controls">
-              <a {{action 'ban'}}>Block this user</a>
-            </div>
+            {{#if view.isTimelineIndex}}
+              <div class="col-md-5 block-controls">
+                <a {{action 'ban'}}>Block this user</a>
+              </div>
+            {{/if}}
           {{/unless}}
         </div>
       </div>
