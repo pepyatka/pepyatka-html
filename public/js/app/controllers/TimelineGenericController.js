@@ -45,7 +45,10 @@ define(["config",
       var currentUser = this.get('session.currentUser')
       if (!currentUser) { return false }
 
-      return _.any(currentUser.get('banIds'), _.identity, this.get('model.user.id'))
+      var userId = this.get('model.user.id')
+      return _.filter(currentUser.get('banIds'), function(feedId) {
+        return feedId === userId
+      }).length > 0
     }.property('model.user.id', 'session.currentUser.banIds.[]'),
 
     isAdmin: function() {

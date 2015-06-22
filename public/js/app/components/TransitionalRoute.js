@@ -3,17 +3,23 @@ define(["app/app",
   "use strict";
 
   App.TransitionalRoute = Ember.Mixin.create({
-
     beforeModel: function() {
       this._super()
-      Ember.$('body').addClass('transition-active')
+      this.addThrobber()
     },
 
     afterModel: function() {
       this._super()
+      this.removeThrobber()
+    },
+
+    addThrobber: function() {
+      Ember.$('body').addClass('transition-active')
+    },
+
+    removeThrobber: function() {
       window.scrollTo(0,0)
       Ember.$('body').removeClass('transition-active transition-static')
     }
-
   })
 })
