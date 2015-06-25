@@ -12,6 +12,7 @@ define(["ember"
         , "linkify"
         , "linkify-jquery"
         , "numeral"
+        , "autosize"
        ], function(Ember) {
   "use strict";
 
