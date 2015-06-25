@@ -1,4 +1,6 @@
-define(["app/app", "ember"], function(App, Ember) {
+define(["app/app",
+        "ember",
+        "autosize"], function(App, Ember, autosize) {
   "use strict";
 
   App.CreatePostView = Ember.TextArea.extend(Ember.TargetActionSupport, {
@@ -19,8 +21,10 @@ define(["app/app", "ember"], function(App, Ember) {
 
     click: function() {
       var view = this.get('parentView')
-      if (view.get('sendTo'))
+      if (view.get('sendTo')) {
         view.set('controller.isSendToVisible', true)
+      }
+      autosize(this.$())
     }
   })
 })
