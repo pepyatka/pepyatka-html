@@ -61,7 +61,7 @@
 .edit-post-area {
   @include editarea;
 }
-.edit-comment-area{
+.edit-comment-area {
   @include editarea;
-  height: 26px;
+  max-height: 10 * 16px + 8px; // 10 lines + padding
 }
