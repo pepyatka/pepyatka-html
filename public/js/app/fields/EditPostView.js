@@ -1,4 +1,6 @@
-define(["app/app", "ember"], function(App, Ember) {
+define(["app/app",
+        "ember",
+        "autosize"], function(App, Ember, autosize) {
   "use strict";
 
   App.EditPostView = Ember.TextArea.extend(Ember.TargetActionSupport, {
@@ -14,6 +16,7 @@ define(["app/app", "ember"], function(App, Ember) {
 
     becomeFocused: function() {
       this.$().focus()
+      autosize(this.$())
     }.on('didInsertElement')
   })
 })
