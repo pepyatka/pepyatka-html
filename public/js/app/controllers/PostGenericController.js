@@ -22,6 +22,9 @@ define(["config",
       return this.get('model.likes').isAny('id', this.get('session.currentUser.id'))
     }.property('model.likes', 'session.currentUser.id'),
 
+    hasSurplusAttachments: false,
+    areAttachmentsExpanded: false,
+
     hasOmittedComments: function() {
       return this.get('model.omittedComments') > 0
         || this.get('isLoadingComments') === true
@@ -126,6 +129,10 @@ define(["config",
 
       toggleEditability: function() {
         this.toggleProperty('isEdit')
+      },
+
+      toggleSurplusAttachments: function() {
+        this.toggleProperty('areAttachmentsExpanded')
       },
 
       showAllComments: function() {

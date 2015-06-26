@@ -27,10 +27,12 @@
     {{/if}}
 
     {{#if post.content.attachments}}
-      <div class="attachments">
-        {{#each attachment in post.content.attachments itemController="post-attachment"}}
+      <div {{bind-attr class=":attachments controller.hasSurplusAttachments:has-surplus controller.areAttachmentsExpanded:expanded"}}>
+        {{~#each attachment in post.content.attachments itemController="post-attachment"~}}
           {{view "post-attachment" content=attachment}}
-        {{/each}}
+        {{~/each~}}
+
+        <a class="toggle-surplus fa" {{action 'toggleSurplusAttachments'}}></a>
       </div>
     {{/if}}
 
