@@ -4,9 +4,11 @@ define(["config", "app/app"], function(config, App) {
   DS.Store.reopen({
     findOneQuery: function(type, id, query) {
       var store = this
+
+      var adapter = store.adapterFor(type)
+      var serializer = store.serializerFor(type)
       var typeClass = store.modelFor(type)
-      var adapter = store.adapterFor(typeClass)
-      var serializer = store.serializerFor(typeClass)
+
       var url = adapter.buildURL(type, id)
       var ajaxPromise = adapter.ajax(url, 'GET', { data: query})
 
