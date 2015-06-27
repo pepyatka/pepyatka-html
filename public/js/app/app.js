@@ -17,8 +17,8 @@ define(["ember"
   "use strict";
 
   var options = {
-    LOG_TRANSITIONS: false,
-    LOG_TRANSITIONS_INTERNAL: false,
+    LOG_TRANSITIONS: true,
+    LOG_TRANSITIONS_INTERNAL: true,
     rootElement: '#ember-app',
     ready: function () {
       $("#ember-app").empty();
