@@ -12,7 +12,7 @@ define(["app/app",
     },
 
     model: function(params) {
-      return this.store.findOneQuery('timeline', 'home', { offset: params.offset  })
+      return this.store.queryRecord('timeline', 'home', { offset: params.offset  })
     },
 
     deactivate: function() {
