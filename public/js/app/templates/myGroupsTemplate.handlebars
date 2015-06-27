@@ -1,5 +1,5 @@
 <ul class="p-my-groups">
-  {{#each group in controller.session.currentUser.recentGroups}}
+  {{#each controller.session.currentUser.recentGroups as |group|}}
     <li class="p-my-groups-link">
       {{#link-to 'timeline.index' group.user.username (query-params offset=0)}}{{group.user.screenName}}{{/link-to}}
       <div class="updated-ago">{{group.user.updatedAgo}}</div>

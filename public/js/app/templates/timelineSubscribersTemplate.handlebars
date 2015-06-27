@@ -2,7 +2,7 @@
 
 <h3 class="p-user-subscribers">Subscribers</h3>
 <ul class="tile-list">
-  {{#each user in model}}
+  {{#each model as |user|}}
     <li class="p-user-subscriber">
       {{#link-to 'timeline.index' user.username (query-params offset=0)}}
         <div class="avatar">

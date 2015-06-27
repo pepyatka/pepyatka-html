@@ -2,7 +2,7 @@ To:
 
 <select id="sendToSelect" multiple="multiple" class="p-sendto-select">
   <option selected="selected" value="{{controller.session.currentUser.username}}" class="p-sendto-selected">My feed</option>
-  {{#each feed in controller.session.currentUser.feeds}}
+  {{#each controller.session.currentUser.feeds as |feed|}}
     <option value="{{feed.user.username}}" class="p-sendto-option">{{feed.user.screenName}}</option>
   {{/each}}
 </select>

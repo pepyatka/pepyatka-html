@@ -2,7 +2,7 @@
 
 <h3 class="p-timeline-subscription-users-header">Friends</h3>
 <ul class="tile-list">
-  {{#each subscription in model}}
+  {{#each model as |subscription|}}
     {{#if subscription.isPosts}}
       {{#if subscription.user.isUser}}
         <li class="p-timeline-subscription-user">
@@ -21,7 +21,7 @@
 
 <h3 class="p-timeline-subscription-groups-header">Groups</h3>
 <ul class="tile-list">
-  {{#each subscription in model}}
+  {{#each model as |subscription|}}
     {{#if subscription.isPosts}}
       {{#if subscription.user.isGroup}}
         <li class="p-timeline-sunsctiption-group">

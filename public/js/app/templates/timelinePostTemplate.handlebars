@@ -28,7 +28,7 @@
 
     {{#if post.content.attachments}}
       <div {{bind-attr class=":attachments controller.hasSurplusAttachments:has-surplus controller.areAttachmentsExpanded:expanded"}}>
-        {{~#each attachment in post.content.attachments itemController="post-attachment"~}}
+        {{~#each post.content.attachments itemController="post-attachment" as |attachment|~}}
           {{view "post-attachment" content=attachment}}
         {{~/each~}}
 
@@ -83,7 +83,7 @@
 
     <div class="comments">
       {{#if controller.hasOmittedComments}}
-        {{#each comment in controller.firstComments itemController="post-comment"}}
+        {{#each controller.firstComments itemController="post-comment" as |comment|}}
           {{view "post-comment" content=comment}}
         {{/each}}
 
@@ -91,11 +91,11 @@
           {{controller.omittedComments}} more comments
         </a>
 
-        {{#each comment in controller.lastComments itemController="post-comment"}}
+        {{#each controller.lastComments itemController="post-comment" as |comment|}}
           {{view "post-comment" content=comment}}
         {{/each}}
       {{else}}
-        {{#each comment in post.comments itemController="post-comment"}}
+        {{#each post.comments itemController="post-comment" as |comment|}}
           {{view "post-comment" content=comment}}
         {{/each}}
       {{/if}}

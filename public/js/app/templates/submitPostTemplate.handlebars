@@ -15,7 +15,7 @@
         {{#if isAttachmentsVisible}}
           {{#if controller.attachments}}
             <div class="attachments">
-              {{#each attachment in controller.attachments itemController="post-attachment"}}
+              {{#each controller.attachments itemController="post-attachment" as |attachment|}}
                 {{view "post-attachment" content=attachment}}
               {{/each}}
             </div>

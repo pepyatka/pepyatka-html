@@ -28,7 +28,7 @@
 
     {{#if content.attachments}}
       <div class="attachments p-post-attachments">
-        {{#each attachment in content.attachments itemController="post-attachment"}}
+        {{#each content.attachments itemController="post-attachment" as |attachment|}}
           {{view "post-attachment" content=attachment}}
         {{/each}}
       </div>
@@ -65,7 +65,7 @@
     </div>
 
     <div class="comments">
-      {{#each comment in model.comments itemController="post-comment"}}
+      {{#each model.comments itemController="post-comment" as |comment|}}
         {{view "post-comment" content=comment}}
       {{/each}}
 
