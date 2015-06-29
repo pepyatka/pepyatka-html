@@ -15,6 +15,7 @@ define(["lodash",
     profilePictureLargeUrl: DS.attr('string'),
     profilePictureMediumUrl: DS.attr('string'),
     administratorIds: DS.attr(),
+    banIds: DS.attr(),
 
     hasPosts: function() {
       return this.get('statistics.posts') > 0

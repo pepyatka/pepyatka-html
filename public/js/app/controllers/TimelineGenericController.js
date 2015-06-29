@@ -169,6 +169,30 @@ define(["config",
               that.get('model.posts').unshiftObject(post)
             }
           })
+      },
+
+      ban: function() {
+        var user = this.get('model.user')
+        Ember.$.ajax({
+          url: config.host + '/v1/users/' + user.get('username') + '/ban',
+          type: 'post',
+          context: this
+        })
+          .then(function(response) {
+            this.get('session.currentUser.banIds').addObject(this.get('model.user.id'))
+          })
+      },
+
+      unban: function() {
+        var user = this.get('model.user')
+        Ember.$.ajax({
+          url: config.host + '/v1/users/' + user.get('username') + '/unban',
+          type: 'post',
+          context: this
+        })
+          .then(function(response) {
+            this.get('session.currentUser.banIds').removeObject(this.get('model.user.id'))
+          })
       }
     }
   })
