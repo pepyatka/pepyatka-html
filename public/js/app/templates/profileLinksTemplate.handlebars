@@ -14,45 +14,56 @@
         {{/if}}
       </div>
     </div>
-    <div class="col-md-3">
-      <div class="stats">
-        {{#if content.user.hasSubscriptions}}
-          <div class="p-stats-subscriptions">
-            {{#link-to 'timeline.subscriptions' content.user.username}}{{content.user.statistics.subscriptions}} subscriptions{{/link-to}}
-          </div>
-        {{/if}}
-        {{#if content.user.hasSubscribers}}
-          <div class="p-stats-subscribers">
-            {{#link-to 'timeline.subscribers' content.user.username}}{{content.user.statistics.subscribers}} subscribers{{/link-to}}
-          </div>
-        {{/if}}
-        {{#if content.user.hasComments}}
-          <div class="p-stats-comments">
-            {{#link-to 'timeline.comments' content.user.username (query-params offset=0)}}{{content.user.statistics.comments}} comments{{/link-to}}
-          </div>
-        {{/if}}
-        {{#if content.user.hasLikes}}
-          <div class="p-stats-likes">
-            {{#link-to 'timeline.likes' content.user.username (query-params offset=0)}}{{content.user.statistics.likes}} likes{{/link-to}}
-          </div>
-        {{/if}}
+    {{#unless isBanned}}
+      <div class="col-md-3">
+        <div class="stats">
+          {{#if content.user.hasSubscriptions}}
+            <div class="p-stats-subscriptions">
+              {{#link-to 'timeline.subscriptions' content.user.username}}{{content.user.statistics.subscriptions}} subscriptions{{/link-to}}
+            </div>
+          {{/if}}
+          {{#if content.user.hasSubscribers}}
+            <div class="p-stats-subscribers">
+              {{#link-to 'timeline.subscribers' content.user.username}}{{content.user.statistics.subscribers}} subscribers{{/link-to}}
+            </div>
+          {{/if}}
+          {{#if content.user.hasComments}}
+            <div class="p-stats-comments">
+              {{#link-to 'timeline.comments' content.user.username (query-params offset=0)}}{{content.user.statistics.comments}} comments{{/link-to}}
+            </div>
+          {{/if}}
+          {{#if content.user.hasLikes}}
+            <div class="p-stats-likes">
+              {{#link-to 'timeline.likes' content.user.username (query-params offset=0)}}{{content.user.statistics.likes}} likes{{/link-to}}
+            </div>
+          {{/if}}
+        </div>
       </div>
-    </div>
+    {{/unless}}
   </div>
 </div>
 
 {{#if controller.session.currentUser}}
   {{#unless view.isOwner}}
-    <div class="subscribe-controls">
-      <div class="row">
-        <div class="col-md-10">
-          {{#if isSubscribed}}
-            <a {{action 'unsubscribe'}} class="p-subscribe">Unsubscribe</a>
-          {{else}}
-            <a {{action 'subscribe'}} class="p-unsubscribe">Subscribe</a>
-          {{/if}}
+    {{#unless isBanned}}
+      <div class="profile-controls">
+        <div class="row">
+          <div class="col-md-7 subscribe-controls">
+            {{#if isSubscribed}}
+              <a {{action 'unsubscribe'}} class="p-subscribe">Unsubscribe</a>
+            {{else}}
+              <a {{action 'subscribe'}} class="p-unsubscribe">Subscribe</a>
+            {{/if}}
+          </div>
+          {{#unless isSubscribed}}
+            {{#if view.isTimelineIndex}}
+              <div class="col-md-5 block-controls">
+                <a {{action 'ban'}}>Block this user</a>
+              </div>
+            {{/if}}
+          {{/unless}}
         </div>
       </div>
-    </div>
+    {{/unless}}
   {{/unless}}
 {{/if}}

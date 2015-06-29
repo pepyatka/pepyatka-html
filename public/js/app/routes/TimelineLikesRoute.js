@@ -1,19 +1,13 @@
 define(["app/app",
-        "components/TransitionalRoute"], function(App) {
+        "components/CustomErrorRoute"], function(App) {
   "use strict";
 
-  App.TimelineLikesRoute = Ember.Route.extend(App.TransitionalRoute, {
+  App.TimelineLikesRoute = Ember.Route.extend(App.CustomErrorRoute, {
     queryParams: {
       offset: {
         refreshModel: true
       }
     },
-
-    // actions: {
-    //   error: function (error) {
-    //     this.transitionTo('not-found')
-    //   }
-    // },
 
     model: function(params) {
       return this.store.findOneQuery('timeline', params.username + '/likes', { offset: params.offset  })

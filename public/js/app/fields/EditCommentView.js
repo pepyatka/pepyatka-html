@@ -1,8 +1,12 @@
-define(["app/app", "ember"], function(App, Ember) {
+define(["app/app",
+        "ember",
+        "autosize"], function(App, Ember, autosize) {
   "use strict";
 
   App.EditCommentView = Ember.TextArea.extend(Ember.TargetActionSupport, {
     classNames: ['edit-comment-area'],
+    rows: '1',
+    attributeBindings: ['rows'],
     valueBinding: 'parentView.controller.body',
     action: 'update',
 
@@ -14,6 +18,7 @@ define(["app/app", "ember"], function(App, Ember) {
 
     becomeFocused: function() {
       this.$().focus()
+      autosize(this.$())
     }.on('didInsertElement')
   })
 })

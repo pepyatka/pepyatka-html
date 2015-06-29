@@ -9,6 +9,7 @@ define([
   "adapters/SubscriptionAdapter",
   "adapters/TimelineAdapter",
 
+  "components/CustomErrorRoute",
   "components/Pagination",
   "components/TransitionalRoute",
   "components/AuthorizableRoute",
@@ -29,6 +30,7 @@ define([
   "models/Subscriber",
   "models/Timeline",
 
+  "controllers/ApplicationController",
   "controllers/ForgotPasswordController",
   "controllers/GroupsHomeController",
   "controllers/GroupsNewController",

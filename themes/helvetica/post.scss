@@ -31,11 +31,50 @@
     margin-bottom: 2px;
     overflow: hidden;
 
+    > .ember-view {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
     .attachment {
-      float: left;
+      display: inline-block;
+      vertical-align: middle;
       border: 1px solid silver;
       padding: 1px;
       margin: 0 8px 8px 0;
+
+      &.surplus {
+        display: none;
+      }
+    }
+
+    &.expanded .attachment.surplus {
+      display: inline-block;
+    }
+
+    .toggle-surplus {
+      display: none;
+      color: #fad889; // logotype yellow (#f9b616) with lower saturation;
+      font-size: 2em;
+      text-decoration: none;
+      position: relative;
+      top: 2px;
+    }
+
+    &.has-surplus .toggle-surplus {
+      display: inline-block;
+
+      // fa-chevron-circle-right
+      &:before {
+        content: "\f138";
+      }
+    }
+
+    &.has-surplus.expanded .toggle-surplus {
+      // fa-chevron-circle-left
+      &:before {
+        content: "\f137";
+      }
     }
   }
 
@@ -76,5 +115,9 @@
         }
       }
     }
+  }
+  
+  .post-controls::before {
+    content: "-";
   }
 }
