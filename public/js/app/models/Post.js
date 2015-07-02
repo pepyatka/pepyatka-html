@@ -44,7 +44,8 @@ define(["config",
 
     publicSubscriptions: function() {
       var subscriptions = _.filter(this.get('postedTo').toArray(), function(feed) {
-        return feed.get('name') == 'Posts'
+        var name = feed.get('name')
+        return name == 'Posts' || name == 'Directs'
       })
       // this post has been sumitted to home feed
       if (subscriptions.length === 1 && subscriptions[0].get('user.isUser')) {
