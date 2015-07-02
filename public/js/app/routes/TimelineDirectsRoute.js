@@ -26,6 +26,7 @@ define(["app/app",
     setupController: function(controller, model) {
       this.controllerFor('pub-sub').set('channel', model)
 
+      controller.set('isSendToVisible', false)
       controller.set('model', model)
     }
   })
