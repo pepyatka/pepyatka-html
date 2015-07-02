@@ -35,6 +35,13 @@ define(["config",
       }).length === feeds.length
     }.property('postedTo'),
 
+    isDirects: function() {
+      var subscriptions = _.filter(this.get('postedTo').toArray(), function(feed) {
+        return feed.get('name') == 'Directs'
+      })
+      return subscriptions.length > 0
+    }.property('postedTo'),
+
     publicSubscriptions: function() {
       var subscriptions = _.filter(this.get('postedTo').toArray(), function(feed) {
         return feed.get('name') == 'Posts'
