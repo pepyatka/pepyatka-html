@@ -12,7 +12,7 @@ define(["app/app"], function(App) {
     })
     this.resource('timeline', { path: '/' }, function() {
       this.route('home', { path: '/' })
-      this.route('directs', { path: '/filter/directs' })
+      this.route('directs', { path: '/filter/direct' })
       this.route('discussions', { path: '/filter/discussions' })
       this.route('index', { path: '/:username' })
       this.route('comments', { path: '/:username/comments' })
