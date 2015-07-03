@@ -61,6 +61,12 @@ define(["lodash",
       return url
     }.property('profilePictureMediumUrl'),
 
+    feeds: function() {
+      return _.filter(this.get('subscriptions').toArray(), function(subscription) {
+        return subscription.get('isPosts')
+      })
+    }.property('subscriptions.@each'),
+
     groups: function() {
       return _.filter(this.get('subscriptions').toArray(), function(subscription) {
         return subscription.get('user.isGroup') &&

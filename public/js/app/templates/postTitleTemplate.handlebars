@@ -11,8 +11,13 @@
     {{#unless view.isFeedPage}}
       to
       {{#each view.post.publicSubscriptions as |feed index|}}
-        {{#link-to 'timeline.index' feed.user.username}}{{feed.user.inTitleName}}{{/link-to}}<!--
-        -->{{#unless (isLast index length=view.post.publicSubscriptions.length)}},{{/unless}}
+        {{#if feed.isDirect}}
+          {{#link-to 'timeline.index' feed.user.username}}{{feed.user.screenName}}{{/link-to}}<!--
+          -->{{#unless (isLast index length=view.post.publicSubscriptions.length)}},{{/unless}}
+        {{else}}
+          {{#link-to 'timeline.index' feed.user.username}}{{feed.user.inTitleName}}{{/link-to}}<!--
+          -->{{#unless (isLast index length=view.post.publicSubscriptions.length)}},{{/unless}}
+        {{/if}}
       {{/each}}
     {{/unless}}
   {{/if}}

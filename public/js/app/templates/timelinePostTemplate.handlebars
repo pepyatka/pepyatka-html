@@ -37,6 +37,12 @@
     {{/if}}
 
     <div class="info p-timeline-post-info">
+      {{#if post.model.isDirects}}
+        <span>
+          »
+        </span>
+      {{/if}}
+
       <span class="post-date">
         {{#link-to 'post' post.model.postedToFirstObject post.content.id (query-params offset=0) class="datetime"}}<time {{bind-attr datetime="post.model.createdAtISO" title="post.model.createdAtISO"}}>{{post.model.createdAgo}}</time>{{/link-to}}
       </span>

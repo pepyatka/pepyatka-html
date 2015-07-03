@@ -74,7 +74,7 @@
         <div class="box-body">
           <ul>
             <li class="p-home">{{#link-to 'timeline.home' (query-params offset=0)}}Home{{/link-to}}</li>
-            <!-- li class="p-direct-messages"><a href="#">Direct messages</a></li -->
+            <li class="p-direct-messages">{{#link-to 'timeline.directs'}}Direct messages{{/link-to}}</li>
             <li class="p-my-discussions">{{#link-to 'timeline.discussions' (query-params offset=0)}}My discussions{{/link-to}}</li>
           </ul>
         </div>
