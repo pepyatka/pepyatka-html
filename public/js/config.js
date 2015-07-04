@@ -65,9 +65,9 @@ define({
     /* libs */
     'jquery': 'libs/jquery/2.1.4/jquery.min',
     'bootstrap': 'libs/bootstrap/3.3.4/bootstrap.min',
-    'ember': 'libs/emberjs/1.13.0/ember.debug',
+    'ember': 'libs/emberjs/1.13.2/ember.debug',
     'ember-data': 'libs/ember-data/1.13.4/ember-data',
-    'ember-template-compiler': 'libs/ember-template-compiler/1.13.0/ember-template-compiler',
+    'ember-template-compiler': 'libs/ember-template-compiler/1.13.2/ember-template-compiler',
     'autosize': 'libs/autosize/3.0.5/autosize.min',
     'moment': 'libs/momentjs/2.9.0/moment.min',
     'numeral': 'libs/numeraljs/1.5.3/numeral.min',
