@@ -17,7 +17,7 @@ define(["config", "auth_storage", "app/app"], function(config, auth_storage, App
 
           var token = auth_storage.getStoredToken()
           this.set('authToken', token) // this won't trigger authTokenChanged
-          this.set('signedIn', false)
+          this.set('currentUser', null)
           this.authTokenChanged()
         },
 
@@ -26,7 +26,6 @@ define(["config", "auth_storage", "app/app"], function(config, auth_storage, App
 
           this.authTokenChanged(function() {
             this.set('currentUser', null)
-            this.set('signedIn', false)
           }.bind(this))
         },
 
@@ -38,8 +37,6 @@ define(["config", "auth_storage", "app/app"], function(config, auth_storage, App
               .then(function(user) {
                 this.set('currentUser', user)
               }.bind(this))
-
-            this.set('signedIn', true)
 
             if (callback) callback();
             application.advanceReadiness()

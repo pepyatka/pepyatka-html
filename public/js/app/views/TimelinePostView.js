@@ -7,7 +7,7 @@ define(["app/app",
     template: Ember.Handlebars.compile(tpl),
 
     isOwner: function() {
-      if (!this.get('controller.session.signedIn'))
+      if (!this.get('controller.session.currentUsed'))
         return false
 
       var userId = this.get('controller.session.currentUser.id')

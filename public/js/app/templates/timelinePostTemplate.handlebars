@@ -48,7 +48,7 @@
       </span>
 
       <span class="post-controls">
-        {{#if controller.session.signedIn}}
+        {{#if controller.session.currentUser}}
           -
           <a {{action 'toggleCommentForm'}} class="p-timeline-post-comment-action">Comment</a>
           -
@@ -120,7 +120,7 @@
       {{else}}
         {{#if post.comments.length}}
           {{#unless controller.hasOmittedComments}}
-            {{#if controller.session.signedIn}}
+            {{#if controller.session.currentUser}}
               <div class="add-comment-block">
                 <a class="fa-stack fa-1x" {{action 'toggleCommentForm'}}>
                   <i class="fa fa-comment-o fa-stack-1x"></i>

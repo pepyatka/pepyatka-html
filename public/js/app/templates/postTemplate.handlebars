@@ -40,7 +40,7 @@
       </span>
 
       <span class="post-controls">
-        {{#if controller.session.signedIn}}
+        {{#if controller.session.currentUser}}
           -
           <a {{action 'focusCommentForm' target=view}} class="p-post-comment">Comment</a>
           -
@@ -69,7 +69,7 @@
         {{view "post-comment" content=comment}}
       {{/each}}
 
-      {{#if controller.session.signedIn}}
+      {{#if controller.session.currentUser}}
         <div class="comment p-timeline-comment">
           <a class="date">
             <i class="fa fa-comment-o icon"></i>
