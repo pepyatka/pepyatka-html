@@ -64,7 +64,11 @@ define(["lodash",
     }.property('profilePictureMediumUrl'),
 
     feeds: function() {
-      var subscriberIds = _.map(this.get('subscribers').toArray(), 'id')
+      var subscribers = this.get('subscribers');
+      var subscriberIds = [];
+      if (subscribers) {
+        subscriberIds = _.map(this.get('subscribers').toArray(), 'id')
+      }
       var subscriptionIds = this.get('subscriptions').toArray()
       return _.filter(subscriptionIds, function(sub) {
         return sub.get('isPosts') &&
