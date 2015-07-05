@@ -41,23 +41,21 @@
 
       <span class="post-controls">
         {{#if controller.session.signedIn}}
+          -
           <a {{action 'focusCommentForm' target=view}} class="p-post-comment">Comment</a>
-        {{/if}}
-
-        {{#if controller.session.signedIn}}
           -
           {{#if isLiked}}
             <span><a {{action 'unlike'}} class="p-post-unlike">Un-like</a></span>
           {{else}}
             <span><a {{action 'like'}} class="p-post-like">Like</a></span>
           {{/if}}
-        {{/if}}
 
-        {{#if view.isOwner}}
-          -
-          <a {{action 'toggleEditability'}} class="p-post-toggle-editability">Edit</a>
-          -
-          <a {{action 'destroy'}} class="p-post-destroy">Delete</a>
+          {{#if view.isOwner}}
+            -
+            <a {{action 'toggleEditability'}} class="p-post-toggle-editability">Edit</a>
+            -
+            <a {{action 'destroy'}} class="p-post-destroy">Delete</a>
+          {{/if}}
         {{/if}}
       </span>
 

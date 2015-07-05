@@ -14,7 +14,7 @@
           {{view 'edit-post'}}
         </div>
         <div>
-          <button {{action 'update'}} class="btn btn-default btn-xs">Post</button>
+          <button {{action 'update'}} class="btn btn-default btn-xs">Save</button>
           <a {{action 'toggleEditability'}}>Cancel</a>
         </div>
       </div>
@@ -49,32 +49,30 @@
 
       <span class="post-controls">
         {{#if controller.session.signedIn}}
+          -
           <a {{action 'toggleCommentForm'}} class="p-timeline-post-comment-action">Comment</a>
-        {{/if}}
-
-        {{#if controller.session.signedIn}}
           -
           {{#if controller.isLiked}}
             <span><a {{action 'unlike'}} class="p-timeline-post-unlike-action">Un-like</a></span>
           {{else}}
             <span><a {{action 'like'}} class="p-timeline-post-like-action">Like</a></span>
           {{/if}}
-        {{/if}}
 
-        {{#if view.parentView.parentView.isRiverOfNews}}
-          -
-          {{#if post.model.canHide}}
-            <a {{action 'hide'}} class="p-timeline-post-hide-action">Hide</a>
-          {{else}}
-            <a {{action 'unhide'}} class="p-timeline-post-unhide-action">Un-hide</a>
+          {{#if view.parentView.parentView.isRiverOfNews}}
+            -
+            {{#if post.model.canHide}}
+              <a {{action 'hide'}} class="p-timeline-post-hide-action">Hide</a>
+            {{else}}
+              <a {{action 'unhide'}} class="p-timeline-post-unhide-action">Un-hide</a>
+            {{/if}}
           {{/if}}
-        {{/if}}
 
-        {{#if view.isOwner}}
-          -
-          <a {{action 'toggleEditability'}} class="p-timeline-post-edit-action">Edit</a>
-          -
-          <a {{action 'destroy'}} class="p-timeline-post-destroy-action">Delete</a>
+          {{#if view.isOwner}}
+            -
+            <a {{action 'toggleEditability'}} class="p-timeline-post-edit-action">Edit</a>
+            -
+            <a {{action 'destroy'}} class="p-timeline-post-destroy-action">Delete</a>
+          {{/if}}
         {{/if}}
       </span>
 
