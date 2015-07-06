@@ -65,7 +65,7 @@ define(["lodash",
 
     feeds: function() {
       // `subscribers' field is just DS.attr() so it could be undefined
-      // (in comparisson with subscriptions, which is
+      // (unlike subscriptions, which is
       // DS.hasMany('subscription') so will be [])
       var subscribers = this.get('subscribers')
       var subscriberIds = []
