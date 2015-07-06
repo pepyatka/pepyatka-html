@@ -5,7 +5,7 @@
 {{else}}
   {{#if controller.myFeed}}
     {{#if controller.firstPage}}
-      {{view "submit-post"}}
+      {{view "submit-post" showMyFeedOption=true}}
     {{/if}}
   {{/if}}
   {{#unless controller.firstPage}}

@@ -64,7 +64,13 @@ define(["lodash",
     }.property('profilePictureMediumUrl'),
 
     feeds: function() {
-      var subscriberIds = _.map(this.get('subscribers').toArray(), 'id')
+      // `subscribers' field is just DS.attr() so it could be undefined
+      // (unlike subscriptions, which is
+      // DS.hasMany('subscription') so will be [])
+      var subscribers = this.get('subscribers')
+      var subscriberIds = []
+      if (!Ember.isEmpty(subscribers))
+        subscriberIds = _.map(this.get('subscribers').toArray(), 'id')
       var subscriptionIds = this.get('subscriptions').toArray()
       return _.filter(subscriptionIds, function(sub) {
         return sub.get('isPosts') &&
