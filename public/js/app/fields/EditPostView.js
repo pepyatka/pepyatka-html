@@ -5,6 +5,8 @@ define(["app/app",
 
   App.EditPostView = Ember.TextArea.extend(Ember.TargetActionSupport, {
     classNames: ['edit-post-area'],
+    rows: '2',
+    attributeBindings: ['rows'],
     valueBinding: 'parentView.controller.body',
     action: 'update',
 
