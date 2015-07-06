@@ -167,6 +167,15 @@ define(["config",
             var object = that.get('model.posts').findProperty('id', post.get('id'))
             if (!object) {
               that.get('model.posts').unshiftObject(post)
+            } else {
+              post.get('attachments.canonicalState').forEach(function(attachment) {
+                if (attachment) {
+                  var attachmentObject = object.get('attachments').findProperty('id', attachment.get('id'))
+                  if (!attachmentObject) {
+                    object.get('attachments').pushObject(attachment)
+                  }
+                }
+              })
             }
           })
       },
