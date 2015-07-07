@@ -6,8 +6,6 @@ define(["config", "auth_storage", "app/app"], function(config, auth_storage, App
     after: "store",
 
     initialize: function(container, application) {
-      application.deferReadiness()
-
       App.Session = Ember.Object.extend({
         resourceUrl: config.host + '/v1/users/whoami',
         currentUser: null,
@@ -30,7 +28,7 @@ define(["config", "auth_storage", "app/app"], function(config, auth_storage, App
         },
 
         authTokenChanged: function(callback) {
-          var done = function(result) {
+          var done = function authTokenReceived(result) {
             var store = container.lookup('store:main')
             store.pushPayload('user', result)
             store.find('user', result.users.id)
@@ -39,12 +37,10 @@ define(["config", "auth_storage", "app/app"], function(config, auth_storage, App
               }.bind(this))
 
             if (callback) callback();
-            application.advanceReadiness()
           }
 
-          var error = function() {
+          var error = function authTokenError() {
             if (callback) callback();
-            application.advanceReadiness()
           }
 
           auth_storage.storeToken(this.get('authToken'))
@@ -52,11 +48,14 @@ define(["config", "auth_storage", "app/app"], function(config, auth_storage, App
           if (this.get('authToken')
               && this.get('authToken').length > 0
               && this.get('authToken') != 'null')
-            Ember.$.ajax({
+          {
+            var req = Ember.$.ajax({
               url: this.resourceUrl,
               context: this
             })
-            .then(done, error)
+            this.set('promise', req.promise())
+            req.then(done, error)
+          }
           else
             error()
         }
