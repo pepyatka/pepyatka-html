@@ -7,7 +7,7 @@ To:
     <option value="{{controller.session.currentUser.username}}" class="p-sendto-option">My feed</option>
   {{/if}}
   {{#each feed in controller.session.currentUser.feeds}}
-    <option value="{{feed.user.username}}" class="p-sendto-option">{{feed.user.screenName}}</option>
+    <option value="{{feed.user.username}}" class="p-sendto-option">{{feed.user.screenName}} ({{feed.user.username}})</option>
   {{/each}}
 </select>
 
