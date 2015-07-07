@@ -5,6 +5,10 @@ define(["app/app",
 
   // Timeline on homepage
   App.TimelineHomeController = App.TimelineGenericController.extend({
+    isHomepage: function() {
+      return (this.get('offset') === 0)
+    }.property('offset'),
+
     title: function() {
       return 'Home'
     }.property(),
