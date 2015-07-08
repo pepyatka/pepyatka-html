@@ -81,6 +81,10 @@ define({
 
     /* requirejs-plugins */
     'hbs': 'libs/requirejs-plugins/hbs',
-    'text': 'libs/requirejs-plugins/text'
+    'text': 'libs/requirejs-plugins/text',
+
+    /* ES6 Babel requirejs loader */
+    'es6': 'libs/requirejs-babel/es6',
+    'babel': 'libs/requirejs-babel/babel-4.6.6.min'
   }
 })
