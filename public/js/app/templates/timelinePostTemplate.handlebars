@@ -1,4 +1,4 @@
-<div class="timeline-post-container">
+<div {{bind-attr class=":timeline-post-container post.model.isDirects:direct-post"}}>
   <div class="avatar">
     {{#link-to 'timeline.index' post.model.createdBy.username (query-params offset=0)}}<img src="{{ post.model.createdBy.profilePictureMedium }}" />{{/link-to}}
   </div>
