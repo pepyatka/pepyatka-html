@@ -44,7 +44,7 @@
       {{/if}}
 
       <span class="post-date">
-        {{#link-to 'post' post.model.postedToFirstObject post.content.id (query-params offset=0) class="datetime"}}<time {{bind-attr datetime="post.model.createdAtISO" title="post.model.createdAtISO"}}>{{post.model.createdAgo}}</time>{{/link-to}}
+        {{#link-to 'post' post.model.postedToFirstObject post.content.id (query-params offset=0) class="datetime"}}<time datetime="{{post.createdAtISO}}" title="{{post.createdAtISO}}">{{post.createdAgo}}</time>{{/link-to}}
       </span>
 
       <span class="post-controls">

@@ -1,11 +1,14 @@
 define(["app/app",
-        "controllers/PostGenericController"], function(App) {
+        "controllers/PostGenericController",
+        "mixins/DynamicTime"], function(App) {
   "use strict";
 
-  App.PostController = App.PostGenericController.extend({
+  App.PostController = App.PostGenericController.extend(
+    App.DynamicTime,
+    {
     maxComments: 'all',
 
-    actions: {
+      actions: {
       destroy: function() {
         var that = this
         var post = this.get('model')
