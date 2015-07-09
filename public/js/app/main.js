@@ -20,6 +20,7 @@ define([
   "initializers/PubSub",
   "initializers/Session",
   "initializers/DS",
+  "initializers/ClockService",
 
   "models/Attachment",
   "models/Comment",
