@@ -1,11 +1,18 @@
 <div class="container">
   <div class="row header-row">
     <div class="col-md-4">
-        <div class="header">
-      <h1 class="title">
-       {{#link-to 'timeline.home' (query-params offset=0)}}freefeed{{/link-to}}
-      </h1>
-        </div>
+      <div class="header">
+        <h1 class="title">
+          {{#if isHomepage}}
+            <span {{action 'reloadHomepage'}}>
+              {{#link-to 'timeline.home' (query-params offset=0)}}freefeed{{/link-to}}
+            </span>
+          {{else}}
+            {{#link-to 'timeline.home' (query-params offset=0)}}freefeed{{/link-to}}
+          {{/if}}
+          <small class="mutted">0.2.0</small>
+        </h1>
+      </div>
     </div>
 
     <div class="col-md-8">
