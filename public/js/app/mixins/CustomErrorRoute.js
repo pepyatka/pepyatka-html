@@ -1,6 +1,6 @@
 define(["app/app",
         "ember",
-        "components/TransitionalRoute"], function(App, Ember) {
+        "mixins/TransitionalRoute"], function(App, Ember) {
   "use strict";
 
   App.CustomErrorRoute = Ember.Mixin.create(App.TransitionalRoute, {

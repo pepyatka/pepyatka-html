@@ -1,6 +1,6 @@
 define(["app/app",
-        "components/TransitionalRoute",
-        "components/AuthorizableRoute"], function(App) {
+        "mixins/TransitionalRoute",
+        "mixins/AuthorizableRoute"], function(App) {
   "use strict";
 
   App.SettingsIndexRoute = Ember.Route.extend(App.TransitionalRoute,
