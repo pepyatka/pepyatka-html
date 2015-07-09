@@ -24,6 +24,12 @@ define(["app/app",
 
       controller.set('isSendToVisible', false)
       controller.set('model', model)
+    },
+
+    actions: {
+      reloadHomepage: function() {
+        this.refresh()
+      }
     }
   })
 })
