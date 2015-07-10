@@ -2,25 +2,31 @@
   {{#if view.post.groupsOnly}}
     {{#unless view.isFeedPage}}
       {{#each view.post.publicSubscriptions as |feed index|}}
-        {{#link-to 'timeline.index' feed.user.username}}{{feed.user.inTitleName}}{{/link-to}}<!--
+        <span class="post-addressee">{{#link-to 'timeline.index' feed.user.username}}{{feed.user.inTitleName}}{{/link-to}}</span><!--
         -->{{#unless (isLast index length=view.post.publicSubscriptions.length)}},{{/unless}}{{/each}}:
     {{/unless}}
-    {{#link-to 'timeline.index' view.post.createdBy.username (query-params offset=0)}}{{view.post.createdBy.screenNameOrYou}}{{/link-to}}
+    <span class="post-author">
+      {{#link-to 'timeline.index' view.post.createdBy.username (query-params offset=0)}}{{view.post.createdBy.screenNameOrYou}}{{/link-to}}
+    </span>
   {{else}}
-    {{#link-to 'timeline.index' view.post.createdBy.username (query-params offset=0)}}{{view.post.createdBy.screenNameOrYou}}{{/link-to}}
+    <span class="post-author">
+      {{#link-to 'timeline.index' view.post.createdBy.username (query-params offset=0)}}{{view.post.createdBy.screenNameOrYou}}{{/link-to}}
+    </span>
     {{#unless view.isFeedPage}}
       to
       {{#each view.post.publicSubscriptions as |feed index|}}
         {{#if feed.isDirect}}
-          {{#link-to 'timeline.index' feed.user.username}}{{feed.user.screenName}}{{/link-to}}<!--
+          <span class="post-addressee post-addressee-direct">{{#link-to 'timeline.index' feed.user.username}}{{feed.user.screenName}}{{/link-to}}</span><!--
           -->{{#unless (isLast index length=view.post.publicSubscriptions.length)}},{{/unless}}
         {{else}}
-          {{#link-to 'timeline.index' feed.user.username}}{{feed.user.inTitleName}}{{/link-to}}<!--
+          <span class="post-addressee">{{#link-to 'timeline.index' feed.user.username}}{{feed.user.inTitleName}}{{/link-to}}</span><!--
           -->{{#unless (isLast index length=view.post.publicSubscriptions.length)}},{{/unless}}
         {{/if}}
       {{/each}}
     {{/unless}}
   {{/if}}
 {{else}}
-  {{#link-to 'timeline.index' view.post.createdBy.username (query-params offset=0)}}{{view.post.createdBy.screenNameOrYou}}{{/link-to}}
+  <span class="post-author">
+    {{#link-to 'timeline.index' view.post.createdBy.username (query-params offset=0)}}{{view.post.createdBy.screenNameOrYou}}{{/link-to}}
+  </span>
 {{/if}}
