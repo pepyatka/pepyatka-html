@@ -2,25 +2,25 @@
   {{#if view.post.groupsOnly}}
     {{#unless view.isFeedPage}}
       {{#each view.post.publicSubscriptions as |feed index|}}
-        {{#link-to 'timeline.index' feed.user.username}}{{feed.user.inTitleName}}{{/link-to}}<!--
+        {{#link-to 'timeline.index' feed.user.username class='post-addressee'}}{{feed.user.inTitleName}}{{/link-to}}<!--
         -->{{#unless (isLast index length=view.post.publicSubscriptions.length)}},{{/unless}}{{/each}}:
     {{/unless}}
-    {{#link-to 'timeline.index' view.post.createdBy.username (query-params offset=0)}}{{view.post.createdBy.screenNameOrYou}}{{/link-to}}
+    {{#link-to 'timeline.index' view.post.createdBy.username class='post-author' (query-params offset=0)}}{{view.post.createdBy.screenNameOrYou}}{{/link-to}}
   {{else}}
-    {{#link-to 'timeline.index' view.post.createdBy.username (query-params offset=0)}}{{view.post.createdBy.screenNameOrYou}}{{/link-to}}
+    {{#link-to 'timeline.index' view.post.createdBy.username class='post-author' (query-params offset=0)}}{{view.post.createdBy.screenNameOrYou}}{{/link-to}}
     {{#unless view.isFeedPage}}
       to
       {{#each view.post.publicSubscriptions as |feed index|}}
         {{#if feed.isDirect}}
-          {{#link-to 'timeline.index' feed.user.username}}{{feed.user.screenName}}{{/link-to}}<!--
+          {{#link-to 'timeline.index' feed.user.username class='post-addressee post-addressee-direct'}}{{feed.user.screenName}}{{/link-to}}<!--
           -->{{#unless (isLast index length=view.post.publicSubscriptions.length)}},{{/unless}}
         {{else}}
-          {{#link-to 'timeline.index' feed.user.username}}{{feed.user.inTitleName}}{{/link-to}}<!--
+          {{#link-to 'timeline.index' feed.user.username class='post-addressee'}}{{feed.user.inTitleName}}{{/link-to}}<!--
           -->{{#unless (isLast index length=view.post.publicSubscriptions.length)}},{{/unless}}
         {{/if}}
       {{/each}}
     {{/unless}}
   {{/if}}
 {{else}}
-  {{#link-to 'timeline.index' view.post.createdBy.username (query-params offset=0)}}{{view.post.createdBy.screenNameOrYou}}{{/link-to}}
+  {{#link-to 'timeline.index' view.post.createdBy.username class='post-author' (query-params offset=0)}}{{view.post.createdBy.screenNameOrYou}}{{/link-to}}
 {{/if}}
