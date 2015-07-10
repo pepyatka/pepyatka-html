@@ -53,6 +53,21 @@ define(["app/app",
           }
         })
       })
+    }.on('didInsertElement'),
+
+    postAdded: function() {
+      Ember.run.scheduleOnce('afterRender', this, function() {
+        var body = Ember.$('body')
+        var newPost = this.$()
+
+        var currentScrollPosition = body.scrollTop()
+        var topPostPosition = newPost.closest('.posts').offset().top
+
+        if (currentScrollPosition > topPostPosition) {
+          var newPostHeight = newPost.height()
+          body.scrollTop(currentScrollPosition + newPostHeight)
+        }
+      })
     }.on('didInsertElement')
   })
 })
