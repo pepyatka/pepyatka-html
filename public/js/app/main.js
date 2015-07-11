@@ -9,10 +9,10 @@ define([
   "adapters/SubscriptionAdapter",
   "adapters/TimelineAdapter",
 
-  "components/CustomErrorRoute",
-  "components/Pagination",
-  "components/TransitionalRoute",
-  "components/AuthorizableRoute",
+  "mixins/CustomErrorRoute",
+  "mixins/Pagination",
+  "mixins/TransitionalRoute",
+  "mixins/AuthorizableRoute",
 
   "helpers/Handlebars",
 
@@ -20,6 +20,7 @@ define([
   "initializers/PubSub",
   "initializers/Session",
   "initializers/DS",
+  "initializers/ClockService",
 
   "models/Attachment",
   "models/Comment",
