@@ -9,10 +9,10 @@ define([
   "adapters/SubscriptionAdapter",
   "adapters/TimelineAdapter",
 
-  "components/CustomErrorRoute",
-  "components/Pagination",
-  "components/TransitionalRoute",
-  "components/AuthorizableRoute",
+  "mixins/CustomErrorRoute",
+  "mixins/Pagination",
+  "mixins/TransitionalRoute",
+  "mixins/AuthorizableRoute",
 
   "helpers/Handlebars",
 
@@ -20,6 +20,7 @@ define([
   "initializers/PubSub",
   "initializers/Session",
   "initializers/DS",
+  "initializers/ClockService",
 
   "models/Attachment",
   "models/Comment",
@@ -47,6 +48,7 @@ define([
   "controllers/TimelineGenericController",
   "controllers/TimelineCommentsController",
   "controllers/TimelineIndexController",
+  "controllers/TimelineDirectsController",
   "controllers/TimelineDiscussionsController",
   "controllers/TimelineHomeController",
   "controllers/TimelineLikesController",
@@ -75,6 +77,7 @@ define([
   "routes/SettingsFeedRoute",
   "routes/TimelineCommentsRoute",
   "routes/TimelineIndexRoute",
+  "routes/TimelineDirectsRoute",
   "routes/TimelineDiscussionsRoute",
   "routes/TimelineHomeRoute",
   "routes/TimelineLikesRoute",
@@ -102,6 +105,7 @@ define([
   "views/SettingsFeedView",
   "views/TimelineCommentsView",
   "views/TimelineIndexView",
+  "views/TimelineDirectsView",
   "views/TimelineDiscussionsView",
   "views/TimelineHomeView",
   "views/TimelineLikesView",

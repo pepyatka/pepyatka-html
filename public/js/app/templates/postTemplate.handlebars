@@ -1,4 +1,4 @@
-<div class="single-post-container">
+<div {{bind-attr class=":single-post-container model.isDirects:direct-post"}}>
   <div class="avatar">
     <img src="{{ model.createdBy.profilePictureLarge }}" />
   </div>
@@ -27,37 +27,37 @@
     {{/if}}
 
     {{#if content.attachments}}
-      <div class="attachments p-post-attachments">
-        {{#each attachment in content.attachments itemController="post-attachment"}}
+      <div {{bind-attr class=":attachments :p-post-attachments controller.hasSurplusAttachments:has-surplus controller.areAttachmentsExpanded:expanded"}}>
+        {{~#each attachment in content.attachments itemController="post-attachment"~}}
           {{view "post-attachment" content=attachment}}
-        {{/each}}
+        {{~/each~}}
+
+        <a class="toggle-surplus fa" {{action 'toggleSurplusAttachments'}}></a>
       </div>
     {{/if}}
 
     <div class="info">
       <span class="post-date">
-        {{#link-to 'post' content.postedToFirstObject content.id (query-params offset=0) class="datetime"}}<time {{bind-attr datetime="model.createdAtISO" title="model.createdAtISO"}}>{{model.createdAgo}}</time>{{/link-to}}
+        {{#link-to 'post' content.postedToFirstObject content.id (query-params offset=0) class="datetime"}}<time datetime="{{createdAtISO}}" title="{{createdAtISO}}">{{createdAgo}}</time>{{/link-to}}
       </span>
 
       <span class="post-controls">
         {{#if controller.session.signedIn}}
+          -
           <a {{action 'focusCommentForm' target=view}} class="p-post-comment">Comment</a>
-        {{/if}}
-
-        {{#if controller.session.signedIn}}
           -
           {{#if isLiked}}
             <span><a {{action 'unlike'}} class="p-post-unlike">Un-like</a></span>
           {{else}}
             <span><a {{action 'like'}} class="p-post-like">Like</a></span>
           {{/if}}
-        {{/if}}
 
-        {{#if view.isOwner}}
-          -
-          <a {{action 'toggleEditability'}} class="p-post-toggle-editability">Edit</a>
-          -
-          <a {{action 'destroy'}} class="p-post-destroy">Delete</a>
+          {{#if view.isOwner}}
+            -
+            <a {{action 'toggleEditability'}} class="p-post-toggle-editability">Edit</a>
+            -
+            <a {{action 'destroy'}} class="p-post-destroy">Delete</a>
+          {{/if}}
         {{/if}}
       </span>
 

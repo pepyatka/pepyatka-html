@@ -1,6 +1,6 @@
 define(["app/app",
         "ember",
-        "components/CustomErrorRoute"], function(App, Ember) {
+        "mixins/CustomErrorRoute"], function(App, Ember) {
   "use strict";
 
   App.PostRoute = Ember.Route.extend(App.CustomErrorRoute, {

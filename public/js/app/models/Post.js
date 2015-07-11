@@ -23,7 +23,6 @@ define(["config",
     isHidden: DS.attr('boolean'),
 
     timeline: DS.belongsTo('timeline'),
-
     anyFeeds: function() {
       return this.get('publicSubscriptions.length') > 0
     }.property('publicSubscriptions'),
@@ -35,9 +34,17 @@ define(["config",
       }).length === feeds.length
     }.property('postedTo'),
 
+    isDirects: function() {
+      var subscriptions = _.filter(this.get('postedTo').toArray(), function(feed) {
+        return feed.get('name') == 'Directs'
+      })
+      return subscriptions.length > 0
+    }.property('postedTo'),
+
     publicSubscriptions: function() {
       var subscriptions = _.filter(this.get('postedTo').toArray(), function(feed) {
-        return feed.get('name') == 'Posts'
+        var name = feed.get('name')
+        return name == 'Posts' || name == 'Directs'
       })
       // this post has been sumitted to home feed
       if (subscriptions.length === 1 && subscriptions[0].get('user.isUser')) {
@@ -45,18 +52,6 @@ define(["config",
       }
       return subscriptions
     }.property('postedTo'),
-
-    createdAgo: function() {
-      if (this.get('createdAt')) {
-        return moment(this.get('createdAt')).fromNowOrNow()
-      }
-    }.property('createdAt'),
-
-    createdAtISO: function() {
-      if (this.get('createdAt')) {
-        return moment(this.get('createdAt')).format()
-      }
-    }.property('createdAt'),
 
     like: function() {
       return Ember.$.ajax({

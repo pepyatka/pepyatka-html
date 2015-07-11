@@ -10,6 +10,8 @@ define(["lodash",
     email: DS.attr('string'),
     statistics: DS.attr(),
     subscriptions: DS.hasMany('subscription'),
+    // NOTE: this is a trick while we do not have user subscribers as is
+    subscribers: DS.attr(),
     createdAt: DS.attr('number'),
     updatedAt: DS.attr('number'),
     profilePictureLargeUrl: DS.attr('string'),
@@ -60,6 +62,21 @@ define(["lodash",
       }
       return url
     }.property('profilePictureMediumUrl'),
+
+    feeds: function() {
+      // `subscribers' field is just DS.attr() so it could be undefined
+      // (unlike subscriptions, which is
+      // DS.hasMany('subscription') so will be [])
+      var subscribers = this.get('subscribers')
+      var subscriberIds = []
+      if (!Ember.isEmpty(subscribers))
+        subscriberIds = _.map(this.get('subscribers').toArray(), 'id')
+      var subscriptionIds = this.get('subscriptions').toArray()
+      return _.filter(subscriptionIds, function(sub) {
+        return sub.get('isPosts') &&
+          (sub.get('user.isGroup') || subscriberIds.indexOf(sub.get('user.id')) >= 0)
+      })
+    }.property('subscriptions.@each', 'subscribers.@each'),
 
     groups: function() {
       return _.filter(this.get('subscriptions').toArray(), function(subscription) {

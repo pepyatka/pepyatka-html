@@ -7,6 +7,10 @@ define(["app/app"], function(App) {
 
     isPosts: function() {
       return this.get('name') === 'Posts'
-    }.property()
+    }.property('name'),
+
+    isDirect: function() {
+      return this.get('name') === 'Directs'
+    }.property('name')
   })
 })

@@ -1,5 +1,5 @@
 define(["app/app",
-        "components/CustomErrorRoute"], function(App) {
+        "mixins/CustomErrorRoute"], function(App) {
   "use strict";
 
   App.TimelineIndexRoute = Ember.Route.extend(App.CustomErrorRoute, {

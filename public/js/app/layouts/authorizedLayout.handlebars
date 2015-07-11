@@ -1,11 +1,18 @@
 <div class="container">
   <div class="row header-row">
     <div class="col-md-4">
-        <div class="header">
-      <h1 class="title">
-       {{#link-to 'timeline.home' (query-params offset=0)}}freefeed{{/link-to}}
-      </h1>
-        </div>
+      <div class="header">
+        <h1 class="title">
+          {{#if isHomepage}}
+            <span {{action 'reloadHomepage'}}>
+              {{#link-to 'timeline.home' (query-params offset=0)}}freefeed{{/link-to}}
+            </span>
+          {{else}}
+            {{#link-to 'timeline.home' (query-params offset=0)}}freefeed{{/link-to}}
+          {{/if}}
+          <small class="mutted">0.2.0</small>
+        </h1>
+      </div>
     </div>
 
     <div class="col-md-8">
@@ -74,7 +81,7 @@
         <div class="box-body">
           <ul>
             <li class="p-home">{{#link-to 'timeline.home' (query-params offset=0)}}Home{{/link-to}}</li>
-            <!-- li class="p-direct-messages"><a href="#">Direct messages</a></li -->
+            <li class="p-direct-messages">{{#link-to 'timeline.directs'}}Direct messages{{/link-to}}</li>
             <li class="p-my-discussions">{{#link-to 'timeline.discussions' (query-params offset=0)}}My discussions{{/link-to}}</li>
           </ul>
         </div>
@@ -97,11 +104,26 @@
 
       <div class="box">
         <div class="box-header-groups">
-          Freefeedback
+          Ministry of Truth
         </div>
         <div class="box-body">
           <ul>
             <li><a href="http://about.freefeed.net" target="_blank">About</a></li>
+            <li><a href="http://news.freefeed.net" target="_blank">News</a></li>
+            <li><a href="https://twitter.com/freefeednet" target="_blank">Twitter</a></li>
+          </ul>
+        </div>
+        <div class="box-footer">
+
+        </div>
+      </div>
+
+      <div class="box">
+        <div class="box-header-groups">
+          Ministry of Love
+        </div>
+        <div class="box-body">
+          <ul>
             <li><a href="https://docs.google.com/forms/d/1N6zo9BGu8Hv6aORTfbdjWoFt6xyikTfv-CJA4JoTzmo/viewform?usp=send_form" target="_blank">Ask a question</a></li>
             <li><a href="https://freefeed.net/bugreport">Report an issue</a></li>
             <li><a href="https://freefeed.net/support">Get updates</a></li>
@@ -115,7 +137,7 @@
 
       <div class="box">
         <div class="box-header-groups">
-          Coin Jar
+          Ministry of Plenty
         </div>
         <div class="box-body">
         </div>

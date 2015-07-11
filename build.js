@@ -37,7 +37,7 @@
     'adapters': 'app/adapters',
     'fields': 'app/fields',
     'controllers': 'app/controllers',
-    'components': 'app/components',
+    'mixins': 'app/mixins',
     'helpers': 'app/helpers',
     'initializers': 'app/initializers',
     'layouts': 'app/layouts',

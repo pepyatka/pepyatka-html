@@ -1,6 +1,6 @@
 define(["app/app",
-        "components/TransitionalRoute",
-        "components/AuthorizableRoute"], function(App) {
+        "mixins/TransitionalRoute",
+        "mixins/AuthorizableRoute"], function(App) {
   "use strict";
 
   App.TimelineHomeRoute = Ember.Route.extend(App.TransitionalRoute,
@@ -24,6 +24,12 @@ define(["app/app",
 
       controller.set('isSendToVisible', false)
       controller.set('model', model)
+    },
+
+    actions: {
+      reloadHomepage: function() {
+        this.refresh()
+      }
     }
   })
 })

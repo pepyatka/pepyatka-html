@@ -2,7 +2,7 @@ define(["app/app",
         "mixins/TransitionalRoute"], function(App) {
   "use strict";
 
-  App.TimelineDiscussionsRoute = Ember.Route.extend(App.TransitionalRoute, {
+  App.TimelineDirectsRoute = Ember.Route.extend(App.TransitionalRoute, {
     queryParams: {
       offset: {
         refreshModel: true
@@ -16,7 +16,7 @@ define(["app/app",
     },
 
     model: function(params) {
-      return this.store.findOneQuery('timeline', 'filter/discussions', { offset: params.offset  })
+      return this.store.findOneQuery('timeline', 'filter/directs', { offset: params.offset  })
     },
 
     deactivate: function() {
@@ -26,6 +26,7 @@ define(["app/app",
     setupController: function(controller, model) {
       this.controllerFor('pub-sub').set('channel', model)
 
+      controller.set('isSendToVisible', false)
       controller.set('model', model)
     }
   })

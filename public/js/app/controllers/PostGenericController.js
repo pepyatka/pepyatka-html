@@ -5,6 +5,12 @@ define(["config",
 
   // "Abstract" generic controller for posts
   App.PostGenericController = Ember.Controller.extend({
+    // The `offset` param isn't used in this controller explicitly,
+    // but we need a default value to omit "?offset=0" in the post's URL.
+    // See item #2 in http://guides.emberjs.com/v1.12.0/routing/query-params/#toc_default-values-and-deserialization
+    queryParams: ['offset'],
+    offset: 0,
+
     // NOTE: this code doesn't work reliably, see
     // https://github.com/emberjs/ember.js/issues/10343
     //commentSortProperties: ['createdAt:asc'],

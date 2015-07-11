@@ -174,6 +174,13 @@ define(["config",
 
           var that = this
           var post = this.store.getById('post', data.comments.postId)
+          var currentUser = this.currentController().get('session.currentUser')
+          var banIds = []
+          if (currentUser)
+            banIds = currentUser.get('banIds')
+
+          if (banIds.indexOf(data.comments.createdBy) >= 0)
+            return
 
           if (post) {
             if (!this.store.recordIsLoaded('comment', data.comments.id)) {
@@ -203,6 +210,9 @@ define(["config",
         destroyComment: function(data) {
           var comment = this.store.getById('comment', data.commentId)
 
+          if (!comment)
+            return
+
           if (!comment.get('isDeleted')) {
             this.store.unloadRecord(comment)
 
@@ -218,6 +228,14 @@ define(["config",
 
           var that = this
           var userId = data.users.id
+          var currentUser = this.currentController().get('session.currentUser')
+          var banIds = []
+          if (currentUser)
+            banIds = currentUser.get('banIds')
+
+          if (banIds.indexOf(userId) >= 0)
+            return
+
 
           if (!this.store.recordIsLoaded('user', userId)) {
             this.store.pushPayload('user', data)
