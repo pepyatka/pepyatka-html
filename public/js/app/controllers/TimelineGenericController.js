@@ -2,7 +2,7 @@ define(["config",
         "app/app",
         "ember",
         "lodash",
-        "components/Pagination"], function(config, App, Ember, _) {
+        "mixins/Pagination"], function(config, App, Ember, _) {
   "use strict";
 
   // "Abstract" generic controller for timelines

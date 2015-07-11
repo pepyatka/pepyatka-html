@@ -23,7 +23,6 @@ define(["config",
     isHidden: DS.attr('boolean'),
 
     timeline: DS.belongsTo('timeline'),
-
     anyFeeds: function() {
       return this.get('publicSubscriptions.length') > 0
     }.property('publicSubscriptions'),
@@ -53,18 +52,6 @@ define(["config",
       }
       return subscriptions
     }.property('postedTo'),
-
-    createdAgo: function() {
-      if (this.get('createdAt')) {
-        return moment(this.get('createdAt')).fromNowOrNow()
-      }
-    }.property('createdAt'),
-
-    createdAtISO: function() {
-      if (this.get('createdAt')) {
-        return moment(this.get('createdAt')).format()
-      }
-    }.property('createdAt'),
 
     like: function() {
       return Ember.$.ajax({
