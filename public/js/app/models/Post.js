@@ -23,6 +23,7 @@ define(["config",
     isHidden: DS.attr('boolean'),
 
     timeline: DS.belongsTo('timeline'),
+
     anyFeeds: function() {
       return this.get('publicSubscriptions.length') > 0
     }.property('publicSubscriptions'),
