@@ -396,8 +396,8 @@
         This method is used by the store to determine if the store should
         reload a record from the adapter when a record is requested by
         `store.findRecord`.
-         If this method returns true the store will re fetch a record from
-        the adapter. If is method returns false the store will resolve
+         If this method returns true, the store will re-fetch a record from
+        the adapter. If this method returns false, the store will resolve
         immediately using the cached record.
          @method shouldReloadRecord
         @param {DS.Store} store
@@ -412,10 +412,10 @@
         This method is used by the store to determine if the store should
         reload all records from the adapter when records are requested by
         `store.findAll`.
-         If this method returns true the store will re fetch all records from
-        the adapter. If is method returns false the store will resolve
+         If this method returns true, the store will re-fetch all records from
+        the adapter. If this method returns false, the store will resolve
         immediately using the cached record.
-         @method shouldReloadRecord
+         @method shouldReloadAll
         @param {DS.Store} store
         @param {DS.SnapshotRecordArray} snapshotRecordArray
         @return {Boolean}
@@ -783,13 +783,13 @@
       }
     });
 
+    var ember$data$lib$system$object$polyfills$$keysFunc = Object.keys || Ember.keys;
+    var ember$data$lib$system$object$polyfills$$create = Object.create || Ember.create;
+
     var ember$data$lib$adapters$errors$$EmberError = Ember.Error;
-    var ember$data$lib$adapters$errors$$create = Ember.create;
 
     var ember$data$lib$adapters$errors$$forEach = Ember.ArrayPolyfills.forEach;
-    var ember$data$lib$adapters$errors$$SOURCE_POINTER_REGEXP = /data\/(attributes|relationships)\/(.*)/;
-
-    /**
+    var ember$data$lib$adapters$errors$$SOURCE_POINTER_REGEXP = /data\/(attributes|relationships)\/(.*)/;/**
       @class AdapterError
       @namespace DS
     */
@@ -800,11 +800,11 @@
 
       this.errors = errors || [{
         title: "Adapter Error",
-        details: message
+        detail: message
       }];
     }
 
-    ember$data$lib$adapters$errors$$AdapterError.prototype = ember$data$lib$adapters$errors$$create(ember$data$lib$adapters$errors$$EmberError.prototype);
+    ember$data$lib$adapters$errors$$AdapterError.prototype = ember$data$lib$system$object$polyfills$$create(ember$data$lib$adapters$errors$$EmberError.prototype);
 
     /**
       A `DS.InvalidError` is used by an adapter to signal the external API
@@ -843,11 +843,11 @@
           // Fictional adapter that always rejects
           return Ember.RSVP.reject(new DS.InvalidError([
             {
-              details: 'Must be unique',
+              detail: 'Must be unique',
               source: { pointer: 'data/attributes/title' }
             },
             {
-              details: 'Must not be blank',
+              detail: 'Must not be blank',
               source: { pointer: 'data/attributes/content'}
             }
           ]));
@@ -872,7 +872,7 @@
       ember$data$lib$adapters$errors$$AdapterError.call(this, errors, "The adapter rejected the commit because it was invalid");
     }
 
-    ember$data$lib$adapters$errors$$InvalidError.prototype = ember$data$lib$adapters$errors$$create(ember$data$lib$adapters$errors$$AdapterError.prototype);
+    ember$data$lib$adapters$errors$$InvalidError.prototype = ember$data$lib$system$object$polyfills$$create(ember$data$lib$adapters$errors$$AdapterError.prototype);
 
     /**
       @class TimeoutError
@@ -882,7 +882,7 @@
       ember$data$lib$adapters$errors$$AdapterError.call(this, null, "The adapter operation timed out");
     }
 
-    ember$data$lib$adapters$errors$$TimeoutError.prototype = ember$data$lib$adapters$errors$$create(ember$data$lib$adapters$errors$$AdapterError.prototype);
+    ember$data$lib$adapters$errors$$TimeoutError.prototype = ember$data$lib$system$object$polyfills$$create(ember$data$lib$adapters$errors$$AdapterError.prototype);
 
     /**
       @class AbortError
@@ -892,7 +892,7 @@
       ember$data$lib$adapters$errors$$AdapterError.call(this, null, "The adapter operation was aborted");
     }
 
-    ember$data$lib$adapters$errors$$AbortError.prototype = ember$data$lib$adapters$errors$$create(ember$data$lib$adapters$errors$$AdapterError.prototype);
+    ember$data$lib$adapters$errors$$AbortError.prototype = ember$data$lib$system$object$polyfills$$create(ember$data$lib$adapters$errors$$AdapterError.prototype);
 
     /**
       @private
@@ -901,12 +901,12 @@
       var out = [];
 
       if (Ember.isPresent(errors)) {
-        ember$data$lib$adapters$errors$$forEach.call(Ember.keys(errors), function (key) {
+        ember$data$lib$adapters$errors$$forEach.call(ember$data$lib$system$object$polyfills$$keysFunc(errors), function (key) {
           var messages = Ember.makeArray(errors[key]);
           for (var i = 0; i < messages.length; i++) {
             out.push({
               title: "Invalid Attribute",
-              details: messages[i],
+              detail: messages[i],
               source: {
                 pointer: "data/attributes/" + key
               }
@@ -929,7 +929,7 @@
             if (key) {
               key = key[2];
               out[key] = out[key] || [];
-              out[key].push(error.details || error.title);
+              out[key].push(error.detail || error.title);
             }
           }
         });
@@ -1458,7 +1458,7 @@
         @return {Object}
       */
       sortQueryParams: function (obj) {
-        var keys = Ember.keys(obj);
+        var keys = ember$data$lib$system$object$polyfills$$keysFunc(obj);
         var len = keys.length;
         if (len < 2) {
           return obj;
@@ -2085,7 +2085,7 @@
         var headers = ember$data$lib$adapters$rest$adapter$$get(this, "headers");
         if (headers !== undefined) {
           hash.beforeSend = function (xhr) {
-            ember$data$lib$adapters$rest$adapter$$forEach.call(Ember.keys(headers), function (key) {
+            ember$data$lib$adapters$rest$adapter$$forEach.call(ember$data$lib$system$object$polyfills$$keysFunc(headers), function (key) {
               xhr.setRequestHeader(key, headers[key]);
             });
           };
@@ -2125,14 +2125,14 @@
           return [{
             status: "" + status,
             title: "The backend responded with an error",
-            details: "" + payload
+            detail: "" + payload
           }];
         }
       }
     });
 
     function ember$data$lib$adapters$rest$adapter$$parseResponseHeaders(headerStr) {
-      var headers = Ember.create(null);
+      var headers = ember$data$lib$system$object$polyfills$$create(null);
       if (!headerStr) {
         return headers;
       }
@@ -2985,8 +2985,8 @@
           normalizeResponse hook
         -To customize how JSONSerializer normalizes a specific response from the server,
           use one of the many specific normalizeResponse hooks
-        -To customize how JSONSerializer normalizes your attributes or relationships,
-          use the extractAttributes and extractRelationships hooks.
+        -To customize how JSONSerializer normalizes your id, attributes or relationships,
+          use the extractId, extractAttributes and extractRelationships hooks.
 
       JSONSerializer normalization process follows these steps:
         - `normalizeResponse` - entry method to the Serializer
@@ -3433,10 +3433,11 @@
       /*
         Returns the resource's ID.
          @method extractId
+        @param {Object} modelClass
         @param {Object} resourceHash
         @return {String}
       */
-      extractId: function (resourceHash) {
+      extractId: function (modelClass, resourceHash) {
         var primaryKey = ember$data$lib$serializers$json$serializer$$get(this, "primaryKey");
         var id = resourceHash[primaryKey];
         return ember$data$lib$system$coerce$id$$default(id);
@@ -3445,7 +3446,8 @@
       /*
         Returns the resource's attributes formatted as a JSON-API "attributes object".
          http://jsonapi.org/format/#document-resource-object-attributes
-         @method extractId
+         @method extractAttributes
+        @param {Object} modelClass
         @param {Object} resourceHash
         @return {Object}
       */
@@ -3560,6 +3562,7 @@
          @method normalizePayload
         @param {Object} payload
         @return {Object} the normalized payload
+        @deprecated
       */
       normalizePayload: function (payload) {
         return payload;
@@ -4285,6 +4288,7 @@
         @return {Object} json The deserialized payload
       */
       extractSingle: function (store, typeClass, payload, id, requestType) {
+        Ember.deprecate("`serializer.normalizePayload` has been deprecated. Please use `serializer.normalizeResponse` with the new Serializer API to modify the payload.", this.normalizePayload === ember$data$lib$serializers$json$serializer$$JSONSerializer.prototype.normalizePayload);
         var normalizedPayload = this.normalizePayload(payload);
         return this.normalize(typeClass, normalizedPayload);
       },
@@ -4312,6 +4316,7 @@
         @return {Array} array An array of deserialized objects
       */
       extractArray: function (store, typeClass, arrayPayload, id, requestType) {
+        Ember.deprecate("`serializer.normalizePayload` has been deprecated. Please use `serializer.normalizeResponse` with the new Serializer API to modify the payload.", this.normalizePayload === ember$data$lib$serializers$json$serializer$$JSONSerializer.prototype.normalizePayload);
         var normalizedPayload = this.normalizePayload(arrayPayload);
         var serializer = this;
 
@@ -4472,7 +4477,7 @@
         this.normalizeUsingDeclaredMapping(modelClass, resourceHash);
 
         data = {
-          id: this.extractId(resourceHash),
+          id: this.extractId(modelClass, resourceHash),
           type: modelClass.modelName,
           attributes: this.extractAttributes(modelClass, resourceHash),
           relationships: this.extractRelationships(modelClass, resourceHash)
@@ -5433,9 +5438,9 @@
       changedAttributes: function () {
         var oldData = ember$data$lib$system$model$model$$get(this._internalModel, "_data");
         var newData = ember$data$lib$system$model$model$$get(this._internalModel, "_attributes");
-        var diffData = Ember.create(null);
+        var diffData = ember$data$lib$system$object$polyfills$$create(null);
 
-        var newDataKeys = Ember.keys(newData);
+        var newDataKeys = ember$data$lib$system$object$polyfills$$keysFunc(newData);
 
         for (var i = 0, _length = newDataKeys.length; i < _length; i++) {
           var key = newDataKeys[i];
@@ -5599,7 +5604,7 @@
       // rely on the data property.
       willMergeMixin: function (props) {
         var constructor = this.constructor;
-        Ember.assert("`" + ember$data$lib$system$model$model$$intersection(Ember.keys(props), ember$data$lib$system$model$model$$RESERVED_MODEL_PROPS)[0] + "` is a reserved property name on DS.Model objects. Please choose a different property name for " + constructor.toString(), !ember$data$lib$system$model$model$$intersection(Ember.keys(props), ember$data$lib$system$model$model$$RESERVED_MODEL_PROPS)[0]);
+        Ember.assert("`" + ember$data$lib$system$model$model$$intersection(ember$data$lib$system$object$polyfills$$keysFunc(props), ember$data$lib$system$model$model$$RESERVED_MODEL_PROPS)[0] + "` is a reserved property name on DS.Model objects. Please choose a different property name for " + constructor.toString(), !ember$data$lib$system$model$model$$intersection(ember$data$lib$system$object$polyfills$$keysFunc(props), ember$data$lib$system$model$model$$RESERVED_MODEL_PROPS)[0]);
       },
 
       attr: function () {
@@ -5658,7 +5663,7 @@
          }
        });
        ```
-       @property
+       @property modelName
        @type String
        @readonly
       */
@@ -5690,7 +5695,7 @@
       @return {Object} JSON-API Document
     */
     function ember$data$lib$system$store$serializer$response$$normalizeResponseHelper(serializer, store, modelClass, payload, id, requestType) {
-      if (serializer.get('isNewSerializerAPI')) {
+      if (ember$data$lib$system$store$serializer$response$$get(serializer, 'isNewSerializerAPI')) {
         var normalizedResponse = serializer.normalizeResponse(store, modelClass, payload, id, requestType);
         // TODO: Remove after metadata refactor
         if (normalizedResponse.meta) {
@@ -5914,14 +5919,14 @@
       };
 
       if (payload.attributes) {
-        var attributeKeys = Ember.keys(payload.attributes);
+        var attributeKeys = ember$data$lib$system$object$polyfills$$keysFunc(payload.attributes);
         ember$data$lib$system$store$serializer$response$$forEach.call(attributeKeys, function (key) {
           var attribute = payload.attributes[key];
           data[key] = attribute;
         });
       }
       if (payload.relationships) {
-        var relationshipKeys = Ember.keys(payload.relationships);
+        var relationshipKeys = ember$data$lib$system$object$polyfills$$keysFunc(payload.relationships);
         ember$data$lib$system$store$serializer$response$$forEach.call(relationshipKeys, function (key) {
           var relationship = payload.relationships[key];
           if (relationship.hasOwnProperty('data')) {
@@ -6026,6 +6031,7 @@
          @property normalizeHash
         @type {Object}
         @default undefined
+        @deprecated
       */
 
       /**
@@ -6095,6 +6101,7 @@
         this.normalizeUsingDeclaredMapping(typeClass, hash);
 
         if (this.normalizeHash && this.normalizeHash[prop]) {
+          Ember.deprecate("`RESTSerializer.normalizeHash` has been deprecated. Please use `serializer.normalize` to modify the payload of single resources.");
           this.normalizeHash[prop](hash);
         }
 
@@ -6121,7 +6128,7 @@
         var modelClass = store.modelFor(modelName);
         var serializer = store.serializerFor(modelName);
 
-        Ember.assert("" + this.toString() + " has opted into the new serializer API and expects the " + serializer.toString() + " it collaborates with to also support the new serializer API by setting its `isNewSerializerAPI` property to true.", ember$data$lib$serializers$rest$serializer$$get(serializer, "isNewSerializerAPI"));
+        Ember.assert(this.toString() + " has opted into the new serializer API and expects the " + serializer.toString() + " it collaborates with to also support the new serializer API by setting its `isNewSerializerAPI` property to true.", ember$data$lib$serializers$rest$serializer$$get(serializer, "isNewSerializerAPI"));
 
         /*jshint loopfunc:true*/
         ember$data$lib$serializers$rest$serializer$$forEach.call(arrayHash, function (hash) {
@@ -6164,7 +6171,7 @@
           documentHash.meta = meta;
         }
 
-        var keys = Ember.keys(payload);
+        var keys = ember$data$lib$system$object$polyfills$$keysFunc(payload);
 
         for (var i = 0, _length = keys.length; i < _length; i++) {
           var prop = keys[i];
@@ -6342,6 +6349,7 @@
         @return {Object} the primary response to the original request
       */
       extractSingle: function (store, primaryTypeClass, rawPayload, recordId) {
+        Ember.deprecate("`serializer.normalizePayload` has been deprecated. Please use `serializer.normalizeResponse` with the new Serializer API to modify the payload.", this.normalizePayload === ember$data$lib$serializers$json$serializer$$default.prototype.normalizePayload);
         var payload = this.normalizePayload(rawPayload);
         var primaryRecord;
 
@@ -6370,6 +6378,8 @@
             var typeName = this.modelNameFromPayloadKey(prop);
             var type = store.modelFor(typeName);
             var typeSerializer = store.serializerFor(type.modelName);
+
+            Ember.assert(this.toString() + " is using the " + (ember$data$lib$serializers$rest$serializer$$get(this, "isNewSerializerAPI") ? "new" : "old") + " serializer API and expects " + typeSerializer.toString() + " it collaborates with to do the same. Make sure to set `isNewSerializerAPI: true` in your custom serializers if you want to use the new Serializer API.", ember$data$lib$serializers$rest$serializer$$get(this, "isNewSerializerAPI") === ember$data$lib$serializers$rest$serializer$$get(typeSerializer, "isNewSerializerAPI"));
 
             hash = typeSerializer.normalize(type, hash, prop);
 
@@ -6479,6 +6489,7 @@
           to the original query.
       */
       extractArray: function (store, primaryTypeClass, rawPayload) {
+        Ember.deprecate("`serializer.normalizePayload` has been deprecated. Please use `serializer.normalizeResponse` with the new Serializer API to modify the payload.", this.normalizePayload === ember$data$lib$serializers$json$serializer$$default.prototype.normalizePayload);
         var payload = this.normalizePayload(rawPayload);
         var primaryArray;
 
@@ -6498,6 +6509,9 @@
           }
           var type = store.modelFor(typeName);
           var typeSerializer = store.serializerFor(type.modelName);
+
+          Ember.assert(this.toString() + " is using the " + (ember$data$lib$serializers$rest$serializer$$get(this, "isNewSerializerAPI") ? "new" : "old") + " serializer API and expects " + typeSerializer.toString() + " it collaborates with to do the same. Make sure to set `isNewSerializerAPI: true` in your custom serializers if you want to use the new Serializer API.", ember$data$lib$serializers$rest$serializer$$get(this, "isNewSerializerAPI") === ember$data$lib$serializers$rest$serializer$$get(typeSerializer, "isNewSerializerAPI"));
+
           var isPrimary = !forcedSecondary && this.isPrimaryType(store, typeName, primaryTypeClass);
 
           /*jshint loopfunc:true*/
@@ -6554,6 +6568,7 @@
           return;
         }
 
+        Ember.deprecate("`serializer.normalizePayload` has been deprecated. Please use `serializer.normalizeResponse` with the new Serializer API to modify the payload.", this.normalizePayload === ember$data$lib$serializers$json$serializer$$default.prototype.normalizePayload);
         var payload = this.normalizePayload(rawPayload);
 
         for (var prop in payload) {
@@ -6564,6 +6579,8 @@
           }
           var typeClass = store.modelFor(modelName);
           var typeSerializer = store.serializerFor(modelName);
+
+          Ember.assert(this.toString() + " is using the " + (ember$data$lib$serializers$rest$serializer$$get(this, "isNewSerializerAPI") ? "new" : "old") + " serializer API and expects " + typeSerializer.toString() + " it collaborates with to do the same. Make sure to set `isNewSerializerAPI: true` in your custom serializers if you want to use the new Serializer API.", ember$data$lib$serializers$rest$serializer$$get(this, "isNewSerializerAPI") === ember$data$lib$serializers$rest$serializer$$get(typeSerializer, "isNewSerializerAPI"));
 
           /*jshint loopfunc:true*/
           var normalizedArray = ember$data$lib$serializers$rest$serializer$$map.call(Ember.makeArray(payload[prop]), function (hash) {
@@ -6863,6 +6880,7 @@
     */
     function ember$data$lib$serializers$rest$serializer$$_newNormalize(modelClass, resourceHash, prop) {
       if (this.normalizeHash && this.normalizeHash[prop]) {
+        Ember.deprecate("`RESTSerializer.normalizeHash` has been deprecated. Please use `serializer.normalize` to modify the payload of single resources.");
         this.normalizeHash[prop](resourceHash);
       }
     }
@@ -6877,6 +6895,8 @@
         data: [],
         included: []
       };
+
+      Ember.deprecate("`serializer.normalizePayload` has been deprecated. Please use `serializer.normalizeResponse` with the new Serializer API to modify the payload.", this.normalizePayload === ember$data$lib$serializers$json$serializer$$default.prototype.normalizePayload);
       var payload = this.normalizePayload(rawPayload);
 
       for (var prop in payload) {
@@ -6887,6 +6907,8 @@
         }
         var type = store.modelFor(modelName);
         var typeSerializer = store.serializerFor(type.modelName);
+
+        Ember.assert(this.toString() + " is using the " + (ember$data$lib$serializers$rest$serializer$$get(this, "isNewSerializerAPI") ? "new" : "old") + " serializer API and expects " + typeSerializer.toString() + " it collaborates with to do the same. Make sure to set `isNewSerializerAPI: true` in your custom serializers if you want to use the new Serializer API.", ember$data$lib$serializers$rest$serializer$$get(this, "isNewSerializerAPI") === ember$data$lib$serializers$rest$serializer$$get(typeSerializer, "isNewSerializerAPI"));
 
         /*jshint loopfunc:true*/
         ember$data$lib$serializers$rest$serializer$$forEach.call(Ember.makeArray(payload[prop]), function (hash) {
@@ -7254,7 +7276,7 @@
       registry.register("adapter:-active-model", activemodel$adapter$lib$system$active$model$adapter$$default);
     }
     var ember$data$lib$core$$DS = Ember.Namespace.create({
-      VERSION: '1.13.4'
+      VERSION: '1.13.5'
     });
 
     if (Ember.libraries) {
@@ -7298,6 +7320,7 @@
       }
 
       if (serializer === null || serializer === undefined) {
+        Ember.deprecate('Ember Data 2.0 will no longer support adapters with a null serializer property. Please define `defaultSerializer: "-default"` your adapter and make sure the `serializer` property is not null.');
         serializer = {
           extract: function (store, type, payload) {
             return payload;
@@ -7389,7 +7412,7 @@
           var recordArray = ember$data$lib$system$store$finders$$map.call(records, function (record) {
             return record._internalModel;
           });
-          if (serializer.get("isNewSerializerAPI")) {
+          if (ember$data$lib$system$store$finders$$get(serializer, "isNewSerializerAPI")) {
             recordArray.meta = payload.meta;
           }
           return recordArray;
@@ -7744,9 +7767,8 @@
     });
 
     var ember$data$lib$system$clone$null$$default = ember$data$lib$system$clone$null$$cloneNull;
-
     function ember$data$lib$system$clone$null$$cloneNull(source) {
-      var clone = Ember.create(null);
+      var clone = ember$data$lib$system$object$polyfills$$create(null);
       for (var key in source) {
         clone[key] = source[key];
       }
@@ -7821,7 +7843,7 @@
       return new Constructor();
     };
 
-    ember$data$lib$system$ordered$set$$OrderedSet.prototype = Ember.create(ember$data$lib$system$ordered$set$$EmberOrderedSet.prototype);
+    ember$data$lib$system$ordered$set$$OrderedSet.prototype = ember$data$lib$system$object$polyfills$$create(ember$data$lib$system$ordered$set$$EmberOrderedSet.prototype);
     ember$data$lib$system$ordered$set$$OrderedSet.prototype.constructor = ember$data$lib$system$ordered$set$$OrderedSet;
     ember$data$lib$system$ordered$set$$OrderedSet.prototype._super$constructor = ember$data$lib$system$ordered$set$$EmberOrderedSet;
 
@@ -8169,15 +8191,15 @@
     */
     function ember$data$lib$system$store$container$instance$cache$$ContainerInstanceCache(container) {
       this._container = container;
-      this._cache = ember$lib$main$$default.create(null);
+      this._cache = ember$data$lib$system$object$polyfills$$create(null);
     }
 
-    ember$data$lib$system$store$container$instance$cache$$ContainerInstanceCache.prototype = ember$lib$main$$default.create(null);
+    ember$data$lib$system$store$container$instance$cache$$ContainerInstanceCache.prototype = ember$data$lib$system$object$polyfills$$create(null);
 
     ember$lib$main$$default.merge(ember$data$lib$system$store$container$instance$cache$$ContainerInstanceCache.prototype, {
       get: function (type, preferredKey, fallbacks) {
         var cache = this._cache;
-        var preferredLookupKey = '' + type + ':' + preferredKey;
+        var preferredLookupKey = type + ':' + preferredKey;
 
         if (!(preferredLookupKey in cache)) {
           var instance = this.instanceFor(preferredLookupKey) || this._findInstance(type, fallbacks);
@@ -8191,7 +8213,7 @@
       _findInstance: function (type, fallbacks) {
         for (var i = 0, _length = fallbacks.length; i < _length; i++) {
           var fallback = fallbacks[i];
-          var lookupKey = '' + type + ':' + fallback;
+          var lookupKey = type + ':' + fallback;
           var instance = this.instanceFor(lookupKey);
 
           if (instance) {
@@ -8217,7 +8239,7 @@
 
       destroy: function () {
         var cache = this._cache;
-        var cacheEntries = ember$lib$main$$default.keys(cache);
+        var cacheEntries = ember$data$lib$system$object$polyfills$$keysFunc(cache);
 
         for (var i = 0, _length2 = cacheEntries.length; i < _length2; i++) {
           var cacheKey = cacheEntries[i];
@@ -8237,12 +8259,12 @@
     });
 
     var ember$data$lib$system$store$container$instance$cache$$default = ember$data$lib$system$store$container$instance$cache$$ContainerInstanceCache;
+
     function ember$data$lib$system$merge$$merge(original, updates) {
       if (!updates || typeof updates !== 'object') {
         return original;
       }
-
-      var props = Ember.keys(updates);
+      var props = ember$data$lib$system$object$polyfills$$keysFunc(updates);
       var prop;
       var length = props.length;
 
@@ -8255,6 +8277,10 @@
     }
 
     var ember$data$lib$system$merge$$default = ember$data$lib$system$merge$$merge;
+
+    /**
+      @module ember-data
+    */
 
     var ember$data$lib$system$model$states$$get = Ember.get;
     /*
@@ -8500,7 +8526,7 @@
         loadingData: Ember.K,
 
         propertyWasReset: function (internalModel, name) {
-          var length = Ember.keys(internalModel._attributes).length;
+          var length = ember$data$lib$system$object$polyfills$$keysFunc(internalModel._attributes).length;
           var stillDirty = length > 0;
 
           if (!stillDirty) {
@@ -8610,7 +8636,7 @@
         },
 
         exit: function (internalModel) {
-          internalModel._inFlightAttributes = Ember.create(null);
+          internalModel._inFlightAttributes = ember$data$lib$system$object$polyfills$$create(null);
         }
       }
     };
@@ -8801,7 +8827,7 @@
         saved: {
           setup: function (internalModel) {
             var attrs = internalModel._attributes;
-            var isDirty = Ember.keys(attrs).length > 0;
+            var isDirty = ember$data$lib$system$object$polyfills$$keysFunc(attrs).length > 0;
 
             if (isDirty) {
               internalModel.adapterDidDirty();
@@ -8994,7 +9020,7 @@
     function ember$data$lib$system$model$states$$wireState(object, parent, name) {
       /*jshint proto:true*/
       // TODO: Use Object.create and copy instead
-      object = ember$data$lib$system$model$states$$mixin(parent ? Ember.create(parent) : {}, object);
+      object = ember$data$lib$system$model$states$$mixin(parent ? ember$data$lib$system$object$polyfills$$create(parent) : {}, object);
       object.parentState = parent;
       object.stateName = name;
 
@@ -9567,7 +9593,7 @@
       this.manyArray.isPolymorphic = this.isPolymorphic;
     };
 
-    ember$data$lib$system$relationships$state$has$many$$ManyRelationship.prototype = Ember.create(ember$data$lib$system$relationships$state$relationship$$default.prototype);
+    ember$data$lib$system$relationships$state$has$many$$ManyRelationship.prototype = ember$data$lib$system$object$polyfills$$create(ember$data$lib$system$relationships$state$relationship$$default.prototype);
     ember$data$lib$system$relationships$state$has$many$$ManyRelationship.prototype.constructor = ember$data$lib$system$relationships$state$has$many$$ManyRelationship;
     ember$data$lib$system$relationships$state$has$many$$ManyRelationship.prototype._super$constructor = ember$data$lib$system$relationships$state$relationship$$default;
 
@@ -9767,7 +9793,7 @@
       this.canonicalState = null;
     };
 
-    ember$data$lib$system$relationships$state$belongs$to$$BelongsToRelationship.prototype = Ember.create(ember$data$lib$system$relationships$state$relationship$$default.prototype);
+    ember$data$lib$system$relationships$state$belongs$to$$BelongsToRelationship.prototype = ember$data$lib$system$object$polyfills$$create(ember$data$lib$system$relationships$state$relationship$$default.prototype);
     ember$data$lib$system$relationships$state$belongs$to$$BelongsToRelationship.prototype.constructor = ember$data$lib$system$relationships$state$belongs$to$$BelongsToRelationship;
     ember$data$lib$system$relationships$state$belongs$to$$BelongsToRelationship.prototype._super$constructor = ember$data$lib$system$relationships$state$relationship$$default;
 
@@ -9923,7 +9949,7 @@
 
     var ember$data$lib$system$relationships$state$create$$Relationships = function (record) {
       this.record = record;
-      this.initializedRelationships = Ember.create(null);
+      this.initializedRelationships = ember$data$lib$system$object$polyfills$$create(null);
     };
 
     ember$data$lib$system$relationships$state$create$$Relationships.prototype.has = function (key) {
@@ -9941,9 +9967,11 @@
 
     var ember$data$lib$system$relationships$state$create$$default = ember$data$lib$system$relationships$state$create$$Relationships;
 
-    var ember$data$lib$system$snapshot$$get = Ember.get;
-
     /**
+      @module ember-data
+    */
+
+    var ember$data$lib$system$snapshot$$get = Ember.get;/**
       @class Snapshot
       @namespace DS
       @private
@@ -9951,11 +9979,11 @@
       @param {DS.Model} internalModel The model to create a snapshot from
     */
     function ember$data$lib$system$snapshot$$Snapshot(internalModel) {
-      this._attributes = Ember.create(null);
-      this._belongsToRelationships = Ember.create(null);
-      this._belongsToIds = Ember.create(null);
-      this._hasManyRelationships = Ember.create(null);
-      this._hasManyIds = Ember.create(null);
+      this._attributes = ember$data$lib$system$object$polyfills$$create(null);
+      this._belongsToRelationships = ember$data$lib$system$object$polyfills$$create(null);
+      this._belongsToIds = ember$data$lib$system$object$polyfills$$create(null);
+      this._hasManyRelationships = ember$data$lib$system$object$polyfills$$create(null);
+      this._hasManyIds = ember$data$lib$system$object$polyfills$$create(null);
 
       var record = internalModel.getRecord();
       this.record = record;
@@ -10086,8 +10114,8 @@
         @return {Object} All changed attributes of the current snapshot
       */
       changedAttributes: function () {
-        var changedAttributes = Ember.create(null);
-        var changedAttributeKeys = Ember.keys(this._changedAttributes);
+        var changedAttributes = ember$data$lib$system$object$polyfills$$create(null);
+        var changedAttributeKeys = ember$data$lib$system$object$polyfills$$keysFunc(this._changedAttributes);
 
         for (var i = 0, _length = changedAttributeKeys.length; i < _length; i++) {
           var key = changedAttributeKeys[i];
@@ -10342,8 +10370,8 @@
     var ember$data$lib$system$model$internal$model$$forEach = Ember.ArrayPolyfills.forEach;
     var ember$data$lib$system$model$internal$model$$map = Ember.ArrayPolyfills.map;
 
-    var ember$data$lib$system$model$internal$model$$_extractPivotNameCache = Ember.create(null);
-    var ember$data$lib$system$model$internal$model$$_splitOnDotCache = Ember.create(null);
+    var ember$data$lib$system$model$internal$model$$_extractPivotNameCache = ember$data$lib$system$object$polyfills$$create(null);
+    var ember$data$lib$system$model$internal$model$$_splitOnDotCache = ember$data$lib$system$object$polyfills$$create(null);
 
     function ember$data$lib$system$model$internal$model$$splitOnDot(name) {
       return ember$data$lib$system$model$internal$model$$_splitOnDotCache[name] || (ember$data$lib$system$model$internal$model$$_splitOnDotCache[name] = name.split("."));
@@ -10380,13 +10408,13 @@
       this.id = id;
       this.store = store;
       this.container = container;
-      this._data = data || Ember.create(null);
+      this._data = data || ember$data$lib$system$object$polyfills$$create(null);
       this.modelName = type.modelName;
       this.dataHasInitialized = false;
       //Look into making this lazy
       this._deferredTriggers = [];
-      this._attributes = Ember.create(null);
-      this._inFlightAttributes = Ember.create(null);
+      this._attributes = ember$data$lib$system$object$polyfills$$create(null);
+      this._inFlightAttributes = ember$data$lib$system$object$polyfills$$create(null);
       this._relationships = new ember$data$lib$system$relationships$state$create$$default(this);
       this.currentState = ember$data$lib$system$model$states$$default.empty;
       this.isReloading = false;
@@ -10413,7 +10441,7 @@
          would have a implicit post relationship in order to be do things like remove ourselves from the post
         when we are deleted
       */
-      this._implicitRelationships = Ember.create(null);
+      this._implicitRelationships = ember$data$lib$system$object$polyfills$$create(null);
     };
 
     ember$data$lib$system$model$internal$model$$InternalModel.prototype = {
@@ -10589,7 +10617,7 @@
 
       flushChangedAttributes: function () {
         this._inFlightAttributes = this._attributes;
-        this._attributes = Ember.create(null);
+        this._attributes = ember$data$lib$system$object$polyfills$$create(null);
       },
 
       /**
@@ -10650,12 +10678,12 @@
       },
 
       rollbackAttributes: function () {
-        var dirtyKeys = Ember.keys(this._attributes);
+        var dirtyKeys = ember$data$lib$system$object$polyfills$$keysFunc(this._attributes);
 
-        this._attributes = Ember.create(null);
+        this._attributes = ember$data$lib$system$object$polyfills$$create(null);
 
         if (ember$data$lib$system$model$internal$model$$get(this, "isError")) {
-          this._inFlightAttributes = Ember.create(null);
+          this._inFlightAttributes = ember$data$lib$system$object$polyfills$$create(null);
           this.didCleanError();
         }
 
@@ -10673,7 +10701,7 @@
         }
 
         if (this.isValid()) {
-          this._inFlightAttributes = Ember.create(null);
+          this._inFlightAttributes = ember$data$lib$system$object$polyfills$$create(null);
         }
 
         this.send("rolledBack");
@@ -10786,7 +10814,7 @@
           }
         }, this);
         var model = this;
-        ember$data$lib$system$model$internal$model$$forEach.call(Ember.keys(this._implicitRelationships), function (key) {
+        ember$data$lib$system$model$internal$model$$forEach.call(ember$data$lib$system$object$polyfills$$keysFunc(this._implicitRelationships), function (key) {
           model._implicitRelationships[key].clear();
           model._implicitRelationships[key].destroy();
         });
@@ -10797,7 +10825,7 @@
           this._relationships.get(name).disconnect();
         }, this);
         var model = this;
-        ember$data$lib$system$model$internal$model$$forEach.call(Ember.keys(this._implicitRelationships), function (key) {
+        ember$data$lib$system$model$internal$model$$forEach.call(ember$data$lib$system$object$polyfills$$keysFunc(this._implicitRelationships), function (key) {
           model._implicitRelationships[key].disconnect();
         });
       },
@@ -10807,7 +10835,7 @@
           this._relationships.get(name).reconnect();
         }, this);
         var model = this;
-        ember$data$lib$system$model$internal$model$$forEach.call(Ember.keys(this._implicitRelationships), function (key) {
+        ember$data$lib$system$model$internal$model$$forEach.call(ember$data$lib$system$object$polyfills$$keysFunc(this._implicitRelationships), function (key) {
           model._implicitRelationships[key].reconnect();
         });
       },
@@ -10828,7 +10856,7 @@
       _preloadData: function (preload) {
         var record = this;
         //TODO(Igor) consider the polymorphic case
-        ember$data$lib$system$model$internal$model$$forEach.call(Ember.keys(preload), function (key) {
+        ember$data$lib$system$model$internal$model$$forEach.call(ember$data$lib$system$object$polyfills$$keysFunc(preload), function (key) {
           var preloadValue = ember$data$lib$system$model$internal$model$$get(preload, key);
           var relationshipMeta = record.type.metaForProperty(key);
           if (relationshipMeta.isRelationship) {
@@ -10934,7 +10962,7 @@
           ember$data$lib$system$merge$$default(this._data, data);
         }
 
-        this._inFlightAttributes = Ember.create(null);
+        this._inFlightAttributes = ember$data$lib$system$object$polyfills$$create(null);
 
         this.send("didCommit");
         this.updateRecordArraysLater();
@@ -11003,18 +11031,17 @@
       },
 
       _saveWasRejected: function () {
-        var keys = Ember.keys(this._inFlightAttributes);
+        var keys = ember$data$lib$system$object$polyfills$$keysFunc(this._inFlightAttributes);
         for (var i = 0; i < keys.length; i++) {
           if (this._attributes[keys[i]] === undefined) {
             this._attributes[keys[i]] = this._inFlightAttributes[keys[i]];
           }
         }
-        this._inFlightAttributes = Ember.create(null);
+        this._inFlightAttributes = ember$data$lib$system$object$polyfills$$create(null);
       },
 
       /**
-        @method _changedKeys
-         Ember Data has 3 buckets for storing the value of an attribute on an internalModel.
+        Ember Data has 3 buckets for storing the value of an attribute on an internalModel.
          `_data` holds all of the attributes that have been acknowledged by
         a backend via the adapter. When rollbackAttributes is called on a model all
         attributes will revert to the record's state in `_data`.
@@ -11042,17 +11069,18 @@
         `_inFlightAttributes` has priority) then that means the backend
         has updated the value and the key is added to the list of changed
         keys.
-         @private
+         @method _changedKeys
+        @private
       */
       _changedKeys: function (updates) {
         var changedKeys = [];
 
         if (updates) {
           var original, i, value, key;
-          var keys = Ember.keys(updates);
+          var keys = ember$data$lib$system$object$polyfills$$keysFunc(updates);
           var length = keys.length;
 
-          original = ember$data$lib$system$merge$$default(Ember.create(null), this._data);
+          original = ember$data$lib$system$merge$$default(ember$data$lib$system$object$polyfills$$create(null), this._data);
           original = ember$data$lib$system$merge$$default(original, this._inFlightAttributes);
 
           for (i = 0; i < length; i++) {
@@ -11320,10 +11348,18 @@
       /**
         Create a new record in the current store. The properties passed
         to this method are set on the newly created record.
-         To create a new instance of `App.Post`:
+         To create a new instance of a `Post`:
          ```js
         store.createRecord('post', {
           title: "Rails is omakase"
+        });
+        ```
+         To create a new instance of a `Post` that has a relationship with a `User` record:
+         ```js
+        var user = this.store.peekRecord('user', 1);
+        store.createRecord('post', {
+          title: "Rails is omakase",
+          user: user
         });
         ```
          @method createRecord
@@ -11335,7 +11371,7 @@
       createRecord: function (modelName, inputProperties) {
         Ember.assert("Passing classes to store methods has been removed. Please pass a dasherized string instead of " + Ember.inspect(modelName), typeof modelName === "string");
         var typeClass = this.modelFor(modelName);
-        var properties = ember$data$lib$system$store$$copy(inputProperties) || Ember.create(null);
+        var properties = ember$data$lib$system$store$$copy(inputProperties) || ember$data$lib$system$object$polyfills$$create(null);
 
         // If the passed properties do not include a primary key,
         // give the adapter an opportunity to generate one. Typically,
@@ -11592,34 +11628,16 @@
         var internalModel = this._internalModelForId(modelName, id);
         options = options || {};
 
-        return this._findByInternalModel(internalModel, options);
-      },
-
-      _findByInternalModel: function (internalModel, options) {
-        options = options || {};
-
-        if (options.preload) {
-          internalModel._preloadData(options.preload);
+        if (!this.hasRecordForId(modelName, id)) {
+          return this._findByInternalModel(internalModel, options);
         }
 
-        var fetchedInternalModel = this._fetchOrResolveInternalModel(internalModel, options);
+        var fetchedInternalModel = this._findRecord(internalModel, options);
 
         return ember$data$lib$system$store$$promiseRecord(fetchedInternalModel, "DS: Store#findRecord " + internalModel.typeKey + " with id: " + ember$data$lib$system$store$$get(internalModel, "id"));
       },
 
-      _fetchOrResolveInternalModel: function (internalModel, options) {
-        var typeClass = internalModel.type;
-        var adapter = this.adapterFor(typeClass.modelName);
-        // Always fetch the model if it is not loaded
-        if (internalModel.isEmpty()) {
-          return this.scheduleFetch(internalModel, options);
-        }
-
-        //TODO double check about reloading
-        if (internalModel.isLoading()) {
-          return internalModel._loadingPromise;
-        }
-
+      _findRecord: function (internalModel, options) {
         // Refetch if the reload option is passed
         if (options.reload) {
           return this.scheduleFetch(internalModel, options);
@@ -11628,6 +11646,8 @@
         // Refetch the record if the adapter thinks the record is stale
         var snapshot = internalModel.createSnapshot();
         snapshot.adapterOptions = options && options.adapterOptions;
+        var typeClass = internalModel.type;
+        var adapter = this.adapterFor(typeClass.modelName);
         if (adapter.shouldReloadRecord(this, snapshot)) {
           return this.scheduleFetch(internalModel, options);
         }
@@ -11640,6 +11660,32 @@
         // Return the cached record
         return ember$data$lib$system$store$$Promise.resolve(internalModel);
       },
+
+      _findByInternalModel: function (internalModel, options) {
+        options = options || {};
+
+        if (options.preload) {
+          internalModel._preloadData(options.preload);
+        }
+
+        var fetchedInternalModel = this._findEmptyInternalModel(internalModel, options);
+
+        return ember$data$lib$system$store$$promiseRecord(fetchedInternalModel, "DS: Store#findRecord " + internalModel.typeKey + " with id: " + ember$data$lib$system$store$$get(internalModel, "id"));
+      },
+
+      _findEmptyInternalModel: function (internalModel, options) {
+        if (internalModel.isEmpty()) {
+          return this.scheduleFetch(internalModel, options);
+        }
+
+        //TODO double check about reloading
+        if (internalModel.isLoading()) {
+          return internalModel._loadingPromise;
+        }
+
+        return ember$data$lib$system$store$$Promise.resolve(internalModel);
+      },
+
       /**
         This method makes a series of requests to the adapter's `find` method
         and returns a promise that resolves once they are all loaded.
@@ -12188,7 +12234,7 @@
         Ember.assert("Passing classes to store methods has been removed. Please pass a dasherized string instead of " + Ember.inspect(modelName), !modelName || typeof modelName === "string");
         if (arguments.length === 0) {
           var typeMaps = this.typeMaps;
-          var keys = Ember.keys(typeMaps);
+          var keys = ember$data$lib$system$object$polyfills$$keysFunc(typeMaps);
 
           var types = ember$data$lib$system$store$$map.call(keys, byType);
 
@@ -12205,7 +12251,7 @@
             record.destroy(); // maybe within unloadRecord
           }
 
-          typeMap.metadata = Ember.create(null);
+          typeMap.metadata = ember$data$lib$system$object$polyfills$$create(null);
         }
 
         function byType(entry) {
@@ -12525,9 +12571,9 @@
         }
 
         typeMap = {
-          idToRecord: Ember.create(null),
+          idToRecord: ember$data$lib$system$object$polyfills$$create(null),
           records: [],
-          metadata: Ember.create(null),
+          metadata: ember$data$lib$system$object$polyfills$$create(null),
           type: typeClass
         };
 
@@ -12743,9 +12789,9 @@
         // contains unknown keys, log a warning.
 
         if (Ember.ENV.DS_WARN_ON_UNKNOWN_KEYS) {
-          Ember.warn("The payload for '" + type.modelName + "' contains these unknown keys: " + Ember.inspect(filter.call(Ember.keys(data), function (key) {
+          Ember.warn("The payload for '" + type.modelName + "' contains these unknown keys: " + Ember.inspect(filter.call(ember$data$lib$system$object$polyfills$$keysFunc(data), function (key) {
             return !(key === "id" || key === "links" || ember$data$lib$system$store$$get(type, "fields").has(key) || key.match(/Type$/));
-          })) + ". Make sure they've been defined in your model.", filter.call(Ember.keys(data), function (key) {
+          })) + ". Make sure they've been defined in your model.", filter.call(ember$data$lib$system$object$polyfills$$keysFunc(data), function (key) {
             return !(key === "id" || key === "links" || ember$data$lib$system$store$$get(type, "fields").has(key) || key.match(/Type$/));
           }).length === 0);
         }
@@ -12826,7 +12872,7 @@
         var payload;
         if (!inputPayload) {
           payload = modelName;
-          serializer = ember$data$lib$system$store$$defaultSerializer(this.container);
+          serializer = ember$data$lib$system$store$$defaultSerializer(this);
           Ember.assert("You cannot use `store#pushPayload` without a modelName unless your default serializer defines `pushPayload`", typeof serializer.pushPayload === "function");
         } else {
           payload = inputPayload;
@@ -13147,8 +13193,8 @@
 
     // Delegation to the adapter and promise management
 
-    function ember$data$lib$system$store$$defaultSerializer(container) {
-      return container.lookup("serializer:application") || container.lookup("serializer:-default");
+    function ember$data$lib$system$store$$defaultSerializer(store) {
+      return store.serializerFor("application");
     }
 
     function ember$data$lib$system$store$$_commit(adapter, store, operation, snapshot) {
@@ -13259,6 +13305,7 @@
     var ember$data$lib$system$store$$default = ember$data$lib$system$store$$Store;
 
     var ember$data$lib$serializers$json$api$serializer$$dasherize = Ember.String.dasherize;
+    var ember$data$lib$serializers$json$api$serializer$$get = Ember.get;
     var ember$data$lib$serializers$json$api$serializer$$map = Ember.ArrayPolyfills.map;
 
     var ember$data$lib$serializers$json$api$serializer$$default = ember$data$lib$serializers$json$serializer$$default.extend({
@@ -13281,7 +13328,7 @@
 
         if (Ember.typeOf(documentHash.data) === 'object') {
           documentHash.data = this._normalizeResourceHelper(documentHash.data);
-        } else {
+        } else if (Ember.typeOf(documentHash.data) === 'array') {
           documentHash.data = ember$data$lib$serializers$json$api$serializer$$map.call(documentHash.data, this._normalizeResourceHelper, this);
         }
 
@@ -13314,6 +13361,8 @@
         var modelName = this.modelNameFromPayloadKey(resourceHash.type);
         var modelClass = this.store.modelFor(modelName);
         var serializer = this.store.serializerFor(modelName);
+
+        Ember.assert(this.toString() + ' is using the ' + (ember$data$lib$serializers$json$api$serializer$$get(this, 'isNewSerializerAPI') ? 'new' : 'old') + ' serializer API and expects ' + serializer.toString() + ' it collaborates with to do the same. Make sure to set `isNewSerializerAPI: true` in your custom serializers if you want to use the new Serializer API.', ember$data$lib$serializers$json$api$serializer$$get(this, 'isNewSerializerAPI') === ember$data$lib$serializers$json$api$serializer$$get(serializer, 'isNewSerializerAPI'));
 
         var _serializer$normalize = serializer.normalize(modelClass, resourceHash);
 
@@ -13454,7 +13503,7 @@
         this.normalizeUsingDeclaredMapping(modelClass, resourceHash);
 
         var data = {
-          id: this.extractId(resourceHash),
+          id: this.extractId(modelClass, resourceHash),
           type: this._extractType(modelClass, resourceHash),
           attributes: this.extractAttributes(modelClass, resourceHash),
           relationships: this.extractRelationships(modelClass, resourceHash)
@@ -13641,7 +13690,7 @@
 
       if (store) {
         registry.register("service:store", store, { instantiate: false });
-      } else {
+      } else if (!registry.has("service:store")) {
         registry.register("service:store", application && application.Store || ember$data$lib$system$store$$default);
       }
     }
@@ -13863,7 +13912,8 @@
       return ember$new$computed$lib$main$$computed.apply(undefined, polyfillArguments);
     }
 
-    var ember$new$computed$lib$main$$computedKeys = ember$lib$main$$default.keys(ember$new$computed$lib$main$$computed);
+    var ember$new$computed$lib$main$$getKeys = Object.keys || ember$lib$main$$default.keys;
+    var ember$new$computed$lib$main$$computedKeys = ember$new$computed$lib$main$$getKeys(ember$new$computed$lib$main$$computed);
 
     for (var ember$new$computed$lib$main$$i = 0, ember$new$computed$lib$main$$l = ember$new$computed$lib$main$$computedKeys.length; ember$new$computed$lib$main$$i < ember$new$computed$lib$main$$l; ember$new$computed$lib$main$$i++) {
       ember$new$computed$lib$main$$newComputed[ember$new$computed$lib$main$$computedKeys[ember$new$computed$lib$main$$i]] = ember$new$computed$lib$main$$computed[ember$new$computed$lib$main$$computedKeys[ember$new$computed$lib$main$$i]];
@@ -14876,6 +14926,9 @@
           if (parentRecord) {
             var name = parentRecord.name;
             var embeddedSerializer = this.store.serializerFor(embeddedSnapshot.modelName);
+
+            Ember.assert(this.toString() + ' is using the ' + (ember$data$lib$serializers$embedded$records$mixin$$get(this, 'isNewSerializerAPI') ? 'new' : 'old') + ' serializer API and expects ' + embeddedSerializer.toString() + ' it collaborates with to do the same. Make sure to set `isNewSerializerAPI: true` in your custom serializers if you want to use the new Serializer API.', ember$data$lib$serializers$embedded$records$mixin$$get(this, 'isNewSerializerAPI') === ember$data$lib$serializers$embedded$records$mixin$$get(embeddedSerializer, 'isNewSerializerAPI'));
+
             var parentKey = embeddedSerializer.keyForRelationship(name, parentRecord.kind, 'deserialize');
             if (parentKey) {
               delete json[parentKey];
@@ -14971,6 +15024,9 @@
         var ids = [];
 
         var embeddedSerializer = store.serializerFor(embeddedTypeClass.modelName);
+
+        Ember.assert(this.toString() + ' is using the ' + (ember$data$lib$serializers$embedded$records$mixin$$get(this, 'isNewSerializerAPI') ? 'new' : 'old') + ' serializer API and expects ' + embeddedSerializer.toString() + ' it collaborates with to do the same. Make sure to set `isNewSerializerAPI: true` in your custom serializers if you want to use the new Serializer API.', ember$data$lib$serializers$embedded$records$mixin$$get(this, 'isNewSerializerAPI') === ember$data$lib$serializers$embedded$records$mixin$$get(embeddedSerializer, 'isNewSerializerAPI'));
+
         ember$data$lib$serializers$embedded$records$mixin$$forEach.call(hash[key], function (data) {
           var embeddedRecord = embeddedSerializer.normalize(embeddedTypeClass, data, null);
           store.push(embeddedTypeClass.modelName, embeddedRecord);
@@ -14986,6 +15042,8 @@
        @private
       */
       _extractEmbeddedHasManyPolymorphic: function (store, key, hash) {
+        var _this = this;
+
         if (!hash[key]) {
           return hash;
         }
@@ -14995,6 +15053,9 @@
         ember$data$lib$serializers$embedded$records$mixin$$forEach.call(hash[key], function (data) {
           var modelName = data.type;
           var embeddedSerializer = store.serializerFor(modelName);
+
+          Ember.assert(_this.toString() + ' is using the ' + (ember$data$lib$serializers$embedded$records$mixin$$get(_this, 'isNewSerializerAPI') ? 'new' : 'old') + ' serializer API and expects ' + embeddedSerializer.toString() + ' it collaborates with to do the same. Make sure to set `isNewSerializerAPI: true` in your custom serializers if you want to use the new Serializer API.', ember$data$lib$serializers$embedded$records$mixin$$get(_this, 'isNewSerializerAPI') === ember$data$lib$serializers$embedded$records$mixin$$get(embeddedSerializer, 'isNewSerializerAPI'));
+
           var embeddedTypeClass = store.modelFor(modelName);
           // var primaryKey = embeddedSerializer.get('primaryKey');
 
@@ -15021,6 +15082,9 @@
         }
 
         var embeddedSerializer = store.serializerFor(embeddedTypeClass.modelName);
+
+        Ember.assert(this.toString() + ' is using the ' + (ember$data$lib$serializers$embedded$records$mixin$$get(this, 'isNewSerializerAPI') ? 'new' : 'old') + ' serializer API and expects ' + embeddedSerializer.toString() + ' it collaborates with to do the same. Make sure to set `isNewSerializerAPI: true` in your custom serializers if you want to use the new Serializer API.', ember$data$lib$serializers$embedded$records$mixin$$get(this, 'isNewSerializerAPI') === ember$data$lib$serializers$embedded$records$mixin$$get(embeddedSerializer, 'isNewSerializerAPI'));
+
         var embeddedRecord = embeddedSerializer.normalize(embeddedTypeClass, hash[key], null);
         store.push(embeddedTypeClass.modelName, embeddedRecord);
 
@@ -15040,6 +15104,9 @@
         var data = hash[key];
         var modelName = data.type;
         var embeddedSerializer = store.serializerFor(modelName);
+
+        Ember.assert(this.toString() + ' is using the ' + (ember$data$lib$serializers$embedded$records$mixin$$get(this, 'isNewSerializerAPI') ? 'new' : 'old') + ' serializer API and expects ' + embeddedSerializer.toString() + ' it collaborates with to do the same. Make sure to set `isNewSerializerAPI: true` in your custom serializers if you want to use the new Serializer API.', ember$data$lib$serializers$embedded$records$mixin$$get(this, 'isNewSerializerAPI') === ember$data$lib$serializers$embedded$records$mixin$$get(embeddedSerializer, 'isNewSerializerAPI'));
+
         var embeddedTypeClass = store.modelFor(modelName);
         // var primaryKey = embeddedSerializer.get('primaryKey');
 
@@ -15063,6 +15130,8 @@
         var modelClass = store.modelFor(modelName);
         var serializer = store.serializerFor(modelName);
 
+        Ember.assert(this.toString() + ' is using the ' + (ember$data$lib$serializers$embedded$records$mixin$$get(this, 'isNewSerializerAPI') ? 'new' : 'old') + ' serializer API and expects ' + serializer.toString() + ' it collaborates with to do the same. Make sure to set `isNewSerializerAPI: true` in your custom serializers if you want to use the new Serializer API.', ember$data$lib$serializers$embedded$records$mixin$$get(this, 'isNewSerializerAPI') === ember$data$lib$serializers$embedded$records$mixin$$get(serializer, 'isNewSerializerAPI'));
+
         return serializer.normalize(modelClass, relationshipHash, null);
       }
 
@@ -15075,15 +15144,15 @@
      @private
     */
     function ember$data$lib$serializers$embedded$records$mixin$$_newExtractEmbeddedRecords(serializer, store, typeClass, partial) {
-      var _this = this;
+      var _this2 = this;
 
       typeClass.eachRelationship(function (key, relationship) {
         if (serializer.hasDeserializeRecordsOption(key)) {
           if (relationship.kind === 'hasMany') {
-            _this._extractEmbeddedHasMany(store, key, partial, relationship);
+            _this2._extractEmbeddedHasMany(store, key, partial, relationship);
           }
           if (relationship.kind === 'belongsTo') {
-            _this._extractEmbeddedBelongsTo(store, key, partial, relationship);
+            _this2._extractEmbeddedBelongsTo(store, key, partial, relationship);
           }
         }
       }, this);
@@ -15095,7 +15164,7 @@
      @private
     */
     function ember$data$lib$serializers$embedded$records$mixin$$_newExtractEmbeddedHasMany(store, key, hash, relationshipMeta) {
-      var _this2 = this;
+      var _this3 = this;
 
       var relationshipHash = ember$data$lib$serializers$embedded$records$mixin$$get(hash, 'data.relationships.' + key + '.data');
       if (!relationshipHash) {
@@ -15103,7 +15172,7 @@
       }
 
       var hasMany = relationshipHash.map(function (item) {
-        var _normalizeEmbeddedRelationship = _this2._normalizeEmbeddedRelationship(store, relationshipMeta, item);
+        var _normalizeEmbeddedRelationship = _this3._normalizeEmbeddedRelationship(store, relationshipMeta, item);
 
         var data = _normalizeEmbeddedRelationship.data;
         var included = _normalizeEmbeddedRelationship.included;
@@ -15657,7 +15726,7 @@
       },
 
       inverseMap: Ember.computed(function () {
-        return Ember.create(null);
+        return ember$data$lib$system$object$polyfills$$create(null);
       }),
 
       /**
