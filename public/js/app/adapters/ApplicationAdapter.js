@@ -8,7 +8,9 @@ define(["config",
   App.ApplicationAdapter = DS.RESTAdapter.extend({
     host: config.host,
     namespace: 'v1',
-
+    shouldBackgroundReloadRecord: function (store, snapshot) {
+      return false;
+    },
     queryRecord: function(store, type, id, query) {
       var that = this
       // TODO: any ways to fetch URL with "s" from type class?
