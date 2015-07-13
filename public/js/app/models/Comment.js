@@ -7,8 +7,8 @@ define(["app/app",
     createdAt: DS.attr('number'),
     updatedAt: DS.attr('number'),
 
-    createdBy: DS.belongsTo('user'),
-    post: DS.belongsTo('post'),
+    createdBy: DS.belongsTo('user', {async:false}),
+    post: DS.belongsTo('post', {async:false}),
     postId: DS.attr('string'),
 
     createdAgo: function() {

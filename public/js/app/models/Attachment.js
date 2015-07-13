@@ -11,7 +11,7 @@ define(["app/app"], function(App) {
     createdAt: DS.attr('string'),
     updatedAt: DS.attr('string'),
 
-    createdBy: DS.belongsTo('user'),
-    post: DS.belongsTo('post')
+    createdBy: DS.belongsTo('user', {async:false}),
+    post: DS.belongsTo('post', {async:false})
   })
 })

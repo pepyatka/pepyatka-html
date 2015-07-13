@@ -9,7 +9,7 @@ define(["lodash",
     screenName: DS.attr('string'),
     email: DS.attr('string'),
     statistics: DS.attr(),
-    subscriptions: DS.hasMany('subscription'),
+    subscriptions: DS.hasMany('subscription', {async:false}),
     // NOTE: this is a trick while we do not have user subscribers as is
     subscribers: DS.attr(),
     createdAt: DS.attr('number'),

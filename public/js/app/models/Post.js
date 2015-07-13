@@ -13,7 +13,7 @@ define(["config",
     omittedComments: DS.attr('number'),
     omittedLikes: DS.attr('number'),
 
-    createdBy: DS.belongsTo('user'),
+    createdBy: DS.belongsTo('user', {async:false}),
     attachments: DS.hasMany('attachment'),
     comments: DS.hasMany('comment'),
     likes: DS.hasMany('user'),
@@ -22,7 +22,7 @@ define(["config",
 
     isHidden: DS.attr('boolean'),
 
-    timeline: DS.belongsTo('timeline'),
+    timeline: DS.belongsTo('timeline', {async:false}),
 
     anyFeeds: function() {
       return this.get('publicSubscriptions.length') > 0
