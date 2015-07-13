@@ -29,7 +29,7 @@ define(["config", "auth_storage", "app/app"], function(config, auth_storage, App
 
         authTokenChanged: function(callback) {
           var done = function authTokenReceived(result) {
-            var store = container.lookup('store:main')
+            var store = container.lookup('service:store')
             store.pushPayload('user', result)
             store.find('user', result.users.id)
               .then(function(user) {
