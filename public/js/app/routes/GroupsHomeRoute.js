@@ -3,7 +3,6 @@ define(["app/app",
         "mixins/AuthorizableRoute"], function(App) {
   "use strict";
 
-  App.GroupsHomeRoute = Ember.Route.extend(App.TransitionalRoute,
-                                           App.AuthorizableRoute, {
+  App.GroupsHomeRoute = Ember.Route.extend(App.TransitionalRoute, App.AuthorizableRoute, {
   })
 })

@@ -3,8 +3,7 @@ define(["app/app",
         "mixins/AuthorizableRoute"], function(App) {
   "use strict";
 
-  App.TimelineHomeRoute = Ember.Route.extend(App.TransitionalRoute,
-                                             App.AuthorizableRoute, {
+  App.TimelineHomeRoute = Ember.Route.extend(App.TransitionalRoute, App.AuthorizableRoute, {
     queryParams: {
       offset: {
         refreshModel: true
