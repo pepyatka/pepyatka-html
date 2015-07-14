@@ -87,9 +87,11 @@
           {{view "post-comment" content=comment}}
         {{/each}}
 
-        <a {{bind-attr class=":more-comments controller.isLoadingComments:loading"}} {{action 'showAllComments'}}>
-          {{controller.omittedComments}} more comments
-        </a>
+        <div class="more-comments-wrapper">
+          <a {{bind-attr class=":more-comments controller.isLoadingComments:loading"}} {{action 'showAllComments'}}>
+            {{controller.omittedComments}} more comments
+          </a>
+        </div>
 
         {{#each comment in controller.lastComments itemController="post-comment"}}
           {{view "post-comment" content=comment}}
