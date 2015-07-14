@@ -33,8 +33,9 @@ define(["app/app",
     nextPageDisabled: function() {
       var len = this.get('content.posts.length') ||
           this.get('content.content.length')
-      return len === 0 || len === undefined ||
-        len < this.get('limit') ? 'disabled' : ''
+      return len === 0 || len === undefined /*||
+      -- disable this check until timelines return pagination meta --
+        len < this.get('limit')*/ ? 'disabled' : ''
     }.property('content.posts.length', 'content.content.length', 'limit'),
 
     resetPage: function() {
