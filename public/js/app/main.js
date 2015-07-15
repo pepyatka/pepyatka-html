@@ -114,6 +114,7 @@ define([
   "views/UsersNewView",
 
   // partial views
+  "views/AudioPlayerView",
   "views/BreadcrumbsView",
   "views/FooterView",
   "views/HiddenPostsView",

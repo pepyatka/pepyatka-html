@@ -39,9 +39,30 @@
     .attachment {
       display: inline-block;
       vertical-align: middle;
-      border: 1px solid silver;
       padding: 1px;
       margin: 0 8px 8px 0;
+
+      .full-player {
+        width: 400px !important;
+      }
+
+      .audio-wrapper {
+        position: relative;
+      }
+
+      .audio-wrapper .inner {
+        padding-top: .45em;
+        padding-bottom: .3em;
+      }
+
+      i {
+        color: #666666;
+        padding-right: 1px;
+      }
+
+      img {
+        border: 1px solid silver;
+      }
 
       &.surplus {
         display: none;
