@@ -12,6 +12,7 @@
   {{#if attachment.model.isGeneral}}
     <a href="{{attachment.model.url}}" title="{{attachment.tooltip}}" class="p-attachment-url" target="_blank">
       <i class="fa fa-file-o"></i> {{attachment.model.fileName}}
+      <span class="muted">({{attachment.model.formatSize}})</span>
     </a>
   {{/if}}
 
@@ -24,7 +25,7 @@
       <div class="attachment-wrapper">
         <a href="{{attachment.model.url}}" title="{{attachment.tooltip}}" class="p-attachment-url" target="_blank">
           <i class="fa fa-file-audio-o"></i> {{attachment.model.fileName}}
-          <span class="text-small muted">{{attachment.model.fileSize}}</span>
+          <span class="muted">({{attachment.model.formatSize}})</span>
         </a>
       </div>
     </div>
