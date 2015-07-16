@@ -1,5 +1,8 @@
+{{#with view.post as |post|}}
+{{#with view.post as |this|}}
+{{#with view.post as |controller|}}
 <div class="timeline-post-container">
-  <div class="avatar">
+    <div class="avatar">
     {{#link-to 'timeline.index' post.model.createdBy.username (query-params offset=0)}}<img src="{{ post.model.createdBy.profilePictureMedium }}" />{{/link-to}}
   </div>
 
@@ -84,7 +87,7 @@
     <div class="comments">
       {{#if controller.hasOmittedComments}}
         {{#each controller.firstComments itemController="post-comment" as |comment|}}
-          {{view "post-comment" content=comment}}
+          {{view "post-comment" comment=comment}}
         {{/each}}
 
         <a {{bind-attr class=":more-comments controller.isLoadingComments:loading"}} {{action 'showAllComments'}}>
@@ -92,11 +95,11 @@
         </a>
 
         {{#each controller.lastComments itemController="post-comment" as |comment|}}
-          {{view "post-comment" content=comment}}
+          {{view "post-comment" comment=comment}}
         {{/each}}
       {{else}}
         {{#each post.comments itemController="post-comment" as |comment|}}
-          {{view "post-comment" content=comment}}
+          {{view "post-comment" comment=comment}}
         {{/each}}
       {{/if}}
 
@@ -137,4 +140,7 @@
 
 
   </div>
-</div>
+  </div>
+{{/with}}
+{{/with}}
+{{/with}}

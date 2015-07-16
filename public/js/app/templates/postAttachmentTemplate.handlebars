@@ -1,9 +1,9 @@
 <div class="attachment">
-  <a href="{{attachment.model.url}}" title="{{attachment.tooltip}}" class="p-attachment-url" target="_blank">
-    {{#if attachment.model.thumbnailUrl}}
-      <img class="p-attachment-thumbnail" src="{{attachment.model.thumbnailUrl}}" alt="{{attachment.tooltip}}" />
+  <a href="{{view.content.model.url}}" title="{{view.content.tooltip}}" class="p-attachment-url" target="_blank">
+    {{#if view.content.model.thumbnailUrl}}
+      <img class="p-attachment-thumbnail" src="{{view.content.model.thumbnailUrl}}" alt="{{view.content.tooltip}}" />
     {{else}}
-      {{attachment.model.id}}
+      {{view.content.model.id}}
     {{/if}}
   </a>
 </div>

@@ -1,3 +1,5 @@
+{{#with view.comment as |comment|}}
+{{#with view.comment as |controller|}}
 <div class="comment p-comment">
   <a class="date" {{bind-attr title="comment.model.createdAgo"}}>
     <time {{bind-attr datetime="comment.model.createdAtISO"}}></time>
@@ -34,3 +36,5 @@
     {{/if}}
   </div>
 </div>
+{{/with}}
+{{/with}}

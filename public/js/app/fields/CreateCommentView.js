@@ -7,7 +7,7 @@ define(["app/app",
     classNames: ['edit-comment-area'],
     rows: '1',
     attributeBindings: ['rows'],
-    valueBinding: 'parentView.controller.newComment',
+    valueBinding: 'parentView.post.newComment',
     action: 'create',
 
     keyPress: function (e) {
