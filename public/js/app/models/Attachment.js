@@ -17,7 +17,7 @@ define(["app/app"], function(App) {
 
     isImage: function() {
       return this.get('mediaType') === 'image' ||
-        this.get('mediaType') === null
+        Ember.isEmpty(this.get('mediaType'))
     }.property('mediaType'),
 
     isGeneral: function() {
