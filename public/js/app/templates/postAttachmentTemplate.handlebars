@@ -1,9 +1,33 @@
 <div class="attachment">
-  <a href="{{attachment.model.url}}" title="{{attachment.tooltip}}" class="p-attachment-url" target="_blank">
-    {{#if attachment.model.thumbnailUrl}}
-      <img class="p-attachment-thumbnail" src="{{attachment.model.thumbnailUrl}}" alt="{{attachment.tooltip}}" />
-    {{else}}
-      {{attachment.model.id}}
-    {{/if}}
-  </a>
+  {{#if attachment.model.isImage}}
+    <a href="{{attachment.model.url}}" title="{{attachment.tooltip}}" class="p-attachment-url" target="_blank">
+      {{#if attachment.model.thumbnailUrl}}
+        <img class="p-attachment-thumbnail" src="{{attachment.model.thumbnailUrl}}" alt="{{attachment.tooltip}}" />
+      {{else}}
+        {{attachment.model.id}}
+      {{/if}}
+    </a>
+  {{/if}}
+
+  {{#if attachment.model.isGeneral}}
+    <a href="{{attachment.model.url}}" title="{{attachment.tooltip}}" class="p-attachment-url" target="_blank">
+      <i class="fa fa-file-o"></i> {{attachment.model.fileName}}
+      <span class="muted">({{attachment.model.formatSize}})</span>
+    </a>
+  {{/if}}
+
+  {{#if attachment.model.isAudio}}
+    <div class="audio-wrapper">
+      <div class="inner">
+        <audio {{bind-attr id="attachment.model.id"}} {{bind-attr src="attachment.model.url"}}></audio>
+      </div>
+      {{view 'audio-player' playerId=attachment.model.id}}
+      <div class="attachment-wrapper">
+        <a href="{{attachment.model.url}}" title="{{attachment.tooltip}}" class="p-attachment-url" target="_blank">
+          <i class="fa fa-file-audio-o"></i> {{attachment.model.fileName}}
+          <span class="muted">({{attachment.model.formatSize}})</span>
+        </a>
+      </div>
+    </div>
+  {{/if}}
 </div>

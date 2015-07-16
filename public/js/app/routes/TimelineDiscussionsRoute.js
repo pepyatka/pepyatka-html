@@ -2,17 +2,11 @@ define(["app/app",
         "mixins/TransitionalRoute"], function(App) {
   "use strict";
 
-  App.TimelineDiscussionsRoute = Ember.Route.extend(App.TransitionalRoute, {
+  App.TimelineDiscussionsRoute = Ember.Route.extend(App.TransitionalRoute, App.AuthorizableRoute, {
     queryParams: {
       offset: {
         refreshModel: true
       }
-    },
-
-    beforeModel: function() {
-      this._super.apply(this, arguments)
-      if (!this.get('session.currentUser'))
-        return this.transitionTo('session.new')
     },
 
     model: function(params) {

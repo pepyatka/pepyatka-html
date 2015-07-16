@@ -7,11 +7,37 @@ define(["app/app"], function(App) {
     thumbnailUrl: DS.attr('string'),
     fileName: DS.attr('string'),
     fileSize: DS.attr('number'),
+    mediaType: DS.attr('string'),
 
     createdAt: DS.attr('string'),
     updatedAt: DS.attr('string'),
 
     createdBy: DS.belongsTo('user'),
-    post: DS.belongsTo('post')
+    post: DS.belongsTo('post'),
+
+    isImage: function() {
+      return this.get('mediaType') === 'image' ||
+        Ember.isEmpty(this.get('mediaType'))
+    }.property('mediaType'),
+
+    isGeneral: function() {
+      return this.get('mediaType') === 'general'
+    }.property('mediaType'),
+
+    isAudio: function() {
+      return this.get('mediaType') === 'audio'
+    }.property('mediaType'),
+
+    formatSize: function() {
+      var decimals = 1
+      var bytes = this.get('fileSize')
+
+      if (bytes == 0) return '0 Byte'
+      var k = 1000
+      var dm = decimals + 1 || 3
+      var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+      var i = Math.floor(Math.log(bytes) / Math.log(k))
+      return (bytes / Math.pow(k, i)).toPrecision(dm) + ' ' + sizes[i]
+    }.property('fileSize')
   })
 })
