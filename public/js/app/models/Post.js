@@ -24,6 +24,24 @@ define(["config",
 
     timeline: DS.belongsTo('timeline'),
 
+    imageAttachments: function() {
+      return _.filter(this.get('attachments').toArray(), function(attachment) {
+        return attachment.get('isImage')
+      })
+    }.property('attachments.[]'),
+
+    audioAttachments: function() {
+      return _.filter(this.get('attachments').toArray(), function(attachment) {
+        return attachment.get('isAudio')
+      })
+    }.property('attachments.[]'),
+
+    generalAttachments: function() {
+      return _.filter(this.get('attachments').toArray(), function(attachment) {
+        return attachment.get('isGeneral')
+      })
+    }.property('attachments.[]'),
+
     anyFeeds: function() {
       return this.get('publicSubscriptions.length') > 0
     }.property('publicSubscriptions'),

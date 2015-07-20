@@ -28,11 +28,24 @@
 
     {{#if content.attachments}}
       <div {{bind-attr class=":attachments :p-post-attachments controller.hasSurplusAttachments:has-surplus controller.areAttachmentsExpanded:expanded"}}>
-        {{~#each attachment in content.attachments itemController="post-attachment"~}}
-          {{view "post-attachment" content=attachment}}
-        {{~/each~}}
+        <div class="image-attachments">
+          {{~#each attachment in content.imageAttachments itemController="post-attachment"~}}
+            {{view "post-attachment" content=attachment}}
+          {{~/each~}}
+        </div>
 
         <a class="toggle-surplus fa" {{action 'toggleSurplusAttachments'}}></a>
+
+        <div class="audio-attachments">
+          {{~#each attachment in content.audioAttachments itemController="post-attachment"~}}
+            {{view "post-attachment" content=attachment}}
+          {{~/each~}}
+        </div>
+        <div class="general-attachments">
+          {{~#each attachment in content.generalAttachments itemController="post-attachment"~}}
+            {{view "post-attachment" content=attachment}}
+          {{~/each~}}
+        </div>
       </div>
     {{/if}}
 
