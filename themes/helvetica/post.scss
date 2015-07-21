@@ -29,8 +29,16 @@
 
   .attachments {
     margin-bottom: 2px;
-    overflow: hidden;
 
+    // Clearfix (http://www.cssmojo.com/latest_new_clearfix_so_far/)
+    &:after {
+      content: '';
+      display: table;
+      clear: both;
+    }
+  }
+
+  .image-attachments {
     > .ember-view {
       display: inline-block;
       vertical-align: middle;
@@ -39,33 +47,9 @@
     .attachment {
       display: inline-block;
       vertical-align: middle;
+      border: 1px solid silver;
       padding: 1px;
       margin: 0 8px 8px 0;
-
-      .full-player {
-        width: 400px !important;
-      }
-
-      .audio-wrapper {
-        position: relative;
-      }
-
-      .audio-wrapper .inner {
-        padding-bottom: 5px;
-      }
-
-      a {
-        color: #000088;
-      }
-
-      i {
-        color: #666666;
-        padding-right: 1px;
-      }
-
-      img {
-        border: 1px solid silver;
-      }
 
       &.surplus {
         display: none;
@@ -99,6 +83,41 @@
       &:before {
         content: "\f137";
       }
+    }
+  }
+
+  .audio-attachments {
+    .attachment {
+      display: block;
+      margin: 0 8px 8px 0;
+
+      .full-player {
+        width: 400px !important;
+      }
+
+      .audio-wrapper {
+        position: relative;
+
+        .inner {
+          padding-bottom: 5px;
+        }
+      }
+
+      a {
+        color: #000088;
+      }
+
+      i {
+        color: #666666;
+        padding-right: 1px;
+      }
+    }
+  }
+
+  .general-attachments {
+    .attachment {
+      display: block;
+      margin: 0 8px 8px 0;
     }
   }
 
