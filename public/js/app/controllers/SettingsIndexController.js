@@ -6,7 +6,7 @@ define(["config",
 
   App.SettingsIndexController = App.SettingsGenericController.extend({
     screenName: Ember.computed.oneWay('model.screenName'),
-    isPrivate: Ember.computed.oneWay('model.isPrivate'),
+    isPrivateUser: Ember.computed.oneWay('model.isPrivateUser'),
 
     title: function() {
       return 'Settings'
@@ -19,7 +19,7 @@ define(["config",
 
         var user = this.get('model')
         user.set('screenName', this.get('screenName'))
-        user.set('isPrivate', this.get('isPrivate'))
+        user.set('isPrivate', this.get('isPrivateUser') ? '1' : '0')
         user.set('email', user.get('email'))
 
         user.save()

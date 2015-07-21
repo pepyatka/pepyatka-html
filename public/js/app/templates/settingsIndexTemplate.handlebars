@@ -8,12 +8,12 @@
   {{input name="email" id="email" value=content.email class="form-control"}}
 </div>
 
-<!-- div class="checkbox p-settings-private">
+<div class="checkbox p-settings-private">
   <label>
-    {{input type="checkbox" name="isPrivate" checked=content.isPrivate }}
+    {{input type="checkbox" name="isPrivate" checked=content.isPrivateUser}}
     Private
   </label>
-</div -->
+</div>
 
 <p>
   <button {{action 'update'}} class="btn btn-default p-settings-update">Update</button>
