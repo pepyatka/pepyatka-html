@@ -27,8 +27,8 @@
     {{/if}}
 
     {{#if content.attachments}}
-      <div {{bind-attr class=":attachments :p-post-attachments controller.hasSurplusAttachments:has-surplus controller.areAttachmentsExpanded:expanded"}}>
-        <div class="image-attachments">
+      <div class="attachments p-post-attachments">
+        <div {{bind-attr class=":image-attachments controller.hasSurplusAttachments:has-surplus controller.areAttachmentsExpanded:expanded"}}>
           {{~#each attachment in content.imageAttachments itemController="post-attachment"~}}
             {{view "post-attachment" content=attachment}}
           {{~/each~}}
