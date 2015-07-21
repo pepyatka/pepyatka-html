@@ -32,9 +32,9 @@
           {{~#each attachment in post.content.imageAttachments itemController="post-attachment"~}}
             {{view "post-attachment" content=attachment}}
           {{~/each~}}
-        </div>
 
-        <a class="toggle-surplus fa" {{action 'toggleSurplusAttachments'}}></a>
+          <a class="toggle-surplus fa" {{action 'toggleSurplusAttachments'}}></a>
+        </div>
 
         <div class="audio-attachments">
           {{~#each attachment in post.content.audioAttachments itemController="post-attachment"~}}
