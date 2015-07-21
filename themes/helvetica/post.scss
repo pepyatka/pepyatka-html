@@ -30,6 +30,10 @@
   .attachments {
     margin-bottom: 2px;
 
+    a {
+      color: #000088;
+    }
+
     // Clearfix (http://www.cssmojo.com/latest_new_clearfix_so_far/)
     &:after {
       content: '';
@@ -101,10 +105,6 @@
         .inner {
           padding-bottom: 5px;
         }
-      }
-
-      a {
-        color: #000088;
       }
 
       i {
