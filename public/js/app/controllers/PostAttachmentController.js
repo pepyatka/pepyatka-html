@@ -4,11 +4,11 @@ define(["app/app",
   "use strict";
 
   App.PostAttachmentController = Ember.Controller.extend({
-    tooltip: function() {
+    nameAndSize: function() {
       var fileName = this.get('model.fileName')
       var fileSize = this.get('model.fileSize')
       fileSize = numeral(fileSize).format('0.[0] b')
       return fileName + ' (' + fileSize + ')'
-    }.property()
+    }.property('model.fileName', 'model.fileSize')
   })
 })

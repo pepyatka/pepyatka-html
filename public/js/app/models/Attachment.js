@@ -26,17 +26,6 @@ define(["app/app"], function(App) {
 
     isAudio: function() {
       return this.get('mediaType') === 'audio'
-    }.property('mediaType'),
-
-    formatSize: function() {
-      var decimals = 2
-      var bytes = this.get('fileSize')
-
-      if (bytes == 0) return '0 Byte'
-      var k = 1000
-      var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
-      var i = Math.floor(Math.log(bytes) / Math.log(k))
-      return (bytes / Math.pow(k, i)).toFixed(decimals) + ' ' + sizes[i]
-    }.property('fileSize')
+    }.property('mediaType')
   })
 })
