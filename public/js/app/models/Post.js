@@ -60,6 +60,13 @@ define(["config",
       return subscriptions.length > 0
     }.property('postedTo'),
 
+    isPrivates: function() {
+      var subscriptions = _.filter(this.get('postedTo').toArray(), function(feed) {
+        return feed.get('user.isPrivateUser')
+      })
+      return subscriptions.length > 0
+    }.property('postedTo'),
+
     publicSubscriptions: function() {
       var subscriptions = _.filter(this.get('postedTo').toArray(), function(feed) {
         var name = feed.get('name')

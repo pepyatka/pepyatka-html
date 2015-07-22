@@ -8,6 +8,7 @@ define(["lodash",
     type: DS.attr('string'),
     screenName: DS.attr('string'),
     email: DS.attr('string'),
+    isPrivate: DS.attr('string'),
     statistics: DS.attr(),
     subscriptions: DS.hasMany('subscription'),
     // NOTE: this is a trick while we do not have user subscribers as is
@@ -18,6 +19,10 @@ define(["lodash",
     profilePictureMediumUrl: DS.attr('string'),
     administratorIds: DS.attr(),
     banIds: DS.attr(),
+
+    isPrivateUser: function() {
+      return this.get('isPrivate') === '1'
+    }.property('isPrivate'),
 
     hasPosts: function() {
       return this.get('statistics.posts') > 0
