@@ -5,7 +5,13 @@
 
   .attachments {
     margin: 0 0 10px 0;
-    overflow: hidden;
+
+    // Clearfix (http://www.cssmojo.com/latest_new_clearfix_so_far/)
+    &:after {
+      content: '';
+      display: table;
+      clear: both;
+    }
 
     .attachment {
       float: left;

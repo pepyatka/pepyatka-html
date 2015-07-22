@@ -130,6 +130,10 @@ define(["config",
             // Replace the throbber with a real record
             attachmentList.replace(throbberIndex, 1, [ attachment ])
           })
+          .catch(function(e) {
+            console.log('upload failed')
+            attachmentList.removeAt(throbberIndex, 1)
+          })
       },
 
       create: function() {

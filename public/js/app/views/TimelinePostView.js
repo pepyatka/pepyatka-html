@@ -18,7 +18,7 @@ define(["app/app",
     hideSurplusAttachments: function() {
       var that = this
       Ember.run.scheduleOnce('afterRender', this, function() {
-        var container = this.$().find('.attachments')
+        var container = this.$().find('.attachments .image-attachments')
         var nodes = container.find('.attachment')
 
         if (nodes.size() === 0) {
