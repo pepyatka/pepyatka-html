@@ -18,7 +18,6 @@ $player-lightest-color: #fff;
     }
     .mejs-time-rail {
       .mejs-time-total {
-        border: 1px solid $player-border-color;
         background: $player-mid-color;
       }
       .mejs-time-buffering, .mejs-time-loaded {
