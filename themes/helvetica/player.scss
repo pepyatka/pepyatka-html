@@ -28,6 +28,14 @@ $player-lightest-color: #fff;
         border: 1px solid $player-border-color;
         background: $player-lightest-color;
       }
+      .mejs-time-float {
+        background: $player-midup-color;
+        border: 1px solid $player-midup-color;
+      }
+      .mejs-time-float-corner {
+        border: solid 5px $player-midup-color;
+        border-color: $player-midup-color $player-light-color $player-light-color $player-light-color;
+      }
     }
     .mejs-horizontal-volume-slider {
       .mejs-horizontal-volume-total {
