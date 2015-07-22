@@ -9,13 +9,6 @@
     </a>
   {{/if}}
 
-  {{#if attachment.model.isGeneral}}
-    <a href="{{attachment.model.url}}" title="{{attachment.nameAndSize}}" class="p-attachment-url" target="_blank">
-      <i class="fa fa-file-o"></i>
-      {{attachment.nameAndSize}}
-    </a>
-  {{/if}}
-
   {{#if attachment.model.isAudio}}
     <div class="audio-wrapper">
       <div class="inner">
@@ -25,9 +18,16 @@
       <div class="attachment-wrapper">
         <a href="{{attachment.model.url}}" title="{{attachment.nameAndSize}}" class="p-attachment-url" target="_blank">
           <i class="fa fa-file-audio-o"></i>
-          {{attachment.nameAndSize}}
+          <span>{{attachment.nameAndSize}}</span>
         </a>
       </div>
     </div>
+  {{/if}}
+
+  {{#if attachment.model.isGeneral}}
+    <a href="{{attachment.model.url}}" title="{{attachment.nameAndSize}}" class="p-attachment-url" target="_blank">
+      <i class="fa fa-file-o"></i>
+      <span>{{attachment.nameAndSize}}</span>
+    </a>
   {{/if}}
 </div>
