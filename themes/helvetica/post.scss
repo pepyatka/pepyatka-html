@@ -92,7 +92,7 @@
 
   .audio-attachments {
     .attachment {
-      display: block;
+      display: inline-block;
       margin: 0 8px 8px 0;
 
       .full-player {
@@ -116,7 +116,7 @@
 
   .general-attachments {
     .attachment {
-      display: block;
+      display: inline-block;
       margin: 0 8px 8px 0;
     }
   }
