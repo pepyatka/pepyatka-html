@@ -120,6 +120,9 @@
     'linkify-jquery': {
       deps: ['jquery']
     },
+    'mediaelement': {
+      deps: ['jquery']
+    },
     'mediaelementplayer': {
       deps: ['mediaelement']
     }
