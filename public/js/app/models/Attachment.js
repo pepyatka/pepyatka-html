@@ -29,7 +29,7 @@ define(["app/app"], function(App) {
     }.property('mediaType'),
 
     formatSize: function() {
-      var decimals = 1
+      var decimals = 2
       var bytes = this.get('fileSize')
 
       if (bytes == 0) return '0 Byte'
