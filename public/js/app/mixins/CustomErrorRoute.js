@@ -7,7 +7,7 @@ define(["app/app",
     actions: {
       error: function(error) {
         this.controllerFor('application').displayError(error)
-        this.transitionTo('timeline.home')
+        this.transitionTo('timeline.home', { queryParams: { offset: 0 } })
 
         this.removeThrobber()
       }
