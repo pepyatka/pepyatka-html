@@ -3,8 +3,13 @@ define(["app/app",
   "use strict";
 
   App.ApplicationController = Ember.Controller.extend({
+    isMessage: function() {
+      var message = this.get('session.message')
+      return message && message.length > 0
+    }.property('session.message'),
+
     displayError: function(error) {
-      Ember.$('body').text(error.responseJSON.err)
+      this.get('session').set('message', error.responseJSON.err)
     }
   })
 })

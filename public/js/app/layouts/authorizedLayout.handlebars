@@ -26,15 +26,13 @@
 
         <div class="col-md-6">
           {{#unless controller.session.signedIn}}
-              <div class="signin-toolbar">
-                {{#link-to 'session.new'}}Sign In{{/link-to}}
-                  or
-                {{#link-to 'users.new'}}Sign Up{{/link-to}}
-              </div>
+            <div class="signin-toolbar">
+              {{#link-to 'session.new'}}Sign In{{/link-to}}
+                or
+              {{#link-to 'users.new'}}Sign Up{{/link-to}}
+            </div>
           {{/unless}}
         </div>
-
-
       </div>
     </div>
   </div>
@@ -46,11 +44,15 @@
           <div class="box-header-timeline">
             {{controller.title}}
           </div>
+          {{#if isMessage}}
+            <div class="box-message alert alert-warning" id="snap-box">
+              <span class="message">{{controller.session.message}}</span>
+            </div>
+          {{/if}}
           <div class="box-body">
             {{yield}}
           </div>
           <div class="box-footer">
-
           </div>
         </div>
       </div>

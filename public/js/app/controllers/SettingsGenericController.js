@@ -1,10 +1,11 @@
 define(["config",
-  "app/app",
-  "ember"], function(config, App, Ember) {
+        "app/app",
+        "ember",
+        "controllers/ApplicationController"], function(config, App, Ember) {
   "use strict";
 
   // "Abstract" generic controller for settings pages
-  App.SettingsGenericController = Ember.Controller.extend({
+  App.SettingsGenericController = App.ApplicationController.extend({
     uploadProfilePicture: function(url) {
       var that = this
 

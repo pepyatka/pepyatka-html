@@ -2,11 +2,12 @@ define(["config",
         "app/app",
         "ember",
         "lodash",
-        "mixins/Pagination"], function(config, App, Ember, _) {
+        "mixins/Pagination",
+        "controllers/ApplicationController"], function(config, App, Ember, _) {
   "use strict";
 
   // "Abstract" generic controller for timelines
-  App.TimelineGenericController = Ember.Controller.extend(App.Pagination, {
+  App.TimelineGenericController = App.ApplicationController.extend(App.Pagination, {
     selectFeedsOnCreate: true,
     attachFilesOnCreate: true,
 

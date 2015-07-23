@@ -1,10 +1,11 @@
 define(["config",
         "app/app",
         "ember",
-        "mixins/DynamicTime"], function(config, App, Ember) {
+        "mixins/DynamicTime",
+        "controllers/ApplicationController"], function(config, App, Ember) {
   "use strict";
 
-  App.PostCommentController = Ember.Controller.extend(App.DynamicTime, {
+  App.PostCommentController = App.ApplicationController.extend(App.DynamicTime, {
     body: Ember.computed.oneWay('model.body'),
 
     isEdit: false,
