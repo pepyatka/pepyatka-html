@@ -38,7 +38,8 @@ define(['config',
       if (!currentUser) { return false }
 
       var subscriptions = currentUser.get('subscriptions').toArray()
-      return (subscriptions.isAny('user.id', this.get('id')))
+      return (subscriptions.isAny('user.id', this.get('id'))) ||
+        currentUser.get('id') === this.get('id')
     }.property('subscribers'),
 
     isPrivateUserAndNotSubscribed: function() {
