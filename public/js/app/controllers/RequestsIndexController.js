@@ -13,6 +13,7 @@ define(["config",
 
         currentUser.acceptRequest(user)
           .then(function() {
+            this.displayMessage('Subscription request has been approved.')
           }.bind(this))
       },
 
@@ -21,6 +22,7 @@ define(["config",
 
         currentUser.rejectRequest(user)
           .then(function() {
+            this.displayMessage('Subscription request has been rejected.')
           }.bind(this))
       },
 
