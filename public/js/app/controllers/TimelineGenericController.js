@@ -191,6 +191,7 @@ define(["config",
 
         currentUser.sendRequest(user)
           .then(function() {
+            this.displayMessage('Subscription request has been sent.')
           }.bind(this))
       },
 

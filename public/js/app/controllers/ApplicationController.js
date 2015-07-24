@@ -8,7 +8,7 @@ define(["app/app",
       return message && message.length > 0
     }.property('session.message'),
 
-    displayError: function(error) {
+    displayMessage: function(message) {
       var that = this
       window.setTimeout(function () {
         $(".box-message").slideUp(300, function () {
@@ -16,7 +16,11 @@ define(["app/app",
           that.get('session').set('message', null)
         })
       }, 5000)
-      this.get('session').set('message', error.responseJSON.err)
+      this.get('session').set('message', message)
+    },
+
+    displayError: function(error) {
+      this.displayMessage(error.responseJSON.err)
     }
   })
 })
