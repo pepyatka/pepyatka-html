@@ -16,7 +16,7 @@
       </div>
       {{view 'audio-player' playerId=attachment.model.id}}
       <div class="attachment-wrapper">
-        <a href="{{attachment.model.url}}" title="{{attachment.nameAndSize}}" class="p-attachment-url" target="_blank">
+        <a href="{{attachment.model.url}}" title="{{attachment.nameAndSize}}" download="{{attachment.model.fileName}}" class="p-attachment-url" target="_blank">
           <i class="fa fa-file-audio-o"></i>
           <span>{{attachment.nameAndSize}}</span>
         </a>
@@ -25,7 +25,7 @@
   {{/if}}
 
   {{#if attachment.model.isGeneral}}
-    <a href="{{attachment.model.url}}" title="{{attachment.nameAndSize}}" class="p-attachment-url" target="_blank">
+    <a href="{{attachment.model.url}}" title="{{attachment.nameAndSize}}" download="{{attachment.model.fileName}}" class="p-attachment-url" target="_blank">
       <i class="fa fa-file-o"></i>
       <span>{{attachment.nameAndSize}}</span>
     </a>
