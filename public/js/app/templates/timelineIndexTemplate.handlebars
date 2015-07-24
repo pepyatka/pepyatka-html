@@ -9,7 +9,7 @@
     {{/if}}
   {{/if}}
 
-  {{#if controller.model.user.isPrivateUser}}
+  {{#if controller.model.user.isPrivateUserAndNotSubscribed}}
     <p>{{content.user.username}} has a private feed.</p>
   {{else}}
     {{#unless controller.firstPage}}

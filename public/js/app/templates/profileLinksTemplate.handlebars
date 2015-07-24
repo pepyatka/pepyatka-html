@@ -51,13 +51,17 @@
       <div class="profile-controls">
         <div class="row">
           <div class="col-md-7 subscribe-controls">
-            {{#if content.user.isPrivateUser}}
-              <p>Request subscription</p>
+            {{#if content.user.hasSentRequest}}
+              You have already sent subscription request.
             {{else}}
-              {{#if isSubscribed}}
-                <a {{action 'unsubscribe'}} class="p-subscribe">Unsubscribe</a>
+              {{#if content.user.isPrivateUserAndNotSubscribed}}
+                <a {{action 'sendRequest'}}>Request subscription</a>
               {{else}}
-                <a {{action 'subscribe'}} class="p-unsubscribe">Subscribe</a>
+                {{#if isSubscribed}}
+                  <a {{action 'unsubscribe'}} class="p-subscribe">Unsubscribe</a>
+                {{else}}
+                  <a {{action 'subscribe'}} class="p-unsubscribe">Subscribe</a>
+                {{/if}}
               {{/if}}
             {{/if}}
           </div>

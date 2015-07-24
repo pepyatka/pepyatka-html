@@ -49,6 +49,15 @@
               <span class="message">{{controller.session.message}}</span>
             </div>
           {{/if}}
+          {{#if controller.session.currentUser.hasPendingSubscriptionRequests}}
+            <div class="box-message alert alert-info" id="snap-box">
+              <span class="message">
+                {{#link-to 'requests.index'}}
+                  You have {{controller.session.currentUser.subscriptionRequests.length}} invitations to review.
+                {{/link-to}}
+              </span>
+            </div>
+          {{/if}}
           <div class="box-body">
             {{yield}}
           </div>

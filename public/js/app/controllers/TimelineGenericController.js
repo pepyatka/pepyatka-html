@@ -185,6 +185,15 @@ define(["config",
           })
       },
 
+      sendRequest: function() {
+        var user = this.get('model.user')
+        var currentUser = this.get('session.currentUser')
+
+        currentUser.sendRequest(user)
+          .then(function() {
+          }.bind(this))
+      },
+
       ban: function() {
         var user = this.get('model.user')
         Ember.$.ajax({
