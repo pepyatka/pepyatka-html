@@ -1,9 +1,10 @@
 define(["app/app",
         "ember",
-        "numeral"], function(App, Ember, numeral) {
+        "numeral",
+        "controllers/ApplicationController"], function(App, Ember, numeral) {
   "use strict";
 
-  App.PostAttachmentController = Ember.Controller.extend({
+  App.PostAttachmentController = App.ApplicationController.extend({
     nameAndSize: function() {
       var fileName = this.get('model.fileName')
       var fileSize = this.get('model.fileSize')

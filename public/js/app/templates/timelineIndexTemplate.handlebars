@@ -8,9 +8,14 @@
       {{view "submit-post" showMyFeedOption=true}}
     {{/if}}
   {{/if}}
-  {{#unless controller.firstPage}}
+
+  {{#if controller.model.user.isPrivateUserAndNotSubscribed}}
+    <p>{{content.user.username}} has a private feed.</p>
+  {{else}}
+    {{#unless controller.firstPage}}
+      {{view "pagination"}}
+    {{/unless}}
+    {{view "posts"}}
     {{view "pagination"}}
-  {{/unless}}
-  {{view "posts"}}
-  {{view "pagination"}}
+  {{/if}}
 {{/if}}

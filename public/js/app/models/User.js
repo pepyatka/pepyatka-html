@@ -1,9 +1,12 @@
-define(["lodash",
-        "app/app",
-        'moment'], function(_, App, moment) {
+define(['config',
+        'lodash',
+        'app/app',
+        'moment'], function(config, _, App, moment) {
   "use strict";
 
   App.User = DS.Model.extend({
+    resourceUrl: config.host + '/v1/users',
+
     username: DS.attr('string'),
     type: DS.attr('string'),
     screenName: DS.attr('string'),
@@ -12,6 +15,8 @@ define(["lodash",
     statistics: DS.attr(),
     subscriptions: DS.hasMany('subscription'),
     // NOTE: this is a trick while we do not have user subscribers as is
+    pendingSubscriptionRequests: DS.hasMany('request'),
+    subscriptionRequests: DS.hasMany('request'),
     subscribers: DS.attr(),
     createdAt: DS.attr('number'),
     updatedAt: DS.attr('number'),
@@ -23,6 +28,23 @@ define(["lodash",
     isPrivateUser: function() {
       return this.get('isPrivate') === '1'
     }.property('isPrivate'),
+
+    hasPendingSubscriptionRequests: function() {
+      return this.get('subscriptionRequests').length > 0
+    }.property('subscriptionRequests'),
+
+    isSubscribed: function() {
+      var currentUser = App.get('Session.currentUser')
+      if (!currentUser) { return false }
+
+      var subscriptions = currentUser.get('subscriptions').toArray()
+      return (subscriptions.isAny('user.id', this.get('id'))) ||
+        currentUser.get('id') === this.get('id')
+    }.property('subscribers'),
+
+    isPrivateUserAndNotSubscribed: function() {
+      return this.get('isPrivateUser') && !this.get('isSubscribed')
+    }.property('isPrivate', 'isSubscribed'),
 
     hasPosts: function() {
       return this.get('statistics.posts') > 0
@@ -117,6 +139,46 @@ define(["lodash",
         return 'You'
 
       return this.get('screenName')
-    }.property('screenName')
+    }.property('screenName'),
+
+    hasSentRequest: function() {
+      var currentUser = App.get('Session.currentUser')
+      var requests = currentUser.get('pendingSubscriptionRequests')
+      return requests.indexOf(this.get('id')) >= 0
+    }.property('pendingSubscriptionRequests'),
+
+    sendRequest: function(user) {
+      return Ember.$.ajax({
+        url: this.resourceUrl + '/' + user.get('username') + '/sendRequest/',
+        type: 'post',
+        context: this
+      })
+        .then(function(res) {
+          // var request = this.store.getById('request', user.get('id'))
+          // this.get('pendingSubscriptionRequests').addObject(request)
+        })
+    },
+
+    acceptRequest: function(user) {
+      return Ember.$.ajax({
+        url: this.resourceUrl + '/acceptRequest/' + user.get('username'),
+        type: 'post',
+        context: this
+      })
+        .then(function(res) {
+          this.get('subscriptionRequests').removeObject(user)
+        })
+    },
+
+    rejectRequest: function(user) {
+      return Ember.$.ajax({
+        url: this.resourceUrl + '/rejectRequest/' + user.get('username'),
+        type: 'post',
+        context: this
+      })
+        .then(function(res) {
+          this.get('subscriptionRequests').removeObject(user)
+        })
+    }
   })
 })

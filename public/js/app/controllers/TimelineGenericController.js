@@ -2,11 +2,12 @@ define(["config",
         "app/app",
         "ember",
         "lodash",
-        "mixins/Pagination"], function(config, App, Ember, _) {
+        "mixins/Pagination",
+        "controllers/ApplicationController"], function(config, App, Ember, _) {
   "use strict";
 
   // "Abstract" generic controller for timelines
-  App.TimelineGenericController = Ember.Controller.extend(App.Pagination, {
+  App.TimelineGenericController = App.ApplicationController.extend(App.Pagination, {
     selectFeedsOnCreate: true,
     attachFilesOnCreate: true,
 
@@ -182,6 +183,16 @@ define(["config",
               })
             }
           })
+      },
+
+      sendRequest: function() {
+        var user = this.get('model.user')
+        var currentUser = this.get('session.currentUser')
+
+        currentUser.sendRequest(user)
+          .then(function() {
+            this.displayMessage('Subscription request has been sent.')
+          }.bind(this))
       },
 
       ban: function() {

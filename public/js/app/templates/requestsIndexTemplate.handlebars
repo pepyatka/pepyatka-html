@@ -1,0 +1,31 @@
+<h3>Pending requests</h3>
+{{#each user in controller.session.currentUser.subscriptionRequests}}
+  <div>
+    <div class="avatar">
+      <img src="{{ user.profilePictureMedium }}" />
+    </div>
+
+    <div>
+      {{user.screenName}}
+    </div>
+    <a {{action 'accept' user}}>Accept request</a> |
+    <a {{action 'reject' user}}>Reject request</a>
+  </div>
+{{else}}
+  No requests.
+{{/each}}
+
+<h3>Sent requests</h3>
+{{#each user in controller.session.currentUser.pendingSubscriptionRequests}}
+  <div>
+    <div class="avatar">
+      <img src="{{ user.profilePictureMedium }}" />
+    </div>
+
+    <div>
+      {{user.screenName}}
+    </div>
+  </div>
+{{else}}
+  No requests.
+{{/each}}
