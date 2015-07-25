@@ -7,16 +7,16 @@ define(["app/app",
     pulseBinding: 'clock.pulse',
 
     createdAgo: function() {
-      var model = this.get('model')
-      if (model.get('createdAt')) {
-        return moment(model.get('createdAt')).fromNowOrNow()
+      var createdAt = this.get('model.createdAt')
+      if (createdAt) {
+        return moment(createdAt).fromNowOrNow()
       }
     }.property('pulse'),
 
     createdAtISO: function() {
-      var model = this.get('model')
-      if (model.get('createdAt')) {
-        return moment(model.get('createdAt')).format()
+      var createdAt = this.get('model.createdAt')
+      if (createdAt) {
+        return moment(createdAt).format()
       }
     }.property('pulse')
   })

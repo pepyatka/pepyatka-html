@@ -15,30 +15,32 @@
       </div>
     </div>
     {{#unless isBanned}}
-      <div class="col-md-3">
-        <div class="stats">
-          {{#if content.user.hasSubscriptions}}
-            <div class="p-stats-subscriptions">
-              {{#link-to 'timeline.subscriptions' content.user.username}}{{content.user.statistics.subscriptions}} subscriptions{{/link-to}}
-            </div>
-          {{/if}}
-          {{#if content.user.hasSubscribers}}
-            <div class="p-stats-subscribers">
-              {{#link-to 'timeline.subscribers' content.user.username}}{{content.user.statistics.subscribers}} subscribers{{/link-to}}
-            </div>
-          {{/if}}
-          {{#if content.user.hasComments}}
-            <div class="p-stats-comments">
-              {{#link-to 'timeline.comments' content.user.username (query-params offset=0)}}{{content.user.statistics.comments}} comments{{/link-to}}
-            </div>
-          {{/if}}
-          {{#if content.user.hasLikes}}
-            <div class="p-stats-likes">
-              {{#link-to 'timeline.likes' content.user.username (query-params offset=0)}}{{content.user.statistics.likes}} likes{{/link-to}}
-            </div>
-          {{/if}}
+      {{#unless content.user.isPrivateUser}}
+        <div class="col-md-3">
+          <div class="stats">
+            {{#if content.user.hasSubscriptions}}
+              <div class="p-stats-subscriptions">
+                {{#link-to 'timeline.subscriptions' content.user.username}}{{content.user.statistics.subscriptions}} subscriptions{{/link-to}}
+              </div>
+            {{/if}}
+            {{#if content.user.hasSubscribers}}
+              <div class="p-stats-subscribers">
+                {{#link-to 'timeline.subscribers' content.user.username}}{{content.user.statistics.subscribers}} subscribers{{/link-to}}
+              </div>
+            {{/if}}
+            {{#if content.user.hasComments}}
+              <div class="p-stats-comments">
+                {{#link-to 'timeline.comments' content.user.username (query-params offset=0)}}{{content.user.statistics.comments}} comments{{/link-to}}
+              </div>
+            {{/if}}
+            {{#if content.user.hasLikes}}
+              <div class="p-stats-likes">
+                {{#link-to 'timeline.likes' content.user.username (query-params offset=0)}}{{content.user.statistics.likes}} likes{{/link-to}}
+              </div>
+            {{/if}}
+          </div>
         </div>
-      </div>
+      {{/unless}}
     {{/unless}}
   </div>
 </div>
@@ -49,10 +51,18 @@
       <div class="profile-controls">
         <div class="row">
           <div class="col-md-7 subscribe-controls">
-            {{#if isSubscribed}}
-              <a {{action 'unsubscribe'}} class="p-subscribe">Unsubscribe</a>
+            {{#if content.user.hasSentRequest}}
+              You have already sent subscription request.
             {{else}}
-              <a {{action 'subscribe'}} class="p-unsubscribe">Subscribe</a>
+              {{#if content.user.isPrivateUserAndNotSubscribed}}
+                <a {{action 'sendRequest'}}>Request subscription</a>
+              {{else}}
+                {{#if isSubscribed}}
+                  <a {{action 'unsubscribe'}} class="p-subscribe">Unsubscribe</a>
+                {{else}}
+                  <a {{action 'subscribe'}} class="p-unsubscribe">Subscribe</a>
+                {{/if}}
+              {{/if}}
             {{/if}}
           </div>
           {{#unless isSubscribed}}

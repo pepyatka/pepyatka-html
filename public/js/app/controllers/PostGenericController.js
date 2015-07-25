@@ -1,10 +1,11 @@
 define(["config",
         "app/app",
-        "ember"], function(config, App, Ember) {
+        "ember",
+        "controllers/ApplicationController"], function(config, App, Ember) {
   "use strict";
 
   // "Abstract" generic controller for posts
-  App.PostGenericController = Ember.Controller.extend({
+  App.PostGenericController = App.ApplicationController.extend({
     // The `offset` param isn't used in this controller explicitly,
     // but we need a default value to omit "?offset=0" in the post's URL.
     // See item #2 in http://guides.emberjs.com/v1.12.0/routing/query-params/#toc_default-values-and-deserialization

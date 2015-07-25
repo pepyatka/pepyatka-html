@@ -11,6 +11,7 @@ define(["config", "auth_storage", "app/app"], function(config, auth_storage, App
       App.Session = Ember.Object.extend({
         resourceUrl: config.host + '/v1/users/whoami',
         currentUser: null,
+        message: null,
 
         init: function() {
           this._super()

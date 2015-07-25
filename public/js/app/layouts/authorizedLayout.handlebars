@@ -25,13 +25,11 @@
 
         <div class="col-md-6">
           {{#unless controller.session.signedIn}}
-              <div class="signin-toolbar">
-                {{#link-to 'session.new'}}Sign In{{/link-to}}
-              </div>
+            <div class="signin-toolbar">
+              {{#link-to 'session.new'}}Sign In{{/link-to}}
+            </div>
           {{/unless}}
         </div>
-
-
       </div>
     </div>
   </div>
@@ -43,11 +41,24 @@
           <div class="box-header-timeline">
             {{controller.title}}
           </div>
+          {{#if hasMessage}}
+            <div class="box-message alert alert-warning" id="snap-box">
+              <span class="message">{{controller.session.message}}</span>
+            </div>
+          {{/if}}
+          {{#if controller.session.currentUser.hasPendingSubscriptionRequests}}
+            <div class="box-message alert alert-info" id="snap-box">
+              <span class="message">
+                {{#link-to 'requests.index'}}
+                  You have {{controller.session.currentUser.subscriptionRequests.length}} invitations to review.
+                {{/link-to}}
+              </span>
+            </div>
+          {{/if}}
           <div class="box-body">
             {{yield}}
           </div>
           <div class="box-footer">
-
           </div>
         </div>
       </div>

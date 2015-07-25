@@ -54,6 +54,10 @@
         <span>
           »
         </span>
+      {{else}}
+        {{#if post.model.isPrivates}}
+          <i class="fa fa-lock"></i>
+        {{/if}}
       {{/if}}
 
       <span class="post-date">
