@@ -14,11 +14,11 @@ define(["app/app",
     },
 
     deactivate: function() {
-      this.controllerFor('pub-sub').unsubscribe()
+      this.get('pubsub').unsubscribe()
     },
 
     setupController: function(controller, model) {
-      this.controllerFor('pub-sub').set('channel', model)
+      this.get('pubsub').set('channel', model)
 
       controller.set('isSendToVisible', false)
       controller.set('model', model)

@@ -5,7 +5,7 @@ define(["app/app",
 
   App.PostRoute = Ember.Route.extend(App.CustomErrorRoute, {
     deactivate: function() {
-      this.controllerFor('pub-sub').unsubscribe()
+      this.get('pubsub').unsubscribe()
     },
 
     model: function(params) {
@@ -13,7 +13,7 @@ define(["app/app",
     },
 
     setupController: function(controller, model) {
-      this.controllerFor('pub-sub').set('channel', model)
+      this.get('pubsub').set('channel', model)
 
       controller.set('model', model)
     }
