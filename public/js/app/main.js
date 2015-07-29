@@ -22,6 +22,7 @@ define([
   "initializers/DS",
   "initializers/ClockService",
 
+  "models/Admin",
   "models/Attachment",
   "models/Comment",
   "models/Group",

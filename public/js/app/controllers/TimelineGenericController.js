@@ -53,7 +53,7 @@ define(["config",
     }.property('model.user.id', 'session.currentUser.banIds.[]'),
 
     isAdmin: function() {
-      var adminIds = this.get('model.user.administratorIds')
+      var adminIds = _.map(this.get('model.user.administrators').toArray(), 'id')
       var currentUserId = this.get('session.currentUser.id')
 
       return adminIds && adminIds.indexOf(currentUserId) !== -1

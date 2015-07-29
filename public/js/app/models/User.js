@@ -22,7 +22,8 @@ define(['config',
     updatedAt: DS.attr('number'),
     profilePictureLargeUrl: DS.attr('string'),
     profilePictureMediumUrl: DS.attr('string'),
-    administratorIds: DS.attr(),
+    // another HACK here, admin is always a user
+    administrators: DS.hasMany('admin'),
     banIds: DS.attr(),
 
     isPrivateUser: function() {
