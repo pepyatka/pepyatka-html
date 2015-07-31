@@ -15,7 +15,7 @@
       </div>
     </div>
     {{#unless isBanned}}
-      {{#unless content.user.isPrivateUser}}
+      {{#unless content.user.isPrivateUserAndNotSubscribed}}
         <div class="col-md-3">
           <div class="stats">
             {{#if content.user.hasSubscriptions}}

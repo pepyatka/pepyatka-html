@@ -1,6 +1,6 @@
 require(['moment'], function(moment) {
   moment.fn.fromNowOrNow = function (a) {
-    if (Math.abs(moment().diff(this)) < 25000) { // 25 seconds
+    if (Math.abs(moment().diff(this)) < 60000) { // 60 seconds
       // before or after now
       return 'just now'
     }

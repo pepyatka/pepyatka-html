@@ -22,7 +22,8 @@ define(['config',
     updatedAt: DS.attr('number'),
     profilePictureLargeUrl: DS.attr('string'),
     profilePictureMediumUrl: DS.attr('string'),
-    administratorIds: DS.attr(),
+    // another HACK here, admin is always a user
+    administrators: DS.hasMany('admin'),
     banIds: DS.attr(),
 
     isPrivateUser: function() {
@@ -105,6 +106,14 @@ define(['config',
       })
     }.property('subscriptions.@each', 'subscribers.@each'),
 
+    sortedGroups: function() {
+      return Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
+        sortProperties: ['user.updatedAt'],
+        sortAscending: false,
+        content: this.get('groups')
+      })
+    }.property('groups'),
+
     groups: function() {
       return _.filter(this.get('subscriptions').toArray(), function(subscription) {
         return subscription.get('user.isGroup') &&
@@ -113,8 +122,8 @@ define(['config',
     }.property('subscriptions.@each'),
 
     recentGroups: function() {
-      return this.get('groups').slice(0, 4)
-    }.property('groups'),
+      return this.get('sortedGroups').slice(0, 4)
+    }.property('sortedGroups'),
 
     updatedAgo: function() {
       if (this.get('updatedAt')) {
