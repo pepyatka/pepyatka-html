@@ -653,7 +653,7 @@
   //dependencies and the size of the involved libraries, increasing the wait
   //interval may be required. Default is 7 seconds. Setting the value to 0
   //disables the waiting interval.
-  waitSeconds: 7,
+  waitSeconds: 0,
 
   //Introduced in 2.1.9: normally r.js inserts a semicolon at the end of a
   //file if there is not already one present, to avoid issues with
