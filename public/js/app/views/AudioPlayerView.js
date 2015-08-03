@@ -7,6 +7,7 @@ define(["app/app",
     didInsertElement: function() {
       $("#" + this.playerId).mediaelementplayer({
         enablePluginDebug: false,
+        preload: false,
         plugins: ['flash'],
         audioWidth: 112,
         type: '',
