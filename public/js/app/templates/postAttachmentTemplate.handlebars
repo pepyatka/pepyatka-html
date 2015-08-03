@@ -12,7 +12,7 @@
   {{#if attachment.model.isAudio}}
     <div class="audio-wrapper">
       <div class="inner">
-        <audio {{bind-attr id="attachment.model.id"}} {{bind-attr src="attachment.model.url"}}></audio>
+        <audio preload="none" {{bind-attr id="attachment.model.id"}} {{bind-attr src="attachment.model.url"}}></audio>
       </div>
       {{view 'audio-player' playerId=attachment.model.id}}
       <div class="attachment-wrapper">
