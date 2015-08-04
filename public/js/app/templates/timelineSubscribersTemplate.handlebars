@@ -11,6 +11,20 @@
 
         {{user.screenNameOrYou}}
       {{/link-to}}
+
+      {{#if controller.isEdit}}
+        {{#if view.isOwner}}
+          <a {{action 'removeSubscriber' user}}>Remove</a>
+        {{/if}}
+      {{/if}}
     </li>
   {{/each}}
 </ul>
+
+{{#if view.isOwner}}
+  {{#if controller.isEdit}}
+    <a {{action 'browse'}}>Browse subscribers</a>
+  {{else}}
+    <a {{action 'manage'}}>Manage subscribers</a>
+  {{/if}}
+{{/if}}

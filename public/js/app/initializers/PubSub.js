@@ -13,7 +13,9 @@ define(["config",
     init: function() {
       this._super()
 
-      this.set('socket', io.connect(config.host + '/'))
+      this.set('socket', io.connect(config.host + '/', {
+        query: 'token=' + App.get('Session.authToken')
+      }))
 
       this.get('socket').on('post:new', this.newPost.bind(this))
       this.get('socket').on('post:update', this.updatePost.bind(this))
@@ -261,7 +263,7 @@ define(["config",
 
   Ember.Application.initializer({
     name: 'pubsub',
-    after: "store",
+    after: 'session',
 
     initialize: function(container, application) {
       var PubSubService = PubSubServiceClass.create({
