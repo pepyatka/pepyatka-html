@@ -55,7 +55,11 @@
               You have already sent subscription request.
             {{else}}
               {{#if content.user.isPrivateUserAndNotSubscribed}}
-                <a {{action 'sendRequest'}}>Request subscription</a>
+                {{#if controller.model.user.isPrivateUserAndSentRequest}}
+                  <p>You have already sent subscription request.</p>
+                {{else}}
+                  <a {{action 'sendRequest'}}>Request subscription</a>
+                {{/if}}
               {{else}}
                 {{#if isSubscribed}}
                   <a {{action 'unsubscribe'}} class="p-subscribe">Unsubscribe</a>

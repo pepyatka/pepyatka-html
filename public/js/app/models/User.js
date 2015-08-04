@@ -47,6 +47,14 @@ define(['config',
       return this.get('isPrivateUser') && !this.get('isSubscribed')
     }.property('isPrivate', 'isSubscribed'),
 
+    isPrivateUserAndSentRequest: function() {
+      var currentUser = App.get('Session.currentUser')
+
+      var requests = currentUser.get('pendingSubscriptionRequests').toArray()
+      return this.get('isPrivateUser') && !this.get('isSubscribed') &&
+        (requests.isAny('id', this.get('id')))
+    }.property('isPrivate', 'isSubscribed', 'id'),
+
     hasPosts: function() {
       return this.get('statistics.posts') > 0
     }.property('statistics.posts'),
