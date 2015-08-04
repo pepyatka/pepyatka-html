@@ -63,7 +63,7 @@ define(["config", "auth_storage", "app/app"], function(config, auth_storage, App
 
   Ember.Application.initializer({
     name: 'session',
-    after: "store",
+    after: 'store',
 
     initialize: function(container, application) {
       application.deferReadiness()
