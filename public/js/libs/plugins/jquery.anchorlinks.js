@@ -8,9 +8,11 @@ require(['linkify'], function(linkify) {
         var name = url
         var shorten = false
 
-        // shorten url if it's nested more than 2 levels, e.g. http://google.com/a/b
+        // shorten url if it's nested more than 2 levels, e.g. http://google.com/ab/cd
         var index = name.indexOf('://') > 0 ? 4 : 2
-        if (name.split('/').length > index && name.split('/')[index].length > 1) {
+        if (name.split('/').length > index &&
+            // does not shorten already tiny urls, like /a/b/
+            !(name.split('/')[index].length == 1 && name.split('/').length == 5)) {
           name = name.split('/').slice(0, index).join('/')
           shorten = true
         }
