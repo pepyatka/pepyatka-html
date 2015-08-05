@@ -109,19 +109,16 @@ define(["config",
 
         // we do not have enough information to render likes, need to
         // request server for this
-        var that = this
         var oldUpdatedAt = this.get('model.updatedAt')
 
         this.set('isLoadingLikes', true)
-        Ember.run.later(function() {
-          that.store.findOneQuery('post', that.get('model.id'), {
-            maxComments: that.get('maxComments'),
-            maxLikes: 'all'
-          }).then(function(post) {
-            post.set('updatedAt', oldUpdatedAt)
-            that.set('isLoadingLikes', false)
-          })
-        }, 250)
+        this.store.findOneQuery('post', this.get('model.id'), {
+          maxComments: this.get('maxComments'),
+          maxLikes: 'all'
+        }).then(function(post) {
+          post.set('updatedAt', oldUpdatedAt)
+          this.set('isLoadingLikes', false)
+        }.bind(this))
 
         return items
       }
@@ -144,37 +141,31 @@ define(["config",
       },
 
       showAllComments: function() {
-        var that = this
         var oldUpdatedAt = this.get('model.updatedAt')
 
         this.set('isLoadingComments', true)
         this.set('maxComments', 'all')
-        Ember.run.later(function() {
-          that.store.findOneQuery('post', that.get('model.id'), {
-            maxComments: that.get('maxComments'),
-            maxLikes: that.get('maxLikes')
-          }).then(function(post) {
-            post.set('updatedAt', oldUpdatedAt)
-            that.set('isLoadingComments', false)
-          })
-        }, 250)
+        this.store.findOneQuery('post', this.get('model.id'), {
+          maxComments: this.get('maxComments'),
+          maxLikes: this.get('maxLikes')
+        }).then(function(post) {
+          post.set('updatedAt', oldUpdatedAt)
+          this.set('isLoadingComments', false)
+        }.bind(this))
       },
 
       showAllLikes: function() {
-        var that = this
         var oldUpdatedAt = this.get('model.updatedAt')
 
         this.set('isLoadingLikes', true)
         this.set('maxLikes', 'all')
-        Ember.run.later(function() {
-          that.store.findOneQuery('post', that.get('model.id'), {
-            maxComments: that.get('maxComments'),
-            maxLikes: that.get('maxLikes')
-          }).then(function(post) {
-            post.set('updatedAt', oldUpdatedAt)
-            that.set('isLoadingLikes', false)
-          })
-        }, 250)
+        this.store.findOneQuery('post', this.get('model.id'), {
+          maxComments: this.get('maxComments'),
+          maxLikes: this.get('maxLikes')
+        }).then(function(post) {
+          post.set('updatedAt', oldUpdatedAt)
+          this.set('isLoadingLikes', false)
+        }.bind(this))
       },
 
       create: function() {
