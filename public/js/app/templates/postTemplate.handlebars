@@ -106,6 +106,9 @@
               </div>
               <div class="p-timeline-comment-actions">
                 <button {{action 'create'}} class="btn btn-default btn-xs p-timeline-comment-post">Comment</button>
+                {{#if controller.isSending}}
+                  <span class="throbber"><img src="/img/throbber-16.gif" width="16" height="16" /></span>
+                {{/if}}
               </div>
             </div>
           </div>

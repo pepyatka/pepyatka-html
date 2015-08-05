@@ -60,6 +60,7 @@ define(["config",
 
     isEdit: false,
     isFormVisible: false,
+    isSending: false,
     maxComments: 2,
     maxLikes: 4,
     isLoadingLikes: false,
@@ -182,15 +183,21 @@ define(["config",
           postId: this.get('content.id')
         })
 
-        this.set('newComment', '')
+        this.set('isSending', true)
         comment.save()
           .then(function(comment) {
+            this.set('newComment', '')
+            this.set('isSending', false)
             this.set('isFormVisible', false)
             comment.set('isRealtime', true)
             var object = this.get('content.comments').findProperty('id', comment.get('id'))
             if (!object) {
               this.get('content.comments').pushObject(comment)
             }
+          }.bind(this))
+          .catch(function(e) {
+            this.set('isSending', false)
+            this.displayError(e.statusText)
           }.bind(this))
       },
 

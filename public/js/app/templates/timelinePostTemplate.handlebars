@@ -120,22 +120,25 @@
       {{/if}}
 
       {{#if controller.isFormVisible}}
-          <div class="comment p-timeline-comment">
-              <a class="date">
-                  <i class="fa fa-comment-o icon"></i>
-              </a>
-              <div class="body">
-                  <div class="edit p-timeline-edit-comment">
-                      <div class="p-timeline-comment-create">
-                        {{view 'create-comment'}}
-                      </div>
-                      <div class="p-timeline-comment-actions">
-                          <button {{action 'create'}} class="btn btn-default btn-xs p-timeline-comment-post">Post</button>
-                          <a {{action 'toggleCommentForm'}} class="p-timeline-comment-cancel">Cancel</a>
-                      </div>
-                  </div>
+        <div class="comment p-timeline-comment">
+          <a class="date">
+            <i class="fa fa-comment-o icon"></i>
+          </a>
+          <div class="body">
+            <div class="edit p-timeline-edit-comment">
+              <div class="p-timeline-comment-create"}}>
+                {{view 'create-comment'}}
               </div>
+              <div class="p-timeline-comment-actions">
+                <button {{action 'create'}} class="btn btn-default btn-xs p-timeline-comment-post">Post</button>
+                <a {{action 'toggleCommentForm'}} class="p-timeline-comment-cancel">Cancel</a>
+                {{#if controller.isSending}}
+                  <span class="throbber"><img src="/img/throbber-16.gif" width="16" height="16" /></span>
+                {{/if}}
+              </div>
+            </div>
           </div>
+        </div>
       {{else}}
         {{#if post.comments.length}}
           {{#unless controller.hasOmittedComments}}

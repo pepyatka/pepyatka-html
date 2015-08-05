@@ -20,7 +20,9 @@ define(["app/app",
     },
 
     displayError: function(error) {
-      this.displayMessage(error.responseJSON.err)
+      var msg = typeof error.responseJSON === 'undefined' ?
+          error : error.responseJSON.err
+      this.displayMessage(msg)
     }
   })
 })
