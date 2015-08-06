@@ -1,0 +1,59 @@
+<style type="text/css">
+input, textarea {
+  padding: 4px;
+  border: solid 1px #e5e5e5;
+  outline: 0;
+  font: normal 13px/100% Verdana, Tahoma, sans-serif;
+  width: 320px;
+  background: #ffffff;
+}
+
+textarea {
+  width: 320px;
+  max-width: 320px;
+  height: 80px;
+  line-height: 150%;
+}
+
+#p_image {
+  font-size: 14px;
+}
+#p_image img {
+  max-width: 320px;
+  max-height: 320px;
+}
+</style>
+
+{{#if controller.isSent}}
+  Sent
+{{else}}
+  <input type="text" id="p_title" name="title" value="{{controller.title}}" />
+  <textarea type="text" id="p_comment" name="comment">{{controller.comment}}</textarea>
+  <div id="p_image">No image</div>
+  <input type="hidden" id="p_image_src" name="image" value="" />
+
+  <input type="submit" value="Share" {{action "send"}} />
+{{/if}}
+
+<script type="text/javascript">
+if ("onhashchange" in window) { // event supported?
+  window.onhashchange = function () {
+    hashChanged(window.location.hash.slice(1))
+  }
+} else { // event not supported:
+  var storedHash = window.location.hash
+  window.setInterval(function () {
+    if (window.location.hash != storedHash) {
+      storedHash = window.location.hash.slice(1)
+      hashChanged(storedHash)
+    }
+  }, 100)
+}
+
+function hashChanged(url) { // user has selected an image on parent frame
+  var image = document.createElement("img")
+  image.src = url
+  $('#p_image').html(image)
+  $('#p_image_src').attr('value', url)
+}
+</script>
