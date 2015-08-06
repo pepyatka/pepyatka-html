@@ -9,6 +9,9 @@ define(["app/app"], function(App) {
     fileSize: DS.attr('number'),
     mediaType: DS.attr('string'),
 
+    title: DS.attr('string'),
+    artist: DS.attr('string'),
+
     createdAt: DS.attr('string'),
     updatedAt: DS.attr('string'),
 
