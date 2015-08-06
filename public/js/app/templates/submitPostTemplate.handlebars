@@ -28,6 +28,9 @@
       </div>
       <div class="col-md-2">
         <div class="pull-right">
+          {{#if controller.isSending}}
+            <span class="throbber"><img src="/img/throbber-16.gif" width="16" height="16" /></span>
+          {{/if}}
           <button {{action 'create'}} class="btn btn-default btn-xs p-create-post-action" {{bind-attr disabled="view.isDisabled"}}>Post</button>
         </div>
       </div>

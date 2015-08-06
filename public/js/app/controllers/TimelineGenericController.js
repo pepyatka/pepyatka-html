@@ -10,6 +10,7 @@ define(["config",
   App.TimelineGenericController = App.ApplicationController.extend(App.Pagination, {
     selectFeedsOnCreate: true,
     attachFilesOnCreate: true,
+    isSending: false,
 
     title: function() {
       return ''
@@ -159,19 +160,21 @@ define(["config",
           })
         post.get('attachments').pushObjects(attachmentList)
 
-        // Clear the form
-        this.set('body', '')
-        this.set('attachments', [])
-        this.set('isAttachmentsVisible', false)
-        this.set('isSendToVisible', false)
+        this.set('isSending', true)
 
         // Save it to the backend
-        var that = this
         post.save()
           .then(function(post) {
-            var object = that.get('model.posts').findProperty('id', post.get('id'))
+            // Clear the form
+            this.set('body', '')
+            this.set('attachments', [])
+            this.set('isAttachmentsVisible', false)
+            this.set('isSendToVisible', false)
+            this.set('isSending', false)
+
+            var object = this.get('model.posts').findProperty('id', post.get('id'))
             if (!object) {
-              that.get('model.posts').unshiftObject(post)
+              this.get('model.posts').unshiftObject(post)
             } else {
               post.get('attachments.canonicalState').forEach(function(attachment) {
                 if (attachment) {
@@ -182,7 +185,11 @@ define(["config",
                 }
               })
             }
-          })
+          }.bind(this))
+          .catch(function(e) {
+            this.set('isSending', false)
+            this.displayError(e.statusText)
+          }.bind(this))
       },
 
       sendRequest: function() {
