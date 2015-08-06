@@ -188,7 +188,13 @@ define(["config",
           }.bind(this))
           .catch(function(e) {
             this.set('isSending', false)
-            this.displayError(e.statusText)
+
+            if (e.responseJSON.err == 'Maximum post-length is 1500 graphemes') {
+              // showing user-friendly text
+              this.displayMessage("Posts longer than 1500 symbols are not allowed");
+            } else {
+              this.displayError(e.statusText)
+            }
           }.bind(this))
       },
 
