@@ -2,13 +2,15 @@ define(["config",
         "app/app",
         "ember",
         "lodash",
-        "components/Pagination"], function(config, App, Ember, _) {
+        "mixins/Pagination",
+        "controllers/ApplicationController"], function(config, App, Ember, _) {
   "use strict";
 
   // "Abstract" generic controller for timelines
-  App.TimelineGenericController = Ember.Controller.extend(App.Pagination, {
+  App.TimelineGenericController = App.ApplicationController.extend(App.Pagination, {
     selectFeedsOnCreate: true,
     attachFilesOnCreate: true,
+    isSending: false,
 
     title: function() {
       return ''
@@ -52,7 +54,7 @@ define(["config",
     }.property('model.user.id', 'session.currentUser.banIds.[]'),
 
     isAdmin: function() {
-      var adminIds = this.get('model.user.administratorIds')
+      var adminIds = _.map(this.get('model.user.administrators').toArray(), 'id')
       var currentUserId = this.get('session.currentUser.id')
 
       return adminIds && adminIds.indexOf(currentUserId) !== -1
@@ -130,6 +132,10 @@ define(["config",
             // Replace the throbber with a real record
             attachmentList.replace(throbberIndex, 1, [ attachment ])
           })
+          .catch(function(e) {
+            console.log('upload failed')
+            attachmentList.removeAt(throbberIndex, 1)
+          })
       },
 
       create: function() {
@@ -154,21 +160,46 @@ define(["config",
           })
         post.get('attachments').pushObjects(attachmentList)
 
-        // Clear the form
-        this.set('body', '')
-        this.set('attachments', [])
-        this.set('isAttachmentsVisible', false)
-        this.set('isSendToVisible', false)
+        this.set('isSending', true)
 
         // Save it to the backend
-        var that = this
         post.save()
           .then(function(post) {
-            var object = that.get('model.posts').findProperty('id', post.get('id'))
+            // Clear the form
+            this.set('body', '')
+            this.set('attachments', [])
+            this.set('isAttachmentsVisible', false)
+            this.set('isSendToVisible', false)
+            this.set('isSending', false)
+
+            var object = this.get('model.posts').findProperty('id', post.get('id'))
             if (!object) {
-              that.get('model.posts').unshiftObject(post)
+              this.get('model.posts').unshiftObject(post)
+            } else {
+              post.get('attachments.canonicalState').forEach(function(attachment) {
+                if (attachment) {
+                  var attachmentObject = object.get('attachments').findProperty('id', attachment.get('id'))
+                  if (!attachmentObject) {
+                    object.get('attachments').pushObject(attachment)
+                  }
+                }
+              })
             }
-          })
+          }.bind(this))
+          .catch(function(e) {
+            this.set('isSending', false)
+            this.displayError(e.statusText)
+          }.bind(this))
+      },
+
+      sendRequest: function() {
+        var user = this.get('model.user')
+        var currentUser = this.get('session.currentUser')
+
+        currentUser.sendRequest(user)
+          .then(function() {
+            this.displayMessage('Subscription request has been sent.')
+          }.bind(this))
       },
 
       ban: function() {

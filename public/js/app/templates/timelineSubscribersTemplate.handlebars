@@ -1,4 +1,4 @@
-{{view "breadcrumbs" steps="Subscribers" user=content.query}}
+{{breadcrumbs-view steps="Subscribers" user=content.query}}
 
 <h3 class="p-user-subscribers">Subscribers</h3>
 <ul class="tile-list">
@@ -11,6 +11,20 @@
 
         {{user.screenNameOrYou}}
       {{/link-to}}
+
+      {{#if controller.isEdit}}
+        {{#if view.isOwner}}
+          <a {{action 'removeSubscriber' user}}>Remove</a>
+        {{/if}}
+      {{/if}}
     </li>
   {{/each}}
 </ul>
+
+{{#if view.isOwner}}
+  {{#if controller.isEdit}}
+    <a {{action 'browse'}}>Browse subscribers</a>
+  {{else}}
+    <a {{action 'manage'}}>Manage subscribers</a>
+  {{/if}}
+{{/if}}

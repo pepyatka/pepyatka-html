@@ -4,12 +4,12 @@ define(["app/app",
 
   App.TransitionalRoute = Ember.Mixin.create({
     beforeModel: function() {
-      this._super()
+      this._super.apply(this, arguments)
       this.addThrobber()
     },
 
     afterModel: function() {
-      this._super()
+      this._super.apply(this, arguments)
       this.removeThrobber()
     },
 

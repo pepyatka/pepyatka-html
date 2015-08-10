@@ -1,16 +1,9 @@
 define(["app/app",
-        "components/TransitionalRoute",
-        "components/AuthorizableRoute"], function(App) {
+        "mixins/TransitionalRoute",
+        "mixins/AuthorizableRoute"], function(App) {
   "use strict";
 
-  App.SettingsIndexRoute = Ember.Route.extend(App.TransitionalRoute,
-                                         App.AuthorizableRoute, {
-    beforeModel: function() {
-      this._super.apply(this, arguments)
-      if (!this.get('session.currentUser'))
-        return this.transitionTo('session.new')
-    },
-
+  App.SettingsIndexRoute = Ember.Route.extend(App.TransitionalRoute, App.AuthorizableRoute, {
     model: function() {
       return this.get('session.currentUser')
     },

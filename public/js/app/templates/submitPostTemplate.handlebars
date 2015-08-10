@@ -2,7 +2,7 @@
   <div class="create-post p-timeline-post-create">
     {{#if view.sendToVisible}}
       <div class="send-to">
-        {{view 'send-to'}}
+        {{view 'send-to' showMyFeedOption=view.showMyFeedOption}}
       </div>
     {{/if}}
 
@@ -23,12 +23,15 @@
 
           {{view 'create-attachment'}}
         {{else}}
-          Add: <a {{action 'showAttachments'}}>Photos</a>
+          Add: <a {{action 'showAttachments'}}>Photos or Files</a>
         {{/if}}
       </div>
       <div class="col-md-2">
         <div class="pull-right">
-          <button {{action 'create'}} class="btn btn-default btn-xs p-create-post-action" {{bind-attr disabled="view.isDisabled"}}>Post</button>
+          {{#if controller.isSending}}
+            <span class="throbber"><img src="/img/throbber-16.gif" width="16" height="16" /></span>
+          {{/if}}
+          <button {{action 'create'}} class="btn btn-default btn-xs p-create-post-action" disabled="{{view.isDisabled}}">Post</button>
         </div>
       </div>
     </div>

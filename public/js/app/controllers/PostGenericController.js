@@ -1,10 +1,17 @@
 define(["config",
         "app/app",
-        "ember"], function(config, App, Ember) {
+        "ember",
+        "controllers/ApplicationController"], function(config, App, Ember) {
   "use strict";
 
   // "Abstract" generic controller for posts
-  App.PostGenericController = Ember.Controller.extend({
+  App.PostGenericController = App.ApplicationController.extend({
+    // The `offset` param isn't used in this controller explicitly,
+    // but we need a default value to omit "?offset=0" in the post's URL.
+    // See item #2 in http://guides.emberjs.com/v1.12.0/routing/query-params/#toc_default-values-and-deserialization
+    queryParams: ['offset'],
+    offset: 0,
+
     // NOTE: this code doesn't work reliably, see
     // https://github.com/emberjs/ember.js/issues/10343
     //commentSortProperties: ['createdAt:asc'],
@@ -53,6 +60,7 @@ define(["config",
 
     isEdit: false,
     isFormVisible: false,
+    isSending: false,
     maxComments: 2,
     maxLikes: 4,
     isLoadingLikes: false,
@@ -101,19 +109,16 @@ define(["config",
 
         // we do not have enough information to render likes, need to
         // request server for this
-        var that = this
         var oldUpdatedAt = this.get('model.updatedAt')
 
         this.set('isLoadingLikes', true)
-        Ember.run.later(function() {
-          that.store.findOneQuery('post', that.get('model.id'), {
-            maxComments: that.get('maxComments'),
-            maxLikes: 'all'
-          }).then(function(post) {
-            post.set('updatedAt', oldUpdatedAt)
-            that.set('isLoadingLikes', false)
-          })
-        }, 250)
+        this.store.findOneQuery('post', this.get('model.id'), {
+          maxComments: this.get('maxComments'),
+          maxLikes: 'all'
+        }).then(function(post) {
+          post.set('updatedAt', oldUpdatedAt)
+          this.set('isLoadingLikes', false)
+        }.bind(this))
 
         return items
       }
@@ -136,37 +141,31 @@ define(["config",
       },
 
       showAllComments: function() {
-        var that = this
         var oldUpdatedAt = this.get('model.updatedAt')
 
         this.set('isLoadingComments', true)
         this.set('maxComments', 'all')
-        Ember.run.later(function() {
-          that.store.findOneQuery('post', that.get('model.id'), {
-            maxComments: that.get('maxComments'),
-            maxLikes: that.get('maxLikes')
-          }).then(function(post) {
-            post.set('updatedAt', oldUpdatedAt)
-            that.set('isLoadingComments', false)
-          })
-        }, 250)
+        this.store.findOneQuery('post', this.get('model.id'), {
+          maxComments: this.get('maxComments'),
+          maxLikes: this.get('maxLikes')
+        }).then(function(post) {
+          post.set('updatedAt', oldUpdatedAt)
+          this.set('isLoadingComments', false)
+        }.bind(this))
       },
 
       showAllLikes: function() {
-        var that = this
         var oldUpdatedAt = this.get('model.updatedAt')
 
         this.set('isLoadingLikes', true)
         this.set('maxLikes', 'all')
-        Ember.run.later(function() {
-          that.store.findOneQuery('post', that.get('model.id'), {
-            maxComments: that.get('maxComments'),
-            maxLikes: that.get('maxLikes')
-          }).then(function(post) {
-            post.set('updatedAt', oldUpdatedAt)
-            that.set('isLoadingLikes', false)
-          })
-        }, 250)
+        this.store.findOneQuery('post', this.get('model.id'), {
+          maxComments: this.get('maxComments'),
+          maxLikes: this.get('maxLikes')
+        }).then(function(post) {
+          post.set('updatedAt', oldUpdatedAt)
+          this.set('isLoadingLikes', false)
+        }.bind(this))
       },
 
       create: function() {
@@ -175,15 +174,21 @@ define(["config",
           postId: this.get('content.id')
         })
 
-        this.set('newComment', '')
+        this.set('isSending', true)
         comment.save()
           .then(function(comment) {
+            this.set('newComment', '')
+            this.set('isSending', false)
             this.set('isFormVisible', false)
             comment.set('isRealtime', true)
             var object = this.get('content.comments').findProperty('id', comment.get('id'))
             if (!object) {
               this.get('content.comments').pushObject(comment)
             }
+          }.bind(this))
+          .catch(function(e) {
+            this.set('isSending', false)
+            this.displayError(e.statusText)
           }.bind(this))
       },
 

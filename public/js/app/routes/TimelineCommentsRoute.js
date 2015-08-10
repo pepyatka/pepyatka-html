@@ -1,5 +1,5 @@
 define(["app/app",
-        "components/CustomErrorRoute"], function(App) {
+        "mixins/CustomErrorRoute"], function(App) {
   "use strict";
 
   App.TimelineCommentsRoute = Ember.Route.extend(App.CustomErrorRoute, {
@@ -14,11 +14,11 @@ define(["app/app",
     },
 
     deactivate: function() {
-      this.controllerFor('pub-sub').unsubscribe()
+      this.get('pubsub').unsubscribe()
     },
 
     setupController: function(controller, model) {
-      this.controllerFor('pub-sub').set('channel', model)
+      this.get('pubsub').set('channel', model)
 
       controller.set('model', model)
     }

@@ -1,8 +1,9 @@
 define(["app/app",
-        "ember"], function(App, Ember) {
+        "ember",
+        "controllers/ApplicationController"], function(App, Ember) {
   "use strict";
 
-  App.TimelineSubscriptionsController = Ember.Controller.extend({
+  App.TimelineSubscriptionsController = App.ApplicationController.extend({
     title: function() {
       return ''
     }.property()

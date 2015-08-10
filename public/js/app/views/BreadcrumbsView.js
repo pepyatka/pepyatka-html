@@ -1,6 +1,6 @@
 define(["app/app",
         "text!templates/breadcrumbsTemplate.handlebars"], function(App, tpl) {
-  App.BreadcrumbsView = Ember.View.extend({
+  App.BreadcrumbsViewComponent = Ember.Component.extend({
     templateName: 'breadcrumbs',
     template: Ember.Handlebars.compile(tpl)
   })

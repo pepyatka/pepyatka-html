@@ -1,3 +1,6 @@
+@import "../common/select2/4.0.0-rc.2/theme/classic/_defaults";
+@import "../common/select2/4.0.0-rc.2/theme/classic/_multiple.scss";
+
 .send-to {
   padding-bottom: 6px;
 }
@@ -12,6 +15,8 @@
 }
 
 .select2-container--default {
+  @extend .select2-container--open;
+
   .select2-selection--multiple {
     border: none;
 

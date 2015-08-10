@@ -1,9 +1,10 @@
 define(["config",
         "app/app",
-        "ember"], function(config, App, Ember) {
+        "ember",
+        "controllers/ApplicationController"], function(config, App, Ember) {
   "use strict";
 
-  App.ForgotPasswordController = Ember.Controller.extend({
+  App.ForgotPasswordController = App.ApplicationController.extend({
     actions: {
       resetPassword: function() {
         this.set('errors', null)

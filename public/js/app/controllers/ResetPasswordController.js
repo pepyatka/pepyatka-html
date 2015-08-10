@@ -1,9 +1,10 @@
 define(["config",
         "app/app",
-        "ember"], function(config, App, Ember) {
+        "ember",
+        "controllers/ApplicationController"], function(config, App, Ember) {
   "use strict";
 
-  App.ResetPasswordController = Ember.Controller.extend({
+  App.ResetPasswordController = App.ApplicationController.extend({
     queryParams: ['token'],
     token: null,
 

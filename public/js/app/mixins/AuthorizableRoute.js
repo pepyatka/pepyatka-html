@@ -6,6 +6,7 @@ define(["app/app",
 
   App.AuthorizableRoute = Ember.Mixin.create({
     beforeModel: function() {
+      this._super.apply(this, arguments)
       var p = this.get('session.promise')
       if (!this.get('session.currentUser') && !p)
         return this.transitionTo('session.new')

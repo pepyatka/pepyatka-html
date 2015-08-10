@@ -1,8 +1,8 @@
 {{#with view.comment as |comment|}}
 {{#with view.comment as |controller|}}
 <div class="comment p-comment">
-  <a class="date" {{bind-attr title="comment.model.createdAgo"}}>
-    <time {{bind-attr datetime="comment.model.createdAtISO"}}></time>
+  <a class="date" title="{{comment.createdAgo}}">
+    <time datetime="{{comment.createdAtISO}}"></time>
     <i class="fa fa-comment-o icon"></i>
   </a>
 

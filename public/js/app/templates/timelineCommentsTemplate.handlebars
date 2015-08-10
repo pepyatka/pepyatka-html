@@ -1,12 +1,12 @@
-{{view "breadcrumbs" steps="Comments" user=model.user.username}}
-{{view "profile-links"}}
+{{breadcrumbs-view steps="Comments" user=model.user.username}}
+{{profile-links}}
 
 {{#if isBanned}}
   You have blocked {{model.user.screenName}}, so all of {{model.user.screenName}}'s posts and comments are invisible to you. <a {{action 'unban'}}>Un-block this user</a>
 {{else}}
   {{#unless controller.firstPage}}
-    {{view "pagination"}}
+    {{pagination-view}}
   {{/unless}}
-  {{view "posts"}}
-  {{view "pagination"}}
+  {{posts-view posts=model.posts}}
+  {{pagination-view}}
 {{/if}}

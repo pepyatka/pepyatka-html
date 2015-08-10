@@ -1,14 +1,12 @@
-{{#with view.post as |post|}}
-{{#with view.post as |this|}}
 {{#with view.post as |controller|}}
-<div class="timeline-post-container">
-    <div class="avatar">
-    {{#link-to 'timeline.index' post.model.createdBy.username (query-params offset=0)}}<img src="{{ post.model.createdBy.profilePictureMedium }}" />{{/link-to}}
+<div {{bind-attr class=":timeline-post-container view.post.model.isDirects:direct-post"}}>
+  <div class="avatar">
+    {{#link-to 'timeline.index' view.post.model.createdBy.username (query-params offset=0)}}<img src="{{view.post.model.createdBy.profilePictureMedium}}" />{{/link-to}}
   </div>
 
   <div class="post-body p-timeline-post">
     <div class="title">
-      {{view 'post-title' post=post.model}}
+      {{view 'post-title' post=view.post.model}}
     </div>
 
     {{#if controller.isEdit}}
@@ -24,30 +22,47 @@
     {{else}}
       <div class="body">
         <div class="text">
-          {{prettifyText post.content.body}}
+          {{prettifyText view.post.content.body}}
         </div>
       </div>
     {{/if}}
 
-    {{#if post.content.attachments}}
-      <div {{bind-attr class=":attachments controller.hasSurplusAttachments:has-surplus controller.areAttachmentsExpanded:expanded"}}>
-        {{~#each post.content.attachments itemController="post-attachment" as |attachment|~}}
-          {{view "post-attachment" content=attachment}}
-        {{~/each~}}
+    {{#if view.post.content.attachments}}
+      <div class="attachments">
+        <div {{bind-attr class=":image-attachments controller.hasSurplusAttachments:has-surplus controller.areAttachmentsExpanded:expanded"}}>
+          {{~#each view.post.content.imageAttachments itemController="post-attachment" as |attachment|~}}
+            {{view "post-attachment" content=attachment}}
+          {{~/each~}}
 
-        <a class="toggle-surplus fa" {{action 'toggleSurplusAttachments'}}></a>
+          <a class="toggle-surplus fa" {{action 'toggleSurplusAttachments'}}></a>
+        </div>
+
+        <div class="audio-attachments">
+          {{~#each view.post.content.audioAttachments itemController="post-attachment" as |attachment|~}}
+            {{view "post-attachment" content=attachment}}
+          {{~/each~}}
+        </div>
+        <div class="general-attachments">
+          {{~#each view.post.content.generalAttachments itemController="post-attachment" as |attachment|~}}
+            {{view "post-attachment" content=attachment}}
+          {{~/each~}}
+        </div>
       </div>
     {{/if}}
 
     <div class="info p-timeline-post-info">
-      {{#if post.model.isDirects}}
+      {{#if view.post.model.isDirects}}
         <span>
           »
         </span>
+      {{else}}
+        {{#if view.post.model.isPrivates}}
+          <i class="fa fa-lock"></i>
+        {{/if}}
       {{/if}}
 
       <span class="post-date">
-        {{#link-to 'post' post.model.postedToFirstObject post.content.id (query-params offset=0) class="datetime"}}<time {{bind-attr datetime="post.model.createdAtISO" title="post.model.createdAtISO"}}>{{post.model.createdAgo}}</time>{{/link-to}}
+        {{#link-to 'post' view.post.model.postedToFirstObject view.post.content.id (query-params offset=0) class="datetime"}}<time datetime="{{view.post.createdAtISO}}" title="{{view.post.createdAtISO}}">{{view.post.createdAgo}}</time>{{/link-to}}
       </span>
 
       <span class="post-controls">
@@ -63,7 +78,7 @@
 
           {{#if view.parentView.parentView.isRiverOfNews}}
             -
-            {{#if post.model.canHide}}
+            {{#if view.post.model.canHide}}
               <a {{action 'hide'}} class="p-timeline-post-hide-action">Hide</a>
             {{else}}
               <a {{action 'unhide'}} class="p-timeline-post-unhide-action">Un-hide</a>
@@ -79,8 +94,9 @@
         {{/if}}
       </span>
 
-      {{#if post.content.likes}}
-        {{view 'post-likes' likes=post.content.likes}}
+      {{#if view.post.content.likes}}
+        {{log view.post}}
+        {{view 'post-likes' likes=view.post.content.likes}}
       {{/if}}
     </div>
 
@@ -90,38 +106,43 @@
           {{view "post-comment" comment=comment}}
         {{/each}}
 
-        <a {{bind-attr class=":more-comments controller.isLoadingComments:loading"}} {{action 'showAllComments'}}>
-          {{controller.omittedComments}} more comments
-        </a>
+        <div class="more-comments-wrapper">
+          <a {{bind-attr class=":more-comments controller.isLoadingComments:loading"}} {{action 'showAllComments'}}>
+            {{controller.omittedComments}} more comments
+          </a>
+        </div>
 
         {{#each controller.lastComments itemController="post-comment" as |comment|}}
           {{view "post-comment" comment=comment}}
         {{/each}}
       {{else}}
-        {{#each post.comments itemController="post-comment" as |comment|}}
+        {{#each view.post.comments itemController="post-comment" as |comment|}}
           {{view "post-comment" comment=comment}}
         {{/each}}
       {{/if}}
 
       {{#if controller.isFormVisible}}
-          <div class="comment p-timeline-comment">
-              <a class="date">
-                  <i class="fa fa-comment-o icon"></i>
-              </a>
-              <div class="body">
-                  <div class="edit p-timeline-edit-comment">
-                      <div class="p-timeline-comment-create">
-                        {{view 'create-comment'}}
-                      </div>
-                      <div class="p-timeline-comment-actions">
-                          <button {{action 'create'}} class="btn btn-default btn-xs p-timeline-comment-post">Post</button>
-                          <a {{action 'toggleCommentForm'}} class="p-timeline-comment-cancel">Cancel</a>
-                      </div>
-                  </div>
+        <div class="comment p-timeline-comment">
+          <a class="date">
+            <i class="fa fa-comment-o icon"></i>
+          </a>
+          <div class="body">
+            <div class="edit p-timeline-edit-comment">
+              <div class="p-timeline-comment-create">
+                {{view 'create-comment'}}
               </div>
+              <div class="p-timeline-comment-actions">
+                <button {{action 'create'}} class="btn btn-default btn-xs p-timeline-comment-post">Post</button>
+                <a {{action 'toggleCommentForm'}} class="p-timeline-comment-cancel">Cancel</a>
+                {{#if controller.isSending}}
+                  <span class="throbber"><img src="/img/throbber-16.gif" width="16" height="16" /></span>
+                {{/if}}
+              </div>
+            </div>
           </div>
+        </div>
       {{else}}
-        {{#if post.comments.length}}
+        {{#if view.post.comments.length}}
           {{#unless controller.hasOmittedComments}}
             {{#if controller.session.currentUser}}
               <div class="add-comment-block">
@@ -137,10 +158,6 @@
         {{/if}}
       {{/if}}
     </div>
-
-
   </div>
-  </div>
-{{/with}}
-{{/with}}
+</div>
 {{/with}}

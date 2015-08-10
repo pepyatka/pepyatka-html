@@ -1,9 +1,10 @@
 define(["config",
         "app/app",
-        "ember"], function(config, App, Ember) {
+        "ember",
+        "controllers/ApplicationController"], function(config, App, Ember) {
   "use strict";
 
-  App.GroupsNewController = Ember.Controller.extend({
+  App.GroupsNewController = App.ApplicationController.extend({
     errors: null,
 
     actions: {

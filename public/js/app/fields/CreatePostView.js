@@ -5,13 +5,18 @@ define(["app/app",
 
   App.CreatePostView = Ember.TextArea.extend(Ember.TargetActionSupport, {
     classNames: ['edit-post-area'],
+    rows: '2',
+    attributeBindings: ['rows'],
     valueBinding: 'parentView.controller.body',
+    disabledBinding: 'parentView.controller.isSending',
+
+    viewName: 'createPost',
+
     action: function() {
       if (!(this.get('parentView.controller.isUploadingAttachment')
            || Ember.isBlank(this.get('value'))))
         return 'create'
     }.property('parentView.controller.isUploadingAttachment'),
-    viewName: 'createPost',
 
     keyPress: function (e) {
       if (e.which === 13) {

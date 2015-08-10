@@ -37,7 +37,7 @@
     'adapters': 'app/adapters',
     'fields': 'app/fields',
     'controllers': 'app/controllers',
-    'components': 'app/components',
+    'mixins': 'app/mixins',
     'helpers': 'app/helpers',
     'initializers': 'app/initializers',
     'layouts': 'app/layouts',
@@ -61,6 +61,8 @@
     'socket.io': 'libs/socket.io/1.3.5/socket.io.min',
     'select2': 'libs/select2/4.0.0-rc.2/select2.min',
     'lodash': 'libs/lodash/3.7.0/lodash.min',
+    'mediaelement': 'libs/mediaelement/2.17.0/mediaelement.min',
+    'mediaelementplayer': 'libs/mediaelement/2.17.0/mediaelementplayer.min',
     'jquery.anchorlinks': 'libs/plugins/jquery.anchorlinks',
     'linkify-jquery': 'libs/linkify/2.0.0-alpha.3/linkify-jquery.amd.min',
     'linkify': 'libs/linkify/2.0.0-alpha.3/linkify.amd.min',
@@ -118,6 +120,12 @@
     },
     'linkify-jquery': {
       deps: ['jquery']
+    },
+    'mediaelement': {
+      deps: ['jquery']
+    },
+    'mediaelementplayer': {
+      deps: ['mediaelement']
     }
   },
 
@@ -646,7 +654,7 @@
   //dependencies and the size of the involved libraries, increasing the wait
   //interval may be required. Default is 7 seconds. Setting the value to 0
   //disables the waiting interval.
-  waitSeconds: 7,
+  waitSeconds: 0,
 
   //Introduced in 2.1.9: normally r.js inserts a semicolon at the end of a
   //file if there is not already one present, to avoid issues with

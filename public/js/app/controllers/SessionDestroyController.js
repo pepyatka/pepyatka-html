@@ -1,9 +1,10 @@
 define(["config",
         "app/app",
-        "ember"], function(config, App, Ember) {
+        "ember",
+        "controllers/ApplicationController"], function(config, App, Ember) {
   "use strict";
 
-  App.SessionDestroyController = Ember.Controller.extend({
+  App.SessionDestroyController = App.ApplicationController.extend({
     resourceUrl: config.host + '/v1/session',
 
     actions: {

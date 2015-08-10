@@ -1,5 +1,5 @@
 <div class="posts">
-    {{#each model.posts itemController="timeline-post" as |post|}}
+  {{#each posts itemController="timeline-post" as |post|}}
     {{#unless post.model.isHidden}}
       {{view "timeline-post" post=post}}
     {{/unless}}

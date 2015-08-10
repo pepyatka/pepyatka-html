@@ -1,11 +1,18 @@
 <div class="container">
   <div class="row header-row">
     <div class="col-md-4">
-        <div class="header">
-      <h1 class="title">
-       {{#link-to 'timeline.home' (query-params offset=0)}}Pepyatka{{/link-to}} <small class="mutted">0.2.0</small>
-      </h1>
-        </div>
+      <div class="header">
+        <h1 class="title">
+          {{#if isHomepage}}
+            <span {{action 'reloadHomepage'}}>
+              {{#link-to 'timeline.home' (query-params offset=0)}}Pepyatka{{/link-to}}
+            </span>
+          {{else}}
+            {{#link-to 'timeline.home' (query-params offset=0)}}Pepyatka{{/link-to}}
+          {{/if}}
+          <small class="mutted">0.3.0</small>
+        </h1>
+      </div>
     </div>
 
     <div class="col-md-8">
@@ -19,15 +26,13 @@
 
         <div class="col-md-6">
           {{#unless controller.session.currentUser}}
-              <div class="signin-toolbar">
-                {{#link-to 'session.new'}}Sign In{{/link-to}}
-                  or
-                {{#link-to 'users.new'}}Sign Up{{/link-to}}
-              </div>
+            <div class="signin-toolbar">
+              {{#link-to 'session.new'}}Sign In{{/link-to}}
+                or
+              {{#link-to 'users.new'}}Sign Up{{/link-to}}
+            </div>
           {{/unless}}
         </div>
-
-
       </div>
     </div>
   </div>
@@ -39,11 +44,24 @@
           <div class="box-header-timeline">
             {{controller.title}}
           </div>
+          {{#if hasMessage}}
+            <div class="box-message alert alert-warning" id="snap-box">
+              <span class="message">{{controller.session.message}}</span>
+            </div>
+          {{/if}}
+          {{#if controller.session.currentUser.hasPendingSubscriptionRequests}}
+            <div class="box-message alert alert-info" id="snap-box">
+              <span class="message">
+                {{#link-to 'requests.index'}}
+                  You have {{controller.session.currentUser.subscriptionRequests.length}} invitations to review.
+                {{/link-to}}
+              </span>
+            </div>
+          {{/if}}
           <div class="box-body">
             {{yield}}
           </div>
           <div class="box-footer">
-
           </div>
         </div>
       </div>
@@ -101,7 +119,7 @@
 
   <div class="row">
     <div class="col-md-9">
-      {{view 'footer'}}
+      {{footer-view}}
     </div>
   </div>
 </div>

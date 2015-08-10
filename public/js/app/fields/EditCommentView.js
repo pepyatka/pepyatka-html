@@ -5,7 +5,7 @@ define(["app/app",
 
   App.EditCommentView = Ember.TextArea.extend(Ember.TargetActionSupport, {
     classNames: ['edit-comment-area'],
-    rows: '1',
+    rows: '2',
     attributeBindings: ['rows'],
     valueBinding: 'parentView.comment.body',
     action: 'update',

@@ -1,11 +1,10 @@
 define(["app/app"], function(App) {
   "use strict";
 
-  App.UpdateProfilePictureView = Ember.View.extend({
+  App.UpdateProfilePictureComponent = Ember.Component.extend({
     tagName: 'input',
     type: 'file',
     attributeBindings: ['type'],
-
 
     change: function(event) {
       if (event.target.files.length > 0) {

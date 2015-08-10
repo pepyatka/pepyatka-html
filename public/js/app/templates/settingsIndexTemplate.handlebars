@@ -8,12 +8,13 @@
   {{input name="email" id="email" value=content.email class="form-control"}}
 </div>
 
-<!-- div class="checkbox p-settings-private">
+<div class="checkbox p-settings-private">
   <label>
-    {{input type="checkbox" name="isPrivate" checked=content.isPrivate }}
-    Private
+    {{input type="checkbox" name="isPrivate" checked=content.isPrivateUser}}
+    Private feed
+    <small>(only let people I approve see my feed)</small>
   </label>
-</div -->
+</div>
 
 <p>
   <button {{action 'update'}} class="btn btn-default p-settings-update">Update</button>
@@ -69,7 +70,7 @@
 <h2 class="p-settings-updateprofilepicture-header">Update Profile Picture</h2>
 
 <div class="form-group">
-  {{view 'update-profile-picture'}}
+  {{update-profile-picture}}
 </div>
 
 <p>
@@ -77,7 +78,7 @@
 </p>
 
 {{#if profilePicErrors}}
-    <div class="alert alert-danger p-settings-message" role="alert">
-        <span id="error-message">{{profilePicErrors}}</span>
-    </div>
+  <div class="alert alert-danger p-settings-message" role="alert">
+    <span id="error-message">{{profilePicErrors}}</span>
+  </div>
 {{/if}}

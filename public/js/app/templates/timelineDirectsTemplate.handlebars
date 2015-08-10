@@ -1,9 +1,9 @@
 {{#if controller.firstPage}}
-  {{view "submit-post" sendToVisible="true"}}
+  {{submit-post sendToVisible=true showMyFeedOption=false}}
 {{/if}}
 
 {{#unless controller.firstPage}}
-  {{view "pagination"}}
+  {{pagination-view}}
 {{/unless}}
-{{view "posts"}}
-{{view "pagination"}}
+{{posts-view posts=model.posts}}
+{{pagination-view}}

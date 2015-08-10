@@ -3,7 +3,7 @@ define(["app/app",
         "ember"], function(App, tpl, Ember) {
   "use strict";
 
-  App.SubmitPostView = Ember.View.extend({
+  App.SubmitPostComponent = Ember.Component.extend({
     templateName: 'submit-post',
     template: Ember.Handlebars.compile(tpl),
 

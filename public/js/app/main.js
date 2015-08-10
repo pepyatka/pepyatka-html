@@ -9,10 +9,10 @@ define([
   "adapters/SubscriptionAdapter",
   "adapters/TimelineAdapter",
 
-  "components/CustomErrorRoute",
-  "components/Pagination",
-  "components/TransitionalRoute",
-  "components/AuthorizableRoute",
+  "mixins/CustomErrorRoute",
+  "mixins/Pagination",
+  "mixins/TransitionalRoute",
+  "mixins/AuthorizableRoute",
 
   "helpers/Handlebars",
 
@@ -20,12 +20,15 @@ define([
   "initializers/PubSub",
   "initializers/Session",
   "initializers/DS",
+  "initializers/ClockService",
 
+  "models/Admin",
   "models/Attachment",
   "models/Comment",
   "models/Group",
   "models/Post",
   "models/User",
+  "models/Request",
   "models/Subscription",
   "models/Subscriber",
   "models/Timeline",
@@ -38,6 +41,7 @@ define([
   "controllers/PostGenericController",
   "controllers/PostController",
   "controllers/PostCommentController",
+  "controllers/RequestsIndexController",
   "controllers/ResetPasswordController",
   "controllers/SessionNewController",
   "controllers/SessionDestroyController",
@@ -69,6 +73,7 @@ define([
   "routes/HomeRoute",
   "routes/NotFoundRoute",
   "routes/PostRoute",
+  "routes/RequestsIndexRoute",
   "routes/ResetPasswordRoute",
   "routes/SessionNewRoute",
   "routes/SessionDestroyRoute",
@@ -98,6 +103,7 @@ define([
   "views/HomeView",
   "views/NotFoundView",
   "views/PostView",
+  "views/RequestsIndexView",
   "views/ResetPasswordView",
   "views/SessionNewView",
   "views/SettingsIndexView",
@@ -113,6 +119,7 @@ define([
   "views/UsersNewView",
 
   // partial views
+  "views/AudioPlayerView",
   "views/BreadcrumbsView",
   "views/FooterView",
   "views/HiddenPostsView",

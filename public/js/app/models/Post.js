@@ -24,6 +24,24 @@ define(["config",
 
     timeline: DS.belongsTo('timeline', {async:false}),
 
+    imageAttachments: function() {
+      return _.filter(this.get('attachments').toArray(), function(attachment) {
+        return attachment.get('isImage')
+      })
+    }.property('attachments.[]'),
+
+    audioAttachments: function() {
+      return _.filter(this.get('attachments').toArray(), function(attachment) {
+        return attachment.get('isAudio')
+      })
+    }.property('attachments.[]'),
+
+    generalAttachments: function() {
+      return _.filter(this.get('attachments').toArray(), function(attachment) {
+        return attachment.get('isGeneral')
+      })
+    }.property('attachments.[]'),
+
     anyFeeds: function() {
       return this.get('publicSubscriptions.length') > 0
     }.property('publicSubscriptions'),
@@ -42,6 +60,14 @@ define(["config",
       return subscriptions.length > 0
     }.property('postedTo'),
 
+    isPrivates: function() {
+      var postedTo = this.get('postedTo').toArray()
+      var subscriptions = _.filter(postedTo, function(feed) {
+        return feed.get('user.isPrivateUser')
+      })
+      return subscriptions.length === postedTo.length
+    }.property('postedTo'),
+
     publicSubscriptions: function() {
       var subscriptions = _.filter(this.get('postedTo').toArray(), function(feed) {
         var name = feed.get('name')
@@ -53,18 +79,6 @@ define(["config",
       }
       return subscriptions
     }.property('postedTo'),
-
-    createdAgo: function() {
-      if (this.get('createdAt')) {
-        return moment(this.get('createdAt')).fromNowOrNow()
-      }
-    }.property('createdAt'),
-
-    createdAtISO: function() {
-      if (this.get('createdAt')) {
-        return moment(this.get('createdAt')).format()
-      }
-    }.property('createdAt'),
 
     like: function() {
       return Ember.$.ajax({

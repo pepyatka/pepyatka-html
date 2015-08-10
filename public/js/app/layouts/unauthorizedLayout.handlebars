@@ -3,7 +3,7 @@
     <div class="col-md-4">
       <div class="header">
         <h1 class="title">
-          {{#link-to 'timeline.home' (query-params offset=0)}}Pepyatka{{/link-to}} <small class="mutted">0.2.0</small>
+          {{#link-to 'timeline.home' (query-params offset=0)}}Pepyatka{{/link-to}} <small class="mutted">0.3.0</small>
         </h1>
       </div>
     </div>
@@ -18,7 +18,7 @@
         </div>
 
         <div class="col-md-6">
-          {{#unless controller.session.currentUser}}
+          {{#unless this.session.currentUser}}
             <div class="signin-toolbar">
               {{#link-to 'session.new'}}Sign In{{/link-to}}
               or
@@ -26,8 +26,6 @@
             </div>
           {{/unless}}
         </div>
-
-
       </div>
     </div>
   </div>
@@ -39,6 +37,12 @@
           <div class="box-header-timeline">
             Home
           </div>
+          {{#if hasMessage}}
+            <div class="box-message alert alert-warning" id="snap-box">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <span class="message">{{this.session.message}}</span>
+            </div>
+          {{/if}}
           <div class="box-body">
             {{yield}}
           </div>
@@ -52,7 +56,7 @@
 
   <div class="row">
     <div class="col-md-12">
-      {{view 'footer'}}
+      {{footer-view}}
     </div>
   </div>
 </div>

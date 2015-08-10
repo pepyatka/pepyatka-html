@@ -18,7 +18,7 @@ define(["app/app",
     hideSurplusAttachments: function() {
       var that = this
       Ember.run.scheduleOnce('afterRender', this, function() {
-        var container = this.$().find('.attachments')
+        var container = this.$().find('.attachments .image-attachments')
         var nodes = container.find('.attachment')
 
         if (nodes.size() === 0) {
@@ -52,6 +52,45 @@ define(["app/app",
             }
           }
         })
+      })
+    }.on('didInsertElement'),
+
+    // Scroll to the top of the post on collapsing attachments
+    scrollToPostTop: function() {
+      var areAttachmentsExpanded = this.get('controller.areAttachmentsExpanded')
+
+      // Only scroll on collapsing
+      if (!areAttachmentsExpanded) {
+        var bodyGetter = Ember.$(window)
+        var bodySetter = Ember.$('html, body')
+        var post = this.$()
+
+        if (post) {
+          var currentScrollPosition = bodyGetter.scrollTop()
+          var postPosition = post.offset().top
+
+          // Only scroll if top of the post is outside the viewport
+          if (postPosition < currentScrollPosition) {
+            bodySetter.animate({ scrollTop: postPosition })
+          }
+        }
+      }
+    }.observes('controller.areAttachmentsExpanded'),
+
+    // Prevent (compensate) viewport scrolling when new posts are coming somewhere in the top
+    postAddedAtTheTop: function() {
+      Ember.run.scheduleOnce('afterRender', this, function() {
+        var bodyGetter = Ember.$(window)
+        var bodySetter = Ember.$('html, body')
+        var newPost = this.$()
+
+        var currentScrollPosition = bodyGetter.scrollTop()
+        var topPostPosition = newPost.closest('.posts').offset().top
+
+        if (currentScrollPosition > topPostPosition) {
+          var newPostHeight = newPost.height()
+          bodySetter.scrollTop(currentScrollPosition + newPostHeight)
+        }
       })
     }.on('didInsertElement')
   })

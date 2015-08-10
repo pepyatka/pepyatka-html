@@ -16,7 +16,8 @@ define(["app/app",
     }.property('controller.isSendToVisible'),
 
     resetField: function() {
-      if (this.get('isVisible') === true) {
+      if (this.get('isVisible') === true &&
+          this.get('showMyFeedOption') === true) {
         var field = this.$("#sendToSelect")
         field.select2('val', this.get('controller.session.currentUser.username'))
       }

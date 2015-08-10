@@ -1,10 +1,9 @@
 define(["app/app",
-        "components/TransitionalRoute",
-        "components/AuthorizableRoute"], function(App) {
+        "mixins/TransitionalRoute",
+        "mixins/AuthorizableRoute"], function(App) {
   "use strict";
 
-  App.TimelineHomeRoute = Ember.Route.extend(App.TransitionalRoute,
-                                             App.AuthorizableRoute, {
+  App.TimelineHomeRoute = Ember.Route.extend(App.TransitionalRoute, App.AuthorizableRoute, {
     queryParams: {
       offset: {
         refreshModel: true
@@ -16,14 +15,20 @@ define(["app/app",
     },
 
     deactivate: function() {
-      this.controllerFor('pub-sub').unsubscribe()
+      this.get('pubsub').unsubscribe()
     },
 
     setupController: function(controller, model) {
-      this.controllerFor('pub-sub').set('channel', model)
+      this.get('pubsub').set('channel', model)
 
       controller.set('isSendToVisible', false)
       controller.set('model', model)
+    },
+
+    actions: {
+      reloadHomepage: function() {
+        this.refresh()
+      }
     }
   })
 })
