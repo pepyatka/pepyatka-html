@@ -108,7 +108,7 @@
           Groups
         </div>
         <div class="box-body">
-          {{view 'my-groups'}}
+          {{my-groups currentUser=session.currentUser}}
         </div>
         <div class="box-footer">
           {{#link-to 'groups.home'}}Browse/edit groups{{/link-to}}

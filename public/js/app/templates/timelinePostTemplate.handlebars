@@ -1,12 +1,11 @@
-{{#with view.post as |controller|}}
-<div {{bind-attr class=":timeline-post-container view.post.model.isDirects:direct-post"}}>
+<div {{bind-attr class=":timeline-post-container post.model.isDirects:direct-post"}}>
   <div class="avatar">
-    {{#link-to 'timeline.index' view.post.model.createdBy.username (query-params offset=0)}}<img src="{{view.post.model.createdBy.profilePictureMedium}}" />{{/link-to}}
+    {{#link-to 'timeline.index' post.createdBy.username (query-params offset=0)}}<img src="{{post.createdBy.profilePictureMedium}}" />{{/link-to}}
   </div>
 
   <div class="post-body p-timeline-post">
     <div class="title">
-      {{view 'post-title' post=view.post.model}}
+      {{view 'post-title' post=post}}
     </div>
 
     {{#if controller.isEdit}}
@@ -22,15 +21,15 @@
     {{else}}
       <div class="body">
         <div class="text">
-          {{prettifyText view.post.content.body}}
+          {{prettifyText post.body}}
         </div>
       </div>
     {{/if}}
 
-    {{#if view.post.content.attachments}}
+    {{#if post.attachments}}
       <div class="attachments">
         <div {{bind-attr class=":image-attachments controller.hasSurplusAttachments:has-surplus controller.areAttachmentsExpanded:expanded"}}>
-          {{~#each view.post.content.imageAttachments itemController="post-attachment" as |attachment|~}}
+          {{~#each post.imageAttachments itemController="post-attachment" as |attachment|~}}
             {{view "post-attachment" content=attachment}}
           {{~/each~}}
 
@@ -38,12 +37,12 @@
         </div>
 
         <div class="audio-attachments">
-          {{~#each view.post.content.audioAttachments itemController="post-attachment" as |attachment|~}}
+          {{~#each post.audioAttachments itemController="post-attachment" as |attachment|~}}
             {{view "post-attachment" content=attachment}}
           {{~/each~}}
         </div>
         <div class="general-attachments">
-          {{~#each view.post.content.generalAttachments itemController="post-attachment" as |attachment|~}}
+          {{~#each post.generalAttachments itemController="post-attachment" as |attachment|~}}
             {{view "post-attachment" content=attachment}}
           {{~/each~}}
         </div>
@@ -51,18 +50,18 @@
     {{/if}}
 
     <div class="info p-timeline-post-info">
-      {{#if view.post.model.isDirects}}
+      {{#if post.isDirects}}
         <span>
           »
         </span>
       {{else}}
-        {{#if view.post.model.isPrivates}}
+        {{#if post.isPrivates}}
           <i class="fa fa-lock"></i>
         {{/if}}
       {{/if}}
 
       <span class="post-date">
-        {{#link-to 'post' view.post.model.postedToFirstObject view.post.content.id (query-params offset=0) class="datetime"}}<time datetime="{{view.post.createdAtISO}}" title="{{view.post.createdAtISO}}">{{view.post.createdAgo}}</time>{{/link-to}}
+        {{#link-to 'post' post.postedToFirstObject post.id (query-params offset=0) class="datetime"}}<time datetime="{{post.createdAtISO}}" title="{{post.createdAtISO}}">{{post.createdAgo}}</time>{{/link-to}}
       </span>
 
       <span class="post-controls">
@@ -78,7 +77,7 @@
 
           {{#if view.parentView.parentView.isRiverOfNews}}
             -
-            {{#if view.post.model.canHide}}
+            {{#if post.canHide}}
               <a {{action 'hide'}} class="p-timeline-post-hide-action">Hide</a>
             {{else}}
               <a {{action 'unhide'}} class="p-timeline-post-unhide-action">Un-hide</a>
@@ -94,9 +93,8 @@
         {{/if}}
       </span>
 
-      {{#if view.post.content.likes}}
-        {{log view.post}}
-        {{view 'post-likes' likes=view.post.content.likes}}
+      {{#if post.likes}}
+        {{view 'post-likes' likes=post.likes}}
       {{/if}}
     </div>
 
@@ -116,7 +114,7 @@
           {{view "post-comment" comment=comment}}
         {{/each}}
       {{else}}
-        {{#each view.post.comments itemController="post-comment" as |comment|}}
+        {{#each post.comments itemController="post-comment" as |comment|}}
           {{view "post-comment" comment=comment}}
         {{/each}}
       {{/if}}
@@ -142,7 +140,7 @@
           </div>
         </div>
       {{else}}
-        {{#if view.post.comments.length}}
+        {{#if post.comments.length}}
           {{#unless controller.hasOmittedComments}}
             {{#if controller.session.currentUser}}
               <div class="add-comment-block">
@@ -160,4 +158,3 @@
     </div>
   </div>
 </div>
-{{/with}}

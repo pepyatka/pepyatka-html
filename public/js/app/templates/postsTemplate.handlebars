@@ -1,7 +1,5 @@
 <div class="posts">
-  {{#each posts itemController="timeline-post" as |post|}}
-    {{#unless post.model.isHidden}}
-      {{view "timeline-post" post=post}}
-    {{/unless}}
+  {{#each posts as |post|}}
+    {{x-visible-post post=post}}
   {{/each}}
 </div>

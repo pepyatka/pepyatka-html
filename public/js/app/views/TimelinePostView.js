@@ -2,7 +2,7 @@ define(["app/app",
         "text!templates/timelinePostTemplate.handlebars"], function(App, tpl) {
   "use strict";
 
-  App.TimelinePostView = Ember.View.extend({
+  App.TimelinePostComponent = Ember.Component.extend({
     templateName: 'timeline-post',
     template: Ember.Handlebars.compile(tpl),
 

@@ -1,7 +1,5 @@
 <div class="posts p-hidden-posts">
-  {{#each model.posts itemController="timeline-post" as |post|}}
-    {{#if post.model.isHidden}}
-      {{view "timeline-post" content=post}}
-    {{/if}}
+  {{#each model.posts as |post|}}
+    {{x-hidden-post post=post}}
   {{/each}}
 </div>

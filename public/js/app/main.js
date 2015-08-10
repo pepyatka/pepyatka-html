@@ -133,7 +133,9 @@ define([
   "views/ProfileLinksView",
   "views/SendToView",
   "views/SubmitPostView",
-  "views/TimelinePostView"
+  "views/TimelinePostView",
+  "views/XHiddenPostView",
+  "views/XVisiblePostView"
 ], function(App) {
   "use strict";
 

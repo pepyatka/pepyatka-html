@@ -11,6 +11,6 @@ define(["app/app",
       var attachments = this.get('parentView.controller.isUploadingAttachment')
       var empty = Ember.isBlank(this.get('createPost.value'))
       return attachments || empty
-    }.property('parentView.controller.isUploadingAttachment', 'createPost.value'),
+    }.property('parentView.controller.isUploadingAttachment', 'createPost.value')
   })
 })
