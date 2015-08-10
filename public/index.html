@@ -47,8 +47,14 @@
               <a href="/">freefeed</a>
             </h1>
             <div class="jsonly" style="position: absolute; z-index: 2">
-              <p>If the page is taking too long to load, try out light version at <a href="https://m.freefeed.net/">https://m.freefeed.net/</a></p>
+              <p>If the page is taking too long to load, try out light version at <a href="https://m.freefeed.net/" id="m-link">https://m.freefeed.net/</a></p>
             </div>
+            <script type="text/javascript">
+              var mLink = document.getElementById('m-link');
+              var url = location.href.replace('//freefeed.net/', '//m.freefeed.net/');
+              mLink.innerHTML = url;
+              mLink.setAttribute('href', url);
+            </script>
           </div>
         </div>
       </div>
