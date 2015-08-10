@@ -12,8 +12,8 @@
         {{user.screenNameOrYou}}
       {{/link-to}}
 
-      {{#if controller.isEdit}}
-        {{#if view.isOwner}}
+      {{#if isEdit}}
+        {{#if isOwner}}
           <a {{action 'removeSubscriber' user}}>Remove</a>
         {{/if}}
       {{/if}}
@@ -21,8 +21,8 @@
   {{/each}}
 </ul>
 
-{{#if view.isOwner}}
-  {{#if controller.isEdit}}
+{{#if isOwner}}
+  {{#if isEdit}}
     <a {{action 'browse'}}>Browse subscribers</a>
   {{else}}
     <a {{action 'manage'}}>Manage subscribers</a>

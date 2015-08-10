@@ -4,7 +4,7 @@
 {{#if isBanned}}
   You have blocked {{model.user.screenName}}, so all of {{model.user.screenName}}'s posts and comments are invisible to you. <a {{action 'unban'}}>Un-block this user</a>
 {{else}}
-  {{#unless controller.firstPage}}
+  {{#unless firstPage}}
     {{pagination-view}}
   {{/unless}}
   {{posts-view posts=model.posts}}

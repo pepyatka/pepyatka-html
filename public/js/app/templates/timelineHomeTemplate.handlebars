@@ -1,16 +1,16 @@
-{{#if controller.firstPage}}
-  {{submit-post sendToVisible=true showMyFeedOption=true}}
+{{#if firstPage}}
+  {{submit-post sendToVisible=true showMyFeedOption=true currentUser=session.currentUser}}
 {{/if}}
 
-{{#unless controller.firstPage}}
+{{#unless firstPage}}
   {{pagination-view}}
 {{/unless}}
 {{posts-view posts=model.posts}}
 
-{{#if controller.hasHiddenPosts}}
+{{#if hasHiddenPosts}}
   <div class="show-hidden">
     <a {{action "toggleShowHidden" target=view}}>Show {{hiddenPosts.length}} hidden entries</a>
-    {{#if view.hiddenPostsShown}}
+    {{#if hiddenPostsShown}}
       {{hidden-posts}}
     {{/if}}
   </div>

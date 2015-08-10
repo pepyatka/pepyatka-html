@@ -7,6 +7,16 @@ define(["config",
   App.TimelineSubscribersController = App.ApplicationController.extend({
     isEdit: false,
 
+    isOwner: function() {
+      var currentUser = this.get('session.currentUser')
+      if (!currentUser) { return false }
+
+      var administrators = currentUser.get('administrators').toArray()
+      var username = this.get('content.query')
+      return (administrators.isAny('username', username)) ||
+        currentUser.get('username') === username
+    }.property('session.currentUser'),
+
     actions: {
       removeSubscriber: function(user) {
         Ember.$.ajax({

@@ -1,7 +1,7 @@
 <div class="row list-controls">
   <div class="col-md-6 filter-controls">
     View:
-    {{#if controller.showAllGroups}}
+    {{#if showAllGroups}}
       <a {{action 'toggleAllGroups'}}>Active groups</a> -
       All groups
     {{else}}
@@ -15,7 +15,7 @@
 </div>
 
 <ul class="tile-list">
-  {{#each controller.groups as |group|}}
+  {{#each groups as |group|}}
     <li class="p-timeline-group-user">
       {{#link-to 'timeline.index' group.user.username (query-params offset=0)}}
         <div class="avatar">

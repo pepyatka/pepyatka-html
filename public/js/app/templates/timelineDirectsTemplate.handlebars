@@ -1,8 +1,8 @@
-{{#if controller.firstPage}}
-  {{submit-post sendToVisible=true showMyFeedOption=false}}
+{{#if firstPage}}
+  {{submit-post sendToVisible=true showMyFeedOption=false currentUser=session.currentUser}}
 {{/if}}
 
-{{#unless controller.firstPage}}
+{{#unless firstPage}}
   {{pagination-view}}
 {{/unless}}
 {{posts-view posts=model.posts}}
