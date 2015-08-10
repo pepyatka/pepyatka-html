@@ -6,7 +6,7 @@
     </div>
 
     <div>
-      {{user.screenName}}
+      {{#link-to 'timeline.index' user.username}}{{user.screenName}} ({{user.username}}){{/link-to}}
     </div>
     <a {{action 'accept' user}}>Accept request</a> |
     <a {{action 'reject' user}}>Reject request</a>
@@ -23,7 +23,7 @@
     </div>
 
     <div>
-      {{user.screenName}}
+      {{#link-to 'timeline.index' user.username}}{{user.screenName}} ({{user.username}}){{/link-to}}
     </div>
   </div>
 {{else}}
