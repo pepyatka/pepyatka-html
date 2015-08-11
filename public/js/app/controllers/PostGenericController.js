@@ -29,9 +29,6 @@ define(["config",
       return this.get('model.likes').isAny('id', this.get('session.currentUser.id'))
     }.property('model.likes', 'session.currentUser.id'),
 
-    hasSurplusAttachments: false,
-    areAttachmentsExpanded: false,
-
     hasOmittedComments: function() {
       return this.get('model.omittedComments') > 0
         || this.get('isLoadingComments') === true
@@ -84,16 +81,6 @@ define(["config",
       return [lastTwo[1]]
     }.property('model.comments', 'model.comments.length'),
 
-    allLikes: function() {
-      var user_id = this.get('session.currentUser.id')
-      var likes = this.get('model.likes').toArray().sort(function(a, b) {
-        if (a.id == user_id) return -1
-        if (b.id == user_id) return 1
-      });
-
-      return likes
-    }.property('model.likes', 'session.currentUser.id'),
-
     firstLikes: function() {
       var likes = this.get('allLikes')
       var omittedLikes = this.get('model.omittedLikes') || 0
@@ -134,10 +121,6 @@ define(["config",
 
       toggleEditability: function() {
         this.toggleProperty('isEdit')
-      },
-
-      toggleSurplusAttachments: function() {
-        this.toggleProperty('areAttachmentsExpanded')
       },
 
       showAllComments: function() {

@@ -21,10 +21,10 @@
     </ul>
   {{else}}
     <ul class="p-timeline-user-likes">
-      {{#each controller.allLikes as |user index|}}
+      {{#each allLikes currentUser as |user index|}}
         <li class="p-timeline-user-like">
           {{#link-to 'timeline.index' user.username (query-params offset=0)}}{{user.screenNameOrYou}}{{/link-to}}<!--
-          -->{{#unless (isLast index length=view.likes.length)}}, {{else}}
+          -->{{#unless (isLast index length=likes.length)}}, {{else}}
               <span>liked this</span>
              {{/unless}}
         </li>

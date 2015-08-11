@@ -6,6 +6,9 @@ define(["app/app",
     templateName: 'timeline-post',
     template: Ember.Handlebars.compile(tpl),
 
+    hasSurplusAttachments: false,
+    areAttachmentsExpanded: false,
+
     isOwner: function() {
       if (!this.get('controller.session.currentUsed'))
         return false
@@ -101,6 +104,10 @@ define(["app/app",
 
         if (!this.get('isFormVisible'))
           this.set('newComment', '')
+      },
+
+      toggleSurplusAttachments: function() {
+        this.toggleProperty('areAttachmentsExpanded')
       }
     }
   })

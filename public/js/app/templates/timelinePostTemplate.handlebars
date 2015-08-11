@@ -28,7 +28,7 @@
 
     {{#if post.attachments}}
       <div class="attachments">
-        <div class="image-attachments {{if controller.hasSurplusAttachments has-surplus}} {{if controller.areAttachmentsExpanded expanded}}">
+        <div class="image-attachments {{if hasSurplusAttachments has-surplus}} {{if areAttachmentsExpanded expanded}}">
           {{~#each post.imageAttachments itemController="post-attachment" as |attachment|~}}
             {{view "post-attachment" content=attachment}}
           {{~/each~}}
@@ -94,7 +94,7 @@
       </span>
 
       {{#if post.likes}}
-        {{view 'post-likes' likes=post.likes}}
+        {{post-likes likes=post.likes currentUser=currentUser}}
       {{/if}}
     </div>
 
