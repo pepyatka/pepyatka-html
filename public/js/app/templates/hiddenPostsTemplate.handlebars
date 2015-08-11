@@ -1,5 +1,5 @@
 <div class="posts p-hidden-posts">
   {{#each model.posts as |post|}}
-    {{x-hidden-post post=post}}
+    {{x-hidden-post post=post currentUser=currentUser}}
   {{/each}}
 </div>

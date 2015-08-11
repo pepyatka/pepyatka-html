@@ -1,9 +1,8 @@
 define(["app/app",
-        "controllers/PostGenericController",
-        "mixins/DynamicTime"], function(App) {
+        "controllers/PostGenericController"], function(App) {
   "use strict";
 
-  App.TimelinePostController = App.PostGenericController.extend(App.DynamicTime, {
+  App.TimelinePostController = App.PostGenericController.extend({
     actions: {
       hide: function() {
         var post = this.get('model')

@@ -1,8 +1,9 @@
 define(["app/app",
-        "moment"], function(App, moment) {
+        "moment",
+        "mixins/DynamicTime"], function(App, moment) {
   "use strict";
 
-  App.Comment = DS.Model.extend({
+  App.Comment = DS.Model.extend(App.DynamicTime, {
     body: DS.attr('string'),
     createdAt: DS.attr('number'),
     updatedAt: DS.attr('number'),

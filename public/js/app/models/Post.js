@@ -1,10 +1,11 @@
 define(["config",
         "moment",
         "lodash",
-        "app/app"], function(config, moment, _, App) {
+        "app/app",
+        "mixins/DynamicTime"], function(config, moment, _, App) {
   "use strict";
 
-  App.Post = DS.Model.extend({
+  App.Post = DS.Model.extend(App.DynamicTime, {
     resourceUrl: config.host + '/v1/posts',
 
     body: DS.attr('string'),

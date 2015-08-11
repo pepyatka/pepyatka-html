@@ -5,7 +5,7 @@
 {{#unless firstPage}}
   {{pagination-view}}
 {{/unless}}
-{{posts-view posts=model.posts}}
+{{posts-view posts=model.posts currentUser=session.currentUser}}
 
 {{#if hasHiddenPosts}}
   <div class="show-hidden">

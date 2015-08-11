@@ -15,7 +15,7 @@
     {{#unless firstPage}}
       {{pagination-view}}
     {{/unless}}
-    {{posts-view posts=model.posts}}
+    {{posts-view posts=model.posts currentUser=session.currentUser}}
     {{pagination-view}}
   {{/if}}
 {{/if}}

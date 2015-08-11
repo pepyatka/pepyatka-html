@@ -77,7 +77,8 @@ define(["app/app",
       }
     }.observes('controller.areAttachmentsExpanded'),
 
-    // Prevent (compensate) viewport scrolling when new posts are coming somewhere in the top
+    // Prevent (compensate) viewport scrolling when new posts are
+    // coming somewhere in the top
     postAddedAtTheTop: function() {
       Ember.run.scheduleOnce('afterRender', this, function() {
         var bodyGetter = Ember.$(window)
@@ -92,6 +93,15 @@ define(["app/app",
           bodySetter.scrollTop(currentScrollPosition + newPostHeight)
         }
       })
-    }.on('didInsertElement')
+    }.on('didInsertElement'),
+
+    actions: {
+      toggleCommentForm: function() {
+        this.toggleProperty('isFormVisible')
+
+        if (!this.get('isFormVisible'))
+          this.set('newComment', '')
+      }
+    }
   })
 })

@@ -1,4 +1,4 @@
-<div {{bind-attr class=":timeline-post-container post.model.isDirects:direct-post"}}>
+<div class="timeline-post-container {{if post.model.isDirects direct-post}}">
   <div class="avatar">
     {{#link-to 'timeline.index' post.createdBy.username (query-params offset=0)}}<img src="{{post.createdBy.profilePictureMedium}}" />{{/link-to}}
   </div>
@@ -28,7 +28,7 @@
 
     {{#if post.attachments}}
       <div class="attachments">
-        <div {{bind-attr class=":image-attachments controller.hasSurplusAttachments:has-surplus controller.areAttachmentsExpanded:expanded"}}>
+        <div class="image-attachments {{if controller.hasSurplusAttachments has-surplus}} {{if controller.areAttachmentsExpanded expanded}}">
           {{~#each post.imageAttachments itemController="post-attachment" as |attachment|~}}
             {{view "post-attachment" content=attachment}}
           {{~/each~}}
@@ -65,7 +65,7 @@
       </span>
 
       <span class="post-controls">
-        {{#if controller.session.currentUser}}
+        {{#if currentUser}}
           -
           <a {{action 'toggleCommentForm'}} class="p-timeline-post-comment-action">Comment</a>
           -
@@ -105,7 +105,7 @@
         {{/each}}
 
         <div class="more-comments-wrapper">
-          <a {{bind-attr class=":more-comments controller.isLoadingComments:loading"}} {{action 'showAllComments'}}>
+          <a class="more-comments {{if controller.isLoadingComments loading}}" {{action 'showAllComments'}}>
             {{controller.omittedComments}} more comments
           </a>
         </div>
