@@ -12,19 +12,15 @@
 
     <div class="row">
       <div class="col-md-10">
-        {{#if isAttachmentsVisible}}
-          {{#if controller.attachments}}
-            <div class="attachments">
-              {{#each attachment in controller.attachments itemController="post-attachment"}}
-                {{view "post-attachment" content=attachment}}
-              {{/each}}
-            </div>
-          {{/if}}
-
-          {{view 'create-attachment'}}
-        {{else}}
-          Add: <a {{action 'showAttachments'}}>Photos or Files</a>
+        {{#if controller.attachments}}
+          <div class="attachments">
+            {{#each attachment in controller.attachments itemController="post-attachment"}}
+              {{view "post-attachment" content=attachment}}
+            {{/each}}
+          </div>
         {{/if}}
+
+        {{view 'create-attachment'}}
       </div>
       <div class="col-md-2">
         <div class="pull-right">
