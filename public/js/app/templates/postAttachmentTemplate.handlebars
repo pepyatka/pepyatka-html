@@ -30,4 +30,14 @@
       <span>{{attachment.nameAndSize}}</span>
     </a>
   {{/if}}
+
+  {{#if attachment.model.isUploading}}
+    <a href="{{attachment.model.url}}" title="{{attachment.nameAndSize}}" class="p-attachment-url" target="_blank">
+      {{#if attachment.model.thumbnailUrl}}
+        <img class="p-attachment-thumbnail" src="{{attachment.model.thumbnailUrl}}" alt="{{attachment.nameAndSize}}" />
+      {{else}}
+        {{attachment.model.id}}
+      {{/if}}
+    </a>
+  {{/if}}
 </div>

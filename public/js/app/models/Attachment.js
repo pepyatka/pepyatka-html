@@ -19,8 +19,7 @@ define(["app/app"], function(App) {
     post: DS.belongsTo('post'),
 
     isImage: function() {
-      return this.get('mediaType') === 'image' ||
-        Ember.isEmpty(this.get('mediaType'))
+      return this.get('mediaType') === 'image'
     }.property('mediaType'),
 
     isGeneral: function() {
@@ -29,6 +28,10 @@ define(["app/app"], function(App) {
 
     isAudio: function() {
       return this.get('mediaType') === 'audio'
-    }.property('mediaType')
+    }.property('mediaType'),
+
+    isUploading: function() {
+      return this.get('id') === null
+    }.property('id')
   })
 })

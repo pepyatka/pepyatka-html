@@ -14,9 +14,37 @@
       <div class="col-md-10">
         {{#if controller.attachments}}
           <div class="attachments">
-            {{#each attachment in controller.attachments itemController="post-attachment"}}
-              {{view "post-attachment" content=attachment}}
-            {{/each}}
+            <div class="image-attachments">
+              {{~#each attachment in controller.attachments itemController="post-attachment"~}}
+                {{#if attachment.model.isImage}}
+                  {{view "post-attachment" content=attachment}}
+                {{/if}}
+              {{~/each~}}
+            </div>
+
+            <div class="audio-attachments">
+              {{~#each attachment in controller.attachments itemController="post-attachment"~}}
+                {{#if attachment.model.isAudio}}
+                  {{view "post-attachment" content=attachment}}
+                {{/if}}
+              {{~/each~}}
+            </div>
+
+            <div class="general-attachments">
+              {{~#each attachment in controller.attachments itemController="post-attachment"~}}
+                {{#if attachment.model.isGeneral}}
+                  {{view "post-attachment" content=attachment}}
+                {{/if}}
+              {{~/each~}}
+            </div>
+
+            <div class="uploading-attachments">
+              {{~#each attachment in controller.attachments itemController="post-attachment"~}}
+                {{#if attachment.model.isUploading}}
+                  {{view "post-attachment" content=attachment}}
+                {{/if}}
+              {{~/each~}}
+            </div>
           </div>
         {{/if}}
 
