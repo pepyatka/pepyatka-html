@@ -64,14 +64,9 @@ define(["config",
       return this.get('attachments').isAny('id', null)
     }.property('attachments.[]'),
 
-    isAttachmentsVisible: false,
     isSendToVisible: false,
 
     actions: {
-      showAttachments: function() {
-        this.toggleProperty('isAttachmentsVisible')
-      },
-
       subscribe: function() {
         var user = this.get('model.user')
         Ember.$.ajax({
@@ -168,7 +163,6 @@ define(["config",
             // Clear the form
             this.set('body', '')
             this.set('attachments', [])
-            this.set('isAttachmentsVisible', false)
             this.set('isSendToVisible', false)
             this.set('isSending', false)
 

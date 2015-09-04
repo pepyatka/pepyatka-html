@@ -15,6 +15,7 @@
 
     .attachment {
       float: left;
+      border: 1px solid silver;
       padding: 1px;
       margin: 0 8px 8px 0;
 
@@ -35,10 +36,26 @@
         color: #666666;
         padding-right: 1px;
       }
+    }
+  }
 
-      img {
-        border: 1px solid silver;
-      }
+  .create-attachment {
+    cursor: pointer;
+    color: #555;
+    font-weight: normal;
+    margin: 0;
+
+    input[type="file"] {
+      position: fixed;
+      top: -1000px;
+    }
+
+    i {
+      padding-right: 1px;
+    }
+
+    &:hover span {
+      text-decoration: underline;
     }
   }
 }

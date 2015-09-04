@@ -1,11 +1,9 @@
-define(["app/app"], function(App) {
+define(["app/app",
+        "text!templates/createAttachmentTemplate.handlebars"], function(App, tpl) {
   "use strict";
 
   App.CreateAttachmentView = Ember.View.extend({
-    tagName: 'input',
-    type: 'file',
-    multiple: true,
-    attributeBindings: ['type', 'multiple'],
+    template: Ember.Handlebars.compile(tpl),
 
     change: function(event) {
       if (event.target.files.length > 0) {
