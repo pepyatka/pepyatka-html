@@ -41,4 +41,24 @@
       }
     }
   }
+
+  .create-attachment {
+    cursor: pointer;
+    color: #555;
+    font-weight: normal;
+    margin: 0;
+
+    input[type="file"] {
+      position: fixed;
+      top: -1000px;
+    }
+
+    i {
+      padding-right: 1px;
+    }
+
+    &:hover span {
+      text-decoration: underline;
+    }
+  }
 }
