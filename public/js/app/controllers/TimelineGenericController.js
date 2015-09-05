@@ -117,7 +117,7 @@ define(["config",
 
         // Add a throbber (placeholder object, to show uploading progress)
         var attachmentList = this.get('attachments')
-        var throbber = this.store.createRecord('attachment', { thumbnailUrl: '/img/throbber-100.gif' })
+        var throbber = this.store.createRecord('attachment', { fileName: file.name })
         var throbberIndex = attachmentList.length
         attachmentList.pushObject(throbber)
 
@@ -128,7 +128,7 @@ define(["config",
             attachmentList.replace(throbberIndex, 1, [ attachment ])
           })
           .catch(function(e) {
-            console.log('upload failed')
+            console.log('Upload failed.')
             attachmentList.removeAt(throbberIndex, 1)
           })
       },
