@@ -41,6 +41,7 @@
             {{view "post-attachment" content=attachment}}
           {{~/each~}}
         </div>
+
         <div class="general-attachments">
           {{~#each attachment in content.generalAttachments itemController="post-attachment"~}}
             {{view "post-attachment" content=attachment}}

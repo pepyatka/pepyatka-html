@@ -5,6 +5,12 @@ define(["app/app",
   "use strict";
 
   App.PostAttachmentController = App.ApplicationController.extend({
+
+    // 'uploadProgress' should be an instance property (set on init), not a prototype property
+    setupUploadProgress: function() {
+      this.set('uploadProgress', 0);
+    }.on('init'),
+
     nameAndSize: function() {
       var fileName = this.get('model.fileName')
       var fileSize = this.get('model.fileSize')
@@ -27,6 +33,15 @@ define(["app/app",
       } else {
         return fileName + ' (' + fileSize + ')'
       }
-    }.property('model.fileName', 'model.fileSize', 'model.title', 'model.artist')
+    }.property('model.fileName', 'model.fileSize', 'model.title', 'model.artist'),
+
+    actions: {
+      updateUploadProgress: function(fileName, percentComplete) {
+        // Only update progress if the event is intended for current file
+        if (this.get('model.fileName') === fileName) {
+          this.set('uploadProgress', percentComplete)
+        }
+      }
+    }
   })
 })
