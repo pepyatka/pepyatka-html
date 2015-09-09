@@ -20,8 +20,12 @@
     }
 
     .text {
-      font-size: 15px;
-      line-height: 19px;
+      font-size: 16px;
+      line-height: 21px;
+
+      p {
+        margin: 6px 0 12px;
+      }
     }
   }
 }

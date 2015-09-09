@@ -30,4 +30,10 @@
       <span>{{attachment.nameAndSize}}</span>
     </a>
   {{/if}}
+
+  {{#if attachment.model.isUploading}}
+    <div class="upload-progress progress-{{attachment.uploadProgress}}" title="{{attachment.model.fileName}}">
+      <div class="center">{{attachment.uploadProgress}}%</div>
+    </div>
+  {{/if}}
 </div>
