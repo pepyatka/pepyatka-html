@@ -1,42 +1,127 @@
 <style type="text/css">
-input, textarea {
-  padding: 4px;
-  border: solid 1px #e5e5e5;
-  outline: 0;
-  font: normal 13px/100% Verdana, Tahoma, sans-serif;
-  width: 320px;
-  background: #ffffff;
-}
+  body {
+    font: normal 13px/100% 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    padding: 10px;
+    background-color: #f2f2f2;
+  }
+  .row {
+    padding-bottom: 9px;
+  }
+  h1 {
+    color: #000;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 20px;
+    margin: 0 0 10px 0;
+  }
+  label {
+    color: #888;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14px;
+  }
+  textarea, button {
+    width: 100%;
+    padding: 4px;
+    border: 1px solid silver;
+    border-radius: 3px;
+    outline: 0;
+    background: #fff;
+    font: normal 13px/16px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+  textarea#bookmarklet-title {
+    height: 42px;
+  }
+  textarea#bookmarklet-comment {
+    height: 74px;
+  }
+  button {
+    display: inline-block;
+    padding: 8px;
+    background-color: #bbb;
+    border-color: #bbb;
+  }
+  #bookmarklet-image {
+    height: 100px;
+  }
+  #bookmarklet-image.no-image {
+    display: inline-block;
+    border: solid 1px silver;
+    background-color: #fff;
+    width: 133px;
+    padding-top: 30px;
+    color: #999;
+    font-style: italic;
+    text-align: center;
+    line-height: 140%;
+  }
+  #bookmarklet-image img {
+    border: 1px solid silver;
+    padding: 1px;
+    max-width: 320px;
+    max-height: 100px;
+  }
 
-textarea {
-  width: 320px;
-  max-width: 320px;
-  height: 80px;
-  line-height: 150%;
-}
-
-#p_image {
-  font-size: 14px;
-}
-#p_image img {
-  max-width: 320px;
-  max-height: 320px;
-}
+  .brand-new-post {
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    margin-top: 100px;
+  }
+  .brand-new-post a {
+    font-size: 17px;
+    text-decoration: underline;
+  }
 </style>
 
 {{#if controller.isSent}}
-  Sent
-{{else}}
-  <input type="text" id="p_title" name="title" value="{{controller.title}}" />
-  <textarea type="text" id="p_comment" name="comment">{{controller.comment}}</textarea>
-  <div id="p_image">No image</div>
-  <input type="hidden" id="p_image_src" name="image" value="" />
 
-  <input type="submit" value="Share" {{action "send"}} />
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Done!</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="brand-new-post">
+        Check out<br/>
+        <a href="/{{controller.postData.users.0.username}}/{{controller.postData.posts.id}}" target="_top">
+          your brand new post
+        </a>
+      </div>
+    </div>
+  </div>
+
+{{else}}
+
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Share on Pepyatka</h1>
+      <textarea id="bookmarklet-title" name="title">{{controller.title}}</textarea>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div id="bookmarklet-image" class="no-image">No image<br/> selected</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <label for="bookmarklet-comment">Comment (optional)</label><br/>
+      <textarea id="bookmarklet-comment" name="comment">{{controller.comment}}</textarea>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <input type="hidden" id="bookmarklet-image-url" name="image" value="" />
+      <button type="submit" {{action "send"}}>Submit</button>
+    </div>
+  </div>
+
 {{/if}}
 
 <script type="text/javascript">
-if ("onhashchange" in window) { // event supported?
+if ('onhashchange' in window) { // event supported?
   window.onhashchange = function () {
     hashChanged(window.location.hash.slice(1))
   }
@@ -53,7 +138,7 @@ if ("onhashchange" in window) { // event supported?
 function hashChanged(url) { // user has selected an image on parent frame
   var image = document.createElement("img")
   image.src = url
-  $('#p_image').html(image)
-  $('#p_image_src').attr('value', url)
+  $('#bookmarklet-image').removeClass('no-image').html(image)
+  $('#bookmarklet-image-url').attr('value', url)
 }
 </script>

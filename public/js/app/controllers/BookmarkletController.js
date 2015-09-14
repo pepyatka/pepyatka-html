@@ -10,10 +10,11 @@ define(["config",
     comment: null,
     title: null,
     isSent: false,
+    postData: null,
 
     actions: {
       send: function() {
-        var imageUrl = Ember.$('#p_image_src').attr('value')
+        var imageUrl = Ember.$('#bookmarklet-image-url').attr('value')
         var data = {
           image: imageUrl,
           title: this.get('title'),
@@ -26,6 +27,7 @@ define(["config",
           context: this
         })
           .then(function(response) {
+            this.set('postData', response)
             this.set('isSent', true)
           })
       }

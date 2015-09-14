@@ -1,6 +1,5 @@
 define(["app/app",
-        "text!templates/bookmarkletTemplate.handlebars",
-        "views/UnauthorizedView"], function(App, tpl) {
+        "text!templates/bookmarkletTemplate.handlebars"], function(App, tpl) {
   "use strict";
 
   App.BookmarkletView = Ember.View.extend({

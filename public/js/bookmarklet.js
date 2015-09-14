@@ -1,10 +1,9 @@
 javascript:(function(){
   var v = "1.9.1"
-
   if (window.jQuery === undefined || window.jQuery.fn.jquery < v) {
     var done = false
     var script = document.createElement("script")
-    script.src = "http://ajax.googleapis.com/ajax/libs/jquery/" + v + "/jquery.min.js"
+    script.src = "//ajax.googleapis.com/ajax/libs/jquery/" + v + "/jquery.min.js"
     script.onload = script.onreadystatechange = function(){
       if (!done && (!this.readyState || this.readyState == "loaded" || this.readyState == "complete")) {
         done = true
@@ -18,17 +17,6 @@ javascript:(function(){
 
   function initMyBookmarklet() {
     (window.myBookmarklet = function() {
-      function getSelText() {
-        var s = ''
-        if (window.getSelection) {
-          s = window.getSelection()
-        } else if (document.getSelection) {
-          s = document.getSelection()
-        } else if (document.selection) {
-          s = document.selection.createRange().text
-        }
-        return s
-      }
       var addScript=function(filename,callback){
         var e=document.createElement('script')
         e.type = 'text/javascript'
@@ -50,8 +38,10 @@ javascript:(function(){
           document.getElementsByTagName('head')[0].appendChild(e)
         }
       }
-      addScript('http://localhost:3333/js/pepyatka.js', function(){
-        pepyatka_highlight()
+
+      var host = 'http://localhost:3333'
+      addScript(host + '/js/bookmarklet-popup.js', function(){
+        bookmarklet_popupInit(host)
       })
     })()
   }
