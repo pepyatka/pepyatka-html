@@ -27,6 +27,7 @@ define(["app/app"], function(App) {
     this.resource('requests', { path: '/requests' }, function() {
       this.route('index', { path: '/' })
     })
+    this.route('bookmarklet', { path: '/bookmarklet' })
     this.route('forgot-password', { path: '/account/password' })
     this.route('reset-password', { path: '/account/reset' })
     this.route('post', { path: '/:username/:postId' })

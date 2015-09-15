@@ -34,6 +34,7 @@ define([
   "models/Timeline",
 
   "controllers/ApplicationController",
+  "controllers/BookmarkletController",
   "controllers/ForgotPasswordController",
   "controllers/GroupsHomeController",
   "controllers/GroupsNewController",
@@ -67,6 +68,7 @@ define([
   "fields/EditCommentView",
   "fields/UpdateProfilePictureView",
 
+  "routes/BookmarkletRoute",
   "routes/ForgotPasswordRoute",
   "routes/GroupsHomeRoute",
   "routes/GroupsNewRoute",
@@ -97,6 +99,7 @@ define([
   "views/UnauthorizedView",
 
   // page views
+  "views/BookmarkletView",
   "views/ForgotPasswordView",
   "views/GroupsHomeView",
   "views/GroupsNewView",
