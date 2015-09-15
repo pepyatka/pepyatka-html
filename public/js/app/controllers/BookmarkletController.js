@@ -7,18 +7,15 @@ define(["config",
   App.BookmarkletController = App.ApplicationController.extend({
     queryParams: ['title', 'comment'],
 
-    comment: null,
-    title: null,
     isSent: false,
     postData: null,
 
     actions: {
       send: function() {
-        var imageUrl = Ember.$('#bookmarklet-image-url').attr('value')
         var data = {
-          image: imageUrl,
-          title: this.get('title'),
-          comment: this.get('comment')
+          title: Ember.$('#bookmarklet-title').val(),
+          image: Ember.$('#bookmarklet-image-url').val(),
+          comment: Ember.$('#bookmarklet-comment').val()
         }
         Ember.$.ajax({
           url: config.host + '/v1/bookmarklet',
