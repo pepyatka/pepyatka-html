@@ -34,6 +34,7 @@ function bookmarklet_popupInit(host) {
     position: 'fixed', 'z-index': 100000,
     top: 0, right: '15px',
     height: '350px', width: '350px',
+    'box-sizing': 'content-box',
     border: '5px solid #aaa', 'border-top': 'none',
     'border-bottom-right-radius': '10px', 'border-bottom-left-radius': '10px',
     'background-color':'#fff'
