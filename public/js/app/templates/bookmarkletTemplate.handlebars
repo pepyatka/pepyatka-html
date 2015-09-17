@@ -36,8 +36,9 @@
     height: 74px;
   }
   button {
+    width: inherit;
     display: inline-block;
-    padding: 8px;
+    padding: 8px 16px;
     background-color: #bbb;
     border-color: #bbb;
   }
@@ -112,9 +113,9 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 text-center">
       <input type="hidden" id="bookmarklet-image-url" name="image" value="" />
-      <button type="submit" {{action "send"}}>Submit</button>
+      <button type="submit" {{action "send"}}>Post</button>
     </div>
   </div>
 

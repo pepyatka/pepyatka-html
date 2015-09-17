@@ -62,8 +62,8 @@ function bookmarklet_popupInit(host) {
     .click(function() { bookmarklet_unload() })
 
   // Overlay for images
-  jQuery('<div id="bookmarklet_overlay" style="display:none;border:5px solid #06f;position:absolute;overflow:hidden;cursor:pointer">'
-        + '<div id="bookmarklet_title" style="display:inline-block;background-color:white;font: normal 13px/17px Helvetica, Arial, sans-serif;color:#06f;padding:5px;margin:0">Select image</div>'
+  jQuery('<div id="bookmarklet_overlay" style="display:none;border:5px solid #06f;position:absolute;overflow:hidden;cursor:pointer;text-align:center">'
+        + '<div id="bookmarklet_title" style="display:inline-block;background-color:#06f;font: normal 13px/21px Helvetica, Arial, sans-serif !important;color:#fff;padding:3px 11px 6px 11px;margin:0">Select image</div>'
         + '</div>')
     .appendTo('body')
 
