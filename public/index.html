@@ -46,7 +46,7 @@
             <h1 class="title">
               <a href="/">freefeed</a>
             </h1>
-            <div class="jsonly" style="position: absolute; z-index: 2">
+            <div id="m-link-container" class="jsonly" style="position: absolute; z-index: 2">
               <p>If the page is taking too long to load, try out the light version at <a href="https://m.freefeed.net/" id="m-link">https://m.freefeed.net/</a></p>
             </div>
             <script type="text/javascript">
@@ -54,6 +54,10 @@
               var url = location.href.replace('//freefeed.net/', '//m.freefeed.net/');
               mLink.innerHTML = url;
               mLink.setAttribute('href', url);
+
+              if (location.pathname === '/bookmarklet') {
+                document.getElementById('m-link-container').innerHTML = '';
+              }
             </script>
           </div>
         </div>
