@@ -31,7 +31,7 @@ function bookmarklet_popupInit(host) {
   // Popup
   jQuery('<div id="bookmarklet_popup" />').appendTo('body')
   jQuery('#bookmarklet_popup').css({
-    position: 'fixed', 'z-index': 100000,
+    position: 'fixed', 'z-index': 2000000000,
     top: 0, right: '15px',
     height: '350px', width: '350px',
     'box-sizing': 'content-box',
@@ -42,7 +42,7 @@ function bookmarklet_popupInit(host) {
 
   // Iframe
   var comment = encodeURIComponent(bookmarklet_getSelectionText())
-  var title = encodeURIComponent(document.title) + " - " + document.URL
+  var title = encodeURIComponent(document.title + ' - ' + document.URL)
   jQuery('<iframe name="bookmarklet_frame" id="bookmarklet_frame" src="' + host + '/bookmarklet?comment=' + comment + '&title=' + title + '" scrolling="no"/>')
     .appendTo('#bookmarklet_popup')
     .css({
