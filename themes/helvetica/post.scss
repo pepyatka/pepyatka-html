@@ -65,6 +65,10 @@
         max-height: 175px;
       }
 
+      .remove-attachment {
+        display: none;
+      }
+
       &.surplus {
         display: none;
       }
@@ -121,6 +125,10 @@
         color: #666666;
         padding: 0 1px;
       }
+
+      .remove-attachment {
+        display: none;
+      }
     }
   }
 
@@ -132,6 +140,10 @@
       i {
         color: #666666;
         padding: 0 1px;
+      }
+
+      .remove-attachment {
+        display: none;
       }
     }
   }

@@ -7,6 +7,7 @@
         {{attachment.model.id}}
       {{/if}}
     </a>
+    <div class="remove-attachment fa fa-times" title="Remove image" {{action 'remove'}}></div>
   {{/if}}
 
   {{#if attachment.model.isAudio}}
@@ -18,6 +19,7 @@
       <div class="attachment-wrapper">
         <a href="{{attachment.model.url}}" title="{{attachment.audioTitle}}" class="p-attachment-url" target="_blank">
           <i class="fa fa-file-audio-o"></i>
+          <i class="remove-attachment fa fa-times" title="Remove audio file" {{action 'remove'}}></i>
           <span>{{attachment.audioTitle}}</span>
         </a>
       </div>
@@ -27,6 +29,7 @@
   {{#if attachment.model.isGeneral}}
     <a href="{{attachment.model.url}}" title="{{attachment.nameAndSize}}" class="p-attachment-url" target="_blank">
       <i class="fa fa-file-o"></i>
+      <i class="remove-attachment fa fa-times" title="Remove file" {{action 'remove'}}></i>
       <span>{{attachment.nameAndSize}}</span>
     </a>
   {{/if}}
