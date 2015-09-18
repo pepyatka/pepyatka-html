@@ -60,7 +60,8 @@ define(["config",
 
     isEdit: false,
     isFormVisible: false,
-    isSending: false,
+    isSendingComment: false,
+    isSendingLike: false,
     maxComments: 2,
     maxLikes: 4,
     isLoadingLikes: false,
@@ -174,11 +175,11 @@ define(["config",
           postId: this.get('content.id')
         })
 
-        this.set('isSending', true)
+        this.set('isSendingComment', true)
         comment.save()
           .then(function(comment) {
             this.set('newComment', '')
-            this.set('isSending', false)
+            this.set('isSendingComment', false)
             this.set('isFormVisible', false)
             comment.set('isRealtime', true)
             var object = this.get('content.comments').findProperty('id', comment.get('id'))
@@ -187,7 +188,7 @@ define(["config",
             }
           }.bind(this))
           .catch(function(e) {
-            this.set('isSending', false)
+            this.set('isSendingComment', false)
             this.displayError(e.statusText)
           }.bind(this))
       },
@@ -214,22 +215,28 @@ define(["config",
       },
 
       like: function() {
+        this.set('isSendingLike', true)
+
         var post = this.get('model')
 
         post.like()
           .then(function() {
             var user = this.get('session.currentUser')
             this.get('content.likes').addObject(user)
+            this.set('isSendingLike', false)
           }.bind(this))
       },
 
       unlike: function() {
+        this.set('isSendingLike', true)
+
         var post = this.get('model')
 
         post.unlike()
           .then(function() {
             var like = this.get('content.likes').findProperty('id', this.get('session.currentUser.id'))
             this.get('content.likes').removeObject(like)
+            this.set('isSendingLike', false)
           }.bind(this))
       }
     }
