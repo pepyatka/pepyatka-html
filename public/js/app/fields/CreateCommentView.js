@@ -8,7 +8,7 @@ define(["app/app",
     rows: '2',
     attributeBindings: ['rows'],
     valueBinding: 'parentView.controller.newComment',
-    disabledBinding: 'parentView.controller.isSending',
+    disabledBinding: 'parentView.controller.isSendingComment',
     action: 'create',
 
     keyPress: function (e) {

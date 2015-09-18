@@ -8,7 +8,7 @@ define(["app/app",
     rows: '2',
     attributeBindings: ['rows'],
     valueBinding: 'parentView.controller.body',
-    disabledBinding: 'parentView.controller.isSending',
+    disabledBinding: 'parentView.controller.isSendingComment',
 
     viewName: 'createPost',
 

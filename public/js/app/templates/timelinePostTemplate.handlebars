@@ -90,6 +90,10 @@
             -
             <a {{action 'destroy'}} class="p-timeline-post-destroy-action">Delete</a>
           {{/if}}
+
+          {{#if controller.isSendingLike}}
+            <span class="throbber"><img src="/img/throbber-16.gif" width="16" height="16" /></span>
+          {{/if}}
         {{/if}}
       </span>
 
@@ -132,7 +136,7 @@
               <div class="p-timeline-comment-actions">
                 <button {{action 'create'}} class="btn btn-default btn-xs p-timeline-comment-post">Post</button>
                 <a {{action 'toggleCommentForm'}} class="p-timeline-comment-cancel">Cancel</a>
-                {{#if controller.isSending}}
+                {{#if controller.isSendingComment}}
                   <span class="throbber"><img src="/img/throbber-16.gif" width="16" height="16" /></span>
                 {{/if}}
               </div>

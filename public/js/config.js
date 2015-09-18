@@ -90,5 +90,8 @@ define({
     /* requirejs-plugins */
     'hbs': 'libs/requirejs-plugins/hbs',
     'text': 'libs/requirejs-plugins/text'
+  },
+  auth: {
+    'tokenPrefix': 'test'
   }
 })
