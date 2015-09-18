@@ -35,6 +35,9 @@
   textarea#bookmarklet-comment {
     height: 74px;
   }
+  .throbber {
+    margin-right: 10px;
+  }
   button {
     width: inherit;
     display: inline-block;
@@ -114,8 +117,12 @@
   </div>
   <div class="row">
     <div class="col-md-12 text-right">
+      {{#if controller.isSending}}
+        <span class="throbber"><img src="/img/throbber-16.gif" width="16" height="16" /></span>
+      {{/if}}
+
       <input type="hidden" id="bookmarklet-image-url" name="image" value="" />
-      <button type="submit" {{action "send"}}>Post</button>
+      <button type="submit" {{bind-attr disabled=controller.isSending}} {{action "send"}}>Post</button>
     </div>
   </div>
 
