@@ -1,7 +1,14 @@
 "use strict";
 
 define({
+  siteName: 'Pepyatka',
+
   host: "http://localhost:3000",
+
+  auth: {
+    'tokenPrefix': 'test'
+  },
+
   waitSeconds: 0,
 
   shim: {
@@ -90,8 +97,5 @@ define({
     /* requirejs-plugins */
     'hbs': 'libs/requirejs-plugins/hbs',
     'text': 'libs/requirejs-plugins/text'
-  },
-  auth: {
-    'tokenPrefix': 'test'
   }
 })
