@@ -6,7 +6,8 @@ define({
   host: "http://localhost:3000",
 
   auth: {
-    'tokenPrefix': 'test'
+    cookieDomain: 'localhost',
+    tokenPrefix: 'test_'
   },
 
   waitSeconds: 0,
