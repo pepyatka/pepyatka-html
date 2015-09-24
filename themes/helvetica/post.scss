@@ -60,6 +60,11 @@
       padding: 1px;
       margin: 0 8px 8px 0;
 
+      img {
+        max-width: 525px;
+        max-height: 175px;
+      }
+
       &.surplus {
         display: none;
       }
