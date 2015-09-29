@@ -2,11 +2,15 @@
   text-align: left;
   margin: 15px 0;
 
-  li > a, li > a:hover {
-    background: none;
+  li > a,
+  li > a:hover,
+  li > a:focus {
+    background-color: inherit;
     border: 0;
     padding: 5px;
+    border-radius: 0;
   }
+
   li > a:hover {
     text-decoration: underline;
   }
