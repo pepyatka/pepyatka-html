@@ -1,4 +1,4 @@
-<div class="attachment">
+<div {{bind-attr class=":attachment attachment.model.editStatus"}}>
   {{#if attachment.model.isImage}}
     <a href="{{attachment.model.url}}" title="{{attachment.nameAndSize}}" class="p-attachment-url" target="_blank">
       {{#if attachment.model.thumbnailUrl}}

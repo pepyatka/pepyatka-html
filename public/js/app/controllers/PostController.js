@@ -6,7 +6,90 @@ define(["app/app",
   App.PostController = App.PostGenericController.extend(App.DynamicTime, {
     maxComments: 'all',
 
+    isUploadingAttachment: function() {
+      var post = this.get('model')
+      return post.get('attachments').isAny('id', null)
+    }.property('model.attachments.[]'),
+
+    // Remove attachment on edit-post
+    removeAttachment: function(attachmentId) {
+      var post = this.get('model')
+
+      post.get('attachments').map(function(item) {
+        if (item.id === attachmentId) {
+          item.set('editStatus', 'removed')
+        }
+      })
+    },
+
     actions: {
+      // Add attachment on edit-post
+      addAttachment: function(file) {
+        // Create an attachment record
+        var attachment = this.store.createRecord('attachment', {
+          file: file
+        })
+
+        // Add a throbber (placeholder object, to show uploading progress)
+        var post = this.get('model')
+        var attachmentList = post.get('attachments')
+        var throbber = this.store.createRecord('attachment', { fileName: file.name })
+        var throbberIndex = attachmentList.length
+        attachmentList.pushObject(throbber)
+
+        // Save the attachment record to the backend
+        attachment.save()
+          .then(function(attachment) {
+            // Replace the throbber with a real record
+            attachment.set('editStatus', 'added')
+            attachmentList.replace(throbberIndex, 1, [ attachment ])
+          })
+          .catch(function(e) {
+            console.log('Upload failed.')
+            attachmentList.removeAt(throbberIndex, 1)
+          })
+      },
+
+      startEdit: function() {
+        this.set('isEdit', true)
+      },
+
+      cancelEdit: function() {
+        var post = this.get('model')
+
+        // Revert "added" attachments (i.e., remove them from list)
+        var attachmentList = post.get('attachments').filter(function(item) {
+          return item.get('editStatus') !== 'added'
+        })
+        post.set('attachments', attachmentList)
+
+        // Revert "removed" attachments (i.e., reset their status)
+        post.get('attachments').map(function(item) {
+          item.set('editStatus', null)
+        })
+
+        // Switch UI back from edit mode
+        this.set('isEdit', false)
+      },
+
+      update: function() {
+        var post = this.get('model')
+
+        // First, remove attachments that were marked as "removed"
+        var attachmentList = post.get('attachments').filter(function(item) {
+          return item.get('editStatus') !== 'removed'
+        })
+        post.set('attachments', attachmentList)
+
+        // Second, reset editStatus for "added" attachments
+        post.get('attachments').map(function(item) {
+          item.set('editStatus', null)
+        })
+
+        // Then, invoke "generic" update()
+        this._super.apply(this, arguments)
+      },
+
       destroy: function() {
         var that = this
         var post = this.get('model')

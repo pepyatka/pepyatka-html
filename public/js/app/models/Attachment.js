@@ -18,6 +18,8 @@ define(["app/app"], function(App) {
     createdBy: DS.belongsTo('user'),
     post: DS.belongsTo('post'),
 
+    editStatus: null,
+
     isImage: function() {
       return this.get('mediaType') === 'image'
     }.property('mediaType'),

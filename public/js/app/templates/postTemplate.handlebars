@@ -3,19 +3,24 @@
     <img src="{{ model.createdBy.profilePictureLarge }}" />
   </div>
 
-  <div class="post-body">
+  <div {{bind-attr class=":post-body controller.isEdit:edit-post"}}>
     <div class="title">
       {{view 'post-title' post=model}}
     </div>
 
     {{#if controller.isEdit}}
-      <div class="edit-post">
+      <div class="edit-area">
         <div>
           {{view 'edit-post'}}
         </div>
-        <div>
-          <button {{action 'update'}} class="btn btn-default btn-xs p-post-post">Post</button>
-          <a {{action 'toggleEditability'}} class="p-post-cancel">Cancel</a>
+        <div class="edit-area-controls">
+          <div class="edit-area-controls-left">
+            {{view 'create-attachment'}}
+          </div>
+          <div class="edit-area-controls-right">
+            <a {{action 'cancelEdit'}} class="cancel-link p-post-cancel">Cancel</a>
+            <button {{action 'update'}} class="btn btn-default btn-xs p-post-post" {{bind-attr disabled="controller.isUploadingAttachment"}}>Update</button>
+          </div>
         </div>
       </div>
     {{else}}
@@ -44,6 +49,12 @@
 
         <div class="general-attachments">
           {{~#each attachment in content.generalAttachments itemController="post-attachment"~}}
+            {{view "post-attachment" content=attachment}}
+          {{~/each~}}
+        </div>
+
+        <div class="uploading-attachments">
+          {{~#each attachment in content.uploadingAttachments itemController="post-attachment"~}}
             {{view "post-attachment" content=attachment}}
           {{~/each~}}
         </div>
@@ -78,7 +89,7 @@
 
           {{#if view.isOwner}}
             -
-            <a {{action 'toggleEditability'}} class="p-post-toggle-editability">Edit</a>
+            <a {{action 'startEdit'}} class="p-post-toggle-editability">Edit</a>
             -
             <a {{action 'destroy'}} class="p-post-destroy">Delete</a>
           {{/if}}
