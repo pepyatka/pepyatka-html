@@ -29,6 +29,8 @@ define(["config", "auth_storage", "app/app"], function(config, auth_storage, App
       var application = this.get('application')
 
       var done = function(result) {
+        auth_storage.setWhoamiCache(result)
+
         store.pushPayload('user', result)
         store.find('user', result.users.id)
           .then(function(user) {
@@ -50,14 +52,21 @@ define(["config", "auth_storage", "app/app"], function(config, auth_storage, App
 
       if (this.get('authToken')
         && this.get('authToken').length > 0
-        && this.get('authToken') != 'null')
+        && this.get('authToken') != 'null') {
+
+        var whoamiCache = auth_storage.getWhoamiCache();
+        if (whoamiCache) {
+          done.call(this, whoamiCache)
+        }
+
         Ember.$.ajax({
           url: this.resourceUrl,
           context: this
-        })
-          .then(done, error)
-      else
+        }).then(done, error)
+
+      } else {
         error()
+      }
     }
   })
 
