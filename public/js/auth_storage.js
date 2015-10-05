@@ -85,6 +85,22 @@ define(["config"], function(config) {
         config.auth.cookieDomain,
         '/'
       )
+    },
+
+    getWhoamiCache: function() {
+      if (this.isLocalStorageSupported()) {
+        var data = window.localStorage.getItem('whoamiCache')
+        if (data) {
+          return JSON.parse(data)
+        }
+      }
+      return false
+    },
+
+    setWhoamiCache: function(data) {
+      if (this.isLocalStorageSupported()) {
+        window.localStorage.setItem('whoamiCache', JSON.stringify(data))
+      }
     }
   }
 })
