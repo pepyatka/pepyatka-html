@@ -41,6 +41,10 @@ define(["app/app",
         if (this.get('model.fileName') === fileName) {
           this.set('uploadProgress', percentComplete)
         }
+      },
+
+      remove: function() {
+        this.get('parentController').removeAttachment(this.get('model.id'))
       }
     }
   })

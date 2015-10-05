@@ -9,13 +9,18 @@
     </div>
 
     {{#if controller.isEdit}}
-      <div class="edit-post">
+      <div class="edit-area">
         <div>
           {{view 'edit-post'}}
         </div>
-        <div>
-          <button {{action 'update'}} class="btn btn-default btn-xs">Save</button>
-          <a {{action 'toggleEditability'}}>Cancel</a>
+        <div class="edit-area-controls">
+          <div class="edit-area-controls-left">
+            <span class="edit-area-notice">To add or remove attachments, go to {{#link-to 'post' post.model.postedToFirstObject post.content.id (query-params offset=0)}}this post's page{{/link-to}}.</span>
+          </div>
+          <div class="edit-area-controls-right">
+            <a {{action 'toggleEditability'}} class="cancel-link p-post-cancel">Cancel</a>
+            <button {{action 'update'}} class="btn btn-default btn-xs p-post-post" {{bind-attr disabled="controller.isUploadingAttachment"}}>Update</button>
+          </div>
         </div>
       </div>
     {{else}}

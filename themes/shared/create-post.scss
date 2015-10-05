@@ -22,6 +22,7 @@
 
     .attachment {
       display: inline-block;
+      position: relative;
       vertical-align: middle;
       border: 1px solid silver;
       padding: 1px;
@@ -30,6 +31,28 @@
       img {
         max-width: 525px;
         max-height: 175px;
+      }
+
+      .remove-attachment {
+        display: none;
+      }
+      &:hover .remove-attachment {
+        display: block !important;
+        position: absolute;
+        right: 1px;
+        top: 1px;
+        cursor: pointer;
+        color: #000;
+        font-size: 20px;
+        padding: 6px 8px 7px 9px;
+        z-index: 100;
+        background-color: silver;
+        opacity: 0.5;
+        border-bottom-left-radius: 5px;
+
+        &:hover {
+          opacity: 0.8;
+        }
       }
     }
   }
@@ -55,6 +78,26 @@
         color: #666666;
         padding: 0 1px;
       }
+
+      .remove-attachment {
+        display: none;
+      }
+
+      &:hover {
+        i {
+          display: none;
+        }
+
+        .remove-attachment {
+          display: inline-block !important;
+          padding-left: 2px;
+
+          &:hover {
+            background-color: #ddd;
+            border-radius: 2px;
+          }
+        }
+      }
     }
   }
 
@@ -66,6 +109,26 @@
       i {
         color: #666666;
         padding: 0 1px;
+      }
+
+      .remove-attachment {
+        display: none;
+      }
+
+      &:hover {
+        i {
+          display: none;
+        }
+
+        .remove-attachment {
+          display: inline-block !important;
+          padding-left: 2px;
+
+          &:hover {
+            background-color: #ddd;
+            border-radius: 2px;
+          }
+        }
       }
     }
   }
