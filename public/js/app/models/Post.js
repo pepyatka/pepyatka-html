@@ -42,6 +42,12 @@ define(["config",
       })
     }.property('attachments.[]'),
 
+    uploadingAttachments: function() {
+      return _.filter(this.get('attachments').toArray(), function(attachment) {
+        return attachment.get('isUploading')
+      })
+    }.property('attachments.[]'),
+
     anyFeeds: function() {
       return this.get('publicSubscriptions.length') > 0
     }.property('publicSubscriptions'),

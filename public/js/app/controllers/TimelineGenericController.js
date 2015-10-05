@@ -66,6 +66,16 @@ define(["config",
 
     isSendToVisible: false,
 
+    // Remove attachment on create-post
+    removeAttachment: function(attachmentId) {
+      var attachmentList = this.get('attachments')
+        .filter(function(item) {
+          return item.id !== attachmentId
+        })
+
+      this.set('attachments', attachmentList)
+    },
+
     actions: {
       subscribe: function() {
         var user = this.get('model.user')

@@ -43,7 +43,7 @@ define(["app/app",
         xhr.upload.addEventListener('progress', function(event) {
           if (event.lengthComputable) {
             var percentComplete = Math.round(event.loaded / event.total * 100)
-            Ember.$('.create-post .attachment').trigger({
+            Ember.$('.create-post .attachment, .edit-post .attachment').trigger({
               type: 'upload-progress',
               fileName: fileName,
               percentComplete: percentComplete
