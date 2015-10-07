@@ -118,8 +118,8 @@
         </div>
         <div class="box-body">
           <ul>
-            <li><a href="http://news.freefeed.net" target="_blank">News</a></li>
-            <li><a href="https://freefeed.net/support">Support</a></li>
+            <li>{{#link-to 'timeline.index' 'freefeed' (query-params offset=0)}}@freefeed{{/link-to}}</li>
+            <li>{{#link-to 'timeline.index' 'support' (query-params offset=0)}}Support{{/link-to}}</li>
           </ul>
         </div>
         <div class="box-footer">
