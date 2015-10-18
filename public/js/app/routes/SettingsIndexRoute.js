@@ -3,7 +3,7 @@ define(["app/app",
         "components/AuthorizableRoute"], function(App) {
   "use strict";
 
-  App.SettingsRoute = Ember.Route.extend(App.TransitionalRoute,
+  App.SettingsIndexRoute = Ember.Route.extend(App.TransitionalRoute,
                                          App.AuthorizableRoute, {
     beforeModel: function() {
       this._super.apply(this, arguments)
@@ -13,6 +13,13 @@ define(["app/app",
 
     model: function() {
       return this.get('session.currentUser')
+    },
+
+    setupController: function(controller, model) {
+      controller.set('model', model)
+
+      controller.set('errors', null)
+      controller.set('message', null)
     }
   })
 })

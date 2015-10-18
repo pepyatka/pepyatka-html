@@ -29,7 +29,7 @@ define(["config",
 
     omittedComments: function() {
       if (this.get('isLoadingComments')) {
-        return this.get('omittedCommentsOld')
+        return this.get('model.omittedComments')
       } else {
         if (this.get('model.omittedComments') > 0)
           return this.get('model.omittedComments') + this.get('model.comments.length') - 2
@@ -67,7 +67,7 @@ define(["config",
         return this.get('model.comments').slice(len - 1, len)
 
       var lastTwo = this.get('model.comments').slice(len - 2, len)
-      if (lastTwo[1].get('isRealtime') === true) {
+      if (lastTwo[1].get('isRealtime') === true && len > 2) {
         return lastTwo
       }
       return [lastTwo[1]]
@@ -87,10 +87,33 @@ define(["config",
       var likes = this.get('allLikes')
       var omittedLikes = this.get('model.omittedLikes') || 0
 
-      if (likes.get('length') < 5 && omittedLikes == 0)
+      if (likes.get('length') < 5 && omittedLikes == 0) {
         return likes
-      else
-        return likes.slice(0, 3)
+      } else {
+        var items = likes.slice(0, 3)
+        if (((items.length === 3) ||
+             (items.length < 3 && this.get('omittedLikes') === 0))
+           && this.get('omittedLikes') !== 1)
+          return items
+
+        // we do not have enough information to render likes, need to
+        // request server for this
+        var that = this
+        var oldUpdatedAt = this.get('model.updatedAt')
+
+        this.set('isLoadingLikes', true)
+        Ember.run.later(function() {
+          that.store.findOneQuery('post', that.get('model.id'), {
+            maxComments: that.get('maxComments'),
+            maxLikes: 'all'
+          }).then(function(post) {
+            post.set('updatedAt', oldUpdatedAt)
+            that.set('isLoadingLikes', false)
+          })
+        }, 250)
+
+        return items
+      }
     }.property('model.omittedLikes', 'allLikes'),
 
     actions: {
@@ -109,22 +132,17 @@ define(["config",
         var that = this
         var oldUpdatedAt = this.get('model.updatedAt')
 
-        // NOTE: we are setting omittedCommentsOld because for UX we
-        // are going to show throbber for extra 0.25s, however new data
-        // will be already loaded at that time, so we must show old
-        // data to simulate loading process
-        this.set('omittedCommentsOld', this.get('omittedComments'))
         this.set('isLoadingComments', true)
         this.set('maxComments', 'all')
-        this.store.findOneQuery('post', this.get('model.id'), {
-          maxComments: this.get('maxComments'),
-          maxLikes: this.get('maxLikes')
-        }).then(function(post) {
-          post.set('updatedAt', oldUpdatedAt)
-          Ember.run.later(function() {
+        Ember.run.later(function() {
+          that.store.findOneQuery('post', that.get('model.id'), {
+            maxComments: that.get('maxComments'),
+            maxLikes: that.get('maxLikes')
+          }).then(function(post) {
+            post.set('updatedAt', oldUpdatedAt)
             that.set('isLoadingComments', false)
-          }, 250)
-        })
+          })
+        }, 250)
       },
 
       showAllLikes: function() {
@@ -133,15 +151,15 @@ define(["config",
 
         this.set('isLoadingLikes', true)
         this.set('maxLikes', 'all')
-        this.store.findOneQuery('post', this.get('model.id'), {
-          maxComments: this.get('maxComments'),
-          maxLikes: this.get('maxLikes')
-        }).then(function(post) {
-          post.set('updatedAt', oldUpdatedAt)
-          Ember.run.later(function() {
+        Ember.run.later(function() {
+          that.store.findOneQuery('post', that.get('model.id'), {
+            maxComments: that.get('maxComments'),
+            maxLikes: that.get('maxLikes')
+          }).then(function(post) {
+            post.set('updatedAt', oldUpdatedAt)
             that.set('isLoadingLikes', false)
-          }, 250)
-        })
+          })
+        }, 250)
       },
 
       create: function() {

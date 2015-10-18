@@ -10,9 +10,9 @@
 {{#if controller.hasHiddenPosts}}
   <div class="show-hidden">
     <a {{action "toggleShowHidden" target=view}}>Show {{hiddenPosts.length}} hidden entries</a>
-  {{#if view.hiddenPostsShown}}
-    {{view "hidden-posts"}}
-  {{/if}}
+    {{#if view.hiddenPostsShown}}
+      {{view "hidden-posts"}}
+    {{/if}}
   </div>
 {{/if}}
 

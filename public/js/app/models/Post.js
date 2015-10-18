@@ -100,6 +100,11 @@ define(["config",
 
     canUnhide: function() {
       return this.get('isHidden')
-    }.property('isHidden')
+    }.property('isHidden'),
+
+    postedToFirstObject: function() {
+      return this.get('postedTo.firstObject.user.username')
+        || this.get('createdBy.username')
+    }.property('postedTo', 'createdBy')
   })
 })

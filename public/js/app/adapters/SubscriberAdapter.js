@@ -2,10 +2,6 @@ define(["app/app",
         "ember"], function(App, Ember) {
   App.SubscriberAdapter = DS.RESTAdapter.extend({
     findQuery: function(store, type, query) {
-      if (this.sortQueryParams) {
-        query = this.sortQueryParams(query)
-      }
-
       return this.ajax(this.buildURL(type.modelName, query), 'GET')
     },
 
@@ -14,9 +10,7 @@ define(["app/app",
       var url = []
       var host = adapter.host
       var prefix = adapter.urlPrefix()
-      var keys = Object.keys(id)
-      var values = keys.map(function(v) { return id[v] })
-      var user = values.join('')
+      var user = id
 
       if (type) { url.push(adapter.pathForType(type)) }
 

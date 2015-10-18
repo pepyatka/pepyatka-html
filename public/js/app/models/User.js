@@ -15,6 +15,7 @@ define(["lodash",
     profilePictureLargeUrl: DS.attr('string'),
     profilePictureMediumUrl: DS.attr('string'),
     administratorIds: DS.attr(),
+    banIds: DS.attr(),
 
     hasPosts: function() {
       return this.get('statistics.posts') > 0
@@ -87,6 +88,13 @@ define(["lodash",
         shortName += " feed"
       }
       return shortName
+    }.property('screenName'),
+
+    screenNameOrYou: function() {
+      if (App.get('Session.currentUser.id') === this.get('id'))
+        return 'You'
+
+      return this.get('screenName')
     }.property('screenName')
   })
 })
