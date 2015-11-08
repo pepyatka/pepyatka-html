@@ -45,7 +45,11 @@ define(["app/app",
             attachmentList.replace(throbberIndex, 1, [ attachment ])
           })
           .catch(function(e) {
-            console.log('Upload failed.')
+            var errorDetails = 'Unspecified error'
+            if (e.responseJSON && e.responseJSON.message) {
+              errorDetails = e.responseJSON.message
+            }
+            console.log('Upload failed: ' + errorDetails)
             attachmentList.removeAt(throbberIndex, 1)
           })
       },
