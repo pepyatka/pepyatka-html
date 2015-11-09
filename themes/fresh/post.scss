@@ -378,6 +378,40 @@
     }
   }
 
+  .upload-errors {
+    position: relative;
+    background-color: #fbb;
+    padding: 1px 6px;
+    margin: 0 8px 8px 0;
+
+    .clear-upload-errors {
+      display: block !important;
+      position: absolute;
+      right: 0;
+      top: 0;
+      cursor: pointer;
+      color: #966;
+      font-size: 20px;
+      padding: 4px 6px 5px 7px;
+      z-index: 100;
+
+      &:hover {
+        color: #433;
+      }
+    }
+
+    .upload-error {
+      color: #433;
+      font-size: 14px;
+      margin: 3px 0;
+
+      .file-name {
+        color: #966;
+        font-size: 12px;
+      }
+    }
+  }
+
   .info,
   .comments {
     opacity: 0.2;

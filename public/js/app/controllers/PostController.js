@@ -11,6 +11,11 @@ define(["app/app",
       return post.get('attachments').isAny('id', null)
     }.property('model.attachments.[]'),
 
+    // 'uploadErrors' should be an instance property (set on init), not a prototype property
+    setupUploadErrors: function() {
+      this.set('uploadErrors', []);
+    }.on('init'),
+
     // Remove attachment on edit-post
     removeAttachment: function(attachmentId) {
       var post = this.get('model')
@@ -33,6 +38,7 @@ define(["app/app",
         // Add a throbber (placeholder object, to show uploading progress)
         var post = this.get('model')
         var attachmentList = post.get('attachments')
+        var uploadErrors = this.get('uploadErrors')
         var throbber = this.store.createRecord('attachment', { fileName: file.name })
         var throbberIndex = attachmentList.length
         attachmentList.pushObject(throbber)
@@ -45,9 +51,23 @@ define(["app/app",
             attachmentList.replace(throbberIndex, 1, [ attachment ])
           })
           .catch(function(e) {
-            console.log('Upload failed.')
+            var errorDetails = 'Unspecified error'
+            if (e.responseJSON && e.responseJSON.message) {
+              errorDetails = e.responseJSON.message
+            }
+            uploadErrors.pushObject({
+              fileName: file.name,
+              message: 'Upload failed: ' + errorDetails
+            })
+            console.log('Upload failed: ' + errorDetails)
+
             attachmentList.removeAt(throbberIndex, 1)
           })
+      },
+
+      // Clear uploadErrors on create-post
+      clearUploadErrors: function() {
+        this.set('uploadErrors', [])
       },
 
       startEdit: function() {
