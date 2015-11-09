@@ -48,6 +48,19 @@
           </div>
         {{/if}}
 
+        {{#if controller.uploadErrors}}
+          <div class="upload-errors">
+            <div class="clear-upload-errors fa fa-times" title="Clear errors" {{action 'clearUploadErrors'}}></div>
+
+            {{#each error in controller.uploadErrors}}
+              <div class="upload-error">
+                {{error.message}}
+                <div class="file-name">{{error.fileName}}</div>
+              </div>
+            {{/each}}
+          </div>
+        {{/if}}
+
         {{view 'create-attachment'}}
       </div>
       <div class="col-md-2">
