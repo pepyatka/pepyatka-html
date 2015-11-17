@@ -11,6 +11,9 @@ define(["app/app",
     afterModel: function() {
       this._super.apply(this, arguments)
       this.removeThrobber()
+      Ember.run.schedule('afterRender', this, function() {
+        this.setScrollPosition()
+      })
     },
 
     addThrobber: function() {
@@ -18,8 +21,20 @@ define(["app/app",
     },
 
     removeThrobber: function() {
-      window.scrollTo(0,0)
       Ember.$('body').removeClass('transition-active transition-static')
+    },
+
+    setScrollPosition: function() {
+      var scrollPosition = 0;
+
+      if (window.location.hash) {
+        var domElement = Ember.$(window.location.hash)
+        if (domElement && domElement.offset() && domElement.offset().top) {
+          scrollPosition = domElement.offset().top
+        }
+      }
+
+      window.scrollTo(0, scrollPosition)
     }
   })
 })
