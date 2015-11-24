@@ -1,13 +1,7 @@
 <div class="row list-controls">
   <div class="col-md-6 filter-controls">
     View:
-    {{#if controller.showAllGroups}}
-      <a {{action 'toggleAllGroups'}}>Active groups</a> -
-      All groups
-    {{else}}
-      Active groups -
-      <a {{action 'toggleAllGroups'}}>All groups</a>
-    {{/if}}
+    All your groups
   </div>
   <div class="col-md-3 manage-controls">
     {{#link-to 'groups.new'}}Create a group{{/link-to}}
