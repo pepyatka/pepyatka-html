@@ -8,7 +8,7 @@
   </div>
 </div>
 
-<ul class="tile-list">
+<ul class="tile-list large-pics">
   {{#each group in controller.groups}}
     <li class="p-timeline-group-user">
       {{#link-to 'timeline.index' group.user.username (query-params offset=0)}}
