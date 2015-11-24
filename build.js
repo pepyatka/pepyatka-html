@@ -54,7 +54,7 @@
     'ember': 'libs/emberjs/1.11.3/ember.min',
     'ember-data': 'libs/ember-data/1.0.0-beta.18/ember-data.min',
     'ember-template-compiler': 'libs/ember-template-compiler/1.11.3/ember-template-compiler.min',
-    'autosize': 'libs/autosize/3.0.5/autosize.min',
+    'autosize': 'libs/autosize/3.0.14/autosize.min',
     'moment': 'libs/momentjs/2.9.0/moment.min',
     'numeral': 'libs/numeraljs/1.5.3/numeral.min',
     'socket.io': 'libs/socket.io/1.3.5/socket.io.min',
