@@ -1,10 +1,53 @@
-$player-radius: 4px;
+$player-radius: 0px;
+$player-dark-color: #5c5c5c;
+$player-border-color: #838383;
+$player-mid-color: #898989;
+$player-midup-color: #cacaca;
+$player-light-color: #f4f4f4;
+$player-lightest-color: #fff;
 
 .mejs-container {
   border-radius: $player-radius;
 
   .mejs-controls {
-    background: #333 !important;
+    background: $player-light-color !important;
     border-radius: $player-radius;
+
+    .mejs-currenttime, .mejs-duration {
+      color: $player-dark-color;
+    }
+    .mejs-time-rail {
+      .mejs-time-total {
+        background: $player-mid-color;
+      }
+      .mejs-time-buffering, .mejs-time-loaded {
+        border: 1px solid $player-border-color;
+        background: $player-midup-color;
+      }
+      .mejs-time-current {
+        border: 1px solid $player-border-color;
+        background: $player-lightest-color;
+      }
+      .mejs-time-float {
+        background: $player-midup-color;
+        border: 1px solid $player-midup-color;
+      }
+      .mejs-time-float-corner {
+        border: solid 5px $player-midup-color;
+        border-color: $player-midup-color $player-light-color $player-light-color $player-light-color;
+      }
+    }
+    .mejs-horizontal-volume-slider {
+      .mejs-horizontal-volume-total {
+        border: 1px solid $player-border-color;
+        background: $player-mid-color;
+      }
+      .mejs-horizontal-volume-current {
+        border: 1px solid $player-border-color;
+        background: $player-lightest-color;
+      }
+    }
   }
 }
+
+

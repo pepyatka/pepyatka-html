@@ -91,6 +91,8 @@ define(["config"], function(config) {
       if (this.isLocalStorageSupported()) {
         var data = window.localStorage.getItem('whoamiCache')
         if (data) {
+          if (!data.hasOwnProperty('users'))
+            return false
           return JSON.parse(data)
         }
       }

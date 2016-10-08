@@ -5,12 +5,11 @@
         <h1 class="title">
           {{#if isHomepage}}
             <span {{action 'reloadHomepage'}}>
-              {{#link-to 'timeline.home' (query-params offset=0)}}Pepyatka{{/link-to}}
+              {{#link-to 'timeline.home' (query-params offset=0)}}FreeFeed{{/link-to}}
             </span>
           {{else}}
-            {{#link-to 'timeline.home' (query-params offset=0)}}Pepyatka{{/link-to}}
+            {{#link-to 'timeline.home' (query-params offset=0)}}FreeFeed{{/link-to}}
           {{/if}}
-          <small class="mutted">0.3.0</small>
         </h1>
       </div>
     </div>
@@ -28,8 +27,6 @@
           {{#unless controller.session.signedIn}}
             <div class="signin-toolbar">
               {{#link-to 'session.new'}}Sign In{{/link-to}}
-                or
-              {{#link-to 'users.new'}}Sign Up{{/link-to}}
             </div>
           {{/unless}}
         </div>
@@ -89,6 +86,18 @@
 
       <div class="box">
         <div class="box-header-friends">
+          Fundraiser
+        </div>
+        <div class="box-footer">
+          Мы запустили первую кампанию по финансированию разработки и развития Фрифида. Заходите и <a href="http://bit.ly/frf-goes-igogo" target="_blank">участвуйте</a> в кампании на IndieGoGo.
+          <div style="width:218px;height:60px;overflow:hidden;position:relative;margin-top:10px;">
+          <iframe src="https://www.indiegogo.com/project/freefeed-v-1/embedded/12420853" frameborder="0" scrolling="no" style="width:222px;height:445px;position:absolute;top:-376px;left:-1px;"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <div class="box">
+        <div class="box-header-friends">
           Friends
         </div>
         <div class="box-body">
@@ -112,6 +121,74 @@
         </div>
         <div class="box-footer">
           {{#link-to 'groups.home'}}Browse/edit groups{{/link-to}}
+        </div>
+      </div>
+
+      <div class="box">
+        <div class="box-header-groups">
+          Info
+        </div>
+        <div class="box-body">
+          <ul>
+            <li>{{#link-to 'timeline.index' 'freefeed' (query-params offset=0)}}@freefeed{{/link-to}}</li>
+            <li>{{#link-to 'timeline.index' 'support' (query-params offset=0)}}Support{{/link-to}}</li>
+          </ul>
+        </div>
+        <div class="box-footer">
+
+        </div>
+      </div>
+
+      <div class="box">
+        <div class="box-header-groups">
+          Bookmarklet
+        </div>
+        <div class="box-footer">
+          Once added to your toolbar, this button will let you share web pages on your FreeFeed.
+          You can even attach thumbnails of images from the page you share!
+        </div>
+        <div class="box-footer">
+          Click and drag ​
+          <a class="bookmarklet-button" href="BOOKMARKLET_PLACEHOLDER" onclick="return false">Share on FreeFeed</a>
+          to&nbsp;your toolbar.
+        </div>
+      </div>
+
+      <div class="box">
+        <div class="box-header-groups">
+          Coin Jar
+        </div>
+        <div class="box-body">
+        </div>
+        <div class="box-footer">
+          <p style="margin-bottom: 10px">Subscribe to FreeFeed today! Arrangement is plain and simple — you wire funds to FreeFeed, it gets better every week.</p><span style="display: block; margin-left: auto; margin-right: auto">
+          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+          <input type="hidden" name="cmd" value="_s-xclick">
+          <input type="hidden" name="hosted_button_id" value="DRR5XU73QLD7Y">
+          <table>
+          <tbody><tr><td style="padding-bottom: 5px;"><input type="hidden" name="on0" value="Pick monthly donation amount" style="padding:5px 0;">Choose your option:</td></tr><tr><td><select name="os0">
+            <option value="Basic">€5.00 EUR / month</option>
+            <option value="Advanced" selected="selected">€10.00 EUR / month</option>
+            <option value="Sizable">€15.00 EUR / month</option>
+            <option value="Luxurious">€20.00 EUR / month</option>
+            <option value="King size">€30.00 EUR / month</option>
+            <option value="Master of the Universe">€50.00 EUR / month</option>
+            <option value="Chuck Norris">€75.00 EUR / month</option>
+            <option value="Duke Nukem">€100.00 EUR / month</option>
+          </select> </td></tr>
+          </tbody></table>
+          <input type="hidden" name="currency_code" value="EUR">
+          <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_100x26.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" style="margin:5px;">
+          <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1" style="display: none !important;">
+          </form>
+          </span>
+          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" id="singlePayPalPayment">
+          <input type="hidden" name="cmd" value="_s-xclick">
+          <input type="hidden" name="hosted_button_id" value="HMVYD6GEWNWH8">
+          <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_100x26.png" width="0" height="0" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+          <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1" style="display: none !important;">
+          </form>
+          <p style="margin-bottom: 10px">Or <a href="#" onclick="document.forms['singlePayPalPayment'].submit(); return false;" style="text-decoration:underline;">send a one-time payment first&nbsp;→</a></p>
         </div>
       </div>
     </div>
